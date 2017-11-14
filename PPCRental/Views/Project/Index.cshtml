@@ -8,11 +8,12 @@
     <div class="container">
         <h1 class="title wow slideInLeft">Properties Grid</h1>
         <ol class="breadcrumb wow slideInRight">
-            <li><a href="home/index.html">Home</a></li>
-            <li class="active"><a href="#">List of Project</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="property-map-view.html">List Of Project</a></li>
         </ol>
     </div>
 </div>
+
 <div id="advance-search" class="main-page clearfix">
     <div class="container">
         <button class="btn top-btn">Find Your Place</button>
@@ -145,9 +146,9 @@
     </div>
 </div>
 <section id="property-listing">
-    <header class="section-header text-center">
+    <header class="section-header text-center" style="z-index:1">
         <div class="container">
-            <h2 class="pull-left">Showing 1 - 50 of 696 items</h2>
+            <h2 class="pull-left" >Showing 1 - 50 of 696 items</h2>
             <div class="pull-right">
                 <div class="property-sorting pull-left">
                     <label for="property-sort-dropdown"> Sort by:   </label>
@@ -169,12 +170,12 @@
                     <article class="property layout-item clearfix">
                         <figure class="feature-image">
                             <a class="clearfix zoom" href="single-property.html">
-                                <img data-action="zoom" src="~/img/avatar/@item.Avatar" alt="Property Image">
+                                <img data-action="zoom" src="~/img/avatar/@item.Avatar" alt="Property Image" style="z-index:10">
                             </a>
                             <span class="btn btn-warning btn-sale">for sale</span>
                         </figure>
                         <div class="property-contents clearfix">
-                            <header class="property-header clearfix">
+                            <header class="property-header clearfix" style="z-index:1">
                                 <div class="pull-left">
                                     <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
                                     <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
