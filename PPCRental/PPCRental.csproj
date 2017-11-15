@@ -324,6 +324,10 @@
     <Content Include="Views\Shared\Layout\User\site-menu.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\ProjectList.cshtml" />
+    <Content Include="Views\Project\Searching.cshtml" />
+    <Content Include="Views\Shared\Layout\User\advance-search.cshtml" />
+    <Content Include="Views\Shared\Layout\User\slider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

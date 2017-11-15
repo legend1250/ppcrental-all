@@ -10,16 +10,20 @@ namespace PPCRental.Controllers
     {
         ppcrental3119Entities db = new ppcrental3119Entities();
         // GET: Project
-        public ActionResult Index()
+        public ActionResult ProjectList()
         {
             var project = db.PROPERTies.ToList();
 
             return View(project);
         }
-        [HttpPost]
-        public ActionResult projectFilter()
+
+        [HttpGet]
+        public ActionResult Searching(String projectname)
         {
-            return View();
+
+            var product = db.PROPERTies.ToList().Where(x => x.PropertyName.Contains(projectname));
+
+            return View(product);
         }
     }
 }
