@@ -216,6 +216,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\5.jpg" />
+    <Content Include="img\ancency-avatar\2.jpg" />
     <Content Include="img\announcement-bg.jpg" />
     <Content Include="img\arrow.png" />
     <Content Include="img\avatar\IMG_1592-stamp.jpg" />
@@ -323,11 +324,11 @@
     <Content Include="Views\Shared\Layout\User\footer.cshtml" />
     <Content Include="Views\Shared\Layout\User\site-menu.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\ProjectList.cshtml" />
     <Content Include="Views\Project\Searching.cshtml" />
     <Content Include="Views\Shared\Layout\User\advance-search.cshtml" />
     <Content Include="Views\Shared\Layout\User\slider.cshtml" />
+    <Content Include="Views\Project\ProjectDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

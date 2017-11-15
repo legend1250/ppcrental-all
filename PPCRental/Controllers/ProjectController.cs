@@ -25,5 +25,12 @@ namespace PPCRental.Controllers
 
             return View(product);
         }
+        [HttpGet]
+        public ActionResult projectDetail(int id)
+        {
+
+            var product = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            return View(product);
+        }
     }
 }
