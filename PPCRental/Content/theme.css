@@ -261,7 +261,6 @@ img.zoom-img {
   padding: 150px 0;
   position: relative;
   max-height: 400px;
-  margin-bottom: 70px;
 }
 #site-banner:after {
   content: " ";
@@ -673,6 +672,7 @@ img.zoom-img {
   padding-bottom: 35px;
   z-index: 99;
   background: #fff;
+  
 }
 #advance-search fieldset {
   width: 85%;
@@ -686,6 +686,7 @@ img.zoom-img {
   margin-top: -85px;
   color: #333;
   background: #fff;
+  
 }
 #adv-search-form {
   margin-top: 30px;
