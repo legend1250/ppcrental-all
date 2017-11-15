@@ -28,9 +28,8 @@ namespace PPCRental.Controllers
         [HttpGet]
         public ActionResult projectDetail(int id)
         {
-
-            var product = db.PROPERTies.FirstOrDefault(x => x.ID == id);
-            return View(product);
+            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);         
+            return View(project);
         }
     }
 }

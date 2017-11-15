@@ -211,10 +211,10 @@ img.zoom-img {
 }
 /*Tabs Styles*/
 #tabs,
-#widget-tabs {
-  z-index: 1;
-  position: relative;
-  margin-bottom: 50px;
+#widget-tabs-tabs{
+    z-index: 1;
+    position: relative;
+    margin-bottom: 50px;
 }
 .tab-list li {
   float: left;

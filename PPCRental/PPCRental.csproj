@@ -328,7 +328,7 @@
     <Content Include="Views\Project\Searching.cshtml" />
     <Content Include="Views\Shared\Layout\User\advance-search.cshtml" />
     <Content Include="Views\Shared\Layout\User\slider.cshtml" />
-    <Content Include="Views\Project\ProjectDetail.cshtml" />
+    <Content Include="Views\Project\projectDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
