@@ -75,7 +75,13 @@
     <header id="site-header">
         <!-- site-header-top -->
         <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
-            @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+            @if (Session["user"] != null)
+            {
+                @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+            }else
+        	{
+	            @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")   
+            }
         <!-- /site-header-top -->
         <!-- site-menu -->
             @RenderPage("~/Views/Shared/Layout/User/site-menu.cshtml")
