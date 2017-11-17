@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Login";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout_null.cshtml";
 }
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Homeland &lsaquo; Log In</title>
+    <title>LogIn - PPCRental</title>
+    <link rel="shortcut icon" href="~/img/favicon.png" />
     <link rel='dns-prefetch' href='//s.w.org' />
     <link rel='stylesheet' href='http://themecss.com/wp/Homeland/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.8.3' type='text/css' media='all' />
     <meta name='robots' content='noindex,follow' />
@@ -22,12 +22,22 @@
     <div id="login" style="background:none">
         <h1><a href="~/Home/Index" title="PPC Rental Company"><img src="~/img/logo.png" /></a></h1>
         @{
-            if (Session["error"] !=null)
+            if (Session["error"] != null)
             {
-                <div id="login_error">
-                    <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
-                    <br />
-                </div>
+                if (Session["not-login"] != null)
+                {
+                    <div id="login_error">
+                        <strong>Not Login.Please login to view this page!!!</strong>
+                        <br />
+                    </div>
+                }
+                else
+                {
+                    <div id="login_error">
+                        <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
+                        <br />
+                    </div>
+                }
             }
         }
         
@@ -79,7 +89,7 @@
             }
         }
        
-        <p id="backtoblog"><a href="http://themecss.com/wp/Homeland/">&larr; Back to Homeland</a></p>
+        <p id="backtoblog"><a href="~/Home/Index">&larr; Back to Home</a></p>
     </div>
     <link rel='stylesheet' id='homeland-custom-style-css' href='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/css/admin.css?ver=4.8.3' type='text/css' media='all' />
     <style id='homeland-custom-style-inline-css' type='text/css'>

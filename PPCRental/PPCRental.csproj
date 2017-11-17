@@ -665,6 +665,8 @@
     <Content Include="Views\Project\projectDetail.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-2.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Shared\_Layout_null.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

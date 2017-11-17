@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Add Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .qa-form{
+        margin-top:200px;
+        min-height:800px;
+    }.qa-form h1{
+         margin-bottom:50px;
+     }.qa-submit{
+          margin-left:10px;
+      }
+</style>
+@{ 
+    if (Session["user"]==null)
+    {
+        Session["not-login"] = true;
+        Response.Redirect("~/User/Login");
+    }
+}
+<div class="container qa-form">
+     <center><h1>Add Project</h1></center>
+    <form class="form-horizontal" action="#" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="name">ProjectName:</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="name" name="pname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="ava">Avatar:</label>
+            <div class="col-sm-11">
+                <input type="password" class="form-control" id="ava" name="avatar">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="ima">Image:</label>
+            <div class="col-sm-11">
+                <input type="password" class="form-control" id="ima" name="image">
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="street">Street:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="street">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>  
+            <label class="control-label col-sm-1" for="ward">Ward:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="ward">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <label class="control-label col-sm-1" for="district">District:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="district">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="price">Price:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="price" name="price">
+            </div>
+            <label class="control-label col-sm-1" for="area">Area:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="area" name="area">
+            </div>
+            <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="ptype">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="bed">BedRoom:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="bed" name="bed">
+            </div>
+            <label class="control-label col-sm-1" for="bath">BathRoom:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="bath" name="bath">
+            </div>
+            <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="packing" name="packing">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="content">Content:</label>
+            <div class="col-sm-11">
+                <textarea class="form-control" id="content" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default pull-right qa-submit"><i class="fa fa-share"></i> Submit</button>
+                <button type="button" class="btn btn-warning pull-right qa-save"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

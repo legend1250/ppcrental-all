@@ -31,5 +31,9 @@ namespace PPCRental.Controllers
             var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);         
             return View(project);
         }
+        public ActionResult addProject()
+        {
+            return View();
+        }
     }
 }
