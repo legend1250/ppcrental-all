@@ -1,6 +1,7 @@
 /* General Styles */
 body {
   position: relative;
+  margin-top:130px;
 }
 clear-fix:after, clear-fix:before{
     content:"";
@@ -480,8 +481,9 @@ img.zoom-img {
 }
 /* Header Styles */
 #site-header {
-  padding-bottom: 18px;
-  background: #fff;
+    padding-bottom: 18px;
+    background: #fff;
+  
 }
 #site-header-top {
   background: #333;
@@ -2189,4 +2191,11 @@ img.zoom-img {
   .container {
     width: auto;
   }
+}
+#site-header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    width:100%;
 }
