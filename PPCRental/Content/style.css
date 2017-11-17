@@ -766,7 +766,7 @@ a.slide-toggle {
 }
 
     .call-info .call-us,
-    .call-info a.login {
+    .call-info a.login,.call-info div.login {
         display: inline-block;
         padding: 10px 12px;
         float: left;
@@ -774,7 +774,7 @@ a.slide-toggle {
     }
 
         .call-info .call-us i,
-        .call-info a.login i {
+        .call-info a.login i, .call-info div.login i {
             margin-right: 6px;
         }
 
@@ -784,7 +784,7 @@ a.slide-toggle {
             outline: none;
         }
 
-        .call-info a.login:hover {
+        .call-info a.login:hover,.call-info div.login:hover {
             color: #999;
             background: #F2F2F2;
         }

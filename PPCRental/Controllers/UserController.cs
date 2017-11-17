@@ -33,12 +33,15 @@ namespace PPCRental.Controllers
                 }
                 else
                 {
+                    Session["error"] = 1;
                     return View();
+                    
                 }
 
             }
             catch (Exception)
             {
+                Session["error"] = 1;
                 return View();
             }
             

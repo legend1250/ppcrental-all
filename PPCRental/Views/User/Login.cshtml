@@ -1,8 +1,95 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Homeland &lsaquo; Log In</title>
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel='stylesheet' href='http://themecss.com/wp/Homeland/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.8.3' type='text/css' media='all' />
+    <meta name='robots' content='noindex,follow' />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+        addLoadEvent = function (func) { if (typeof jQuery != "undefined") jQuery(document).ready(func); else if (typeof wpOnload != 'function') { wpOnload = func; } else { var oldonload = wpOnload; wpOnload = function () { oldonload(); func(); } } };
+        function s(id, pos) { g(id).left = pos + 'px'; }
+        function g(id) { return document.getElementById(id).style; }
+        function shake(id, a, d) { c = a.shift(); s(id, c); if (a.length > 0) { setTimeout(function () { shake(id, a, d); }, d); } else { try { g(id).position = 'static'; wp_attempt_focus(); } catch (e) { } } }
+        addLoadEvent(function () { var p = new Array(15, 30, 15, 0, -15, -30, -15, 0); p = p.concat(p.concat(p)); var i = document.forms[0].id; g(i).position = 'relative'; shake(i, p, 20); });
+    </script>
+</head>
 
-<h2>Login</h2>
-
+<body class="login login-action-login wp-core-ui  locale-en-us">
+    <div id="login" style="background:none">
+        <h1><a href="~/Home/Index" title="PPC Rental Company"><img src="~/img/logo.png" /></a></h1>
+        @{
+            if (Session["error"] !=null)
+            {
+                <div id="login_error">
+                    <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
+                    <br />
+                </div>
+            }
+        }
+        
+        <form name="loginform" id="loginform" action="@Url.Action("Login","User")" method="post">
+            <p>
+                <label for="user_login">
+                    Username or Email Address
+                    <br />
+                    <input type="text" name="une" id="user_login" aria-describedby="login_error" class="input" size="20" />
+                </label>
+            </p>
+            <p>
+                <label for="user_pass">
+                    Password
+                    <br />
+                    <input type="password" name="pwd" id="user_pass" aria-describedby="login_error" class="input" size="20" />
+                </label>
+            </p>
+            <p class="forgetmenot">
+                <label for="rememberme">
+                    <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me
+                </label>
+            </p>
+            <p class="submit">
+                <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" />
+            </p>
+        </form>
+        <p id="nav">
+            <a rel="nofollow" href="http://themecss.com/wp/Homeland/wp-login.php?action=register">Register</a> | <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
+        </p>@{
+            if (Session["error"] != null)
+            {
+                <script type="text/javascript">
+                    function wp_attempt_focus() {
+                        setTimeout(function () {
+                            try {
+                                d = document.getElementById('user_login');
+                                if (d.value != '')
+                                    d.value = '';
+                                d.focus();
+                                d.select();
+                            } catch (e) { }
+                        }, 200);
+                    }
+                    wp_attempt_focus();
+                    if (typeof wpOnload == 'function') wpOnload();
+                </script>
+                Session.Remove("error");
+            }
+        }
+       
+        <p id="backtoblog"><a href="http://themecss.com/wp/Homeland/">&larr; Back to Homeland</a></p>
+    </div>
+    <link rel='stylesheet' id='homeland-custom-style-css' href='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/css/admin.css?ver=4.8.3' type='text/css' media='all' />
+    <style id='homeland-custom-style-inline-css' type='text/css'>
+        body.login #login h1 a {
+            background: url("../../img/logo.png") center top no-repeat transparent;
+            background-size: 200px auto;
+            width: 100%;
+            height: 126px;
+        }
+        
+    </style>
+    <div class="clear"></div>
+</body>
