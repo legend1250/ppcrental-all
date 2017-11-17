@@ -1,8 +1,9 @@
-﻿@model PPCRental.Models.USER
+﻿
+
 <section class="header-block">
     <div class="inside clearfix">
         <div class="social floatleft">
-            <ul class="clearfix">
+            <ul class="clearfix" style="margin-bottom:0">
                 <li class='twitter'>
                     <a href='http://twitter.com/mabuc' target='_blank'><i class='fa fa-twitter'></i></a>
                 </li>
@@ -32,13 +33,12 @@
                 </li>
             </ul>
         </div>
-        <div class="call-info floatright clearfix"> 
-            <span class="call-us"><i class="fa fa-phone"></i>Call us: 1-800-234-6789</span> 
-            <a href="#register" class="register login modal-popup">
-                <i class="fa fa-User"></i>
-            </a> 
-            <a href="" class="login modal-popup">
-                <i class="fa fa-logout"></i>Logout
+        <div class="call-info floatright clearfix">
+            <a href="#" class="register login">
+                <i class="fa fa-user"></i>Chào: @Session["user"]
+            </a>
+            <a href="@Url.Action("Logout","User")" class="login">
+                <i class="fa fa-sign-out"></i>Logout
             </a>
         </div>
     </div>

@@ -561,6 +561,32 @@ a.slide-toggle {
         width: 100%;
         font-size: 20px !important;
     }
+    .wpcf7-submit,
+    #submit,
+    #dsidx.dsidx-details .dsidx-contact-form table input[type='button'],
+    #homeland-loginform .login-submit input[type='submit'],
+    #homeland-registerform .login-submit input[type='submit'],
+    #homeland-lostpassword .login-submit input[type='submit'] {
+        background: #fcb737;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+        .wpcf7-submit:hover,
+        #submit:hover,
+        #dsidx.dsidx-details .dsidx-contact-form table input[type='button']:hover,
+        .wpdevbk button.btn:hover,
+        .wpdevbk input.btn[type="submit"]:hover,
+        #homeland-loginform .login-submit input[type='submit']:hover,
+        #homeland-registerform .login-submit input[type='submit']:hover,
+        #homeland-lostpassword .login-submit input[type='submit']:hover,
+        .login-actions a:hover {
+            background: #e89600;
+           
+        }
 
 .login-actions {
     text-align: center;
@@ -581,14 +607,14 @@ a.slide-toggle {
 .login-links {
     text-align: center;
 }
-.clearfix:after {
+/*.clearfix:after {
     visibility: hidden;
     display: block;
     font-size: 0;
     content: " ";
     clear: both;
     height: 0;
-}
+}*/
 
 .floatleft {
     float: left;
@@ -775,5 +801,8 @@ a.slide-toggle {
 
 .header-five .social {
     float: right;
+}
+input.error, textarea.error {
+    border: 1px solid #FF0000 !important;
 }
 

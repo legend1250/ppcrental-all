@@ -108,6 +108,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+.site-logo,.site-nav{
+    margin-top:10px;
+}
 #scroll-top {
   position: fixed;
   bottom: 20px;
@@ -270,7 +273,7 @@ img.zoom-img {
   top: 0;
   bottom: 0;
   display: inline-block;
-  background: rgba(0, 0, 0, 0.5);
+  background:rgba(0, 0, 0, 0.5);
 }
 #site-banner h1 {
   color: #fff;

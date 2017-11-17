@@ -27,13 +27,13 @@ namespace PPCRental.Controllers
                 var user = db.USERs.FirstOrDefault(x => x.Email == une);
                 if (user.Password == pwd)
                 {
-                    Session["user"] = user;
+                    //session.Add("user", user);  
+                    Session["user"] = user.Email;
                     Response.Redirect("~/Home/Index");
                 }
                 else
                 {
-                    int i = 1;
-                    return View(i);
+                    return View();
                 }
 
             }
@@ -43,6 +43,12 @@ namespace PPCRental.Controllers
             }
             
             return View();
+        }
+        public void Logout()
+        {
+            Session.Remove("user");
+
+            Response.Redirect("~/Home/Index");
         }
     }
 }
