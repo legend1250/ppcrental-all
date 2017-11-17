@@ -16,8 +16,10 @@
 @{ 
     if (Session["user"]==null)
     {
-        Session["not-login"] = true;
+        Session["login-status"] = 1;
+        TempData["login-status"] = 0;
         Response.Redirect("~/User/Login");
+
     }
 }
 <div class="container qa-form">

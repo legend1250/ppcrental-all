@@ -24,12 +24,13 @@
         @{
             if (Session["error"] != null)
             {
-                if (Session["not-login"] != null)
+                if (TempData["login-status"]!=null)
                 {
                     <div id="login_error">
-                        <strong>Not Login.Please login to view this page!!!</strong>
+                        <strong>ERROR</strong>:<font color="red">You Are not login.Please login to view this page!!!</font>
                         <br />
                     </div>
+                    Session.Remove("not-login");
                 }
                 else
                 {
