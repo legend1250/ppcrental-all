@@ -24,22 +24,22 @@
         @{
             if (Session["error"] != null)
             {
-                if (TempData["login-status"]!=null)
-                {
-                    <div id="login_error">
-                        <strong>ERROR</strong>:<font color="red">You Are not login.Please login to view this page!!!</font>
-                        <br />
-                    </div>
-                    Session.Remove("not-login");
-                }
-                else
-                {
-                    <div id="login_error">
-                        <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
-                        <br />
-                    </div>
-                }
+                <div id="login_error">
+                    <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
+                    <br />
+                </div>
+
             }
+            else if (Session["login-status"] != null)
+            {
+                <div id="login_error">
+                    <strong>ERROR</strong>:<font color="red">: You aren't login.Please login to view this page!!!</font>
+                    <br />
+                </div>
+                Session.Remove("not-login");
+            }
+            
+            
         }
         
         <form name="loginform" id="loginform" action="@Url.Action("Login","User")" method="post">
