@@ -28,6 +28,8 @@
                     <strong>ERROR</strong>: Invalid username. <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
                     <br />
                 </div>
+                Session.Remove("error");
+                Session["action-error"] = 1;
 
             }
             else if (Session["login-status"] != null)
@@ -36,10 +38,11 @@
                     <strong>ERROR</strong>:<font color="red">: You aren't login.Please login to view this page!!!</font>
                     <br />
                 </div>
-                Session.Remove("not-login");
+                Session.Remove("login-status");
+                Session["action-error"] = 1;
             }
-            
-            
+
+
         }
         
         <form name="loginform" id="loginform" action="@Url.Action("Login","User")" method="post">
@@ -69,7 +72,7 @@
         <p id="nav">
             <a rel="nofollow" href="http://themecss.com/wp/Homeland/wp-login.php?action=register">Register</a> | <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
         </p>@{
-            if (Session["error"] != null)
+            if (Session["action-error"]!=null)
             {
                 <script type="text/javascript">
                     function wp_attempt_focus() {
@@ -86,7 +89,7 @@
                     wp_attempt_focus();
                     if (typeof wpOnload == 'function') wpOnload();
                 </script>
-                Session.Remove("error");
+                Session.Remove("action-error");
             }
         }
        
