@@ -20,10 +20,9 @@ namespace PPCRental.Controllers
         [HttpGet]
         public ActionResult Searching(String projectname)
         {
-
             var product = db.PROPERTies.ToList().Where(x => x.PropertyName.Contains(projectname));
-            
             return View(product);
+
         }
         [HttpGet]
         public ActionResult projectDetail(int id)
@@ -33,7 +32,13 @@ namespace PPCRental.Controllers
         }
         public ActionResult addProject()
         {
-            return View();
+            var vm = new DBModel();
+            vm.streetService = db.STREETs.ToList();
+            vm.projectService = db.PROPERTies.ToList();
+            vm.wardService = db.WARDs.ToList();
+            vm.districtService = db.DISTRICTs.ToList();
+            vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
+            return View(vm);
         }
     }
 }

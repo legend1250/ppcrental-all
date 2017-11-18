@@ -6,7 +6,7 @@ using PPCRental.Models;
 
 namespace PPCRental.Models
 {
-    public class AddressModel
+    public class DBModel
     {
         
         public List<PROPERTY> projectService
@@ -25,6 +25,11 @@ namespace PPCRental.Models
             set;
         }
         public List<WARD> wardService
+        {
+            get;
+            set;
+        }
+        public List<PROPERTY_TYPE> propertyTypeService
         {
             get;
             set;
