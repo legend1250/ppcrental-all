@@ -22,7 +22,7 @@ namespace PPCRental.Controllers
         {
 
             var product = db.PROPERTies.ToList().Where(x => x.PropertyName.Contains(projectname));
-
+            
             return View(product);
         }
         [HttpGet]

@@ -157,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\DemoDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -577,6 +578,7 @@
     <Content Include="img\footer-logo.png" />
     <Content Include="img\header-arrow.png" />
     <Content Include="img\iso-btn.png" />
+    <Content Include="img\loader\2.gif" />
     <Content Include="img\loader\3.gif" />
     <Content Include="img\loader\4.gif" />
     <Content Include="img\logo.png" />
@@ -684,6 +686,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Address\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

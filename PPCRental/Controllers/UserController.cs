@@ -49,7 +49,7 @@ namespace PPCRental.Controllers
         }
         public void Logout()
         {
-            Session.Remove("user");
+            Session.RemoveAll();
 
             Response.Redirect("~/Home/Index");
         }

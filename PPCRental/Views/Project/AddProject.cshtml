@@ -3,6 +3,7 @@
     ViewBag.Title = "Add Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model PPCRental.Models.AddressModel
 <style>
     .qa-form{
         margin-top:200px;
@@ -50,28 +51,28 @@
             <label class="control-label col-sm-1" for="street">Street:</label>
             <div class="col-sm-3">
                 <select class="form-control" id="street">
-                    <option id="1">1</option>
-                    <option id="2">2</option>
-                    <option id="3">3</option>
-                    <option id="4">4</option>
+                    @foreach (var item in Model.streetService)
+                    {
+                        <option value="@item.ID">@item.StreetName</option>
+                    }
                 </select>
             </div>  
             <label class="control-label col-sm-1" for="ward">Ward:</label>
             <div class="col-sm-3">
                 <select class="form-control" id="ward">
-                    <option id="1">1</option>
-                    <option id="2">2</option>
-                    <option id="3">3</option>
-                    <option id="4">4</option>
+                    @foreach (var item in Model.wardService)
+                    {
+                        <option value="@item.ID">@item.WardName</option>
+                    }
                 </select>
             </div>
             <label class="control-label col-sm-1" for="district">District:</label>
             <div class="col-sm-3">
                 <select class="form-control" id="district">
-                    <option id="1">1</option>
-                    <option id="2">2</option>
-                    <option id="3">3</option>
-                    <option id="4">4</option>
+                    @foreach (var item in Model.districtService)
+                    {
+                        <option value="@item.ID">@item.DistrictName</option>
+                    }
                 </select>
             </div>
         </div>
@@ -131,7 +132,7 @@
             $(':input[type="text"]').val(''); 
             $(':input[type="number"]').val('');
             $('textarea').val('');
-            $(':select').find('option#1').attr("selected", "selected");
+            $(':select').find('option#1').attr(selected, "selected");
             
         });
     });
