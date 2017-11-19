@@ -50,5 +50,9 @@ namespace PPCRental.Controllers
 
             Response.Redirect("~/Home/Index");
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
     }
 }

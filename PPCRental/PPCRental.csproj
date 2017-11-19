@@ -527,6 +527,7 @@
     <Content Include="Content\Homeland\wp-content\themes\Homeland\assets\js\tipsy\tipsy.gif" />
     <Content Include="Content\Homeland\wp-content\themes\Homeland\responsive.css" />
     <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\Regiter.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\slicknav.css" />
     <Content Include="Content\style.css" />
@@ -664,6 +665,7 @@
     <Content Include="Views\Project\projectDetail.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-2.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
