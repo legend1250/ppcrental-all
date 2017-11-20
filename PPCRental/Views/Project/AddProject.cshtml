@@ -15,7 +15,7 @@
       }
 </style>
 @{ 
-    if (Session["user"]==null)
+    if (Session["user"] == null)
     {
         Session["login-status"] = 1;
         TempData["login-status"] = 0;
@@ -127,9 +127,13 @@
             <div class="col-sm-3">
                 <select class="form-control" id="ptype">
                     <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
-                    @foreach (var item in Model.propertyTypeService)
-                    {
-                        <option value="@item.ID">@item.CodeType</option>
+                    @{ 
+                        var i = 0;
+                        foreach (var item in Model.propertyTypeService)
+                        {
+                            <option value="@item.ID" id="i">@item.CodeType</option>
+                            i++;
+                        }
                     }
                 </select>
             </div>

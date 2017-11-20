@@ -27,9 +27,11 @@ namespace PPCRental.Controllers
                 var user = db.USERs.FirstOrDefault(x => x.Email == une);
                 if (user.Password == pwd)
                 {
+                  
                     //session.Add("user", user);  
                     Session["user"] = user.Email;
-                    Response.Redirect("~/Home/Index");
+                  //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
+                    return Redirect("~/Home/Index");
                 }
                 else
                 {
