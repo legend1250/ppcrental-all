@@ -170,12 +170,43 @@
 <script>
     $(document).ready(function () {
         $('.qa-reset').click(function ()
-        {            
+        {    
             $(':input[type="text"]').val(''); 
             $(':input[type="number"]').val('');
             $('textarea').val('');
             $(':select').find('option#1').attr(selected, "selected");
             
+        });
+        $('.qa-submit').click(function ()
+        {
+            var newProject = {};
+            newProject.name = $('#name').val();
+            newProject.avatar = $('#ava').val();
+            newProject.image = $('#ima').val();
+            newProject.district = $('select[id=district]').val();
+            newProject.street = $('select[id=street]').val();
+            newProject.ward = $('select[id=ward]').val();
+            newProject.projectType = $('select[id=ptype]').val();
+            newProject.price = $('#price').val();
+            newProject.area = $('#area').val();
+            newProject.bed = $('#bed').val();
+            newProject.bath = $('#bath').val();
+            newProject.packing = $('#packing').val();
+            $.ajax({
+                type: "POST",  
+                url: '@Url.Action("../Project/Submit")',
+                data: '{newProject: ' + JSON.stringify(newProject) + '}',    
+                dataType: "json",
+              //  contentType: "application/json; charset=utf-8", 
+                success: function (response) {
+                    alert(response.message);
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }, 
+                
+            });
+            return false;  
         });
     });
 </script>

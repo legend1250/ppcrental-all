@@ -40,5 +40,17 @@ namespace PPCRental.Controllers
             vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
             return View(vm);
         }
+        [HttpPost]
+        public ActionResult Submit(PROPERTY newProject)
+        {
+            PROPERTY project = new PROPERTY();
+            project.PropertyName = newProject.PropertyName;
+            project.Avatar = newProject.Avatar;
+   
+            db.PROPERTies.Add(project);
+            db.SaveChanges();
+            String message = "Add Success,wait for appover";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
     }
 }
