@@ -30,6 +30,7 @@ namespace PPCRental.Controllers
                   
                     //session.Add("user", user);  
                     Session["user"] = user.Email;
+                    Session["userID"] = user.ID;
                   //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                     return Redirect("~/Home/Index");
                 }

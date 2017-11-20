@@ -8,8 +8,12 @@ namespace PPCRental.Controllers
 {
     public class ProjectController : Controller
     {
-        ppcrental3119Entities db = new ppcrental3119Entities();
+        ppcrental3119Entities db;
         // GET: Project
+        public ProjectController()
+        {
+            db = new ppcrental3119Entities();
+        }
         public ActionResult ProjectList()
         {
             var project = db.PROPERTies.ToList();
@@ -41,16 +45,39 @@ namespace PPCRental.Controllers
             return View(vm);
         }
         [HttpPost]
-        public ActionResult Submit(PROPERTY newProject)
+        public ActionResult Submit([Bind(Exclude = "ID")] PROPERTY newProject)
         {
-            PROPERTY project = new PROPERTY();
-            project.PropertyName = newProject.PropertyName;
-            project.Avatar = newProject.Avatar;
-   
-            db.PROPERTies.Add(project);
-            db.SaveChanges();
-            String message = "Add Success,wait for appover";
-            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            String message;
+            //if (ModelState.IsValid)
+            //{   
+            // db.PROPERTies.Add(newProject);
+            /// db.SaveChanges();
+            /// message = "Add Success,wait for appover";
+            // return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            //}
+            //else
+            //{
+            //   message = "Add Fail";
+
+            //}
+            //return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            //return Json(newProject, JsonRequestBehavior.AllowGet);
+            try
+            {
+                db.PROPERTies.Add(newProject);
+                db.SaveChanges();
+                message = "Add Success,wait for appover";
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+
+
+            }
+            
+
         }
     }
 }

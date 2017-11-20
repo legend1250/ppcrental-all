@@ -170,44 +170,53 @@
 <script>
     $(document).ready(function () {
         $('.qa-reset').click(function ()
-        {    
-            $(':input[type="text"]').val(''); 
+        {
+            clear();
+
+        });
+        $('.qa-submit').click(function (e)
+        {
+            e.preventDefault();
+            var newProject = {
+            PropertyName : $('#name').val(),
+            Avatar : $('#ava').val(),
+            Images : $('#ima').val(),
+            District_ID : $('select[id=district]').val(),
+            Street_ID : $('select[id=street]').val(),
+            Ward_ID : $('select[id=ward]').val(),
+            ProjectType_ID : $('select[id=ptype]').val(),
+            Price: $('#price').val(),
+            UnitPrice:'USD',
+            Area : $('#area').val()+' m2',
+            BedRoom : $('#bed').val(),
+            BathRoom : $('#bath').val(),
+            PackingPlace: $('#packing').val(),
+            UserID:@Session["userID"]
+            }
+            $.ajax({
+                url: '/Project/Submit/',
+                type: "POST",
+                data: newProject,
+                dataType: "json",
+              //  contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    alert(response['Message']);
+                    clear();
+                    
+                },
+                error: function (err) {
+                    alert("Error while inserting data");
+                },
+
+            });
+            return false;
+        });
+        function clear() {
+            $(':input[type="text"]').val('');
             $(':input[type="number"]').val('');
             $('textarea').val('');
             $(':select').find('option#1').attr(selected, "selected");
-            
-        });
-        $('.qa-submit').click(function ()
-        {
-            var newProject = {};
-            newProject.name = $('#name').val();
-            newProject.avatar = $('#ava').val();
-            newProject.image = $('#ima').val();
-            newProject.district = $('select[id=district]').val();
-            newProject.street = $('select[id=street]').val();
-            newProject.ward = $('select[id=ward]').val();
-            newProject.projectType = $('select[id=ptype]').val();
-            newProject.price = $('#price').val();
-            newProject.area = $('#area').val();
-            newProject.bed = $('#bed').val();
-            newProject.bath = $('#bath').val();
-            newProject.packing = $('#packing').val();
-            $.ajax({
-                type: "POST",  
-                url: '@Url.Action("../Project/Submit")',
-                data: '{newProject: ' + JSON.stringify(newProject) + '}',    
-                dataType: "json",
-              //  contentType: "application/json; charset=utf-8", 
-                success: function (response) {
-                    alert(response.message);
-                },
-                error: function () {
-                    alert("Error while inserting data");
-                }, 
-                
-            });
-            return false;  
-        });
+        }
     });
 </script>
 
