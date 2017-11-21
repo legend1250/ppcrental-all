@@ -37,8 +37,7 @@ namespace PPCRental.Controllers
                 else
                 {
                     Session["error"] = 1;
-                    return View();
-                    
+                    return View();       
                 }
 
             }
