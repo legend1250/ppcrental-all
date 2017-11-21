@@ -19,7 +19,7 @@
     {
         Session["login-status"] = 1;
         TempData["login-status"] = 0;
-        Response.Redirect("~/User/Login");
+        Response.Redirect("~/User/Login",false);
 
     }
 }
@@ -59,7 +59,7 @@
 </script>
 <div class="container qa-form">
      <center><h1>Add Project</h1></center>
-    <form class="form-horizontal" action="#" method="post">
+    <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label col-sm-1" for="name">ProjectName:</label>
             <div class="col-sm-11">
@@ -68,16 +68,30 @@
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="ava">Avatar:</label>
-            <div class="col-sm-11">
-                <input type="text" class="form-control" id="ava" name="avatar">
+            <div class="col-sm-5">
+                <div style="position:relative">
+                    <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly/>
+                    <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
+                    <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
+            <label class="control-label col-sm-1" for="ima">Image:</label>
+            <div class="col-sm-5">
+                <div style="position:relative">
+                    <input type="text" class="form-control" id="ima" name="image" style="position:absolute" readonly/>
+                    <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                    <input type="button" class="btn btn-default" id="btnImaup" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                </div>
+            </div>
+          </div>
+        @*<div class="form-group">
             <label class="control-label col-sm-1" for="ima">Image:</label>
             <div class="col-sm-11">
-                <input type="text" class="form-control" id="ima" name="image">
+                <input type="text" class="form-control" id="ima" name="image" />
+                <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                <input type="button" class="btn btn-default" id="btnImaup" value="..." />
             </div>
-        </div>
+        </div>*@
         
         
         <div class="form-group">
@@ -117,11 +131,11 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="price">Price:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="price" name="price">
+                <input type="number" class="form-control" id="price" name="price" min="0">
             </div>
             <label class="control-label col-sm-1" for="area">Area:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="area" name="area">
+                <input type="number" class="form-control" id="area" name="area" min="0">
             </div>
             <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
             <div class="col-sm-3">
@@ -141,15 +155,15 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="bed">BedRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bed" name="bed">
+                <input type="number" class="form-control" id="bed" name="bed" min="0">
             </div>
             <label class="control-label col-sm-1" for="bath">BathRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bath" name="bath">
+                <input type="number" class="form-control" id="bath" name="bath" min="0">
             </div>
             <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="packing" name="packing">
+                <input type="number" class="form-control" id="packing" name="packing" min="0">
             </div>
         </div>
         <div class="form-group">
@@ -177,38 +191,67 @@
         $('.qa-submit').click(function (e)
         {
             e.preventDefault();
+
+            var avaUpload = $('#avaUpload').get(0);
+            var avaFiles = avaUpload.files;
+            var imaUpload = $('#imaUpload').get(0);
+            var imaFiles = imaUpload.files;
+            var formData = new FormData();
+            formData.append('avaFile', avaFiles[0]);
+            formData.append('imaFile', imaFiles[0]);
+
             var newProject = {
             PropertyName : $('#name').val(),
             Avatar : $('#ava').val(),
             Images : $('#ima').val(),
+            //Avatar: $('#avaUpload')[0].files[0].name,
+            //Images : $('#imaUpload')[0].files[0].name,
             District_ID : $('select[id=district]').val(),
             Street_ID : $('select[id=street]').val(),
             Ward_ID : $('select[id=ward]').val(),
-            ProjectType_ID : $('select[id=ptype]').val(),
+            PropertyType_ID: $('select[id=ptype]').val(),
+            Content: $('#content').val(),
             Price: $('#price').val(),
             UnitPrice:'USD',
-            Area : $('#area').val()+' m2',
+            Area : $('#area').val()+'m2',
             BedRoom : $('#bed').val(),
             BathRoom : $('#bath').val(),
             PackingPlace: $('#packing').val(),
-            UserID:@Session["userID"]
+            UserID:@Session["userID"],
             }
             $.ajax({
                 url: '/Project/Submit/',
                 type: "POST",
-                data: newProject,
+                data: {newProject},
                 dataType: "json",
               //  contentType: "application/json; charset=utf-8",
                 success: function (response) {
                     alert(response['Message']);
-                    clear();
+                    $.ajax({
+                        url: '/Project/saveImage/',
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        //  contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            alert(response['Message']);
+                            clear();
+
+                        },
+                        error: function (err) {
+                            alert("Có lỗi khi upload:" + err.statusText);
+                        },
+                    });
                     
+
                 },
                 error: function (err) {
                     alert("Error while inserting data");
                 },
 
             });
+            
             return false;
         });
         function clear() {
@@ -219,6 +262,33 @@
         }
     });
 </script>
+@section upload
+{
+    <script>
+        $(function () {
+            //Đăng ký sự kiện click nút btnAvaUp
+            $('#btnAvaUp').click(function () {
+                $('#avaUpload').trigger("click");
+            });
+            //Bắt sự kiện change data của avaUpload
+            $('#avaUpload').change(function () {
+                var avaName = $('#avaUpload')[0].files[0].name;
+                $('#ava').val(avaName);
+            });
 
+
+
+            //Đăng ký sự kiện click nút btnImaup
+            $('#btnImaup').click(function () {
+                $('#imaUpload').trigger("click");
+            });
+            //Bắt sự kiện change data của imaUpload
+            $('#imaUpload').change(function () {
+                var imgName = $('#imaUpload')[0].files[0].name;
+                $('#ima').val(imgName);
+            });
+        });
+    </script>
+}
 
 
