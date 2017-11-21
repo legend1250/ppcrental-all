@@ -23,47 +23,13 @@
 
     }
 }
-<script type="text/javascript">
-    $(".select1").change(function () {
-        if ($(this).data('options') === undefined) {
-            /*Taking an array of all options-2 and kind of embedding it on the select1*/
-            $(this).data('options', $('.select2 option').clone());
-        }
-        var id = $(this).val();
-        var options = $(this).data('options').filter('[value=' + id + ']');
-        $('.select2').html(options);
-        $('.select2 select').html(options).change();
-    });
-
-    $(".select2").change(function () {
-        if ($(this).data('options') === undefined) {
-            /*Taking an array of all options-3 and kind of embedding it on the select1*/
-            $(this).data('options', $('.select3 option').clone());
-        }
-        var id = $(this).val();
-        var options = $(this).data('options').filter('[value=' + id + ']');
-        $('.select3').html(options);
-    });
-
-    function change2() {
-        if ($('.select1 option:selected').length) {
-            $('.select2').attr('disabled', false);
-        }
-    }
-
-    function change3() {
-        if ($('.select2 option:selected').length) {
-            $('.select3').attr('disabled', false);
-        }
-    }
-</script>
 <div class="container qa-form">
      <center><h1>Add Project</h1></center>
     <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label col-sm-1" for="name">ProjectName:</label>
             <div class="col-sm-11">
-                <input type="text" class="form-control" id="name" name="pname">
+                <input type="text" class="form-control" id="name" name="pname" required>
             </div>
         </div>
         <div class="form-group">
@@ -97,7 +63,7 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="district">District:</label>
             <div class="col-sm-3">
-                <select class="form-control select1" id="district" name="select1" onchange='change2()'>
+                <select class="form-control select1 qa-select" id="district" name="select1" onchange='change2()'>
                     <option value="-1" selected disabled style="font-weight:bold">District</option>
                     @foreach (var item in Model.districtService)
                     {
@@ -107,7 +73,7 @@
             </div>
             <label class="control-label col-sm-1" for="street">Street:</label>
             <div class="col-sm-3">
-                <select class="form-control select2" id="street" name="select2" disabled onchange='change3()'>
+                <select class="form-control select2 qa-select" id="street" name="select2" disabled onchange='change3()'>
                     <option value="-1" selected disabled style="font-weight:bold">Street</option>
                     @foreach (var item in Model.streetService)
                     {
@@ -117,7 +83,7 @@
             </div>  
             <label class="control-label col-sm-1" for="ward">Ward:</label>
             <div class="col-sm-3">
-                <select class="form-control select3" id="ward" name="select3" disabled>
+                <select class="form-control select3 qa-select" id="ward" name="select3" disabled>
                     <option value="-1" selected disabled style="font-weight:bold">Ward</option>
                     @foreach (var item in Model.wardService)
                     {
@@ -131,22 +97,21 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="price">Price:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="price" name="price" min="0">
+                <input type="number" class="form-control" id="price" name="price" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="area">Area:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="area" name="area" min="0">
+                <input type="number" class="form-control" id="area" name="area" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
             <div class="col-sm-3">
-                <select class="form-control" id="ptype">
+                <select class="form-control qa-select" id="ptype">
                     <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
                     @{ 
-                        var i = 0;
                         foreach (var item in Model.propertyTypeService)
                         {
-                            <option value="@item.ID" id="i">@item.CodeType</option>
-                            i++;
+                            <option value="@item.ID">@item.CodeType</option>
+                         
                         }
                     }
                 </select>
@@ -155,15 +120,15 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="bed">BedRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bed" name="bed" min="0">
+                <input type="number" class="form-control" id="bed" name="bed" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="bath">BathRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bath" name="bath" min="0">
+                <input type="number" class="form-control" id="bath" name="bath" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="packing" name="packing" min="0">
+                <input type="number" class="form-control" id="packing" name="packing" min="0" value="0">
             </div>
         </div>
         <div class="form-group">
@@ -257,8 +222,15 @@
         function clear() {
             $(':input[type="text"]').val('');
             $(':input[type="number"]').val('');
+            $(':input[type="file"]').val('');
             $('textarea').val('');
-            $(':select').find('option#1').attr(selected, "selected");
+            //  $(':select').find('option#1').attr(selected, "selected");
+            $('.qa-select').val(-1);
+            $('#street').attr('disabled', true);
+            $('#street').val(-1);
+            $('#ward').attr('disabled', true);
+            $('#ward').val(-1);
+           
         }
     });
 </script>
@@ -290,5 +262,38 @@
         });
     </script>
 }
+<script type="text/javascript">
+        $(".select1").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select2 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select2').html(options);
+            $('.select2 select').html(options).change();
+        });
 
+        $(".select2").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-3 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select3 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select3').html(options);
+        });
+
+        function change2() {
+            if ($('.select1 option:selected').length) {
+                $('.select2').attr('disabled', false);
+            }
+        }
+
+        function change3() {
+            if ($('.select2 option:selected').length) {
+                $('.select3').attr('disabled', false);
+            }
+        }
+</script>
 
