@@ -55,5 +55,14 @@ namespace PPCRental.Controllers
 
             Response.Redirect("~/Home/Index");
         }
+        public ActionResult Security()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult changePassword()
+        {
+            return View();
+        }
     }
 }

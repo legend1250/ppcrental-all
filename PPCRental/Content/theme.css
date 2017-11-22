@@ -1,7 +1,11 @@
 /* General Styles */
 body {
   position: relative;
-  margin-top:130px;
+  /*margin-top:130px;*/
+}
+.body {
+    margin-top: 130px;
+    clear:both;
 }
 clear-fix:after, clear-fix:before{
     content:"";
@@ -483,7 +487,6 @@ img.zoom-img {
 #site-header {
     padding-bottom: 18px;
     background: #fff;
-  
 }
 #site-header-top {
   background: #333;

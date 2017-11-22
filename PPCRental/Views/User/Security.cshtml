@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Security";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (Session["user"] == null)
+    {
+        Session["login-status"] = 1;
+        TempData["login-status"] = 0;
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
