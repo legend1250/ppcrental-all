@@ -15,11 +15,18 @@
       }
 </style>
 @{ 
+    String userRole = Session["userRole"] as String;
     if (Session["user"] == null)
     {
-        Session["login-status"] = 1;
-        TempData["login-status"] = 0;
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
         Response.Redirect("~/User/Login",false);
+
+    }else if (!(userRole.Equals("ancency")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
 
     }
 }

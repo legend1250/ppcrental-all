@@ -67,6 +67,9 @@
             width: 100%;
             height: 126px;
         }
+        .error {
+            border: 2px red solid;
+        }
     </style>
     <div class="clear"></div>
     <script>
@@ -75,17 +78,21 @@
                 rules: {
                     password: "required",
                     newPassword: "required",
-                    rePassword: "required",
                     rePassword: {
+                        required: true,
                         equalTo: "#newPassword"
                     }
                 },
                 messages: {
                     password: " Enter Password",
                     newPassword: "Enter New Password",
-                    rePassword: "Comfirm New Password",
-                    rePassword: " Enter Confirm Password Same as New Password"
-                }
+                    rePassword: {
+                        required: "Comfirm New Password",
+                        equalTo: "#Enter Confirm Password Same as New Password"
+                    }
+                },
+                errorLabelContainer: '.message',
+                wrapper: 'li',
             });
             if (validator.form()) {
                 alert('Sucess');
@@ -100,13 +107,12 @@
                 //alert(newPass);
                 //alert(rePassword);
             });
-            
+
             $('#rePassword').keypress(function () {
+                validatePassword();
                 var newPass = $('#newPassword').val();
                 var rePassword = $('#rePassword').val();
-                if (String(newPass) == String(rePassword)) {
-                    $('.message').html('abc');
-                }
+                
                 //else {
                 //    $('.message').html('error');
                 //}

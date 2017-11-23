@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' id='jquery-magnific-css' href='~/Content/magnific-popup.css' type='text/css' media='all' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <link rel='stylesheet' id='homeland-responsive-css' href='~/Content/responsive.css' type='text/css' media='all' />
 </head>
 <body>
@@ -38,7 +37,15 @@
             // HttpSessionStateBase httpSession;
             if (Session["user"] != null)
             {
-                @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+                String userRole = Session["userRole"] as String;
+                if (userRole.Equals("ancency"))
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+                }
+                else if (userRole.Equals("sale"))
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-3.cshtml")
+                }
             }
             else
             {
