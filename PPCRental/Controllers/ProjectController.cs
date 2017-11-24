@@ -124,6 +124,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult projectControl()
         {
+          
             var vm = new DBModel();
             vm.streetService = db.STREETs.ToList();
             vm.projectService = db.PROPERTies.ToList();
@@ -136,7 +137,21 @@ namespace PPCRental.Controllers
         public ActionResult Edit(int id)
         {
             Session.Remove("editName");
+            Session.Remove("editAvatar");
+            Session.Remove("editImage");
+            Session.Remove("editDistrict");
+            Session.Remove("editStreet");
+            Session.Remove("editWard");
+            Session.Remove("editPrice");
+            Session.Remove("editArea");
+            Session.Remove("editProjectType");
+            Session.Remove("editBed");
+            Session.Remove("editBath");
+            Session.Remove("editPacking");
+            Session.Remove("editContent");
+
             var product = db.PROPERTies.FirstOrDefault(x => x.ID ==id);
+
             //Session["editProject"] = product;
             Session["editName"] = product.PropertyName.ToString();
             Session["editAvatar"] = product.Avatar.ToString();

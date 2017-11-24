@@ -31,15 +31,19 @@
     .qa-form h1 {
           margin-bottom: 50px;
      }
-     .qa-form h1 {
-            margin-bottom: 50px;
-     }
+    .qa-form h1, .projectList h1{
+        margin-bottom: 50px;
+    }
     .qa-form button {
         margin-left: 20px;
     }
     .qa-form .qa-reset {
         margin-left: 90px;
     }
+    .qa-img-small {
+        width:200px;
+    }
+    
 </style>
 <div class="qa-detail">
     <div class="container qa-form">
@@ -176,6 +180,7 @@
                 <th scope="col">#id</th>
                 <th scope="col">ProjectName</th>
                 <th scope="col">Avatar</th>
+                <th scope="col">Image</th>
                 <th scope="col">Street</th>
                 <th scope="col">Ward</th>
                 <th scope="col">District</th>
@@ -192,7 +197,9 @@
               <tr>
                 <td>@item.ID</td>
                 <td>@item.PropertyName</td>
-                <td>@item.Avatar</td>
+                <td><img data-action="zoom" src="~/img/avatar/@item.Avatar" class="qa-img-small" /><br />
+                  @item.Avatar</td>
+                <td><img data-action="zoom" src="~/img/avatar/@item.Images" class="qa-img-small" /><br />@item.Images</td>
                 <td>@item.Street_ID</td>
                 <td>@item.Ward_ID</td>
                 <td>@item.District_ID</td>
