@@ -132,5 +132,26 @@ namespace PPCRental.Controllers
             vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
             return View(vm);
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Session.Remove("editName");
+            var product = db.PROPERTies.FirstOrDefault(x => x.ID ==id);
+            //Session["editProject"] = product;
+            Session["editName"] = product.PropertyName.ToString();
+            Session["editAvatar"] = product.Avatar.ToString();
+            Session["editImage"] = product.Images;
+            Session["editDistrict"] = product.District_ID.ToString();
+            Session["editStreet"] = product.Street_ID.ToString();
+            Session["editWard"] = product.Ward_ID.ToString();
+            Session["editPrice"] = product.Price.ToString();
+            Session["editArea"] = product.Area.ToString();
+            Session["editProjectType"] = product.PropertyType_ID.ToString();
+            Session["editBed"] = product.BedRoom.ToString();
+            Session["editBath"] = product.BathRoom.ToString();
+            Session["editPacking"] = product.PackingPlace.ToString();
+            Session["editContent"] = product.Content;
+            return Redirect("~/Project/projectControl");
+        }
     }
 }
