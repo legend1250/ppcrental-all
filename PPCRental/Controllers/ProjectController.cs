@@ -122,5 +122,15 @@ namespace PPCRental.Controllers
             ////avaFile.SaveAs(path);
             //imaFile.SaveAs(Server.MapPath("~/img/avatar" + imaFile.FileName));
         }
+        public ActionResult projectControl()
+        {
+            var vm = new DBModel();
+            vm.streetService = db.STREETs.ToList();
+            vm.projectService = db.PROPERTies.ToList();
+            vm.wardService = db.WARDs.ToList();
+            vm.districtService = db.DISTRICTs.ToList();
+            vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
+            return View(vm);
+        }
     }
 }

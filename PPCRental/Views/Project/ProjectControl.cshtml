@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "Project Control";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model PPCRental.Models.DBModel
+@{
+    //kiểm tra User-Role
+    String userRole = Session["userRole"] as String;
+    if (Session["user"] == null)
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else if (!(userRole.Equals("sale")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
+<style>
+    .qa-form {
+        margin-top: 150px;
+        margin-bottom:100px;
+    }
+
+    .qa-form h1 {
+          margin-bottom: 50px;
+     }
+     .qa-form h1 {
+            margin-bottom: 50px;
+     }
+    .qa-form button {
+        margin-left: 20px;
+    }
+    .qa-form .qa-reset {
+        margin-left: 90px;
+    }
+</style>
+<div class="qa-detail">
+    <div class="container qa-form">
+        <h1 style="text-align:center">Project Detail</h1>
+        <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="name">ProjectName:</label>
+                <div class="col-sm-11">
+                    <input type="text" class="form-control" id="name" name="pname" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="ava">Avatar:</label>
+                <div class="col-sm-5">
+                    <div style="position:relative">
+                        <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly />
+                        <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
+                        <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                    </div>
+                </div>
+                <label class="control-label col-sm-1" for="ima">Image:</label>
+                <div class="col-sm-5">
+                    <div style="position:relative">
+                        <input type="text" class="form-control" id="ima" name="image" style="position:absolute" readonly />
+                        <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                        <input type="button" class="btn btn-default" id="btnImaup" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                    <label class="control-label col-sm-1" for="ima">Image:</label>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control" id="ima" name="image" />
+                        <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                        <input type="button" class="btn btn-default" id="btnImaup" value="..." />
+                    </div>
+                </div>*@
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="district">District:</label>
+                <div class="col-sm-3">
+                    <select class="form-control select1 qa-select" id="district" name="select1" onchange='change2()'>
+                        <option value="-1" selected disabled style="font-weight:bold">District</option>
+                        @foreach (var item in Model.districtService)
+                        {
+                            <option value="@item.ID">@item.DistrictName</option>
+                        }
+                    </select>
+                </div>
+                <label class="control-label col-sm-1" for="street">Street:</label>
+                <div class="col-sm-3">
+                    <select class="form-control select2 qa-select" id="street" name="select2" disabled onchange='change3()'>
+                        <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                        @foreach (var item in Model.streetService)
+                        {
+                            <option value="@item.District_ID">@item.StreetName</option>
+                        }
+                    </select>
+                </div>
+                <label class="control-label col-sm-1" for="ward">Ward:</label>
+                <div class="col-sm-3">
+                    <select class="form-control select3 qa-select" id="ward" name="select3" disabled>
+                        <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                        @foreach (var item in Model.wardService)
+                        {
+                            <option value="@item.District_ID">@item.WardName</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="price">Price:</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="price" name="price" min="0" value="0">
+                </div>
+                <label class="control-label col-sm-1" for="area">Area:</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="area" name="area" min="0" value="0">
+                </div>
+                <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
+                <div class="col-sm-3">
+                    <select class="form-control qa-select" id="ptype">
+                        <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
+                        @{
+                            foreach (var item in Model.propertyTypeService)
+                            {
+                                <option value="@item.ID">@item.CodeType</option>
+
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="bed">BedRoom:</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="bed" name="bed" min="0" value="0">
+                </div>
+                <label class="control-label col-sm-1" for="bath">BathRoom:</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="bath" name="bath" min="0" value="0">
+                </div>
+                <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="packing" name="packing" min="0" value="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="content">Content:</label>
+                <div class="col-sm-11">
+                    <textarea class="form-control" id="content" rows="8"></textarea>
+                </div>
+            </div>
+            <div class="form-group container" style="position:relative">
+                <div class="col-sm-10" style="width:100%">
+                    <button type="button" class="btn btn-warning qa-reset"><i class="fa fa-undo"></i> Reset</button>
+                    <button type="button" class="btn btn-danger pull-right qa-remove"><i class="fa fa-remove"></i> Remove</button>
+                    <button type="button" class="btn btn-primary pull-right qa-update"><i class="fa fa-wrench"></i> Update</button>
+                    <button type="button" class="btn btn-success pull-right qa-remove"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+table
+<div class="projectList container">
+    <h1 style="text-align:center">Project List</h1>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#id</th>
+                <th scope="col">ProjectName</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Street</th>
+                <th scope="col">Ward</th>
+                <th scope="col">District</th>
+                <th scope="col">Price</th>
+                <th scope="col">Area</th>
+                <th scope="col">UserID</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in Model.projectService)
+          {
+              <tr>
+                <td>@item.ID</td>
+                <td>@item.PropertyName</td>
+                <td>@item.Avatar</td>
+                <td>@item.Street_ID</td>
+                <td>@item.Ward_ID</td>
+                <td>@item.District_ID</td>
+                <td>@item.Price @item.UnitPrice</td>
+                <td>@item.Area</td>
+                <td>@item.UserID</td>
+                <td><a href="@Url.Action("Edit","Project")" class="btn btn-default qa-edit"><i class="glyphicon glyphicon-edit"></i> Edit</a></td>
+              </tr>
+          }
+        </tbody>
+    </table>
+
+</div>
