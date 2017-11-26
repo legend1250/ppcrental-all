@@ -24,7 +24,7 @@
 }
 <style>
     .qa-form {
-        margin-top: 100px;
+        margin-top: 50px;
         margin-bottom:100px;
     }
 
@@ -219,6 +219,7 @@
 </div>
 <script>
     $(document).ready(function () {
+
         $(".qa-form").hide();
         $(".qa-hide").on("click", function () {
             $(".qa-form").hide(1000);
@@ -232,7 +233,16 @@
                 dataType: "json",
                 success: function (data) {
                     alert('Load project success');
-                    $(".qa-form").hide(1000);
+                    //var htmlBody = $("html,body"),
+                    //    top = 0;
+
+                    //if (htmlBody.is(':animated')) {
+                    //    htmlBody.stop(true, true);  //Need to stop if it is already being animated
+                    //}
+
+                    //htmlBody.animate({ scrollTop: top }, 1000);
+                    $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
+                    $(".qa-form").delay(800).hide(600);
                     $(".qa-form").show(1000);
                     $(".qa-form #projectName").val(data.projectName);
                     $(".qa-form #avatar").val(data.projectAvatar);
