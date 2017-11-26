@@ -240,6 +240,7 @@
             $(".qa-show").show();
         });
         $(".qa-show").on("click", function () {
+            $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
             $(".qa-form").show(1000);
             $(".qa-show").hide();
         });
