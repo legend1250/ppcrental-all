@@ -41,7 +41,10 @@
         margin-left: 90px;
     }
     .qa-img-small {
-        width:200px;
+        width:250px;
+    }
+    .qa-hide {
+        margin-left: 30px;
     }
     
 </style>
@@ -50,16 +53,16 @@
         <h1 style="text-align:center">Project Detail</h1>
         <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="control-label col-sm-1" for="name">ProjectName:</label>
+                <label class="control-label col-sm-1" for="projectName">ProjectName:</label>
                 <div class="col-sm-11">
-                    <input type="text" class="form-control" id="name" name="pname" value="@Session["editName"]" required>
+                    <input type="text" class="form-control" id="projectName" name="pname" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-1" for="ava">Avatar:</label>
                 <div class="col-sm-5">
                     <div style="position:relative">
-                        <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" value="@Session["editAvatar"]" readonly />
+                        <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly />
                         <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
                         <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
                     </div>
@@ -157,12 +160,13 @@
             <div class="form-group">
                 <label class="control-label col-sm-1" for="content">Content:</label>
                 <div class="col-sm-11">
-                    <textarea class="form-control" id="content" rows="8">@Session["editContent"]</textarea>
+                    <textarea class="form-control" id="content" rows="8"></textarea>
                 </div>
             </div>
             <div class="form-group container" style="position:relative">
                 <div class="col-sm-10" style="width:100%">
                     <button type="button" class="btn btn-warning qa-reset"><i class="fa fa-undo"></i> Reset</button>
+                    <button type="button" class="btn btn-info qa-hide"><i class="fa fa-minus"></i> Hide</button>
                     <button type="button" class="btn btn-danger pull-right qa-remove"><i class="fa fa-remove"></i> Remove</button>
                     <button type="button" class="btn btn-primary pull-right qa-update"><i class="fa fa-wrench"></i> Update</button>
                     <button type="button" class="btn btn-success pull-right qa-remove"><i class="fa fa-plus"></i> Add</button>
@@ -194,8 +198,8 @@
         <tbody>
           @foreach (var item in Model.projectService)
           {
-              <tr>
-                <td>@item.ID</td>
+              <tr class="qa-body">
+                <td class="qa-id">@item.ID</td>
                 <td>@item.PropertyName</td>
                 <td><img data-action="zoom" src="~/img/avatar/@item.Avatar" class="qa-img-small" /><br />
                   @item.Avatar</td>
@@ -206,10 +210,41 @@
                 <td>@item.Price @item.UnitPrice</td>
                 <td>@item.Area</td>
                 <td>@item.UserID</td>
-                <td><a href="@Url.Action("Edit","Project",new {id = item.ID })" class="btn btn-default qa-edit"><i class="glyphicon glyphicon-edit"></i> Edit</a></td>
+                <td><button class="btn btn-default qa-edit"><i class="glyphicon glyphicon-edit"></i> Edit</button></td>
               </tr>
           }
         </tbody>
     </table>
 
 </div>
+<script>
+    $(document).ready(function () {
+        $(".qa-form").hide();
+        $(".qa-hide").on("click", function () {
+            $(".qa-form").hide(1000);
+        });
+        $(".qa-edit").on("click", function () {
+            var projectid = $(this).parents(".qa-body").find(".qa-id").text();
+            $.ajax({
+                url: '/Project/Edit/',
+                type: "POST",
+                data: {id:projectid},
+                dataType: "json",
+                success: function (data) {
+                    alert('Load project success');
+                    $(".qa-form").hide(1000);
+                    $(".qa-form").show(1000);
+                    $(".qa-form #projectName").val(data.projectName);
+                    $(".qa-form #avatar").val(data.projectAvatar);
+                    $(".qa-form #image").val(data.projectImage);
+                    $(".qa-form #content").val(data.projectContent);
+
+                },
+                error: function (err) {
+                    alert("Load project fail: " + err.statusText);
+                },
+            });
+            return false;
+        });
+    });
+</script>

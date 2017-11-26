@@ -133,40 +133,20 @@ namespace PPCRental.Controllers
             vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
             return View(vm);
         }
-        [HttpGet]
+        [HttpPost]
         public ActionResult Edit(int id)
         {
-            Session.Remove("editName");
-            Session.Remove("editAvatar");
-            Session.Remove("editImage");
-            Session.Remove("editDistrict");
-            Session.Remove("editStreet");
-            Session.Remove("editWard");
-            Session.Remove("editPrice");
-            Session.Remove("editArea");
-            Session.Remove("editProjectType");
-            Session.Remove("editBed");
-            Session.Remove("editBath");
-            Session.Remove("editPacking");
-            Session.Remove("editContent");
-
-            var product = db.PROPERTies.FirstOrDefault(x => x.ID ==id);
-
-            //Session["editProject"] = product;
-            Session["editName"] = product.PropertyName.ToString();
-            Session["editAvatar"] = product.Avatar.ToString();
-            Session["editImage"] = product.Images;
-            Session["editDistrict"] = product.District_ID.ToString();
-            Session["editStreet"] = product.Street_ID.ToString();
-            Session["editWard"] = product.Ward_ID.ToString();
-            Session["editPrice"] = product.Price.ToString();
-            Session["editArea"] = product.Area.ToString();
-            Session["editProjectType"] = product.PropertyType_ID.ToString();
-            Session["editBed"] = product.BedRoom.ToString();
-            Session["editBath"] = product.BathRoom.ToString();
-            Session["editPacking"] = product.PackingPlace.ToString();
-            Session["editContent"] = product.Content;
-            return Redirect("~/Project/projectControl");
+            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            //return Json(new { projectEdit = project });
+            return Json(new { projectName = project.PropertyName,projectAvatar = project.Avatar,
+                projectImage = project.Images, projectType = project.PropertyType_ID,
+                projectContent = project.Content, projectStreet = project.Street_ID,
+                projectWard = project.Ward_ID, projectDistrict = project.District_ID,
+                projectPrice = project.Price, projectUnit = project.UnitPrice,
+                projectArea = project.Area, projectBed = project.BedRoom,
+                projectBath = project.BathRoom, projectParking = project.PackingPlace,
+                projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
+            //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
         }
     }
 }
