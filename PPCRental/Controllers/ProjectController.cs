@@ -138,12 +138,14 @@ namespace PPCRental.Controllers
         {
             var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
             //return Json(new { projectEdit = project });
+            var areaRaw = project.Area;
+            var area = areaRaw.Replace("m2", "");
             return Json(new { projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
-                projectContent = project.Content, projectStreet = project.Street_ID,
+                projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
                 projectPrice = project.Price, projectUnit = project.UnitPrice,
-                projectArea = project.Area, projectBed = project.BedRoom,
+                projectArea = area, projectBed = project.BedRoom,
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
                 projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });

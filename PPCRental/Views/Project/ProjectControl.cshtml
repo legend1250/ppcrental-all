@@ -31,7 +31,7 @@
     .qa-form h1 {
           margin-bottom: 50px;
      }
-    .qa-form h1, .projectList h1{
+    .projectList h1{
         margin-bottom: 50px;
     }
     .qa-form button {
@@ -46,7 +46,12 @@
     .qa-hide {
         margin-left: 30px;
     }
-    
+    #qa-view{
+        display: none;  
+    }
+    .qa-form{
+        display:none;
+    }
 </style>
 <div class="qa-detail">
     <div class="container qa-form">
@@ -63,7 +68,7 @@
                 <div class="col-sm-5">
                     <div style="position:relative">
                         <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly />
-                        <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
+                        <input type="file" id="avaUpload" name="avatarUpload" style="display:none" onchange="loadAvatar(event)">
                         <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
                     </div>
                 </div>
@@ -71,9 +76,19 @@
                 <div class="col-sm-5">
                     <div style="position:relative">
                         <input type="text" class="form-control" id="ima" name="image" style="position:absolute" value="@Session["editImage"]" readonly />
-                        <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                        <input type="file" id="imaUpload" name="imageUpload" style="display:none" onchange="loadImage(event)">
                         <input type="button" class="btn btn-default" id="btnImaup" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
                     </div>
+                </div>
+            </div>
+            <div class="form-group" id="qa-view">
+                <label class="control-label col-sm-1"></label>
+                <div class="col-sm-5">
+                  <img data-action="zoom" src="" id="qa-view-avatar"/>
+                </div>
+                <label class="control-label col-sm-1"></label>
+                <div class="col-sm-5">
+                    <img data-action="zoom" src="" id="qa-view-image"/>
                 </div>
             </div>
             @*<div class="form-group">
@@ -178,6 +193,7 @@
 </div>
 <div class="projectList container">
     <h1 style="text-align:center">Project List</h1>
+    <button type="button" class="btn btn-success pull-right qa-show"><i class="fa fa-plus"></i> Show</button>
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
@@ -219,10 +235,13 @@
 </div>
 <script>
     $(document).ready(function () {
-
-        $(".qa-form").hide();
         $(".qa-hide").on("click", function () {
             $(".qa-form").hide(1000);
+            $(".qa-show").show();
+        });
+        $(".qa-show").on("click", function () {
+            $(".qa-form").show(1000);
+            $(".qa-show").hide();
         });
         $(".qa-edit").on("click", function () {
             var projectid = $(this).parents(".qa-body").find(".qa-id").text();
@@ -233,28 +252,130 @@
                 dataType: "json",
                 success: function (data) {
                     alert('Load project success');
-                    //var htmlBody = $("html,body"),
-                    //    top = 0;
-
-                    //if (htmlBody.is(':animated')) {
-                    //    htmlBody.stop(true, true);  //Need to stop if it is already being animated
-                    //}
-
-                    //htmlBody.animate({ scrollTop: top }, 1000);
                     $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
                     $(".qa-form").delay(800).hide(600);
                     $(".qa-form").show(1000);
+                    $('.select2').attr('disabled', false);
+                    $('.select3').attr('disabled', false);
                     $(".qa-form #projectName").val(data.projectName);
-                    $(".qa-form #avatar").val(data.projectAvatar);
-                    $(".qa-form #image").val(data.projectImage);
+                    $(".qa-form #ava").val(data.projectAvatar);
+                    $(".qa-form #ima").val(data.projectImage);
+                    $(".qa-form #price").val(data.projectPrice);
+                    $(".qa-form #area").val(data.projectArea);
+                    $(".qa-form #bed").val(data.projectBed);
+                    $(".qa-form #bath").val(data.projectBath);
+                    $(".qa-form #packing").val(data.projectParking);
+                    $(".qa-form #district").val(data.projectDistrict);
+                    $(".qa-form #street").val(data.projectStreet);
+                    $(".qa-form #ward").val(data.projectWard);
+                    $(".qa-form #ptype").val(data.projectType);
                     $(".qa-form #content").val(data.projectContent);
 
+                    //image
+                    var Src = "../img/avatar/";
+                    //if (data.projectAvatar != null || data.projectImage != null) {
+                        
+                    //}
+                    $("#qa-view").css('display', 'block');
+                    var avatarSrc = Src.concat(data.projectAvatar);
+                    var imgSrc = Src.concat(data.projectImage)
+                    $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
+                    $(".qa-form #qa-view-image").attr("src", imgSrc);
                 },
                 error: function (err) {
                     alert("Load project fail: " + err.statusText);
                 },
             });
             return false;
+        });
+
+
+        //select
+        $(".select1").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select2 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select2').html(options);
+            $('.select2 select').html(options).change();
+        });
+
+        $(".select2").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-3 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select3 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select3').html(options);
+        });
+
+        function change2() {
+            if ($('.select1 option:selected').length) {
+                $('.select2').attr('disabled', false);
+            }
+        }
+
+        function change3() {
+            if ($('.select2 option:selected').length) {
+                $('.select3').attr('disabled', false);
+            }
+        }
+
+
+        //Xử lý ảnh
+        function readAvatar(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#qa-view-avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function readImage(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#qa-view-image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        //load ảnh avatar
+        //Đăng ký sự kiện click nút btnAvaUp
+        $('#btnAvaUp').click(function () {
+            $('#avaUpload').trigger("click");
+        });
+        //Bắt sự kiện change data của avaUpload
+        $('#avaUpload').change(function () {
+            var avaName = $('#avaUpload')[0].files[0].name;
+            $("#qa-view").css('display', 'block');
+            $('#ava').val(avaName);
+            readAvatar(this);
+        
+        });
+
+
+
+        //Đăng ký sự kiện click nút btnImaup
+        $('#btnImaup').click(function () {
+            $('#imaUpload').trigger("click");
+        });
+        //Bắt sự kiện change data của imaUpload
+        $('#imaUpload').change(function () {
+            var imgName = $('#imaUpload')[0].files[0].name;
+            $("#qa-view").css('display', 'block');
+            $('#ima').val(imgName);
+            readImage(this);
         });
     });
 </script>
