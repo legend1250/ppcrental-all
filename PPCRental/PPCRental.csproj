@@ -688,6 +688,7 @@
     <Content Include="Views\User\Security.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-3.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
