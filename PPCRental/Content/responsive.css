@@ -1,0 +1,2564 @@
+﻿/* iPad Landscape - 1024 x 768 */
+
+@media only screen and (max-width: 1200px) {
+    #container-boxed,
+    #container-boxed header.sticky-header,
+    #container-boxed-left,
+    #container-boxed-left header.sticky-header {
+        width: 960px;
+    }
+
+    .inside,
+    .home-thumb-flexslider,
+    .advance-search-block .dsidx-widget.dsidx-search-widget .dsidx-search-button,
+    .agent-contents,
+    .slide-bottom,
+    .footer-layout-eight {
+        width: 906px;
+    }
+
+    .slider-block-thumb .home-flexslider {
+        width: 906px !important;
+    }
+
+    .coming-soon .inside {
+        width: 846px;
+    }
+
+    .advance-search-block ul li.as-large {
+        width: 205px !important;
+    }
+
+    .advance-search-block select.small,
+    .advance-search-block a.small,
+    .advance-search-block ul li.as-small {
+        width: 178px !important;
+    }
+
+    .portfolio-slide-desc {
+        padding: 20px;
+        font-size: 14px;
+        line-height: 26px;
+    }
+
+        .portfolio-slide-desc h2 {
+            font-size: 25px;
+        }
+
+        .portfolio-slide-desc p {
+            margin-bottom: 0;
+        }
+
+    .pactions label,
+    .pactions a:link,
+    .pactions a:visited {
+        font-size: 20px;
+    }
+
+    .home-flexslider .slider-actions {
+        top: 20%;
+    }
+
+    .theme-menu ul li a:link,
+    .theme-menu ul li a:visited,
+    .sf-menu li.sfHover ul a:link,
+    .sf-menu li.sfHover ul a:visited {
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    }
+
+    .agent-block,
+    .featured-block,
+    .blog-block,
+    .grid li,
+    .testimonial-small-block {
+        width: 268px;
+    }
+
+    .bdesc {
+        width: 175px;
+    }
+
+    .feat-thumb,
+    .featured-pass-thumb {
+        width: 128px;
+    }
+
+    .featured-list figcaption a i {
+        top: 32%;
+    }
+
+    .widget-column,
+    .sliding-bar .widget {
+        width: 204px;
+    }
+
+    .homeland_widget-contact-info ul li label {
+        width: 86%;
+    }
+
+    .home-thumb-flexslider .slides {
+        width: 748px;
+    }
+
+    .slider-block-thumb .home-flexslider .slides,
+    .single-property .agent-list,
+    .agent-form,
+    #dsidx-listings .dsidx-secondary-data div {
+        width: 100%;
+    }
+
+    .property-list-box .grid li,
+    .property-image,
+    .services-list,
+    .property-three-cols .property-cols,
+    .blist-fullwidth,
+    .grid ul li.portfolio-cols {
+        width: 272px;
+    }
+
+    .es-carousel ul li {
+        width: 272px !important;
+    }
+
+    .theme-fullwidth .services-page-desc {
+        width: 680px;
+    }
+
+    .services-block-two .services-list,
+    .services-block-two .services-icon {
+        text-align: center;
+    }
+
+    .services-block-two .services-icon {
+        width: 100%;
+        padding-bottom: 30px;
+    }
+
+    .featured-block-two-cols {
+        width: 587px;
+    }
+
+        .featured-block-two-cols .featured-list {
+            width: 193px;
+        }
+
+    .left-container {
+        width: 610px;
+    }
+
+    .agent-about-list {
+        width: 104%;
+    }
+
+        .agent-about-list .agent-image {
+            width: 190px;
+            margin-right: 20px;
+        }
+
+    .agent-fullwidth .agent-image {
+        width: 203px;
+        margin-right: 30px;
+    }
+
+    .agent-social ul li {
+        margin-right: 10px;
+    }
+
+    .services-page-desc {
+        width: 390px;
+    }
+
+    .agent-property-desc {
+        width: 308px;
+    }
+
+    .property-two-cols .property-cols,
+    .blist-two-cols {
+        width: 433px;
+    }
+
+    .property-four-cols .property-cols,
+    .blog-four-cols {
+        width: 196px;
+    }
+
+    .property-page-price,
+    .property-page-status {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .agent-desc,
+    .single-property .agent-desc {
+        width: 350px;
+    }
+
+    .video-js {
+        width: 100% !important;
+        height: 370px !important;
+    }
+
+    .comment-details {
+        width: 460px;
+    }
+
+    .comment-list .children .comment-details {
+        width: 388px;
+    }
+
+    .comment-list .children .children .comment-details {
+        width: 308px;
+    }
+
+    #commentform ul li,
+    .left-container .wpcf7 ul li {
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+
+    .agent-grid-sidebar .agent-list {
+        width: 294px;
+    }
+
+    .agent-grid-sidebar {
+        width: 105%;
+    }
+
+    .agent-list.last {
+        margin-right: 22px !important;
+    }
+
+    .agent-form {
+        float: left;
+        margin-bottom: 30px;
+    }
+
+    .blist-grid {
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 190px;
+    }
+
+    .blog-grid .sticky {
+        margin-bottom: 20px !important;
+    }
+
+    a.continue {
+        padding: 6px 12px;
+    }
+
+    .dsidx-prop-summary {
+        margin-bottom: 30px !important;
+    }
+
+    .dsidx-details .dsidx-contact-form table td.column-one {
+        width: 20%;
+    }
+
+    .advance-search-block .dsidx-search-widget table tr {
+        width: 282px;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"] {
+        width: 265px;
+    }
+
+    .advance-search-block .dsidx-search-widget input.dsidx-price {
+        width: 115px;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-widget.dsidx-search-widget .dsidx-search-button {
+        width: 846px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr {
+        width: 268px;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .selectBox-dropdown {
+        width: 264px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"] {
+        width: 212px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-price {
+        width: 108px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .idx-q-Location-Filter {
+        width: 284px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"],
+    .advance-search-block .dsidx-search-widget select {
+        width: 218px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 173px !important;
+    }
+
+    .advance-search-block-page .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block-page .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block-page .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 103px !important;
+    }
+
+    .countdown_section {
+        width: 183px;
+    }
+
+    .agent-fullwidth a.view-profile {
+        display: inline-block;
+    }
+
+    a.view-profile {
+        bottom: -20px;
+    }
+
+    #bbpress-forums #bbp-search-form #bbp_search {
+        width: 488px;
+    }
+
+    .advance-search-block input.property-id[type="text"] {
+        width: 200px;
+    }
+
+    .blog-timeline-image,
+    .blog-timeline-content {
+        width: 429px;
+    }
+
+    .blog-timeline .even .blog-timeline-image {
+        padding-right: 45px;
+    }
+
+    .blog-timeline-content {
+        padding-bottom: 40px;
+    }
+
+    .property-list-page .property-info-agent span {
+        padding: 6px;
+        width: 32.6%;
+    }
+
+    .single-homeland_properties .theme-fullwidth .property-list-page .property-info-agent span {
+        width: 24.5%;
+    }
+
+    .property-info-agent i {
+        margin-right: 6px;
+    }
+
+    .single-homeland_properties .property-four-cols ul li,
+    .property-grid-sidebar .masonry ul li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .theme-fullwidth .single-property .agent-desc {
+        width: 390px;
+    }
+
+    .theme-fullwidth .single-property .agent-list {
+        width: 650px;
+    }
+
+    .theme-fullwidth .single-property .agent-form {
+        float: right;
+        width: 220px;
+    }
+
+    .theme-fullwidth #commentform ul li {
+        margin-right: 30px;
+        margin-bottom: 30px;
+    }
+
+    .theme-fullwidth .comment-details {
+        width: 764px;
+    }
+
+    .theme-fullwidth .comment-list .children .comment-details {
+        width: 680px;
+    }
+
+    .theme-fullwidth .comment-list .children .children .comment-details {
+        width: 603px;
+    }
+
+    #map-homepage,
+    #map-property,
+    #map-property-street,
+    #map {
+        height: 500px !important;
+    }
+
+    .contact-info-alt {
+        width: 400px;
+    }
+
+    .contact-alt-background #map {
+        width: 470px;
+        height: 350px !important;
+    }
+
+    .contact-alternate-two .contact-form {
+        width: 465px;
+    }
+
+        .contact-alternate-two .contact-form textarea {
+            height: 150px;
+        }
+
+    .widget_display_search input[type="text"],
+    .bbp_widget_login input[type="text"],
+    .bbp_widget_login input[type="password"] {
+        width: 88%;
+    }
+
+    .countdown-section {
+        width: 180px;
+    }
+
+    .post-link-blog {
+        margin-top: 40px;
+    }
+
+    .page-template-template-properties-fullwidth .agent-property-desc {
+        width: 604px;
+    }
+
+    /*Vertical IDX search*/
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area,
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half {
+        width: 200px !important;
+    }
+
+    .dsidx-widget-guided-search .dsidx-resp-vertical .selectBox-dropdown {
+        width: 100% !important;
+    }
+
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area {
+        width: 205px !important;
+    }
+
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area,
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half {
+        width: 188px !important;
+    }
+
+    .dual-container,
+    .dual-container .dual-property-list .grid ul li {
+        width: 305px;
+    }
+
+    footer .widget-column ul li .pp-image {
+        margin-right: 10px;
+    }
+
+    footer .advance-search-widget ul li select,
+    footer .advance-search-widget ul li input.property-id {
+        margin-left: 0;
+    }
+
+    .more-info span {
+        display: block;
+    }
+
+    .list-fullwidth .agent-desc {
+        width: 646px;
+    }
+
+    .testi-fullwidth .testi-page-list {
+        width: 438px;
+    }
+
+    .services-grid-fullwidth .services-page-list {
+        width: 272px;
+    }
+
+    .services-grid-fullwidth .services-page-desc {
+        width: 85%;
+    }
+
+    .slide-bottom-title {
+        width: 544px;
+    }
+
+    .slide-bottom-actions {
+        width: 300px;
+    }
+
+    .slide-right {
+        bottom: 0;
+        padding: 20px;
+    }
+
+        .slide-right h2,
+        .slide-right span.slide-price {
+            font-size: 25px;
+        }
+
+        .slide-right span.slide-price {
+            margin-top: 20px;
+        }
+
+        .slide-right i {
+            font-size: 14px;
+        }
+
+    .inside-fullwidth {
+        padding: 0 30px;
+    }
+
+    .blog-list-alternate .blog-action {
+        width: 150px;
+    }
+
+    .blog-list-alternate .blog-list-desc {
+        width: 458px;
+    }
+
+    .image-portfolio {
+        height: 190px;
+    }
+
+    .no-image-slider {
+        height: 354px;
+    }
+
+    #dribbble li img,
+    .homeland_widget-flickr ul li img,
+    .homeland_widget-portfolio ul li img {
+        width: 62px;
+        height: 62px;
+    }
+
+    footer .homeland_widget-agents ul li img {
+        margin-bottom: 20px;
+    }
+
+    footer .pp-desc {
+        width: 59%;
+    }
+
+    .read-more-property {
+        position: relative !important;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .footer-layout-six .copyright,
+    .footer-layout-eight .copyright {
+        width: 40%;
+        float: left;
+    }
+
+    .property-amenities ul li {
+        width: 33.33%;
+    }
+
+    .feat-desc {
+        width: 120px;
+    }
+}
+
+
+/* iPad Portrait - 768 x 1024 */
+
+@media only screen and (max-width: 960px) {
+    #container-boxed,
+    #container-boxed header.sticky-header,
+    #container-boxed-left,
+    #container-boxed-left header.sticky-header {
+        width: 690px;
+    }
+
+    .container {
+        padding: 0 !important;
+    }
+
+    .inside,
+    .home-thumb-flexslider,
+    .left-container,
+    .advance-search-block .dsidx-widget.dsidx-search-widget .dsidx-search-button,
+    .coming-soon .inside,
+    .agent-contents,
+    .dual-container,
+    .dual-container .dual-property-list .grid ul li,
+    .slide-bottom,
+    .footer-layout-eight {
+        width: 600px;
+    }
+
+        .footer-layout-eight .copyright {
+            width: 50%;
+        }
+
+        .footer-layout-eight .footer-inside {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+    .slider-block-thumb .home-flexslider {
+        width: 600px !important;
+    }
+
+    .slider-block-thumb .portfolio-slide-desc {
+        width: 400px;
+    }
+
+    .header-five .call-info {
+        border-left: 1px solid #E1E1E1;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-widget.dsidx-search-widget .dsidx-search-button {
+        width: 540px !important;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+
+    .home-thumb-flexslider .slides {
+        width: 485px;
+    }
+
+    .home-thumb-flexslider .flex-control-thumbs li {
+        width: 110px;
+    }
+
+    .header-seven .select-menu {
+        top: 15px;
+    }
+
+    #main-menu,
+    .blog-timeline-content .blog-icon,
+    footer .property-desc-slide {
+        display: none;
+    }
+
+    .search-count,
+    .select-menu {
+        display: block;
+    }
+
+    .select-menu {
+        border: 1px solid #E1E1E1;
+        width: 290px;
+        position: relative;
+        top: 45px;
+        padding: 4px;
+    }
+
+    .portfolio-slide-desc {
+        width: 500px;
+        line-height: 22px;
+        font-size: 13px;
+    }
+
+        .portfolio-slide-desc h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+    .pactions label i,
+    .pactions a i {
+        padding: 14px;
+    }
+
+    .pactions label span,
+    .pactions a span {
+        top: 0;
+        font-size: 16px;
+    }
+
+    .advance-search-block ul li.as-large {
+        width: 146px !important;
+    }
+
+    .advance-search-block ul li,
+    .contact-form ul li,
+    .theme-fullwidth #commentform ul li,
+    .theme-fullwidth .wpcf7 ul li {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+        .advance-search-block select.small,
+        .advance-search-block a.small,
+        .advance-search-block ul li.as-small {
+            width: 112px !important;
+        }
+
+    .grid li,
+    .agent-block,
+    .featured-block,
+    .blog-block,
+    .testimonial-small-block,
+    .services-block-two .services-desc,
+    .blog-timeline-content,
+    .blog-timeline-image,
+    .theme-fullwidth .single-property .agent-list,
+    .theme-fullwidth .single-property .agent-form,
+    .services-grid-fullwidth .services-page-list,
+    .contact-info-alt,
+    .contact-alt-background #map,
+    .contact-alternate-two .contact-form,
+    .testi-fullwidth .testi-page-list,
+    .static-image-desc h4 {
+        width: 100%;
+    }
+
+    .aq-block-homeland_agents_block,
+    .aq-block-homeland_featured2_properties_block,
+    .aq-block-homeland_testimonials_small_block,
+    .aq-block-homeland_featured_properties_block {
+        width: 100% !important;
+        margin-left: 0;
+    }
+
+    .featured-block,
+    .blog-block {
+        border-left: 0px;
+        padding-top: 0;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .feat-desc,
+    .bdesc {
+        width: auto;
+    }
+
+    .es-carousel ul li {
+        width: 278px !important;
+    }
+
+    .widget-column,
+    .sliding-bar .widget {
+        width: 135px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    footer .widget h5,
+    .agent-block h3,
+    .featured-block h3,
+    .featured-block-two-cols h3,
+    .blog-block h3,
+    .property-list-box h2 {
+        font-size: 18px;
+    }
+
+    .homeland_widget-contact-info ul li label {
+        width: 82%;
+    }
+
+    .nsu-form input[type="email"] {
+        width: 91px;
+    }
+
+    .services-list {
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 186px;
+    }
+
+    .theme-fullwidth .services-page-desc {
+        width: 380px;
+    }
+
+    .feat-desc h5 a:link,
+    .feat-desc h5 a:visited,
+    .feat-desc span.price {
+        font-size: 16px;
+    }
+
+    .feat-desc span {
+        font-size: 12px;
+    }
+
+        .feat-desc span.price {
+            padding-top: 20px;
+        }
+
+    .featured-block-two-cols {
+        padding-top: 40px;
+        margin-left: 0;
+    }
+
+    .advance-search-block select.small,
+    .advance-search-block a.small {
+        width: 135px !important;
+    }
+
+    .agent-about-list .agent-image,
+    .property-three-cols .property-cols,
+    .blist-fullwidth,
+    .grid ul li.portfolio-cols {
+        width: 186px;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .services-page-desc {
+        width: 380px;
+    }
+
+    .agent-property-desc {
+        width: 280px;
+    }
+
+    .property-two-cols .property-cols,
+    .blist-two-cols {
+        width: 279px;
+    }
+
+    .property-three-cols .property-cols figcaption a i,
+    .property-four-cols .property-cols figcaption a i {
+        top: 38%;
+    }
+
+    .property-three-cols ul li,
+    .property-four-cols ul li,
+    .blist-fullwidth {
+        margin-right: 20px;
+    }
+
+    .property-four-cols .property-cols {
+        width: 135px;
+    }
+
+    .property-four-cols ul li,
+    .agent-block {
+        margin-bottom: 20px;
+    }
+
+    .property-four-cols .property-desc {
+        padding: 15px;
+    }
+
+    .single-property .property-four-cols .property-cols,
+    .property-grid-sidebar .masonry ul li {
+        width: 192px;
+    }
+
+    .agent-desc,
+    .single-property .agent-desc {
+        width: 330px;
+    }
+
+    .comment-details {
+        width: 455px;
+    }
+
+    .comment-list .children .comment-details {
+        width: 378px;
+    }
+
+    .comment-list .children .children .comment-details {
+        width: 298px;
+    }
+
+    .dsidx-search-widget input[type="text"] {
+        width: 434px;
+    }
+
+    .dsidx-search-widget select {
+        width: 446px;
+    }
+
+    .portfolio-block {
+        margin-bottom: 40px;
+    }
+
+    .blist-grid {
+        width: 186px;
+    }
+
+    .blog-fullwidth .sticky {
+        margin-bottom: 20px !important;
+    }
+
+    .dsidx-search-widget {
+        max-width: 100%;
+    }
+
+    .advance-search-block .dsidx-search-widget table tr {
+        width: 186px;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"] {
+        width: 168px;
+    }
+
+    .advance-search-block .dsidx-search-widget input.dsidx-price {
+        width: 65px;
+    }
+
+    .advance-search-block .dsidx-search-widget table tr {
+        margin-right: 20px;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr {
+        width: 165px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .dsidx-search-widget-propertyTypes {
+        width: 126px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .selectBox-dropdown {
+        width: 540px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 483px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-price {
+        width: 228px !important;
+    }
+
+    .advance-search-block-page.advance-search-block-page .dsidx-widget-search {
+        padding-bottom: 10px;
+    }
+
+    .advance-search-block .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .idx-q-Location-Filter {
+        width: 600px !important;
+    }
+
+    .selectBox-dropdown .selectBox-label {
+        width: 78% !important;
+    }
+
+    .advance-search-block .dsidx-search-widget .selectBox-dropdown .selectBox-label {
+        width: 91% !important;
+    }
+
+    .advance-search-block .dsidx-search-widget label {
+        width: 8%;
+    }
+
+    .advance-search-block .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 132px !important;
+    }
+
+    .advance-search-block-page .dsidx-search-widget label {
+        width: 10%;
+    }
+
+    .slide-right span.slide-price {
+        float: left;
+    }
+
+    .countdown-section {
+        width: 135px;
+        margin-right: 20px;
+    }
+
+    .social ul li a:link,
+    .social ul li a:visited {
+        width: 25px;
+        padding: 10px 0;
+    }
+
+    .call-info .call-us,
+    .call-info .login {
+        padding: 10px 9.5px;
+    }
+
+    .sidebar .dsidx-search-widget select {
+        width: 516px !important;
+    }
+
+    .agent-fullwidth .agent-image {
+        margin-right: 20px;
+    }
+
+    #bbpress-forums #bbp-search-form #bbp_search {
+        width: 478px;
+    }
+
+    .advance-search-block input.property-id[type="text"] {
+        width: 100px !important;
+    }
+
+    .property-home.portfolio-cols,
+    .property-three-cols ul li.portfolio-cols {
+        margin-right: 18px !important;
+        margin-bottom: 18px !important;
+    }
+
+        .property-home.portfolio-cols.last {
+            margin-right: 0 !important;
+        }
+
+    .call-info {
+        border-left: 0;
+    }
+
+    .blog-timeline-image {
+        padding: 0;
+        border: 0 !important;
+    }
+
+    .blog-timeline .even .blog-timeline-image {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .blog-timeline .odd .blog-timeline-image {
+        padding-left: 0;
+        margin-bottom: 40px;
+    }
+
+    .theme-fullwidth .single-property .agent-desc {
+        width: 340px;
+    }
+
+    .single-homeland_properties .theme-fullwidth .property-four-cols ul li {
+        margin-right: 20px;
+    }
+
+    .theme-fullwidth .comment-details {
+        width: 457px;
+    }
+
+    .theme-fullwidth .comment-list .children .comment-details {
+        width: 378px;
+    }
+
+    .theme-fullwidth .comment-list .children .children .comment-details {
+        width: 298px;
+    }
+
+    #map-homepage,
+    #map-property,
+    #map-property-street,
+    #map {
+        height: 400px !important;
+    }
+
+    .portfolio-image figcaption a i {
+        top: 38%;
+    }
+
+    .contact-info-alt {
+        margin-bottom: 20px;
+    }
+
+    .contact-alt-background {
+        padding: 50px 0;
+    }
+
+    .contact-info-alt label {
+        margin-bottom: 6px;
+    }
+
+    .contact-alternate-main {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+        .contact-alternate-main label {
+            margin-bottom: 6px;
+        }
+
+    .header-six .select-menu,
+    .header-nine .select-menu,
+    .header-ten .select-menu {
+        position: relative;
+        top: 0;
+        display: inline-table;
+    }
+
+    .header-six nav,
+    .header-nine nav,
+    .header-ten nav {
+        border-top: 0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    header.sticky-header-animate .select-menu {
+        top: 27px;
+    }
+
+    header.sticky-header-animate .header-six .select-menu,
+    header.sticky-header-animate .header-nine .select-menu,
+    header.sticky-header-animate .header-ten .select-menu {
+        top: 0;
+    }
+
+    .single-homeland_properties .theme-fullwidth .property-list-page .property-info-agent span {
+        width: 32.6%;
+    }
+
+    footer .homeland_widget-property-advance-search #searchform {
+        padding: 10px;
+    }
+
+    footer .pp-desc {
+        width: 40%;
+    }
+
+    .list-fullwidth .agent-desc {
+        width: 340px;
+    }
+
+    .testi-fullwidth .testi-page-list {
+        margin-right: 0;
+    }
+
+    .testi-fullwidth .testi-desc {
+        width: 470px;
+    }
+
+    .services-grid-fullwidth .services-page-desc {
+        width: 90%;
+    }
+
+    .blist-two-cols iframe,
+    .blist-two-cols .video-js {
+        height: 188px !important;
+    }
+
+    .slide-bottom-title {
+        width: 290px;
+    }
+
+    .slide-bottom-actions {
+        width: 250px;
+    }
+
+    .slide-right {
+        width: 100%;
+    }
+
+    .slider-block-thumb .slide-right {
+        width: 480px;
+    }
+
+    .slide-right span {
+        display: inline-block;
+        margin-right: 15px;
+        line-height: 14px;
+    }
+
+    .slide-right a.slide-more {
+        float: right;
+        position: relative;
+        bottom: -17px;
+        right: 0;
+        padding: 2px 12px;
+    }
+
+    .slide-right .property-sold-slide {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 6px 10px;
+        margin-right: 0;
+    }
+
+    .blog-list-alternate .blog-list-desc {
+        width: 448px;
+    }
+
+    .image-portfolio {
+        height: 130px;
+    }
+
+    .no-image-slider {
+        height: 266px;
+    }
+
+    .widget_display_search input[type="text"],
+    .bbp_widget_login input[type="text"],
+    .bbp_widget_login input[type="password"] {
+        width: 82%;
+    }
+
+    .featured-flexslider .flex-direction-nav {
+        position: relative;
+        margin-bottom: 60px;
+        top: 0;
+    }
+
+    .sidebar #dribbble li img,
+    .sidebar .homeland_widget-flickr ul li img,
+    .sidebar .homeland_widget-portfolio ul li img {
+        width: 61px;
+        height: 61px;
+    }
+
+    footer .homeland_widget-agents {
+        text-align: center;
+    }
+
+        footer .homeland_widget-agents ul li img {
+            float: none !important;
+            margin-left: 0;
+        }
+
+    .homeland_widget-contact-info ul li i {
+        margin-right: 4px;
+    }
+
+    footer .homeland_widget-popular-posts .pp-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .contact-alternate-main label:before {
+        float: none;
+        top: 0;
+        padding-right: 10px;
+    }
+
+    .pp-desc {
+        width: 83%;
+    }
+
+    .nsu-form input[type="email"],
+    .nsu-form input[type="text"],
+    .widget_mc4wp_form_widget input[type="email"],
+    .widget_mc4wp_form_widget input[type="text"] {
+        width: 494px;
+    }
+
+    footer .nsu_widget,
+    footer .widget_mc4wp_form_widget {
+        padding: 10px;
+    }
+
+    .homeland_widget-working-hours ul li {
+        font-size: 12px;
+    }
+
+    .agent-grid-sidebar .agent-list {
+        width: 245px;
+    }
+
+    .info-list {
+        width: 170px;
+    }
+
+    .header-ten nav {
+        border-top: 0;
+    }
+
+    .homepage-call-to-action h4 {
+        width: 65%;
+    }
+
+    .property-amenities ul li {
+        width: 175px;
+    }
+
+    .sitemap {
+        width: 46%;
+    }
+
+    .page-template-template-properties-fullwidth .agent-property-desc {
+        width: 298px;
+    }
+
+    /*Horizontal IDX search*/
+    .dsidx-widget-quick-search .dsidx-resp-horizontal .dsidx-resp-search-form .dsidx-resp-area:last-child {
+        margin-top: 20px !important;
+    }
+
+    /*Vertical IDX search*/
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area,
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half {
+        width: 120px !important;
+    }
+
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area {
+        width: 135px !important;
+        margin-right: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .dsidx-widget-guided-search .dsidx-resp-vertical .selectBox-dropdown,
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area-submit,
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area-submit,
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area-submit,
+    footer .homeland_widget-popular-posts .pp-desc,
+    .booking_form_div input[type="text"],
+    .booking_form_div select,
+    .booking_form_div textarea {
+        width: 100% !important;
+    }
+
+    .homeland_widget-flickr ul li,
+    .homeland_widget-portfolio ul li {
+        margin-right: 4px;
+        margin-bottom: 4px;
+    }
+
+    .info-list {
+        width: 190px;
+        margin-left: 10px;
+    }
+}
+
+
+/* iPhone 4-4S-5 Landscape - 568 x 320 */
+
+@media only screen and (max-width: 760px) {
+    #container-boxed,
+    #container-boxed header.sticky-header,
+    #container-boxed-left,
+    #container-boxed-left header.sticky-header {
+        width: 380px;
+    }
+
+    .container {
+        padding: 0 !important;
+    }
+
+    .inside,
+    .home-thumb-flexslider,
+    .left-container,
+    .page-template-template-homepage3 .property-list-box .grid li,
+    .property-image,
+    .property-three-cols .property-cols,
+    .featured-block-two-cols,
+    .property-two-cols .property-cols,
+    .advance-search-block .dsidx-widget.dsidx-search-widget .dsidx-search-button,
+    .coming-soon .inside,
+    .advance-search-block input[type="submit"],
+    .agent-contents,
+    .dual-container,
+    .dual-container .dual-property-list .grid ul li,
+    .blist-two-cols,
+    .inside-fullwidth,
+    .login-actions,
+    .login-links,
+    .footer-layout-eight {
+        width: 330px;
+    }
+
+    .slider-block-thumb .home-flexslider {
+        width: 330px !important;
+    }
+
+    #homeland-loginform,
+    #homeland-registerform,
+    #homeland-lostpassword {
+        width: 388px;
+    }
+
+    .inside-fullwidth {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-widget.dsidx-search-widget .dsidx-search-button {
+        width: 270px !important;
+    }
+
+    .add-email {
+        border-right: 1px solid #E1E1E1;
+        display: block;
+        text-align: center;
+        float: none;
+    }
+
+    .sticky-header-container,
+    .sticky-header2-container {
+        padding-top: 0;
+    }
+
+        header.sticky-header,
+        .sticky-header-container .header-seven {
+            position: relative;
+        }
+
+    .home-thumb-flexslider .slides {
+        width: 265px;
+    }
+
+    .portfolio-slide-desc p,
+    .slider-block-thumb .slider-actions,
+    .slide-bottom,
+    .slide-right {
+        display: none;
+    }
+
+    .portfolio-slide-desc {
+        width: 280px;
+    }
+
+        .portfolio-slide-desc h2 {
+            margin-bottom: 0;
+        }
+
+    .property-home.portfolio-cols {
+        margin-bottom: 40px !important;
+        margin-right: 0 !important;
+    }
+
+    .pactions label i,
+    .pactions a i {
+        padding: 9px;
+    }
+
+    .pactions label {
+        padding-right: 15px;
+    }
+
+        .pactions label i {
+            margin-right: 10px;
+        }
+
+    .pactions a {
+        padding-left: 15px;
+    }
+
+        .pactions a i {
+            margin-left: 10px;
+        }
+
+    .logo,
+    .footer-layout-eight .copyright {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-layout-eight .social li a:link,
+    .footer-layout-eight .social li a:visited {
+        width: 30px;
+    }
+
+    .footer-layout-eight .copyright {
+        padding-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    nav {
+        margin-bottom: 40px;
+    }
+
+    .select-menu {
+        width: 330px;
+        top: 0;
+    }
+
+    .property-list-box .es-carousel .grid ul li.property-home {
+        width: 330px !important;
+        margin-right: 44px !important;
+    }
+
+    .advance-search-block ul li,
+    .call-info,
+    .property-three-cols ul li,
+    .agent-image,
+    .agent-about-list .agent-image,
+    .services-grid-fullwidth .services-page-list {
+        margin-right: 0;
+    }
+
+        .advance-search-block ul li.as-large,
+        .advance-search-block ul li.as-small,
+        .advance-search-block select.small,
+        .advance-search-block a.small,
+        .grid ul li.portfolio-cols {
+            width: 100% !important;
+        }
+
+    .selectBox-dropdown .selectBox-label {
+        width: 90% !important;
+    }
+
+    .advance-search-block-page .property-id {
+        width: 255px !important;
+    }
+
+    .services-list,
+    .widget-column,
+    .services-page-desc,
+    .agent-property-desc,
+    .sliding-bar .widget,
+    .theme-fullwidth .comment-details,
+    .comment-details,
+    .comment-list .children .comment-details,
+    .comment-list .children .children .comment-details,
+    .theme-fullwidth .comment-list .children .comment-details,
+    .theme-fullwidth .comment-list .children .children .comment-details,
+    .featured-block-two-cols .featured-list,
+    .list-fullwidth .agent-desc,
+    .testi-fullwidth .testi-desc,
+    .blog-list-alternate .blog-list-desc,
+    #homeland-loginform input[type='submit'],
+    #homeland-registerform input[type='submit'],
+    #homeland-lostpassword input[type='submit'],
+    .blist-grid img,
+    .blist-fullwidth img,
+    .countdown_row,
+    .theme-fullwidth .services-page-desc,
+    .theme-fullwidth .single-property .agent-desc,
+    #bbpress-forums fieldset.bbp-form,
+    .search-count,
+    .amenities-list,
+    .call-info,
+    .call-info .call-us,
+    .call-info .login,
+    .sitemap,
+    .countdown-section,
+    .filter-sort-order,
+    .agent-grid-sidebar,
+    .header-contact-info,
+    .info-list,
+    .header-ten .logo,
+    .homepage-call-to-action h4,
+    .homepage-call-to-action a,
+    .agent-image,
+    .agent-image img,
+    .aq-template-wrapper .aq_span12 .aq_span4,
+    .advance-search-block ul,
+    .searchform li,
+    .portfolio-list-desc h4,
+    .gallery-columns-2 .gallery-item,
+    .gallery-columns-3 .gallery-item,
+    .gallery-columns-4 .gallery-item,
+    .gallery-columns-5 .gallery-item,
+    .gallery-columns-6 .gallery-item,
+    .gallery-columns-7 .gallery-item,
+    .gallery-columns-8 .gallery-item,
+    .gallery-columns-9 .gallery-item,
+    .property-grid-sidebar .masonry ul li img,
+    .property-four-cols .property-cols img,
+    .single-property .property-four-cols .property-cols,
+    .page-template-template-properties-fullwidth .agent-property-desc {
+        width: 100%;
+    }
+
+    a.live-demo:link,
+    a.live-demo:visited {
+        position: relative;
+        margin-bottom: 30px;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    [class*="aq_span"] {
+        margin-left: 0;
+    }
+
+    .agent-fullwidth .masonry,
+    .agent-about-list .agent-image,
+    .agent-about-list,
+    .property-list-box .grid li.property-home,
+    .masonry {
+        width: 100% !important;
+    }
+
+    .homepage-call-to-action h4 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .homepage-call-to-action a {
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    .sliding-bar,
+    a.slide-toggle {
+        position: absolute;
+    }
+
+    .welcome-block h2,
+    .welcome-pb-block h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .welcome-block label,
+    .welcome-pb-block label {
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .feat-desc,
+    .bdesc {
+        width: 64%;
+    }
+
+    .widget-column,
+    .property-list-box .grid li.property-home {
+        margin-right: 0;
+    }
+
+    .homeland_widget-contact-info ul li label {
+        width: 93%;
+    }
+
+    .nsu-form input[type="email"] {
+        width: 235px;
+    }
+
+    .header-five .social {
+        margin-right: 0;
+        float: none;
+    }
+
+    .header-six .call-info,
+    .header-five .call-info {
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .call-info {
+        text-align: center;
+        border-top: 1px solid #e1e1e1;
+        border-left: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+    }
+
+        .call-info .call-us,
+        .call-info .login {
+            padding: 6px 0;
+            border-bottom: 1px solid #e1e1e1;
+            border-right: 0;
+        }
+
+        .call-info .register.login {
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .call-info .login {
+            border-bottom: 0;
+        }
+
+    .home-flexslider .flex-direction-nav {
+        top: 40%;
+    }
+
+    .services-block-bg,
+    .services-pb-block {
+        background-repeat: repeat;
+    }
+
+    .home-thumb-flexslider .flex-control-thumbs li {
+        width: 60px;
+    }
+
+    .property-home {
+        margin-right: 20px !important;
+        width: 250px !important;
+    }
+
+    .page-template-template-homepage3 .property-home {
+        width: 330px !important;
+    }
+
+    a.view-property:link,
+    a.view-property:visited {
+        padding: 10px 20px;
+    }
+
+    .feat-desc,
+    .bdesc {
+        width: 55%;
+    }
+
+    .homeland_widget-contact-info ul li label {
+        width: 92%;
+    }
+
+    .testimonial-block h3,
+    .testimonial-pb-block h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .ptitle {
+        padding: 20px;
+    }
+
+    .subtitle {
+        line-height: 29px;
+    }
+
+        .subtitle label {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 11px;
+        }
+
+    .agent-about-list .agent-image {
+        width: 230px;
+    }
+
+    .pp-desc {
+        width: 68%;
+    }
+
+    .services-page-desc,
+    .testi-page-list,
+    .info-list {
+        text-align: center;
+    }
+
+    .services-page-icon {
+        margin-right: 0;
+        margin-left: 20%;
+    }
+
+    .property-image,
+    .property-two-cols .property-cols {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .property-four-cols .property-cols {
+        width: 100%;
+        margin-right: 0;
+    }
+
+        .property-three-cols .property-cols figcaption a i,
+        .property-four-cols .property-cols figcaption a i,
+        .grid ul li.portfolio-cols figcaption a i,
+        .featured-block-two-cols .featured-list figcaption a i {
+            top: 43%;
+        }
+
+    .property-grid-sidebar .masonry ul li {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .property-page-name {
+        padding: 10px;
+        width: auto;
+    }
+
+    .property-page-status span,
+    .property-page-price span {
+        font-size: 14px;
+    }
+
+    .property-page-name h3 {
+        font-size: 18px;
+    }
+
+    .share span,
+    .agent-image {
+        margin-bottom: 20px;
+    }
+
+    .comment-list .children .parent {
+        margin-left: 40px;
+    }
+
+    .comment-list .children .children .parent {
+        margin-left: 80px;
+    }
+
+    .social ul li a:link,
+    .social ul li a:visited {
+        width: 35px;
+    }
+
+    .dsidx-search-widget input[type="text"] {
+        width: 166px;
+    }
+
+    .dsidx-search-widget select {
+        width: 178px;
+    }
+
+    .sitemap,
+    .blist-grid,
+    .blist-fullwidth {
+        margin-right: 0;
+    }
+
+    .blist-grid,
+    .blist-fullwidth {
+        width: 330px;
+    }
+
+    .testi-page-list {
+        padding-left: 0;
+    }
+
+        .testi-page-list img {
+            margin-right: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+    .advance-search-block .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .idx-q-Location-Filter {
+        width: 330px !important;
+        position: relative;
+        top: 0;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr,
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .dsidx-search-widget-propertyTypes {
+        width: 314px !important;
+    }
+
+    .sidebar .dsidx-search-widget input[type="text"] {
+        width: 165px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .selectBox-dropdown {
+        width: 270px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"] {
+        width: 254px !important;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-price {
+        width: 112px !important;
+    }
+
+    .advance-search-block-page.advance-search-block-page .dsidx-widget-search {
+        padding-bottom: 10px;
+    }
+
+    .advance-search-block .dsidx-search-widget label {
+        width: 15%;
+    }
+
+    .advance-search-block-page .dsidx-search-widget label {
+        width: 20%;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr,
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .advance-search-block .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 280px !important;
+        margin-right: 0;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 270px !important;
+        margin-right: 0;
+    }
+
+    .countdown-section {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .coming-soon .social {
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    .coming-soon h2 span {
+        line-height: 40px;
+    }
+
+    .sidebar .dsidx-search-widget select {
+        width: 248px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget .selectBox-dropdown .selectBox-label {
+        width: 86% !important;
+    }
+
+    .single-homeland_properties .property-info-agent span,
+    .property-page-id,
+    .property-page-type,
+    .property-page-status {
+        display: block;
+        border-right: 0;
+        border-bottom: 1px solid #CCC;
+    }
+
+    .property-page-id,
+    .property-page-type,
+    .property-page-status {
+        float: none;
+    }
+
+    #bbpress-forums #bbp-search-form #bbp_search {
+        width: 208px;
+    }
+
+    .advance-search-block input.property-id[type="text"] {
+        width: 100% !important;
+    }
+
+    .block_hints .block_free,
+    .block_hints .block_time,
+    .block_hints .block_booked,
+    .block_hints .block_pending,
+    .block_hints .block_check_in_out,
+    .datepick-inline .datepick-days-cell {
+        padding: 0 !important;
+    }
+
+    .filter-sort-order {
+        float: left;
+        margin-top: 55px;
+    }
+
+    .share span {
+        margin-right: 10px;
+    }
+
+    #map-homepage,
+    #map-property,
+    #map-property-street,
+    #map,
+    .contact-alt-background #map {
+        height: 300px !important;
+    }
+
+    .property-one-cols .property-cols .property-info span {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .footer-layout-two .copyright,
+    .footer-layout-two .footer-menu,
+    .footer-layout-three .copyright,
+    .footer-layout-three .footer-menu,
+    .footer-layout-five .copyright,
+    .footer-layout-five .footer-menu {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-layout-two .copyright,
+    .footer-layout-three .copyright,
+    .footer-layout-five .copyright {
+        display: block;
+        margin-top: 30px;
+    }
+
+    .footer-layout-two .footer-menu ul,
+    .footer-layout-three .footer-menu ul,
+    .footer-layout-five .footer-menu ul {
+        display: inline-table;
+        text-align: center;
+    }
+
+    .header-seven nav {
+        margin-top: 0;
+    }
+
+    .footer-layout-three .footer-menu,
+    .footer-layout-five .footer-menu {
+        margin-bottom: 30px;
+    }
+
+    .footer-layout-two a#toTop,
+    .footer-layout-three a#toTop,
+    .footer-layout-four a#toTop,
+    .footer-layout-five a#toTop,
+    .footer-layout-six a#toTop,
+    .footer-layout-eight a#toTop {
+        left: 45%;
+    }
+
+    .footer-layout-six .copyright,
+    .footer-layout-eight .copyright {
+        display: block;
+        text-align: center;
+        margin: 15px 0;
+        width: 100%;
+        float: none;
+    }
+
+    .footer-layout-six .social,
+    .footer-layout-eight .social {
+        float: none;
+        margin-left: 0;
+        text-align: center;
+    }
+
+        .footer-layout-six .social ul,
+        .footer-layout-eight .social ul {
+            display: inline-table;
+        }
+
+    .property-list-page .property-info-agent span,
+    .single-homeland_properties .theme-fullwidth .property-list-page .property-info-agent span {
+        width: 98.6%;
+        border-right: 1px solid #CCC;
+        padding: 8px 15px;
+    }
+
+    .blog-text h4 {
+        width: 200px;
+    }
+
+    footer .homeland_widget-property-advance-search #searchform {
+        padding: 20px;
+    }
+
+    footer .pp-desc {
+        width: 72%;
+    }
+
+    .services-grid-fullwidth .services-page-icon {
+        float: none;
+        margin-left: 0;
+        margin-bottom: 30px;
+    }
+
+    .blist-two-cols {
+        margin-right: 0;
+    }
+
+    .blog-list-alternate .blog-action {
+        width: 99%;
+        margin-bottom: 30px;
+    }
+
+    .image-portfolio {
+        height: 230px;
+    }
+
+    .copyright {
+        width: 280px;
+        display: block;
+    }
+
+    footer .homeland_widget-agents {
+        text-align: left;
+    }
+
+        footer .homeland_widget-agents ul li img {
+            float: left !important;
+        }
+
+    .widget_display_search input[type="text"],
+    .nsu-form input[type="email"] {
+        width: 92.6%;
+    }
+
+    .featured-flexslider .flex-direction-nav {
+        position: absolute;
+        top: -60px;
+    }
+
+    footer .property-desc-slide {
+        display: block;
+    }
+
+    .single-homeland_properties .property-four-cols ul li {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .login-links {
+        margin-bottom: 40px;
+    }
+
+    .nsu-form input[type="email"],
+    .nsu-form input[type="text"],
+    .widget_mc4wp_form_widget input[type="email"],
+    .widget_mc4wp_form_widget input[type="text"] {
+        width: 226px;
+    }
+
+    footer .nsu_widget,
+    footer .widget_mc4wp_form_widget {
+        padding: 20px;
+    }
+
+    .footer-menu ul li:first-child,
+    .info-list {
+        margin-left: 0;
+    }
+
+    .agent-grid-sidebar .agent-list {
+        width: 288px;
+        margin-right: 0;
+    }
+
+    .header-contact-info {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .info-list {
+        margin-left: 0;
+    }
+
+    .static-image-desc {
+        top: 30%;
+    }
+
+    .property-amenities ul li {
+        width: 90%;
+    }
+
+    /* IDX Styles */
+    #dsidx-listings .dsidx-primary-data,
+    #dsidx-listings .dsidx-secondary-data {
+        padding-left: 0;
+        width: 100%;
+    }
+
+    #dsidx-listings .dsidx-listing .dsidx-media {
+        width: 100%;
+        margin-bottom: 20px !important;
+        position: relative;
+        float: none;
+    }
+
+    #dsidx-listings .dsidx-listing .dsidx-data {
+        margin: 0 !important;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #dsidx-listings .dsidx-listing .dsidx-primary-data {
+        padding: 0;
+        border: 0;
+        background: none;
+    }
+
+    .dsidx-prop-features {
+        margin-top: 20px;
+    }
+
+        .dsidx-prop-features div {
+            float: left;
+            width: 100%;
+        }
+
+    .dsidx-prop-summary div img {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .print-property {
+        float: left;
+        padding-left: 20px;
+    }
+
+        .print-property a:link,
+        .print-property a:visited {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+
+    .sticky-header-container #agent-form {
+        margin-top: -1px;
+        padding-top: 1px;
+    }
+
+    /* Horizontal IDX search */
+    .dsidx-widget-quick-search .dsidx-resp-horizontal .dsidx-resp-area.dsidx-resp-area-half {
+        float: none !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Vertical IDX search */
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area,
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half,
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area {
+        width: 330px !important;
+    }
+
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area,
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half {
+        width: 248px !important;
+    }
+
+    .video-js {
+        height: 250px !important;
+    }
+
+    .agent-list.last {
+        margin-right: 0 !important;
+    }
+}
+
+
+/* iPhone 4-4S-5 Portrait - 320 x 568 */
+
+@media only screen and (max-width: 450px) {
+    #container-boxed,
+    #container-boxed header.sticky-header,
+    #container-boxed-left,
+    #container-boxed-left header.sticky-header {
+        width: 300px;
+    }
+
+    .inside,
+    .select-menu,
+    .home-thumb-flexslider,
+    .left-container,
+    .featured-block-two-cols,
+    .agent-desc,
+    .single-property .agent-desc,
+    .blist-grid,
+    .blist-fullwidth,
+    .advance-search-block .dsidx-widget.dsidx-search-widget .dsidx-search-button,
+    .coming-soon .inside,
+    .advance-search-block input[type="submit"],
+    .agent-contents,
+    .blist-two-cols,
+    .inside-fullwidth,
+    .login-actions,
+    .login-links,
+    .footer-layout-eight {
+        width: 250px;
+    }
+
+    #homeland-loginform,
+    #homeland-registerform,
+    #homeland-lostpassword {
+        width: 230px;
+    }
+
+    .grid ul li.portfolio-cols,
+    .property-list-box .es-carousel .grid ul li.property-home,
+    .slider-block-thumb .home-flexslider {
+        width: 250px !important;
+    }
+
+    .social ul li a:link,
+    .social ul li a:visited {
+        width: 26px;
+    }
+
+    .call-info .call-us {
+        text-align: center;
+    }
+
+    .slider-actions {
+        display: none;
+    }
+
+    .call-info .login {
+        display: block;
+        float: none;
+        text-align: center;
+        border-bottom: 0;
+    }
+
+    .call-info .call-us {
+        float: none;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .login:last-child {
+        border-bottom: 0 !important;
+    }
+
+    .home-flexslider .flex-direction-nav,
+    .static-image-desc {
+        top: 28%;
+    }
+
+    .advance-search-block ul li.as-large,
+    .advance-search-block ul li.as-small,
+    .advance-search-block select.small,
+    .advance-search-block a.small {
+        width: 250px !important;
+    }
+
+    .selectBox-dropdown .selectBox-label {
+        width: 75% !important;
+    }
+
+    .welcome-block h2,
+    .welcome-pb-block h2 {
+        font-size: 26px;
+    }
+
+    .welcome-block label,
+    .welcome-pb-block label,
+    .advance-search-block.advance-search-block-page .search-title h4 {
+        font-size: 18px;
+    }
+
+    .feat-desc,
+    .bdesc {
+        width: 40%;
+    }
+
+    .homeland_widget-contact-info ul li label {
+        width: 88%;
+    }
+
+    .copyright {
+        width: 200px;
+        display: block;
+    }
+
+    .home-thumb-flexslider .slides {
+        width: 206px;
+    }
+
+    .home-thumb-flexslider .flex-control-thumbs li {
+        width: 40px;
+    }
+
+    .page-template-template-homepage3 .property-home,
+    .property-image,
+    .property-cols {
+        width: 250px !important;
+    }
+
+    .testimonial-block h3,
+    .testimonial-pb-block h3 {
+        font-size: 28px;
+    }
+
+    .testimonial-block label,
+    .testimonial-pb-block label {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .advance-search-block-page .property-id {
+        width: 173px !important;
+    }
+
+    .pp-desc {
+        width: 57%;
+    }
+
+    .services-page-icon {
+        margin-left: 12%;
+    }
+
+    .advance-search-block label {
+        font-size: 14px;
+    }
+
+    .cat-toogles ul li {
+        margin-bottom: 1px;
+    }
+
+        .cat-toogles ul li a:link,
+        .cat-toogles ul li a:visited {
+            font-size: 12px;
+        }
+
+    .comment-list .children .parent {
+        margin-left: 20px;
+    }
+
+    .comment-list .children .children .parent {
+        margin-left: 40px;
+    }
+
+    .contact-info label {
+        display: block;
+    }
+
+    .blog-text h4 {
+        width: 140px;
+    }
+
+    .ptitle {
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .sidebar #dribbble li img,
+    .sidebar .homeland_widget-flickr ul li img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .advance-search-widget ul li select,
+    .advance-search-widget ul li input.property-id {
+        margin-left: 0;
+    }
+
+    .dsidx-search-widget select {
+        width: 98px;
+    }
+
+    .dsidx-search-widget input[type="text"] {
+        width: 86px;
+    }
+
+    .advance-search-block .dsidx-widget.dsidx-search-widget .dsidx-search-button input[type='submit'],
+    .advance-search-block.advance-search-block-page .dsidx-widget.dsidx-search-widget .dsidx-search-button input[type='submit'] {
+        font-size: 14px;
+    }
+
+    .advance-search-block .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .dsidx-search-widget .idx-q-Location-Filter {
+        width: 250px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget label {
+        width: 20%;
+    }
+
+    .advance-search-block-page .dsidx-search-widget label {
+        width: 30%;
+    }
+
+    .advance-search-block .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr,
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .dsidx-search-widget-propertyTypes,
+    .advance-search-block .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block .dsidx-search-widget input.dsidx-baths[type="text"] {
+        width: 200px !important;
+        margin-right: 0;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-improvedsqft[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-beds[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input.dsidx-baths[type="text"],
+    .advance-search-block.advance-search-block-page .dsidx-search-widget table tr,
+    .advance-search-block.advance-search-block-page .dsidx-search-widget .selectBox-dropdown,
+    .advance-search-block.advance-search-block-page .dsidx-widget.dsidx-search-widget .dsidx-search-button {
+        width: 190px !important;
+    }
+
+    .advance-search-block .dsidx-search-widget input.dsidx-price[type="text"] {
+        width: 100px !important;
+    }
+
+    .dsidx-search-widget input[type="text"] {
+        width: 234px;
+    }
+
+    .advance-search-block.advance-search-block-page .dsidx-search-widget input[type="text"] {
+        width: 174px !important;
+    }
+
+    .sidebar .dsidx-search-widget input[type="text"] {
+        width: 85px !important;
+    }
+
+    .sidebar .dsidx-search-widget select {
+        width: 168px !important;
+    }
+
+    .featured-flexslider .slides li {
+        width: 210px;
+    }
+
+    .filter-sort-order select {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .filter-sort-order label {
+        margin-left: 0;
+    }
+
+    .call-info {
+        border-left: 1px solid #e1e1e1;
+    }
+
+    .featured-block-two-cols .featured-list figcaption a i {
+        top: 40%;
+    }
+
+    .contact-alt-background #map {
+        height: 200px !important;
+    }
+
+    .property-list-page .property-info-agent span,
+    .single-homeland_properties .theme-fullwidth .property-list-page .property-info-agent span {
+        width: 98.4%;
+    }
+
+    footer .pp-desc {
+        width: 65%;
+    }
+
+    .image-portfolio {
+        height: 174px;
+    }
+
+    .post-link-blog span.prev,
+    .post-link-blog span.next {
+        margin: 0;
+    }
+
+        .post-link-blog span.prev a,
+        .post-link-blog span.next a {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+
+    a.view-profile,
+    .agent-fullwidth a.view-profile {
+        position: relative;
+        display: block;
+        text-align: center;
+    }
+
+    .agent-grid-sidebar .agent-list {
+        width: 208px;
+    }
+
+    .login-actions a:link,
+    .login-actions a:visited {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    /* Vertical IDX search */
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area,
+    .dsidx-widget-quick-search .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half,
+    .dsidx-widget-guided-search .dsidx-resp-vertical .dsidx-resp-area {
+        width: 250px !important;
+    }
+
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area,
+    .sidebar .dsidx-resp-vertical .dsidx-resp-area.dsidx-resp-area-half {
+        width: 168px !important;
+    }
+
+    #dsidx-listings .dsidx-listing .dsidx-media .dsidx-photo {
+        border: 0;
+        background: none;
+    }
+}

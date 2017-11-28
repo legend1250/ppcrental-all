@@ -15,75 +15,62 @@
       }
 </style>
 @{ 
+    String userRole = Session["userRole"] as String;
     if (Session["user"] == null)
     {
-        Session["login-status"] = 1;
-        TempData["login-status"] = 0;
-        Response.Redirect("~/User/Login");
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login",false);
+
+    }else if (!(userRole.Equals("ancency")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
 
     }
 }
-<script type="text/javascript">
-    $(".select1").change(function () {
-        if ($(this).data('options') === undefined) {
-            /*Taking an array of all options-2 and kind of embedding it on the select1*/
-            $(this).data('options', $('.select2 option').clone());
-        }
-        var id = $(this).val();
-        var options = $(this).data('options').filter('[value=' + id + ']');
-        $('.select2').html(options);
-        $('.select2 select').html(options).change();
-    });
-
-    $(".select2").change(function () {
-        if ($(this).data('options') === undefined) {
-            /*Taking an array of all options-3 and kind of embedding it on the select1*/
-            $(this).data('options', $('.select3 option').clone());
-        }
-        var id = $(this).val();
-        var options = $(this).data('options').filter('[value=' + id + ']');
-        $('.select3').html(options);
-    });
-
-    function change2() {
-        if ($('.select1 option:selected').length) {
-            $('.select2').attr('disabled', false);
-        }
-    }
-
-    function change3() {
-        if ($('.select2 option:selected').length) {
-            $('.select3').attr('disabled', false);
-        }
-    }
-</script>
 <div class="container qa-form">
      <center><h1>Add Project</h1></center>
-    <form class="form-horizontal" action="#" method="post">
+    <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label col-sm-1" for="name">ProjectName:</label>
             <div class="col-sm-11">
-                <input type="text" class="form-control" id="name" name="pname">
+                <input type="text" class="form-control" id="name" name="pname" required>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="ava">Avatar:</label>
-            <div class="col-sm-11">
-                <input type="text" class="form-control" id="ava" name="avatar">
+            <div class="col-sm-5">
+                <div style="position:relative">
+                    <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly/>
+                    <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
+                    <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
+            <label class="control-label col-sm-1" for="ima">Image:</label>
+            <div class="col-sm-5">
+                <div style="position:relative">
+                    <input type="text" class="form-control" id="ima" name="image" style="position:absolute" readonly/>
+                    <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                    <input type="button" class="btn btn-default" id="btnImaup" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
+                </div>
+            </div>
+          </div>
+        @*<div class="form-group">
             <label class="control-label col-sm-1" for="ima">Image:</label>
             <div class="col-sm-11">
-                <input type="text" class="form-control" id="ima" name="image">
+                <input type="text" class="form-control" id="ima" name="image" />
+                <input type="file" id="imaUpload" name="imageUpload" style="display:none">
+                <input type="button" class="btn btn-default" id="btnImaup" value="..." />
             </div>
-        </div>
+        </div>*@
         
         
         <div class="form-group">
             <label class="control-label col-sm-1" for="district">District:</label>
             <div class="col-sm-3">
-                <select class="form-control select1" id="district" name="select1" onchange='change2()'>
+                <select class="form-control select1 qa-select" id="district" name="select1" onchange='change2()'>
                     <option value="-1" selected disabled style="font-weight:bold">District</option>
                     @foreach (var item in Model.districtService)
                     {
@@ -93,7 +80,7 @@
             </div>
             <label class="control-label col-sm-1" for="street">Street:</label>
             <div class="col-sm-3">
-                <select class="form-control select2" id="street" name="select2" disabled onchange='change3()'>
+                <select class="form-control select2 qa-select" id="street" name="select2" disabled onchange='change3()'>
                     <option value="-1" selected disabled style="font-weight:bold">Street</option>
                     @foreach (var item in Model.streetService)
                     {
@@ -103,7 +90,7 @@
             </div>  
             <label class="control-label col-sm-1" for="ward">Ward:</label>
             <div class="col-sm-3">
-                <select class="form-control select3" id="ward" name="select3" disabled>
+                <select class="form-control select3 qa-select" id="ward" name="select3" disabled>
                     <option value="-1" selected disabled style="font-weight:bold">Ward</option>
                     @foreach (var item in Model.wardService)
                     {
@@ -117,22 +104,21 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="price">Price:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="price" name="price">
+                <input type="number" class="form-control" id="price" name="price" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="area">Area:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="area" name="area">
+                <input type="number" class="form-control" id="area" name="area" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
             <div class="col-sm-3">
-                <select class="form-control" id="ptype">
+                <select class="form-control qa-select" id="ptype">
                     <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
                     @{ 
-                        var i = 0;
                         foreach (var item in Model.propertyTypeService)
                         {
-                            <option value="@item.ID" id="i">@item.CodeType</option>
-                            i++;
+                            <option value="@item.ID">@item.CodeType</option>
+                         
                         }
                     }
                 </select>
@@ -141,15 +127,15 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="bed">BedRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bed" name="bed">
+                <input type="number" class="form-control" id="bed" name="bed" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="bath">BathRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bath" name="bath">
+                <input type="number" class="form-control" id="bath" name="bath" min="0" value="0">
             </div>
             <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="packing" name="packing">
+                <input type="number" class="form-control" id="packing" name="packing" min="0" value="0">
             </div>
         </div>
         <div class="form-group">
@@ -177,48 +163,144 @@
         $('.qa-submit').click(function (e)
         {
             e.preventDefault();
+
+            var avaUpload = $('#avaUpload').get(0);
+            var avaFiles = avaUpload.files;
+            var imaUpload = $('#imaUpload').get(0);
+            var imaFiles = imaUpload.files;
+            var formData = new FormData();
+            formData.append('avaFile', avaFiles[0]);
+            formData.append('imaFile', imaFiles[0]);
+
             var newProject = {
             PropertyName : $('#name').val(),
             Avatar : $('#ava').val(),
             Images : $('#ima').val(),
+            //Avatar: $('#avaUpload')[0].files[0].name,
+            //Images : $('#imaUpload')[0].files[0].name,
             District_ID : $('select[id=district]').val(),
             Street_ID : $('select[id=street]').val(),
             Ward_ID : $('select[id=ward]').val(),
-            ProjectType_ID : $('select[id=ptype]').val(),
+            PropertyType_ID: $('select[id=ptype]').val(),
+            Content: $('#content').val(),
             Price: $('#price').val(),
             UnitPrice:'USD',
-            Area : $('#area').val()+' m2',
+            Area : $('#area').val()+'m2',
             BedRoom : $('#bed').val(),
             BathRoom : $('#bath').val(),
             PackingPlace: $('#packing').val(),
-            UserID:@Session["userID"]
+            UserID:@Session["userID"],
             }
             $.ajax({
                 url: '/Project/Submit/',
                 type: "POST",
-                data: newProject,
+                data: {newProject},
                 dataType: "json",
               //  contentType: "application/json; charset=utf-8",
                 success: function (response) {
                     alert(response['Message']);
-                    clear();
+                    $.ajax({
+                        url: '/Project/saveImage/',
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        //  contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            alert(response['Message']);
+                            clear();
+
+                        },
+                        error: function (err) {
+                            alert("Có lỗi khi upload:" + err.statusText);
+                        },
+                    });
                     
+
                 },
                 error: function (err) {
                     alert("Error while inserting data");
                 },
 
             });
+            
             return false;
         });
         function clear() {
             $(':input[type="text"]').val('');
             $(':input[type="number"]').val('');
+            $(':input[type="file"]').val('');
             $('textarea').val('');
-            $(':select').find('option#1').attr(selected, "selected");
+            //  $(':select').find('option#1').attr(selected, "selected");
+            $('.qa-select').val(-1);
+            $('#street').attr('disabled', true);
+            $('#street').val(-1);
+            $('#ward').attr('disabled', true);
+            $('#ward').val(-1);
+           
         }
     });
 </script>
+@section upload
+{
+    <script>
+        $(function () {
+            //Đăng ký sự kiện click nút btnAvaUp
+            $('#btnAvaUp').click(function () {
+                $('#avaUpload').trigger("click");
+            });
+            //Bắt sự kiện change data của avaUpload
+            $('#avaUpload').change(function () {
+                var avaName = $('#avaUpload')[0].files[0].name;
+                $('#ava').val(avaName);
+            });
 
 
+
+            //Đăng ký sự kiện click nút btnImaup
+            $('#btnImaup').click(function () {
+                $('#imaUpload').trigger("click");
+            });
+            //Bắt sự kiện change data của imaUpload
+            $('#imaUpload').change(function () {
+                var imgName = $('#imaUpload')[0].files[0].name;
+                $('#ima').val(imgName);
+            });
+        });
+    </script>
+}
+<script type="text/javascript">
+        $(".select1").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select2 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select2').html(options);
+            $('.select2 select').html(options).change();
+        });
+
+        $(".select2").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-3 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select3 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select3').html(options);
+        });
+
+        function change2() {
+            if ($('.select1 option:selected').length) {
+                $('.select2').attr('disabled', false);
+            }
+        }
+
+        function change3() {
+            if ($('.select2 option:selected').length) {
+                $('.select3').attr('disabled', false);
+            }
+        }
+</script>
 

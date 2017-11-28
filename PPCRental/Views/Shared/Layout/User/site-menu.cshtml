@@ -1,7 +1,7 @@
 ﻿
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <!-- site-logo -->
             <figure id="site-logo">
                 <a href="~/Home/Index"><img src="~/img/logo.png" alt="Logo" class="site-logo" style="width: 135px;
@@ -9,7 +9,7 @@
             </figure>
             <!-- /site-logo -->
         </div>
-        <div class="col-md-6 col-sm-8">
+        <div class="col-md-7 col-sm-9">
             <!-- site-menu-content -->
             <nav id="site-nav" class="nav navbar-default">
                 <ul class="nav navbar-nav site-nav">
@@ -17,20 +17,20 @@
                     <li>
                         <a href="property-listing.html">Listing</a>
                         <ul>
-                            <li><a href="property-listing.html">Full Width</a></li>
+                            <li><a href="@Url.Action("Logout","User")">LogOut</a></li>
                             <li><a href="property-listing-with-sidebar.html">With Sidebar</a></li>
                             <li><a href="property-map-view.html">Map View</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="~/Project/ProjectList">Property</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li>
-                        <a href="">Page</a>
-                        <ul>
-                            <li><a href="#">Sub Menu</a></li>
-                            <li>
-                                <a href="#">Nested Menu</a>
-                                <ul>
+                            </ul>
+                        </li>
+                        <li><a href="~/Project/ProjectList">Property</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li>
+                            <a href="">Page</a>
+                            <ul>
+                                <li><a href="#">Sub Menu</a></li>
+                                <li>
+                                    <a href="#">Nested Menu</a>
+                                    <ul>
                                     <li><a href="#">Sub Menu</a></li>
                                     <li><a href="#">Sub Menu</a></li>
                                     <li>
@@ -70,3 +70,4 @@
         </div>
     </div>
 </div>
+

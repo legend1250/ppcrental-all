@@ -10,18 +10,22 @@
     <!--Our Style-->
     <link rel="shortcut icon" href="~/img/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Poppins:400,600" rel="stylesheet">
-    @*<link rel='stylesheet' id='typo-style-css' href='~/Content/Homeland/wp-content/plugins/codeex-shortcodes/typo-style.css?ver=4.8.3' type='text/css' media='all' />*@
-    @*<link rel='stylesheet' id='homeland-style-css' href='~/Content/Homeland/wp-content/themes/homeland/style.css?ver=4.8.3' type='text/css' media='all' />*@
+    @*<link rel='stylesheet' id='bbp-default-css' href='http://themecss.com/wp/Homeland/wp-content/plugins/bbpress/templates/default/css/bbpress.css?ver=2.5.14-6684' type='text/css' media='screen' />
+    <link rel='stylesheet' id='typo-style-css' href='http://themecss.com/wp/Homeland/wp-content/plugins/codeex-shortcodes/typo-style.css?ver=4.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='homeland-style-css' href='http://themecss.com/wp/Homeland/wp-content/themes/homeland/style.css?ver=4.8.3' type='text/css' media='all' />*@
+
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' id='jquery-magnific-css' href='~/Content/magnific-popup.css' type='text/css' media='all' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel='stylesheet' id='homeland-responsive-css' href='~/Content/responsive.css' type='text/css' media='all' />
 </head>
 <body>
     <!-- loader -->
     <div id="page-loader">
         <div class="loaders">
-            <img src="~/img/loader/2.gif" alt="First Loader">
+            <img src="~/img/loader/3.gif" alt="First Loader">
+            <img src="~/img/loader/4.gif" alt="First Loader">
         </div>
     </div>
     <!-- /loader -->
@@ -33,7 +37,15 @@
             // HttpSessionStateBase httpSession;
             if (Session["user"] != null)
             {
-                @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+                String userRole = Session["userRole"] as String;
+                if (userRole.Equals("ancency"))
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+                }
+                else if (userRole.Equals("sale"))
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-3.cshtml")
+                }
             }
             else
             {
@@ -43,10 +55,11 @@
         <!-- /site-header-top -->
         <!-- site-menu -->
         @RenderPage("~/Views/Shared/Layout/User/site-menu.cshtml")
+    
         <!-- site-menu -->
     </header>
     <!--site-body-->
-    <div class="body">
+    <div class="body clearfix">
         @RenderBody()
     </div>
     <!--/site-body-->
@@ -65,14 +78,13 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+    @*<script src="~/Scripts/jquery.magnific-popup.min.js"></script>*@
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/jquery.migrate.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.slicknav.min.js"></script>
     <script src="~/Scripts/slick.min.js"></script>
-
+    <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/tweetie.js"></script>
     <script src="~/Scripts/jquery.form.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -83,31 +95,32 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2MtZynhsvwI2B40juK6SifR_OSyj4aBA&libraries=places"></script>
     <script src="~/Scripts/WhatsNearby.js"></script>
     <script src="~/Scripts/theme.js"></script>
-    
+    @RenderSection("upload",required:false)
     <!--tEST-->
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-includes/js/masonry.min.js?ver=3.3.2'></script>
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/superfish.min.js?ver=4.8.3'></script>
-  
+
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/jquery.elastislide.min.js?ver=4.8.3'></script>
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/jquery.validate.min.js?ver=4.8.3'></script>
 
-    
-   
+
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/magnific-popup/jquery.magnific-popup.min.js?ver=4.8.3'></script>
-    <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/select2/select2.min.js?ver=4.8.3'></script>
-    
-   <script type='text/javascript' src='~/Content/Homeland/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+    @*<script type='text/javascript' src='~/Scripts/jquery.magnific-popup.min.js'></script>
+    <script type='text/javascript' src='~/Scripts/select2.min.js'></script>*@
+    <script         type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/themes/homeland/assets/js/select2/select2.min.js?ver=4.8.3'></script>
+
+    <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
     <script type='text/javascript' src='~/Scripts/masonry.min.js'></script>
     <script type='text/javascript' src='~/Scripts/superfish.min.js'></script>
-   <script type='text/javascript' src='~/Scripts/jquery.elastislide.min.js'></script>
- 
+    <script type='text/javascript' src='~/Scripts/jquery.elastislide.min.js'></script>
+
     <script type='text/javascript' src='~/Scripts/jquery.magnific-popup.min.js'></script>
     <script type='text/javascript' src='~/Scripts/select2.min.js'></script>
-  
-    <script type='text/javascript' src='~/Scripts/custom.js'></script>
 
+    <script type='text/javascript' src='~/Scripts/custom.js'></script>
 
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-includes/js/jquery/ui/autocomplete.min.js?ver=1.11.4'></script>
     <script type='text/javascript' src='http://themecss.com/wp/Homeland/wp-content/plugins/dsidxpress/js/autocomplete.js?ver=2.4.1'></script>
+
 </body>
 </html>

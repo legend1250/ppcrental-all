@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout_null.cshtml";
+
 }
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -22,6 +23,7 @@
     <div id="login" style="background:none">
         <h1><a href="~/Home/Index" title="PPC Rental Company"><img src="~/img/logo.png" /></a></h1>
         @{
+            var typeError = Session["login-status"] as String;
             if (Session["error"] != null)
             {
                 <div id="login_error">
@@ -32,14 +34,26 @@
                 Session["action-error"] = 1;
 
             }
-            else if (Session["login-status"] != null)
+            else
             {
-                <div id="login_error">
-                    <strong>ERROR</strong>:<font color="red">: You aren't login.Please login to view this page!!!</font>
-                    <br />
-                </div>
+                if (typeError.Equals("NotLogin"))
+                {
+                    <div id="login_error">
+                        <strong>ERROR</strong>:<font color="red"> You aren't login.Please login to view this page!!!</font>
+                        <br />
+                    </div>
+                }
+                else if (typeError.Equals("WrongRole"))
+                {
+                    <div id="login_error">
+                        <strong>ERROR</strong>:<font color="red"> You aren't authorized to access this page.Please contact to admin for more information</font>
+                        <br />
+                    </div>
+                }
                 Session.Remove("login-status");
                 Session["action-error"] = 1;
+
+
             }
 
 
@@ -70,7 +84,7 @@
             </p>
         </form>
         <p id="nav">
-            <a rel="nofollow" href="http://themecss.com/wp/Homeland/wp-login.php?action=register">Register</a> | <a href="http://themecss.com/wp/Homeland/wp-login.php?action=lostpassword">Lost your password?</a>
+            <a rel="nofollow" href="#">Register</a> | <a href="#">Lost your password?</a>
         </p>@{
             if (Session["action-error"]!=null)
             {
@@ -106,4 +120,5 @@
         
     </style>
     <div class="clear"></div>
+
 </body>

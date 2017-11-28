@@ -29,16 +29,23 @@ namespace PPCRental.Controllers
                 {
                   
                     //session.Add("user", user);  
-                    Session["user"] = user.Email;
+                    Session["user"] = user.FullName;
                     Session["userID"] = user.ID;
+                    if ((user.Role).Equals("1"))
+                    {
+                        Session["userRole"] = "ancency";
+                    }
+                    else
+                    {
+                        Session["userRole"] = "sale";
+                    }
                   //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                     return Redirect("~/Home/Index");
                 }
                 else
                 {
                     Session["error"] = 1;
-                    return View();
-                    
+                    return View();       
                 }
 
             }
@@ -47,8 +54,6 @@ namespace PPCRental.Controllers
                 Session["error"] = 1;
                 return View();
             }
-            
-            return View();
         }
         public void Logout()
         {
@@ -56,7 +61,12 @@ namespace PPCRental.Controllers
 
             Response.Redirect("~/Home/Index");
         }
-        public ActionResult Register()
+        public ActionResult Security()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult changePassword()
         {
             return View();
         }

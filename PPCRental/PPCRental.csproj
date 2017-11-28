@@ -650,6 +650,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\superfish.min.js" />
@@ -684,6 +685,8 @@
     <Content Include="Views\Shared\_Layout_null.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\User\Security.cshtml" />
+    <Content Include="Views\Shared\Layout\User\top-menu-3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

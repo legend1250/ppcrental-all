@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PPCRental.Models;
+using System.IO;
 namespace PPCRental.Controllers
 {
     public class ProjectController : Controller
@@ -66,6 +67,7 @@ namespace PPCRental.Controllers
             {
                 db.PROPERTies.Add(newProject);
                 db.SaveChanges();
+              
                 message = "Add Success,wait for appover";
                 return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
@@ -78,6 +80,47 @@ namespace PPCRental.Controllers
             }
             
 
+        }
+        [HttpPost]
+        public ActionResult saveImage(HttpPostedFileBase avaFile, HttpPostedFileBase imaFile)
+        {
+            int errorCount = 0;
+            string message,error="";
+            try
+            {
+                if (imaFile.ContentLength>0)
+                {
+                    String avaName = Path.GetFileName(avaFile.FileName);
+                    String avaPath = Path.Combine(Server.MapPath("~/img/avatar"), avaName);
+                    imaFile.SaveAs(avaPath);
+
+                }
+                if (imaFile.ContentLength>0)
+                {
+                    String imgName = Path.GetFileName(imaFile.FileName);
+                    String imgPath = Path.Combine(Server.MapPath("~/img/avatar"), imgName);
+                    imaFile.SaveAs(imgPath);
+                }
+            }
+            catch (Exception e)
+            {
+
+                errorCount++;
+                error = e.Message;
+            }
+            if (errorCount==0)
+            {
+                message = "Save ảnh thành công!!";
+            }
+            else
+            {
+                message = "Save ảnh thất bại:"+ error;
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            ////var path = VirtualPathUtility.Combine(Server.MapPath("~/img/avatar/"), avaFile.FileName);
+
+            ////avaFile.SaveAs(path);
+            //imaFile.SaveAs(Server.MapPath("~/img/avatar" + imaFile.FileName));
         }
     }
 }
