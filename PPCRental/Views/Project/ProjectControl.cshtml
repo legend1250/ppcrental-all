@@ -236,6 +236,7 @@
 <script>
     $(document).ready(function () {
         $(".qa-hide").on("click", function () {
+            $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
             $(".qa-form").hide(1000);
             $(".qa-show").show();
         });
@@ -249,7 +250,7 @@
             $.ajax({
                 url: '/Project/Edit/',
                 type: "POST",
-                data: {id:projectid},
+                data: { id: projectid },
                 dataType: "json",
                 success: function (data) {
                     alert('Load project success');
@@ -258,30 +259,34 @@
                     $(".qa-form").show(1000);
                     $('.select2').attr('disabled', false);
                     $('.select3').attr('disabled', false);
-                    $(".qa-form #projectName").val(data.projectName);
-                    $(".qa-form #ava").val(data.projectAvatar);
-                    $(".qa-form #ima").val(data.projectImage);
-                    $(".qa-form #price").val(data.projectPrice);
-                    $(".qa-form #area").val(data.projectArea);
-                    $(".qa-form #bed").val(data.projectBed);
-                    $(".qa-form #bath").val(data.projectBath);
-                    $(".qa-form #packing").val(data.projectParking);
-                    $(".qa-form #district").val(data.projectDistrict);
-                    $(".qa-form #street").val(data.projectStreet);
-                    $(".qa-form #ward").val(data.projectWard);
-                    $(".qa-form #ptype").val(data.projectType);
-                    $(".qa-form #content").val(data.projectContent);
+                    setTimeout(function () {
+                        //do what you need here
+                        $(".qa-form #projectName").val(data.projectName);
+                        $(".qa-form #ava").val(data.projectAvatar);
+                        $(".qa-form #ima").val(data.projectImage);
+                        $(".qa-form #price").val(data.projectPrice);
+                        $(".qa-form #area").val(data.projectArea);
+                        $(".qa-form #bed").val(data.projectBed);
+                        $(".qa-form #bath").val(data.projectBath);
+                        $(".qa-form #packing").val(data.projectParking);
+                        $(".qa-form #district").val(data.projectDistrict);
+                        $(".qa-form #street").val(data.projectStreet);
+                        $(".qa-form #ward").val(data.projectWard);
+                        $(".qa-form #ptype").val(data.projectType);
+                        $(".qa-form #content").val(data.projectContent);
 
-                    //image
-                    var Src = "../img/avatar/";
-                    //if (data.projectAvatar != null || data.projectImage != null) {
-                        
-                    //}
-                    $("#qa-view").css('display', 'block');
-                    var avatarSrc = Src.concat(data.projectAvatar);
-                    var imgSrc = Src.concat(data.projectImage)
-                    $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
-                    $(".qa-form #qa-view-image").attr("src", imgSrc);
+                        //image
+                        var Src = "../img/avatar/";
+                        //if (data.projectAvatar != null || data.projectImage != null) {
+
+                        //}
+                        $("#qa-view").css('display', 'block');
+                        var avatarSrc = Src.concat(data.projectAvatar);
+                        var imgSrc = Src.concat(data.projectImage)
+                        $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
+                        $(".qa-form #qa-view-image").attr("src", imgSrc);
+
+                    }, 1000);
                 },
                 error: function (err) {
                     alert("Load project fail: " + err.statusText);
