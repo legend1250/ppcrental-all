@@ -122,5 +122,33 @@ namespace PPCRental.Controllers
             ////avaFile.SaveAs(path);
             //imaFile.SaveAs(Server.MapPath("~/img/avatar" + imaFile.FileName));
         }
+        public ActionResult projectControl()
+        {
+          
+            var vm = new DBModel();
+            vm.streetService = db.STREETs.ToList();
+            vm.projectService = db.PROPERTies.ToList();
+            vm.wardService = db.WARDs.ToList();
+            vm.districtService = db.DISTRICTs.ToList();
+            vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Edit(int id)
+        {
+            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            //return Json(new { projectEdit = project });
+            var areaRaw = project.Area;
+            var area = areaRaw.Replace("m2", "");
+            return Json(new { projectName = project.PropertyName,projectAvatar = project.Avatar,
+                projectImage = project.Images, projectType = project.PropertyType_ID,
+                projectContent = project.Content, projectStreet = project.District_ID,
+                projectWard = project.Ward_ID, projectDistrict = project.District_ID,
+                projectPrice = project.Price, projectUnit = project.UnitPrice,
+                projectArea = area, projectBed = project.BedRoom,
+                projectBath = project.BathRoom, projectParking = project.PackingPlace,
+                projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
+            //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
+        }
     }
 }
