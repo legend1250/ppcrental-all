@@ -18,10 +18,10 @@
                     <h3 class="entry-title">@Html.DisplayFor(model => model.PropertyName)</h3>
                     <div class="property-single-meta">
                         <ul class="clearfix">
-                            <li><span>Property Size :</span> 2560 Sq Ft</li>
-                            <li><span>Property ID :</span> #@Html.DisplayNameFor(model => model.ID)</li>
-                            <li><span>Bedrooms :</span> 03 Room</li>
-                            <li><span>Bathrooms :</span> 05 Room</li>
+                            <li><span>Property Size :</span>@Html.DisplayFor(model =>model.Area) </li>
+                            <li><span>Property ID :</span> #@Html.DisplayFor(model => model.ID)</li>
+                            <li><span>Bedrooms :</span> @Html.DisplayFor(model => model.BedRoom) Room</li>
+                            <li><span>Bathrooms :</span> @Html.DisplayFor(model =>model.BathRoom) Room</li>
                             <li><span>Garage Size :</span> Yes - 200 SqFt </li>
                             <li><span>Year Built :</span> 2016-01-09</li>
                             <li><span>Price :</span> $97,000</li>
@@ -33,7 +33,7 @@
                     <div class="entry-title clearfix">
                         <h4 class="pull-left">Description </h4><a class="pull-right print-btn" href="javascript:window.print()">Print This Property <i class="fa fa-print"></i></a>
                     </div>
-                    <p>@Html.DisplayNameFor(model=>model.Content)</p>
+                    <p>@Html.DisplayFor(model=>model.Content)</p>
                 </section>
                 <section class="property-single-features common clearfix">
                     <h4 class="entry-title">Property Features</h4>

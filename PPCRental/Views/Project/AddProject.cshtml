@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "Add Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model PPCRental.Models.DBModel
+<style>
+    .qa-form{
+        margin-top:200px;
+        min-height:800px;
+    }.qa-form h1{
+         margin-bottom:50px;
+     }.qa-form button{
+          margin-left:10px;
+      }
+</style>
+@{ 
+    if (Session["user"] == null)
+    {
+        Session["login-status"] = 1;
+        TempData["login-status"] = 0;
+        Response.Redirect("~/User/Login");
+
+    }
+}
+<script type="text/javascript">
+    $(".select1").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-2 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select2 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select2').html(options);
+        $('.select2 select').html(options).change();
+    });
+
+    $(".select2").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-3 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select3 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select3').html(options);
+    });
+
+    function change2() {
+        if ($('.select1 option:selected').length) {
+            $('.select2').attr('disabled', false);
+        }
+    }
+
+    function change3() {
+        if ($('.select2 option:selected').length) {
+            $('.select3').attr('disabled', false);
+        }
+    }
+</script>
+<div class="container qa-form">
+     <center><h1>Add Project</h1></center>
+    <form class="form-horizontal" action="#" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="name">ProjectName:</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="name" name="pname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="ava">Avatar:</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="ava" name="avatar">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="ima">Image:</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="ima" name="image">
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="district">District:</label>
+            <div class="col-sm-3">
+                <select class="form-control select1" id="district" name="select1" onchange='change2()'>
+                    <option value="-1" selected disabled style="font-weight:bold">District</option>
+                    @foreach (var item in Model.districtService)
+                    {
+                        <option value="@item.ID">@item.DistrictName</option>
+                    }
+                </select>
+            </div>
+            <label class="control-label col-sm-1" for="street">Street:</label>
+            <div class="col-sm-3">
+                <select class="form-control select2" id="street" name="select2" disabled onchange='change3()'>
+                    <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                    @foreach (var item in Model.streetService)
+                    {
+                        <option value="@item.District_ID">@item.StreetName</option>
+                    }
+                </select>
+            </div>  
+            <label class="control-label col-sm-1" for="ward">Ward:</label>
+            <div class="col-sm-3">
+                <select class="form-control select3" id="ward" name="select3" disabled>
+                    <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                    @foreach (var item in Model.wardService)
+                    {
+                        <option value="@item.District_ID">@item.WardName</option>
+                    }
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="price">Price:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="price" name="price">
+            </div>
+            <label class="control-label col-sm-1" for="area">Area:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="area" name="area">
+            </div>
+            <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="ptype">
+                    <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
+                    @{ 
+                        var i = 0;
+                        foreach (var item in Model.propertyTypeService)
+                        {
+                            <option value="@item.ID" id="i">@item.CodeType</option>
+                            i++;
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="bed">BedRoom:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="bed" name="bed">
+            </div>
+            <label class="control-label col-sm-1" for="bath">BathRoom:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="bath" name="bath">
+            </div>
+            <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="packing" name="packing">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="content">Content:</label>
+            <div class="col-sm-11">
+                <textarea class="form-control" id="content" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default pull-right qa-submit"><i class="fa fa-share"></i> Submit</button>
+                <button type="button" class="btn btn-success pull-right qa-reset"><i class="fa fa-undo"></i> Reset</button>
+                <button type="button" class="btn btn-warning pull-right qa-save"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.qa-reset').click(function ()
+        {
+            clear();
+
+        });
+        $('.qa-submit').click(function (e)
+        {
+            e.preventDefault();
+            var newProject = {
+            PropertyName : $('#name').val(),
+            Avatar : $('#ava').val(),
+            Images : $('#ima').val(),
+            District_ID : $('select[id=district]').val(),
+            Street_ID : $('select[id=street]').val(),
+            Ward_ID : $('select[id=ward]').val(),
+            ProjectType_ID : $('select[id=ptype]').val(),
+            Price: $('#price').val(),
+            UnitPrice:'USD',
+            Area : $('#area').val()+' m2',
+            BedRoom : $('#bed').val(),
+            BathRoom : $('#bath').val(),
+            PackingPlace: $('#packing').val(),
+            UserID:@Session["userID"]
+            }
+            $.ajax({
+                url: '/Project/Submit/',
+                type: "POST",
+                data: newProject,
+                dataType: "json",
+              //  contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    alert(response['Message']);
+                    clear();
+                    
+                },
+                error: function (err) {
+                    alert("Error while inserting data");
+                },
+
+            });
+            return false;
+        });
+        function clear() {
+            $(':input[type="text"]').val('');
+            $(':input[type="number"]').val('');
+            $('textarea').val('');
+            $(':select').find('option#1').attr(selected, "selected");
+        }
+    });
+</script>
+
+
+

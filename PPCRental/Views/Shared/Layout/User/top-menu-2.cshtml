@@ -1,6 +1,4 @@
-﻿
-
-<section class="header-block">
+﻿<section class="header-block">
     <div class="inside clearfix">
         <div class="social floatleft">
             <ul class="clearfix" style="margin-bottom:0">
@@ -34,12 +32,23 @@
             </ul>
         </div>
         <div class="call-info floatright clearfix">
-            <a href="#" class="register login">
-                <i class="fa fa-user"></i>Chào: @Session["user"]
-            </a>
+            <span class="call-us"><i class="fa fa-phone"></i>Call us: 1-800-234-6789</span> 
+            <div class="dropdown" style="display:inline-block;float:left">
+                <div href="#" class="login dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>@Session["user"]<span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Account</li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Change Password</a></li>
+                    <li><a href="#">Your Projects</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Action Role</li>
+                    <li><a href="~/Project/addProject">Add Project</a></li>
+                </ul>
+            </div>
             <a href="@Url.Action("Logout","User")" class="login">
                 <i class="fa fa-sign-out"></i>Logout
-            </a>
+            </a>  
         </div>
-    </div>
 </section>  

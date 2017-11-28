@@ -157,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBModel.cs" />
     <Compile Include="Models\DemoDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -526,8 +527,8 @@
     <Content Include="Content\Homeland\wp-content\themes\Homeland\assets\js\tipsy\jquery.tipsy.min.js" />
     <Content Include="Content\Homeland\wp-content\themes\Homeland\assets\js\tipsy\tipsy.gif" />
     <Content Include="Content\Homeland\wp-content\themes\Homeland\responsive.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\magnific-popup.css" />
-    <Content Include="Content\Regiter.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\slicknav.css" />
     <Content Include="Content\style.css" />
@@ -541,7 +542,18 @@
     <Content Include="img\ancency-avatar\2.jpg" />
     <Content Include="img\announcement-bg.jpg" />
     <Content Include="img\arrow.png" />
+    <Content Include="img\avatar\Asa Light.jpg" />
+    <Content Include="img\avatar\Caledon Tan Phu.jpg" />
+    <Content Include="img\avatar\Capsule Residence .jpg" />
+    <Content Include="img\avatar\City Gate.jpg" />
+    <Content Include="img\avatar\Epic Town.jpg" />
+    <Content Include="img\avatar\Floral Hoa Binh.jpg" />
+    <Content Include="img\avatar\Gateway Prop.jpg" />
+    <Content Include="img\avatar\Hung Long Prop.jpg" />
     <Content Include="img\avatar\IMG_1592-stamp.jpg" />
+    <Content Include="img\avatar\Luxury Park.jpg" />
+    <Content Include="img\avatar\My Hung Prop.jpg" />
+    <Content Include="img\avatar\Orient Plaza.jpg" />
     <Content Include="img\avatar\PIS3280-Edit-stamp.jpg" />
     <Content Include="img\avatar\PIS3611.jpg" />
     <Content Include="img\avatar\PIS_4622-Edit.jpg" />
@@ -550,7 +562,10 @@
     <Content Include="img\avatar\PIS_7319-Edit-stamp.jpg" />
     <Content Include="img\avatar\PIS_7389-Edit-stamp.jpg" />
     <Content Include="img\avatar\PIS_7432-Edit-stamp.jpg" />
+    <Content Include="img\avatar\Riva Garden.jpg" />
+    <Content Include="img\avatar\Saigonrese.jpg" />
     <Content Include="img\avatar\sunshine-benthanh-cityhome-10-stamp.jpg" />
+    <Content Include="img\avatar\Vinh Loc Central.jpg" />
     <Content Include="img\banner.jpg" />
     <Content Include="img\favicon.png" />
     <Content Include="img\features\1.png" />
@@ -563,6 +578,7 @@
     <Content Include="img\footer-logo.png" />
     <Content Include="img\header-arrow.png" />
     <Content Include="img\iso-btn.png" />
+    <Content Include="img\loader\2.gif" />
     <Content Include="img\loader\3.gif" />
     <Content Include="img\loader\4.gif" />
     <Content Include="img\logo.png" />
@@ -663,9 +679,11 @@
     <Content Include="Views\Shared\Layout\User\advance-search.cshtml" />
     <Content Include="Views\Shared\Layout\User\slider.cshtml" />
     <Content Include="Views\Project\projectDetail.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-2.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Shared\_Layout_null.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

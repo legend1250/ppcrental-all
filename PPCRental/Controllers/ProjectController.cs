@@ -8,8 +8,12 @@ namespace PPCRental.Controllers
 {
     public class ProjectController : Controller
     {
-        ppcrental3119Entities db = new ppcrental3119Entities();
+        ppcrental3119Entities db;
         // GET: Project
+        public ProjectController()
+        {
+            db = new ppcrental3119Entities();
+        }
         public ActionResult ProjectList()
         {
             var project = db.PROPERTies.ToList();
@@ -20,16 +24,60 @@ namespace PPCRental.Controllers
         [HttpGet]
         public ActionResult Searching(String projectname)
         {
-
             var product = db.PROPERTies.ToList().Where(x => x.PropertyName.Contains(projectname));
-
             return View(product);
+
         }
         [HttpGet]
         public ActionResult projectDetail(int id)
         {
             var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);         
             return View(project);
+        }
+        public ActionResult addProject()
+        {
+            var vm = new DBModel();
+            vm.streetService = db.STREETs.ToList();
+            vm.projectService = db.PROPERTies.ToList();
+            vm.wardService = db.WARDs.ToList();
+            vm.districtService = db.DISTRICTs.ToList();
+            vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Submit([Bind(Exclude = "ID")] PROPERTY newProject)
+        {
+            String message;
+            //if (ModelState.IsValid)
+            //{   
+            // db.PROPERTies.Add(newProject);
+            /// db.SaveChanges();
+            /// message = "Add Success,wait for appover";
+            // return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            //}
+            //else
+            //{
+            //   message = "Add Fail";
+
+            //}
+            //return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            //return Json(newProject, JsonRequestBehavior.AllowGet);
+            try
+            {
+                db.PROPERTies.Add(newProject);
+                db.SaveChanges();
+                message = "Add Success,wait for appover";
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+
+
+            }
+            
+
         }
     }
 }
