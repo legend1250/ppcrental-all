@@ -74,5 +74,25 @@ namespace PPCRental.Controllers
         {
             return View(); ;
         }
+        [HttpPost]
+        public ActionResult submitRegister(USER newUser)
+        {
+            string message = "";
+            try
+            {
+                db.USERs.Add(newUser);
+                db.SaveChanges();
+                message = "Success";
+                return Json(new { Message = newUser, JsonRequestBehavior.AllowGet });
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+
+            }
+
+        }
+
     }
 }
