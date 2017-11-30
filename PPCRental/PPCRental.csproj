@@ -197,6 +197,9 @@
     <Compile Include="Models\USER.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View_project_from_index.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WARD.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>

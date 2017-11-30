@@ -829,6 +829,9 @@ img.zoom-img {
   font-size: 15px;
   font-weight: 600;
 }
+.btn-price{
+    content: '.00';
+}
 .property .property-meta {
   color: #707070;
   font-size: 13px;
@@ -1112,7 +1115,7 @@ img.zoom-img {
   margin: 0 0 5px 0;
 }
 .recent-properties .btn-price {
-  color: #6c98e1;
+  color: red;
   display: block;
   margin-bottom: 7px;
   padding: 0;

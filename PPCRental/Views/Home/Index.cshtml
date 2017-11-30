@@ -3,7 +3,7 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<PPCRental.Models.PROPERTY>
+@model IEnumerable<PPCRental.Models.View_project_from_index>
 
 <!-- site-slider -->
     @RenderPage("~/Views/Shared/Layout/User/slider.cshtml")
@@ -28,21 +28,34 @@
                 <div class="col-lg-4 col-sm-6 layout-item-wrap">
                     <article class="property layout-item clearfix">
                         <figure class="feature-image">
-                            <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/product/1.jpg" alt="Property Image"></a>
+                            <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image"></a>
                             <span class="btn btn-warning btn-sale">for sale</span>
                         </figure>
                         <div class="property-contents clearfix">
                             <header class="property-header clearfix">
                                 <div class="pull-left">
                                     <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
-                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.Street_ID, @item.Ward_ID, @item.District_ID</span>
+                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName, @item.WardName, @item.DistrictName</span>
                                 </div>
-                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong></button>
+                                @{
+                                    string _tmp = item.Price.ToString();
+                                    int? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                                    string price = _tmp.Substring(0, (int)i);
+                                    _tmp = _tmp.Substring((int)i);
+                                    while (_tmp.Length > 0 && _tmp.Length >= 3)
+                                    {
+
+                                        price += "," + _tmp.Substring(0, 3);
+                                        _tmp = _tmp.Substring(3);
+                                    }
+                                    
+                                 }
+                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$@Html.DisplayName(price)"><strong>$@Html.DisplayName(price)</strong></button>
                             </header>
                             <div class="property-meta clearfix">
-                                <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
-                                <span><i class="fa fa-bed"></i> 3 Beds</span>
-                                <span><i class="fa fa-bathtub"></i> 3 Baths</span>
+                                <span><i class="fa fa-arrows-alt"></i> @item.Area</span>
+                                <span><i class="fa fa-bed"></i> @item.BedRoom Beds</span>
+                                <span><i class="fa fa-bathtub"></i> @item.BathRoom Baths</span>
                                 <span><i class="fa fa-cab"></i> Yes</span>
                             </div>
                             <div class="contents clearfix">

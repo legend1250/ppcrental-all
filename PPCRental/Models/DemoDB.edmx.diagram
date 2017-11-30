@@ -25,6 +25,7 @@
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_USER" ManuallyRouted="false" />
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_USER1" ManuallyRouted="false" />
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_WARD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ppcrental3119Model.View_project_from_index" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
