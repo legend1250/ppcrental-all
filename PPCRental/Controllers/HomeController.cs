@@ -11,8 +11,8 @@ namespace PPCRental.Controllers
         ppcrental3119Entities db = new ppcrental3119Entities();
         public ActionResult Index()
         {
-            
-            return View();
+            var obj = db.PROPERTies.ToList().Take(3);
+            return View(obj);
         }
         public ActionResult Contact()
         {
