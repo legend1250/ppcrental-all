@@ -7,7 +7,7 @@
     <title>LogIn - PPCRental</title>
     <link rel="shortcut icon" href="~/img/favicon.png" />
     <link rel='dns-prefetch' href='//s.w.org' />
-    <link rel='stylesheet' href='~/Content/login-forgot-register.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='http://themecss.com/wp/Homeland/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.8.3' type='text/css' media='all' />
     <meta name='robots' content='noindex,follow' />
     <meta name="viewport" content="width=device-width" />
     <script type="text/javascript">
@@ -36,25 +36,22 @@
             }
             else
             {
-                if (typeError != null)
+                if (typeError.Equals("NotLogin"))
                 {
-                    if (typeError.Equals("NotLogin"))
-                    {
-                        <div id="login_error">
-                            <strong>ERROR</strong>:<font color="red"> You aren't login.Please login to view this page!!!</font>
-                            <br />
-                        </div>
-                    }
-                    else if (typeError.Equals("WrongRole"))
-                    {
-                        <div id="login_error">
-                            <strong>ERROR</strong>:<font color="red"> You aren't authorized to access this page.Please contact to admin for more information</font>
-                            <br />
-                        </div>
-                    }
-                    Session.Remove("login-status");
-                    Session["action-error"] = 1;
+                    <div id="login_error">
+                        <strong>ERROR</strong>:<font color="red"> You aren't login.Please login to view this page!!!</font>
+                        <br />
+                    </div>
                 }
+                else if (typeError.Equals("WrongRole"))
+                {
+                    <div id="login_error">
+                        <strong>ERROR</strong>:<font color="red"> You aren't authorized to access this page.Please contact to admin for more information</font>
+                        <br />
+                    </div>
+                }
+                Session.Remove("login-status");
+                Session["action-error"] = 1;
 
 
             }
@@ -87,7 +84,7 @@
             </p>
         </form>
         <p id="nav">
-            <a rel="nofollow" href="~/User/Register">Register</a> | <a href="~/User/ForgotPassword">Lost your password?</a>
+            <a rel="nofollow" href="#">Register</a> | <a href="#">Lost your password?</a>
         </p>@{
             if (Session["action-error"]!=null)
             {

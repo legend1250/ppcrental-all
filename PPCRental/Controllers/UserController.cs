@@ -10,10 +10,6 @@ namespace PPCRental.Controllers
     {
         ppcrental3119Entities db = new ppcrental3119Entities();
         // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Login()
         {
             return View();
@@ -92,6 +88,10 @@ namespace PPCRental.Controllers
 
             }
 
+        }
+        public ActionResult forgotPassword()
+        {
+            return View();
         }
 
     }

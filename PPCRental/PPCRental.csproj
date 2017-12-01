@@ -534,6 +534,7 @@
     <Content Include="Content\Homeland\wp-includes\js\imagesloaded.min.js" />
     <Content Include="Content\Homeland\wp-includes\js\jquery\ui\autocomplete.min.js" />
     <Content Include="Content\Homeland\wp-includes\js\masonry.min.js" />
+    <Content Include="Content\login-forgot-register.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\slick.css" />
@@ -696,6 +697,7 @@
     <Content Include="Views\Shared\Layout\User\top-menu-3.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
