@@ -150,5 +150,9 @@ namespace PPCRental.Controllers
                 projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
         }
+        public ActionResult myProjects()
+        {
+            return View();
+        }
     }
 }
