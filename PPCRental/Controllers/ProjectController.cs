@@ -17,7 +17,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult ProjectList()
         {
-            var project = db.PROPERTies.ToList();
+            var project = db.View_project_from_index.ToList();
 
             return View(project);
         }
