@@ -13,7 +13,7 @@ namespace PPCRental.Controllers
         public ActionResult Index()
         {
             var obj = db.View_project_from_index.ToList().Take(6);
-            
+
             return View(obj);
         }
         public ActionResult Contact()

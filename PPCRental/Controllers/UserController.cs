@@ -28,7 +28,8 @@ namespace PPCRental.Controllers
                     Session["user"] = user.FullName;
                     Session["userID"] = user.ID;
                     string[] name_role = { "None", "Agency", "Sale" };
-                    Session["userRole"] = name_role[(int)user.RoleID];
+                    string role = name_role[(int)user.RoleID];
+                    Session["userRole"] = role;
                     //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                     return Redirect("~/Home/Index");
                 }
