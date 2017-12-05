@@ -38,11 +38,11 @@
             if (Session["user"] != null)
             {
                 String userRole = Session["userRole"] as String;
-                if (userRole.Equals("ancency"))
+                if (userRole.Equals("Agency"))
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
                 }
-                else if (userRole.Equals("sale"))
+                else if (userRole.Equals("Sale"))
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu-3.cshtml")
                 }

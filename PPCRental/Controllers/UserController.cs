@@ -15,33 +15,27 @@ namespace PPCRental.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(String une, String pwd)
+        public ActionResult Login(String usrname, String pwd)
         {
             
             try
             {
-                var user = db.USERs.FirstOrDefault(x => x.Email == une);
+                var user = db.USERs.FirstOrDefault(x => x.Email == usrname);
+
                 if (user.Password == pwd)
                 {
-                  
                     //session.Add("user", user);  
                     Session["user"] = user.FullName;
                     Session["userID"] = user.ID;
-                    if ((user.Role).Equals("1"))
-                    {
-                        Session["userRole"] = "ancency";
-                    }
-                    else
-                    {
-                        Session["userRole"] = "sale";
-                    }
-                  //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
+                    string[] name_role = { "None", "Agency", "Sale" };
+                    Session["userRole"] = name_role[(int)user.RoleID];
+                    //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                     return Redirect("~/Home/Index");
                 }
                 else
                 {
                     Session["error"] = 1;
-                    return View();       
+                    return View();
                 }
 
             }

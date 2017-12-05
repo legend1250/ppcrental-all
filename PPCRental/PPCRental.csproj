@@ -191,6 +191,9 @@
     <Compile Include="Models\PROPERTY_TYPE.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ROLE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STREET.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
