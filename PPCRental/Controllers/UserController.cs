@@ -24,13 +24,22 @@ namespace PPCRental.Controllers
 
                 if (user.Password == pwd)
                 {
-                    Session["user"] = user.FullName;
-                    Session["userID"] = user.ID;
-                    string[] name_role = { "None", "Agency", "Sale" };
-                    string role = name_role[(int)user.RoleID];
-                    Session["userRole"] = role;
-                    //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
-                    return Redirect("~/Home/Index");
+                    if (user.Status == true)
+                    {
+                        Session["user"] = user.FullName;
+                        Session["userID"] = user.ID;
+                        string[] name_role = { "None", "Agency", "Sale" };
+                        string role = name_role[(int)user.RoleID];
+                        Session["userRole"] = role;
+                        //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
+                        return Redirect("~/Home/Index");
+                    }
+                    else
+                    {
+                        Session.RemoveAll();
+                        Session["login-status"] = "NotActive";
+                        return Redirect("~/User/Login");
+                    }
                 }
                 else
                 {
