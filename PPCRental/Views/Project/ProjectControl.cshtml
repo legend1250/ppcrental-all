@@ -14,7 +14,7 @@
         Response.Redirect("~/User/Login", false);
 
     }
-    else if (!(userRole.Equals("sale")))
+    else if (!(userRole.Equals("Sale")))
     {
         Session.RemoveAll();
         Session["login-status"] = "WrongRole";
@@ -273,7 +273,7 @@
                         $(".qa-form #street").val(data.projectStreet);
                         $(".qa-form #ward").val(data.projectWard);
                         $(".qa-form #ptype").val(data.projectType);
-                        $(".qa-form #content").val(data.projectContent); d
+                        $(".qa-form #content").val(data.projectContent);
 
 
                         //image
