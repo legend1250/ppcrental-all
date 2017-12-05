@@ -24,7 +24,6 @@ namespace PPCRental.Controllers
 
                 if (user.Password == pwd)
                 {
-                    //session.Add("user", user);  
                     Session["user"] = user.FullName;
                     Session["userID"] = user.ID;
                     string[] name_role = { "None", "Agency", "Sale" };
