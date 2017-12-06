@@ -7,51 +7,66 @@
     <title>Change Pass - PPCRental</title>
     <link rel="shortcut icon" href="~/img/favicon.png" />
     <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel='stylesheet' href='~/Content/jquery.validation.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/Content/bootstrap.min.css' type='text/css' media='all' />
     <link rel='stylesheet' href='~/Content/login-forgot-register.css' type='text/css' media='all' />
     <meta name='robots' content='noindex,follow' />
     <meta name="viewport" content="width=device-width" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
-    <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    
+
 </head>
 
 <body class="login login-action-lostpassword wp-core-ui  locale-en-us">
     @{
         if (Session["user"] == null)
         {
-            Session["login-status"] = 1;
-            TempData["login-status"] = 0;
+            Session["login-status"] = "NotLogin";
             Response.Redirect("~/User/Login", false);
 
         }
     }
     <div id="login">
         <h1><a href="~/Home/Index" title="Real Estate WordPress Theme" tabindex="-1">PPCRental</a></h1>
-        <p class="message">Please enter your old password and set your new password</p>
+       @{
+           if (Session["changeStatus"] == null)
+           {
+            <p class="message">Please enter your old password and set your new password</p>
+           }
+           else
+           {
+               String changeMessage = Session["changeStatus"] as String;
+            <p class="message">@changeMessage</p>
+               Session.Remove("changeStatus");
+           }
+
+    }
         <form name="changePassword" id="changePassword" action="@Url.Action("Security","User")" method="post">
             <p>
                 <label for="password">
                     Password:
                     <br />
-                    <input type="password" name="password" id="password" class="input" value="" size="20" />
+                    <input type="password" name="Password" id="password" class="input" data-validation="[NOTEMPTY]" data-validation-message="$ must not be at least empty" data-toggle="popover" data-content="Input your current password" />
                 </label>
             </p>
             <p>
                 <label for="newPassword">
                     New Password:
                     <br />
-                    <input type="password" name="newPassword" id="newPassword" class="input" value="" size="20" />
+                    <input type="password" name="NewPassword" id="newPassword" class="input"  data-toggle="popover" data-content="Your password must contain at least 6 characters" />
                 </label>
             </p>
             <p>
                 <label for="rePassword">
                     Confirm Password:
                     <br />
-                    <input type="password" name="rePassword" id="rePassword" class="input" value="" size="20" />
+                    <input type="password" name="rePassword" id="rePassword" class="input"  data-toggle="popover" data-content="Both password must match" />
                 </label>
             </p>
             <p class="submit">
-                <input type="button" name="submit" id="submit" class="button button-primary button-large" value="Set New Password"  onClick="validatePassword()" />
+                <input type="submit" name="submit" id="submit" class="button button-primary button-large" value="Set New Password" />
             </p>
         </form>
         <p id="nav">
@@ -67,58 +82,51 @@
             width: 100%;
             height: 126px;
         }
-        .error {
-            border: 2px red solid;
+        .popover-content {
+            padding: 10px;
+            font-size: 13px;
+            font-variant: small-caps;
         }
     </style>
     <div class="clear"></div>
     <script>
-        function validatePassword() {
-            var validator = $("#changePassword").validate({
-                rules: {
-                    password: "required",
-                    newPassword: "required",
-                    rePassword: {
-                        required: true,
-                        equalTo: "#newPassword"
-                    }
-                },
-                messages: {
-                    password: " Enter Password",
-                    newPassword: "Enter New Password",
-                    rePassword: {
-                        required: "Comfirm New Password",
-                        equalTo: "#Enter Confirm Password Same as New Password"
-                    }
-                },
-                errorLabelContainer: '.message',
-                wrapper: 'li',
-            });
-            if (validator.form()) {
-                alert('Sucess');
-            }
-        }
-        $(function () {
-            //Đăng ký sự kiện click nút btnAvaUp
-            $('#submit').click(function () {
-                var currentPass = $('#password').val();
-                var newPass = $('#newPassword').val();
-                var rePassword = $('#rePassword').val();
-                //alert(newPass);
-                //alert(rePassword);
-            });
+        $(document).ready(function () {
+            //popover boostrap
+            $('#changePassword   [data-toggle="popover"]').popover({ trigger: 'focus', placement: 'left' });
+            //validation
+            //$('#changePassword ').validate({
+            //    submit: {
+            //        settings: {
+            //            inputContainer: '.field'
+            //        },
+            //        callback: {
+            //            onBeforeSubmit: function (node) {
 
-            $('#rePassword').keypress(function () {
-                validatePassword();
-                var newPass = $('#newPassword').val();
-                var rePassword = $('#rePassword').val();
-                
-                //else {
-                //    $('.message').html('error');
-                //}
-            });
+            //                myBeforeSubmitFunction(':D', ':)', node);
+
+            //            },
+            //            onSubmit: function (node) {
+
+            //                console.log('#' + node.id + ' has a submit override.');
+
+            //                //node.submit();
+
+            //            }
+            //        }
+            //    },
+            //    debug: true
+            //});
+            //function myBeforeSubmitFunction(a, b, node) {
+
+            //    console.log(a, b);
+
+            //    $(node).find('input:not([type="submit"]), select, textarea').attr('readonly', 'true');
+            //    $(node).append('<div class="ui active loader"></div>');
+
+            //}
 
         });
+        
     </script>
-
+    
 </body>
