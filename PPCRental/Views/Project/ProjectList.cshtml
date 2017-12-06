@@ -47,7 +47,7 @@
                         <div class="property-contents clearfix">
                             <header class="property-header clearfix">
                                 <div class="pull-left">
-                                    <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
+                                    <h6 class="entry-title"><a href="~/Project/projectDetail/@item.ID">@item.PropertyName</a></h6>
                                     <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName, @item.WardName, @item.DistrictName</span>
                                 </div>
                                 @{
@@ -57,7 +57,6 @@
                                     _tmp = _tmp.Substring((int)i);
                                     while (_tmp.Length > 0 && _tmp.Length >= 3)
                                     {
-
                                         price += "," + _tmp.Substring(0, 3);
                                         _tmp = _tmp.Substring(3);
                                     }
