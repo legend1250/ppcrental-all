@@ -157,6 +157,8 @@
 
     </div>
 </div>
+</div>
+<script src="~/Scripts/md5.min.js"></script>
 <script>
 //kiểm tra độ mạnh mật khẩu
 $(document).ready(function () {
@@ -206,7 +208,7 @@ $('#submit').on('click', function (e) {
     var newUser = {
         FullName: $('#Username').val(),
         Email : $('#Email').val(),
-        Password: $('#password').val(),
+        Password: md5($('#password').val()),
         Phone: $('#phone').val(),
         Address: $('#address').val(),
         SecretQuestion_ID: parseInt($('#question').val()),
@@ -214,8 +216,11 @@ $('#submit').on('click', function (e) {
         RoleID: 0,
         Status: false
     }
-    var repassword = $('#confirm').val();
+    var repassword = md5($('#confirm').val());
+   
     //console.log('re-pass:', repassword);
+    
+
 
     if (repassword !== newUser.Password) {
         return alert('Confirm password not match');
