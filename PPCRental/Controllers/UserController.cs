@@ -102,7 +102,8 @@ namespace PPCRental.Controllers
         }
         public ActionResult Register()
         {
-            return View(); ;
+            var obj = db.security_questions.ToList();
+            return View(obj); ;
         }
         [HttpPost]
         public ActionResult submitRegister(USER newUser)
@@ -111,6 +112,7 @@ namespace PPCRental.Controllers
             try
             {
                 db.USERs.Add(newUser);
+
                 db.SaveChanges();
                 message = "Success";
                 return Json(new { Message = newUser, JsonRequestBehavior.AllowGet });

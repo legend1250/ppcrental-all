@@ -3,6 +3,9 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@model IEnumerable<PPCRental.Models.security_questions>
+
 <style>
     .qa-register {
         margin: auto;
@@ -79,13 +82,14 @@
             background-color: #f2dede;
             border-color: #ebccd1;
         }
+    
 </style>
 
 	<div class="qa-register">
     <div class="row content">
         <div class="col-lg-12">
             <center><h1>Register</h1></center>
-            <div class="form-group">
+            <div class="form-group" id="f-username">
                 <label>Username</label>
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -94,37 +98,58 @@
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <div class="input-group">
+                <div class="input-group" id="f-email">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                     <input type="email" class="form-control" name="Email" id="Email" placeholder="Requested Email">
                 </div>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <div class="input-group">
+                <div class="input-group" id="f-password">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" required data-toggle="popover" title="Password Strength" data-content="Enter Password...">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required data-toggle="popover" title="Password Strength" data-content="Enter Password...">
                 </div>
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
-                <div class="input-group">
+                <div class="input-group" id="f-repassword">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-resize-vertical"></span></span>
                     <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Address:</label>
-                <div class="input-group">
+                <div class="input-group" id="f-address">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" name="Username" id="address" placeholder="Requested Username">
                 </div>
             </div>
             <div class="form-group">
                 <label>Phone:</label>
-                <div class="input-group">
+                <div class="input-group" id="f-phone">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
                     <input id="phone" name="textinput" type="tel" placeholder="Phone number" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Security Question:</label>
+                <div class="input-group" id="f-question">
+                    <select id="question" class="form-control">
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <option value="@item.id">@item.question</option>
+                            }
+                        }
+                        
+                    </select>
+                </div>
+            <div class="form-group">
+                <label>Answer</label>
+                <div class="input-group" id="f-answer">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                    <input type="text"  id="answer" name="answer" placeholder="Answer" class="form-control">
                 </div>
             </div>
             <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary pull-right">
@@ -133,7 +158,7 @@
     </div>
 </div>
 <script>
-//kiểm tra đỗ mạnh mật khẩu
+//kiểm tra độ mạnh mật khẩu
 $(document).ready(function () {
 //minimum 8 characters
 var bad = /(?=.{8,}).*/;
@@ -145,25 +170,25 @@ var better = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/
 var best = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
 
 $('#password').on('keyup', function () {
-var password = $(this);
-var pass = password.val();
-var passLabel = $('[for="password"]');
-var stength = 'Weak';
-var pclass = 'danger';
-if (best.test(pass) == true) {
-stength = 'Very Strong';
-pclass = 'success';
-} else if (better.test(pass) == true) {
-stength = 'Strong';
-pclass = 'warning';
-} else if (good.test(pass) == true) {
-stength = 'Almost Strong';
-pclass = 'warning';
-} else if (bad.test(pass) == true) {
-stength = 'Weak';
-} else {
-stength = 'Very Weak';
-}
+    var password = $(this);
+    var pass = password.val();
+    var passLabel = $('[for="password"]');
+    var stength = 'Weak';
+    var pclass = 'danger';
+    if (best.test(pass) == true) {
+        stength = 'Very Strong';
+        pclass = 'success';
+    } else if (better.test(pass) == true) {
+        stength = 'Strong';
+        pclass = 'warning';
+    } else if (good.test(pass) == true) {
+        stength = 'Almost Strong';
+        pclass = 'warning';
+    } else if (bad.test(pass) == true) {
+        stength = 'Weak';
+    } else {
+        stength = 'Very Weak';
+    }
 
 var popover = password.attr('data-content', stength).data('bs.popover');
 popover.setContent();
@@ -172,36 +197,86 @@ popover.$tip.addClass(popover.options.placement).removeClass('danger success inf
 });
 
 $('input[data-toggle="popover"]').popover({
-placement: 'top',
-trigger: 'focus'
+    placement: 'top',
+    trigger: 'focus'
 });
 //Ajax
 $('#submit').on('click', function (e) {
-e.preventDefault();
-var newUser = {
-FullName: $('#Username').val(),
-Email : $('#Email').val(),
-Password : $('#password').val(),
-Phone: $('#phone').val(),
-Address: $('#address').val(),
-    RoleID: 0,
-    Status: false
-}
-alert(newUser);
-$.ajax({
-url: '/User/submitRegister/',
-type: "POST",
-data: { newUser },
-dataType: "json",
-//  contentType: "application/json; charset=utf-8",
-success: function (response) {
-alert(response['Message']);
+    e.preventDefault();
+    var newUser = {
+        FullName: $('#Username').val(),
+        Email : $('#Email').val(),
+        Password: $('#password').val(),
+        Phone: $('#phone').val(),
+        Address: $('#address').val(),
+        SerectQuestion_ID: parseInt($('#question').val()),
+        Answer: $('#answer').val(),
+        RoleID: 0,
+        Status: false
+    }
+    var repassword = $('#confirm').val();
+    //console.log('re-pass:', repassword);
 
-},
-error: function (response) {
-alert(response['Message']);
-},
-});
+    if (repassword !== newUser.Password) {
+        return alert('Confirm password not match');
+    }
+
+    //alert(newUser);
+    if (!newUser.FullName || !newUser.Email || !newUser.Password || !newUser.Phone || !newUser.Address || !newUser.Answer) {
+        if (!newUser.FullName) {
+            $('#f-username').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-username').removeClass('has-error has-feedback')
+        }
+        if (!newUser.Email) {
+            $('#f-email').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-email').removeClass('has-error has-feedback')
+        }
+        if (!newUser.Password) {
+            $('#f-password').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-password').removeClass('has-error has-feedback')
+        }
+        if (!newUser.Phone) {
+            $('#f-phone').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-phone').removeClass('has-error has-feedback')
+        }
+        if (!newUser.Address) {
+            $('#f-address').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-address').removeClass('has-error has-feedback')
+        }
+        if (!newUser.Answer) {
+            $('#f-answer').addClass('has-error has-feedback')
+        } else {
+            //alert(new)
+            $('#f-answer').removeClass('has-error has-feedback')
+        }
+
+    }
+    else {
+        console.log(JSON.stringify(newUser, null, 2));
+        $.ajax({
+            url: '/User/submitRegister/',
+            type: "POST",
+            data: { newUser },
+            dataType: "json",
+            //  contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                alert(response['Message']);
+            },
+            error: function (response) {
+                alert('Failed');
+            },
+        });
+    }
 });
 })
 </script>

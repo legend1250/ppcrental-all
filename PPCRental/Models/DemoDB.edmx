@@ -80,6 +80,14 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="roleName" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="security_questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="question" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="STREET">
           <Key>
             <PropertyRef Name="ID" />
@@ -101,6 +109,8 @@
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="RoleID" Type="int" />
           <Property Name="Status" Type="bit" />
+          <Property Name="SecretQuestion_ID" Type="int" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="WARD">
           <Key>
@@ -260,6 +270,18 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_SecurityQuestion">
+          <End Role="security_questions" Type="Self.security_questions" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="SecretQuestion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WARD_DISTRICT">
           <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
           <End Role="WARD" Type="Self.WARD" Multiplicity="*" />
@@ -280,6 +302,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySet Name="PROPERTY_FEATURE" EntityType="Self.PROPERTY_FEATURE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROPERTY_TYPE" EntityType="Self.PROPERTY_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="security_questions" EntityType="Self.security_questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STREET" EntityType="Self.STREET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WARD" EntityType="Self.WARD" Schema="dbo" store:Type="Tables" />
@@ -339,6 +362,10 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </AssociationSet>
           <AssociationSet Name="FK_USER_ROLE" Association="Self.FK_USER_ROLE">
             <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_SecurityQuestion" Association="Self.FK_USER_SecurityQuestion">
+            <End Role="security_questions" EntitySet="security_questions" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
           <AssociationSet Name="FK_WARD_DISTRICT" Association="Self.FK_WARD_DISTRICT">
@@ -460,6 +487,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <NavigationProperty Name="PROPERTies1" Relationship="Self.FK_PROPERTY_USER1" FromRole="USER" ToRole="PROPERTY" />
           <Property Name="RoleID" Type="Int32" />
           <NavigationProperty Name="ROLE" Relationship="ppcrental3119Model.FK_USER_ROLE" FromRole="USER" ToRole="ROLE" />
+          <Property Name="SecretQuestion_ID" Type="Int32" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="security_questions" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="USER" ToRole="security_questions" />
         </EntityType>
         <EntityType Name="WARD">
           <Key>
@@ -664,6 +694,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             <End Role="ROLE" EntitySet="ROLEs" />
             <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
+          <EntitySet Name="security_questions" EntityType="ppcrental3119Model.security_questions" />
+          <AssociationSet Name="FK_USER_SecurityQuestion" Association="ppcrental3119Model.FK_USER_SecurityQuestion">
+            <End Role="security_questions" EntitySet="security_questions" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="View_project_from_index">
           <Key>
@@ -697,6 +732,27 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Principal>
             <Dependent Role="USER">
               <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="security_questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="security_questions" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_USER_SecurityQuestion">
+          <End Type="ppcrental3119Model.security_questions" Role="security_questions" Multiplicity="1" />
+          <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="SecretQuestion_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -793,6 +849,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="USERs">
             <EntityTypeMapping TypeName="ppcrental3119Model.USER">
               <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="SecretQuestion_ID" ColumnName="SecretQuestion_ID" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -834,6 +892,15 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             <EntityTypeMapping TypeName="ppcrental3119Model.ROLE">
               <MappingFragment StoreEntitySet="ROLE">
                 <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="security_questions">
+            <EntityTypeMapping TypeName="ppcrental3119Model.security_questions">
+              <MappingFragment StoreEntitySet="security_questions">
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
