@@ -65,6 +65,37 @@ namespace PPCRental.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult Security(String Password, String NewPassword)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userid = Session["userID"];
+                    USER user = db.USERs.Find(userid);
+                    if (user.Password == Password)
+                    {
+                        user.Password = NewPassword;
+                        db.SaveChanges();
+                        Session["changeStatus"] = "Your password has been changed successfully";
+                    }
+                    else
+                    {
+                        Session["changeStatus"] = "Your current password not match with the password you gave";
+                    }
+                    
+                   
+                }
+                catch (Exception ex)
+                {
+                    Session["changeStatus"] = ex.Message;
+                    
+                }
+            }
+            return View();
+
+        }
+        [HttpPost]
         public ActionResult changePassword()
         {
             return View();
