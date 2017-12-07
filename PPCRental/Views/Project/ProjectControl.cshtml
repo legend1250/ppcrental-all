@@ -60,6 +60,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-1" for="projectName">ProjectName:</label>
                 <div class="col-sm-11">
+                    <input type="hidden" class="form-control" id="projectID" name="pID">
                     <input type="text" class="form-control" id="projectName" name="pname" required>
                 </div>
             </div>
@@ -274,7 +275,7 @@
                         $(".qa-form #ward").val(data.projectWard);
                         $(".qa-form #ptype").val(data.projectType);
                         $(".qa-form #content").val(data.projectContent);
-
+                        $(".qa-form #projectID").val(data.projectID);
 
                         //image
                         var Src = "../img/avatar/";
@@ -296,7 +297,26 @@
             return false;
         });
 
-
+        $(".qa-remove").on("click", function () {
+            
+            var deletedID = $(".qa-form #projectID").val();
+            alert(deletedID)
+            $.ajax({
+                url: '/Project/deleleProject/',
+                type: "POST",
+                data: { id: deletedID },
+                dataType: "json",
+                success: function (data) {
+                    alert(data['Message']);
+                    window.location.reload(true);
+                },
+                error: function (err) {
+                    alert(data['Message']);
+                    window.location.reload(true);
+                },
+            });
+            return false;
+        });
         //select
         $(".select1").change(function () {
             if ($(this).data('options') === undefined) {
@@ -368,7 +388,7 @@
             $("#qa-view").css('display', 'block');
             $('#ava').val(avaName);
             readAvatar(this);
-        
+
         });
 
 
