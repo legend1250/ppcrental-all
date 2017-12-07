@@ -10,11 +10,13 @@
     <link rel='stylesheet' href='~/Content/jquery.validation.css' type='text/css' media='all' />
     <link rel='stylesheet' href='~/Content/bootstrap.min.css' type='text/css' media='all' />
     <link rel='stylesheet' href='~/Content/login-forgot-register.css' type='text/css' media='all' />
+
     <meta name='robots' content='noindex,follow' />
     <meta name="viewport" content="width=device-width" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validation.js"></script>
     
 
 </head>
@@ -44,25 +46,25 @@
 
     }
         <form name="changePassword" id="changePassword" action="@Url.Action("Security","User")" method="post">
-            <p>
+            <p class="field">
                 <label for="password">
                     Password:
                     <br />
-                    <input type="password" name="Password" id="password" class="input" data-validation="[NOTEMPTY]" data-validation-message="$ must not be at least empty" data-toggle="popover" data-content="Input your current password" />
+                    <input type="password" name="Password" id="password" class="input" data-validation="[NOTEMPTY]" data-validation-message="$ must not be at least empty"   data-toggle="popover"  data-content="Input your current password" />
                 </label>
             </p>
-            <p>
+            <p class="field">
                 <label for="newPassword">
                     New Password:
                     <br />
-                    <input type="password" name="NewPassword" id="newPassword" class="input"  data-toggle="popover" data-content="Your password must contain at least 6 characters" />
+                    <input type="password" name="NewPassword" id="newPassword" class="input" data-validation="[L>=6]" data-validation-message="New Password must be at least 6 characters"  data-toggle="popover" data-content="Your password must contain at least 6 characters" />
                 </label>
             </p>
-            <p>
+            <p class="field">
                 <label for="rePassword">
                     Confirm Password:
                     <br />
-                    <input type="password" name="rePassword" id="rePassword" class="input"  data-toggle="popover" data-content="Both password must match" />
+                    <input type="password" name="rePassword" id="rePassword" class="input" data-validation="[V==NewPassword]" data-validation-message="$ does not match the new password"  data-toggle="popover" data-content="Both password must match" />
                 </label>
             </p>
             <p class="submit">
@@ -94,36 +96,12 @@
             //popover boostrap
             $('#changePassword   [data-toggle="popover"]').popover({ trigger: 'focus', placement: 'left' });
             //validation
-            //$('#changePassword ').validate({
-            //    submit: {
-            //        settings: {
-            //            inputContainer: '.field'
-            //        },
-            //        callback: {
-            //            onBeforeSubmit: function (node) {
-
-            //                myBeforeSubmitFunction(':D', ':)', node);
-
-            //            },
-            //            onSubmit: function (node) {
-
-            //                console.log('#' + node.id + ' has a submit override.');
-
-            //                //node.submit();
-
-            //            }
-            //        }
-            //    },
-            //    debug: true
-            //});
-            //function myBeforeSubmitFunction(a, b, node) {
-
-            //    console.log(a, b);
-
-            //    $(node).find('input:not([type="submit"]), select, textarea').attr('readonly', 'true');
-            //    $(node).append('<div class="ui active loader"></div>');
-
-            //}
+            $('#changePassword').validate({
+                submitHandler: function (form) {
+                    $(this).submit();
+                }
+            });
+           
 
         });
         
