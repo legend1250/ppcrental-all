@@ -173,6 +173,42 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DemoDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DISTRICT.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEATURE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECT_STATUS.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROPERTY.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROPERTY_FEATURE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROPERTY_TYPE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROLE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\security_questions.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STREET.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_project_from_index.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WARD.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

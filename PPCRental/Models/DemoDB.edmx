@@ -745,7 +745,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="security_questions" ToRole="USER" />
         </EntityType>
         <Association Name="FK_USER_SecurityQuestion">
-          <End Type="ppcrental3119Model.security_questions" Role="security_questions" Multiplicity="1" />
+          <End Type="ppcrental3119Model.security_questions" Role="security_questions" Multiplicity="0..1" />
           <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="security_questions">
