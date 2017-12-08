@@ -13,7 +13,7 @@ namespace PPCRental
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/font-awesome.min.css","~/Content/slick.css", "~/Content/slicknav.css","~/Content/animate.css",
-                      "~/Content/bootstrap.css", "~/Content/style.css","~/Content/theme.css"));
+                     "~/Content/bootstrap.css", "~/Content/style.css","~/Content/theme.css"));
         }
     }
 }

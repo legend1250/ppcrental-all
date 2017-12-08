@@ -60,6 +60,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-1" for="projectName">ProjectName:</label>
                 <div class="col-sm-11">
+                    <input type="hidden" class="form-control" id="projectID" name="projectID">
                     <input type="text" class="form-control" id="projectName" name="pname" required>
                 </div>
             </div>
@@ -261,6 +262,7 @@
                     $('.select3').attr('disabled', false);
                     setTimeout(function () {
                         //do what you need here
+                        $(".qa-form #projectID").val(data.projectId);
                         $(".qa-form #projectName").val(data.projectName);
                         $(".qa-form #ava").val(data.projectAvatar);
                         $(".qa-form #ima").val(data.projectImage);
@@ -295,7 +297,58 @@
             });
             return false;
         });
+        //update
+        $(".qa-update").on("click", function () {
+            var projectID = $("#projectID").val();
+            var projectname = $("#projectName").val();
+            //var avatar = $("#ava");
+            //var image = $("#ima");
+            var district = parseInt($("#distric").val());
+            var ward = parseInt($("#ward").val());
+            var street = parseInt($("#street").val());
+            var price = parseInt($("#price").val());
+            var area = $("#area").val();
+            var projecttype = parseInt($("#ptype").val());
+            var bedroom = parseInt($("#beth").val());
+            var bathroom = parseInt($("#bath").val());
+            var parking = parseInt($("parking").val());
+            var content = parseInt($("#contetn").val());
 
+            var ProjectEdit = {
+                ID: projectID,
+                PropertyName: projectname, 
+                //Avatar: 
+                //Images
+                //PropertyType_ID: 
+                Content: content,
+                Street_ID: street,
+                Ward_ID: ward,
+                District_ID: district,
+                Price: price,
+                Area: area,
+                BedRoom: bedroom,
+                BathRoom: bathroom,
+                PackingPlace: parking,
+                UserID: null
+               
+
+            }
+            console.log(JSON.stringify(ProjectEdit, null, 2));
+            $.ajax({
+                url: '/Project/projectupdate/',
+                type: "POST",
+                data: { projectupdate: ProjectEdit },
+                dataType: "json",
+                success: function (data) {
+                    alert(data['Message']);
+                    location.reload();
+                },
+                error: function (err) {
+                    alert(err['Message']);
+                },
+
+            })
+        });
 
         //select
         $(".select1").change(function () {
