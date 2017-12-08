@@ -32,7 +32,7 @@ namespace PPCRental.Controllers
         [HttpGet]
         public ActionResult projectDetail(int id)
         {
-            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);         
+            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
             return View(project);
         }
         public ActionResult addProject()
@@ -67,7 +67,7 @@ namespace PPCRental.Controllers
             {
                 db.PROPERTies.Add(newProject);
                 db.SaveChanges();
-              
+
                 message = "Add Success,wait for appover";
                 return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
@@ -78,24 +78,24 @@ namespace PPCRental.Controllers
 
 
             }
-            
+
 
         }
         [HttpPost]
         public ActionResult saveImage(HttpPostedFileBase avaFile, HttpPostedFileBase imaFile)
         {
             int errorCount = 0;
-            string message,error="";
+            string message, error = "";
             try
             {
-                if (imaFile.ContentLength>0)
+                if (imaFile.ContentLength > 0)
                 {
                     String avaName = Path.GetFileName(avaFile.FileName);
                     String avaPath = Path.Combine(Server.MapPath("~/img/avatar"), avaName);
                     imaFile.SaveAs(avaPath);
 
                 }
-                if (imaFile.ContentLength>0)
+                if (imaFile.ContentLength > 0)
                 {
                     String imgName = Path.GetFileName(imaFile.FileName);
                     String imgPath = Path.Combine(Server.MapPath("~/img/avatar"), imgName);
@@ -108,13 +108,13 @@ namespace PPCRental.Controllers
                 errorCount++;
                 error = e.Message;
             }
-            if (errorCount==0)
+            if (errorCount == 0)
             {
                 message = "Save ảnh thành công!!";
             }
             else
             {
-                message = "Save ảnh thất bại:"+ error;
+                message = "Save ảnh thất bại:" + error;
             }
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             ////var path = VirtualPathUtility.Combine(Server.MapPath("~/img/avatar/"), avaFile.FileName);
@@ -124,7 +124,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult projectControl()
         {
-          
+
             var vm = new DBModel();
             vm.streetService = db.STREETs.ToList();
             vm.projectService = db.PROPERTies.ToList();
@@ -141,15 +141,37 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new {projectID=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
+            return Json(new { projectID = project.ID, projectName = project.PropertyName, projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
                 projectPrice = project.Price, projectUnit = project.UnitPrice,
                 projectArea = area, projectBed = project.BedRoom,
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
-                projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
+                projectUser = project.UserID, projectNote = project.Note, JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
+        }
+        [HttpPost]
+        public ActionResult projectupdate(PROPERTY projectupdate)
+        {
+            string message = "";
+            try
+            {
+                var projectID = projectupdate.ID;
+                //var project = db.PROPERTies.FirstOrDefault(x => x.ID == projectID);
+                PROPERTY editProject = db.PROPERTies.Find(projectID);
+                editProject.ID = projectupdate.ID;
+                editProject.PropertyName = projectupdate.PropertyName;
+                editProject.Content = projectupdate.Content;
+                message = "update success";
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
         [HttpPost]
         public ActionResult deleleProject(int id)

@@ -262,7 +262,7 @@
                     $('.select3').attr('disabled', false);
                     setTimeout(function () {
                         //do what you need here
-                        $(".qa-form #projectID").val(data.projectId);
+                        $(".qa-form #projectID").val(data.projectID);
                         $(".qa-form #projectName").val(data.projectName);
                         $(".qa-form #ava").val(data.projectAvatar);
                         $(".qa-form #ima").val(data.projectImage);
@@ -349,7 +349,27 @@
 
             })
         });
+        //remove
+        $(".qa-remove").on("click", function () {
 
+            var deletedID = $(".qa-form #projectID").val();
+            alert(deletedID)
+            $.ajax({
+                url: '/Project/deleleProject/',
+                type: "POST",
+                data: { id: deletedID },
+                dataType: "json",
+                success: function (data) {
+                    alert(data['Message']);
+                    window.location.reload(true);
+                },
+                error: function (err) {
+                    alert(err['Message']);
+                    window.location.reload(true);
+                },
+            });
+            return false;
+        });
         //select
         $(".select1").change(function () {
             if ($(this).data('options') === undefined) {
