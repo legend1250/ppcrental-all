@@ -22,24 +22,9 @@ namespace PPCRental.Controllers
             
             try
             {
-                Console.WriteLine(pwd);
+                //Console.WriteLine(pwd);
 
-                MD5 md5 = new MD5CryptoServiceProvider();
-
-                //compute hash from the bytes of text
-                md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(pwd));
-
-                //get hash result after compute it
-                byte[] result = md5.Hash;
-
-                StringBuilder strBuilder = new StringBuilder();
-                for (int i = 0; i < result.Length; i++)
-                {
-                    //change it into 2 hexadecimal digits
-                    //for each byte
-                    strBuilder.Append(result[i].ToString("x2"));
-                }
-                pwd = strBuilder.ToString();
+                pwd = hashPwd(pwd);
                 //// Console.WriteLine(pwd);
                 var user = db.USERs.FirstOrDefault(x => x.Email == usrname);
 
@@ -86,7 +71,7 @@ namespace PPCRental.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Security(String Password, String NewPassword)
+        public ActionResult Security(string Password, string NewPassword)
         {
             if (ModelState.IsValid)
             {
@@ -94,8 +79,10 @@ namespace PPCRental.Controllers
                 {
                     var userid = Session["userID"];
                     USER user = db.USERs.Find(userid);
+                    Password = hashPwd(Password);
                     if (user.Password == Password)
                     {
+                        NewPassword = hashPwd(NewPassword);
                         user.Password = NewPassword;
                         db.SaveChanges();
                         Session["changeStatus"] = "Your password has been changed successfully";
@@ -149,6 +136,26 @@ namespace PPCRental.Controllers
         public ActionResult forgotPassword()
         {
             return View();
+        }
+
+        private string hashPwd(string pwd)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(pwd));
+
+            //get hash result after compute it
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits
+                //for each byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+            return strBuilder.ToString();
         }
 
     }
