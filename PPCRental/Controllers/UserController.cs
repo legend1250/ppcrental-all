@@ -123,7 +123,7 @@ namespace PPCRental.Controllers
 
                 db.SaveChanges();
                 message = "Success";
-                return Json(new { Message = newUser, JsonRequestBehavior.AllowGet });
+                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
             catch (Exception e)
             {

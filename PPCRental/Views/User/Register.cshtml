@@ -106,21 +106,21 @@
             <div class="form-group">
                 <label>Password</label>
                 <div class="input-group" id="f-password">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required data-toggle="popover" title="Password Strength" data-content="Enter Password...">
                 </div>
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
                 <div class="input-group" id="f-repassword">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-resize-vertical"></span></span>
+                    <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
                     <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Address:</label>
                 <div class="input-group" id="f-address">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
                     <input type="text" class="form-control" name="Username" id="address" placeholder="Requested Username">
                 </div>
             </div>
@@ -135,6 +135,7 @@
             <div class="form-group">
                 <label>Security Question:</label>
                 <div class="input-group" id="f-question">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
                     <select id="question" class="form-control">
                         @{
                             foreach (var item in Model)
@@ -148,7 +149,7 @@
             <div class="form-group">
                 <label>Answer</label>
                 <div class="input-group" id="f-answer">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
                     <input type="text"  id="answer" name="answer" placeholder="Answer" class="form-control">
                 </div>
             </div>
@@ -276,9 +277,10 @@ $('#submit').on('click', function (e) {
             //  contentType: "application/json; charset=utf-8",
             success: function (response) {
                 alert(response['Message']);
+               
             },
             error: function (response) {
-                alert('Failed');
+                alert(response['Message']);
             },
         });
     }
