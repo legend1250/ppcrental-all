@@ -218,7 +218,7 @@
         <tbody>
           @foreach (var item in Model.projectService)
           {
-              <tr class="qa-body">
+              <tr class="qa-body" id="@item.ID">
                 <td class="qa-id">@item.ID</td>
                 <td>@item.PropertyName</td>
                   @{
@@ -426,6 +426,7 @@
                 success: function (data) {
                     alert(data['Message']);
                     $(".qa-form").hide(1000);
+                    $("tbody tr[id='" + deletedID + "']").hide();
                     clear();
                 },
                 error: function (err) {
