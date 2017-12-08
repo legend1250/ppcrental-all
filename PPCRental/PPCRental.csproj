@@ -179,6 +179,8 @@
     <Compile Include="Models\FEATURE.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\PROJECT_STATUS.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>

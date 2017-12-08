@@ -275,7 +275,7 @@
                 /*Taking an array of all options-2 and kind of embedding it on the select1*/
                 $(this).data('options', $('.select2 option').clone());
             }
-            var id = $(this).val();
+            var id = $(this).val();    
             var options = $(this).data('options').filter('[value=' + id + ']');
             $('.select2').html(options);
             $('.select2 select').html(options).change();
@@ -294,11 +294,6 @@
         function change2() {
             if ($('.select1 option:selected').length) {
                 $('.select2').attr('disabled', false);
-            }
-        }
-
-        function change3() {
-            if ($('.select2 option:selected').length) {
                 $('.select3').attr('disabled', false);
             }
         }

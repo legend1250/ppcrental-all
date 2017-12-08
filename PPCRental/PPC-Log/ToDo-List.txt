@@ -1,0 +1,6 @@
+﻿-Save ảnh lỗi:
+	+nếu save 1 tấm thì lỗi
+	+kiểm tra .trim();
+-chưa xử lý tên ảnh
+-Lỗi select
+-Hàm clear chưa được

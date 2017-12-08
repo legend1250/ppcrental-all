@@ -56,6 +56,7 @@
 <div class="qa-detail">
     <div class="container qa-form">
         <h1 style="text-align:center">Project Detail</h1>
+        
         <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="control-label col-sm-1" for="projectName">ProjectName:</label>
@@ -192,6 +193,8 @@
     </div>
 
 </div>
+
+<!--List-->
 <div class="projectList container">
     <h1 style="text-align:center">Project List</h1>
     <button type="button" class="btn btn-success pull-right qa-show"><i class="fa fa-plus"></i> Show</button>
@@ -218,10 +221,41 @@
               <tr class="qa-body">
                 <td class="qa-id">@item.ID</td>
                 <td>@item.PropertyName</td>
-                <td><img data-action="zoom" src="~/img/avatar/@item.Avatar" class="qa-img-small" /><br />
-                  @item.Avatar</td>
-                <td><img data-action="zoom" src="~/img/avatar/@item.Images" class="qa-img-small" /><br />@item.Images</td>
+                  @{
+                      if (File.Exists(Server.MapPath("../img/avatar/" + item.Avatar)))
+                      {
+                        <td>
+                            <img data-action="zoom" src="~/img/avatar/@item.Avatar" class="qa-img-small" /><br />
+                            @item.Avatar
+                           
+                            
+                        </td>
+                      }
+                      else
+                      {
+                        <td>
+                            <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-img-small" /><br />  
+                        </td>
+                      }
+                      if (File.Exists(Server.MapPath("../img/avatar/" + item.Images)))
+                      {
+                        <td>
+                            <img data-action="zoom" src="~/img/avatar/@item.Images" class="qa-img-small" /><br />@item.Images
+                            
+                        </td>
+                      }
+                      else
+                      {
+                        <td>
+                            <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-img-small" /><br />
+                            
+                        </td>
+                      }
+                }
+                
+                
                 <td>@item.Street_ID</td>
+
                 <td>@item.Ward_ID</td>
                 <td>@item.District_ID</td>
                 <td>@item.Price @item.UnitPrice</td>
@@ -236,6 +270,22 @@
 </div>
 <script>
     $(document).ready(function () {
+        function clear() {
+            $(':input[type="text"]').val('');
+            $(':input[type="number"]').val('');
+            $(':input[type="file"]').val('');
+            $('textarea').val('');
+            //  $(':select').find('option#1').attr(selected, "selected");
+            $('.qa-select').val(-1);
+            $('#street').attr('disabled', true);
+            $('#street').val(-1);
+            $('#ward').attr('disabled', true);
+            $('#ward').val(-1);
+
+        }
+        $(".qa-reset").on("click", function(){
+            clear();
+        });
         $(".qa-hide").on("click", function () {
             $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
             $(".qa-form").hide(1000);
@@ -256,8 +306,8 @@
                 success: function (data) {
                     alert('Load project success');
                     $("html, body").animate({ scrollTop: $('qa-form').offset().top }, 1000);
-                    $(".qa-form").delay(800).hide(600);
-                    $(".qa-form").show(1000);
+                    $(".qa-form").delay(800).hide(800);
+                    $(".qa-form").delay(300).show(1000);
                     $('.select2').attr('disabled', false);
                     $('.select3').attr('disabled', false);
                     setTimeout(function () {
@@ -276,7 +326,7 @@
                         $(".qa-form #ward").val(data.projectWard);
                         $(".qa-form #ptype").val(data.projectType);
                         $(".qa-form #content").val(data.projectContent);
-
+                        
 
                         //image
                         var Src = "../img/avatar/";
@@ -286,10 +336,21 @@
                         $("#qa-view").css('display', 'block');
                         var avatarSrc = Src.concat(data.projectAvatar);
                         var imgSrc = Src.concat(data.projectImage)
-                        $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
-                        $(".qa-form #qa-view-image").attr("src", imgSrc);
+                        if (data.projectImage == null) {
+                            $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
+                        } else {
+                            $(".qa-form #qa-view-avatar").attr("src", "../img/avatar/not-found.jpg");
+                           
+                        }
+                        if (data.projectAvatar == null) {
+                            $(".qa-form #qa-view-image").attr("src", imgSrc);
+                        } else {
+                            $(".qa-form #qa-view-image").attr("src", "../img/avatar/not-found.jpg");
+                        }
+                        
+                        
 
-                    }, 1000);
+                    }, 1200);
                 },
                 error: function (err) {
                     alert("Load project fail: " + err.statusText);
@@ -341,10 +402,13 @@
                 dataType: "json",
                 success: function (data) {
                     alert(data['Message']);
-                    location.reload();
+                    $(".qa-form").hide(1000);
+                    clear();
                 },
                 error: function (err) {
                     alert(err['Message']);
+                    $(".qa-form").hide(1000);
+                    clear();
                 },
 
             })
@@ -361,11 +425,13 @@
                 dataType: "json",
                 success: function (data) {
                     alert(data['Message']);
-                    window.location.reload(true);
+                    $(".qa-form").hide(1000);
+                    clear();
                 },
                 error: function (err) {
                     alert(err['Message']);
-                    window.location.reload(true);
+                    $(".qa-form").hide(1000);
+                    clear();
                 },
             });
             return false;
