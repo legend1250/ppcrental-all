@@ -67,9 +67,8 @@
                     <input type="password" name="rePassword" id="rePassword" class="input" data-validation="[V==NewPassword]" data-validation-message="$ does not match the new password"  data-toggle="popover" data-content="Both password must match" />
                 </label>
             </p>
-            <p class="submit">
-                <input type="submit" name="submit" id="submit" class="button button-primary button-large" value="Set New Password" />
-            </p>
+            
+            <input type="submit" name="name" class="button button-primary button-large" value="Set New Password" />
         </form>
         <p id="nav">
             <a href="~/User/Login">Log in</a> | <a rel="nofollow" href="~/User/Register">Register</a>
@@ -94,15 +93,14 @@
     <script>
         $(document).ready(function () {
             //popover boostrap
-            $('#changePassword   [data-toggle="popover"]').popover({ trigger: 'focus', placement: 'left' });
+            $('#changePassword [data-toggle="popover"]').popover({ trigger: 'focus', placement: 'left' });
             //validation
+            
             $('#changePassword').validate({
                 submitHandler: function (form) {
-                    $(this).submit();
+                    $('#changePassword').submit();
                 }
             });
-           
-
         });
         
     </script>
