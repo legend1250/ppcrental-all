@@ -137,10 +137,11 @@ namespace PPCRental.Controllers
         public ActionResult Edit(int id)
         {
             var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            Session["ProjectID"] = id;
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
+            return Json(new {projectID=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
@@ -150,30 +151,27 @@ namespace PPCRental.Controllers
                 projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
         }
-        public ActionResult myProjects()
-        {
-            return View();
-        }
-       public ActionResult projectupdate(PROPERTY projectupdate)
+        [HttpPost]
+        public ActionResult deleleProject(int id)
         {
             string message = "";
             try
             {
-                var projectID = projectupdate.ID;
-                //var project = db.PROPERTies.FirstOrDefault(x => x.ID == projectID);
-                PROPERTY editProject = db.PROPERTies.Find(projectID);
-                editProject.ID = projectupdate.ID;
-                editProject.PropertyName = projectupdate.PropertyName;
-                editProject.Content = projectupdate.Content;
-                message = "update success";
+                PROPERTY project = db.PROPERTies.Find(id);
+                db.PROPERTies.Remove(project);
                 db.SaveChanges();
+                message = "Deleted project successfully";
             }
             catch (Exception e)
             {
+
                 message = e.Message;
-                
             }
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+        public ActionResult myProjects()
+        {
+            return View();
         }
     }
 }

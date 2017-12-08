@@ -194,6 +194,9 @@
     <Compile Include="Models\ROLE.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\security_questions.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STREET.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
@@ -656,6 +659,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\masonry.min.js" />
+    <Content Include="Scripts\md5.js" />
+    <Content Include="Scripts\md5.min.js" />
     <Content Include="Scripts\mixitup.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.js" />

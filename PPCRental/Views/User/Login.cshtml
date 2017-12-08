@@ -20,6 +20,7 @@
         function shake(id, a, d) { c = a.shift(); s(id, c); if (a.length > 0) { setTimeout(function () { shake(id, a, d); }, d); } else { try { g(id).position = 'static'; wp_attempt_focus(); } catch (e) { } } }
         addLoadEvent(function () { var p = new Array(15, 30, 15, 0, -15, -30, -15, 0); p = p.concat(p.concat(p)); var i = document.forms[0].id; g(i).position = 'relative'; shake(i, p, 20); });
     </script>
+    <script src="~/Scripts/md5.min.js"></script>
 </head>
 
 <body class="login login-action-login wp-core-ui  locale-en-us">
@@ -94,7 +95,7 @@
                 </label>
             </p>
             <p class="submit">
-                <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" />
+                <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In"/>
             </p>
         </form>
         <p id="nav">

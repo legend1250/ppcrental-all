@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PPCRental.Models;
-using System.Linq;
 namespace PPCRental.Controllers
 {
     public class HomeController : Controller
