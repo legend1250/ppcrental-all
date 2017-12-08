@@ -191,6 +191,12 @@
     <Compile Include="Models\PROPERTY_TYPE.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ROLE.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\security_questions.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STREET.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
@@ -534,6 +540,8 @@
     <Content Include="Content\Homeland\wp-includes\js\imagesloaded.min.js" />
     <Content Include="Content\Homeland\wp-includes\js\jquery\ui\autocomplete.min.js" />
     <Content Include="Content\Homeland\wp-includes\js\masonry.min.js" />
+    <Content Include="Content\jquery.validation.css" />
+    <Content Include="Content\login-forgot-register.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\slick.css" />
@@ -651,6 +659,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\masonry.min.js" />
+    <Content Include="Scripts\md5.js" />
+    <Content Include="Scripts\md5.min.js" />
     <Content Include="Scripts\mixitup.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.js" />
@@ -696,6 +706,8 @@
     <Content Include="Views\Shared\Layout\User\top-menu-3.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\Project\MyProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

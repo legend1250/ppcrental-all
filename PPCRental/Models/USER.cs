@@ -27,12 +27,16 @@ namespace PPCRental.Models
         public string FullName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public string Role { get; set; }
         public Nullable<bool> Status { get; set; }
+        public Nullable<int> RoleID { get; set; }
+        public Nullable<int> SecretQuestion_ID { get; set; }
+        public string Answer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PROPERTY> PROPERTies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PROPERTY> PROPERTies1 { get; set; }
+        public virtual ROLE ROLE { get; set; }
+        public virtual security_questions security_questions { get; set; }
     }
 }

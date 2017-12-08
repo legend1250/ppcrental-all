@@ -26,6 +26,10 @@
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_USER1" ManuallyRouted="false" />
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_WARD" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ppcrental3119Model.View_project_from_index" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ppcrental3119Model.ROLE" Width="1.5" PointX="0.75" PointY="20.25" />
+        <AssociationConnector Association="ppcrental3119Model.FK_USER_ROLE" />
+        <EntityTypeShape EntityType="ppcrental3119Model.security_questions" Width="1.5" PointX="0.75" PointY="17.375" />
+        <AssociationConnector Association="ppcrental3119Model.FK_USER_SecurityQuestion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

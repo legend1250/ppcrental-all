@@ -38,11 +38,11 @@
             if (Session["user"] != null)
             {
                 String userRole = Session["userRole"] as String;
-                if (userRole.Equals("ancency"))
+                if (userRole.Equals("Agency"))
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
                 }
-                else if (userRole.Equals("sale"))
+                else if (userRole.Equals("Sale"))
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu-3.cshtml")
                 }
@@ -95,7 +95,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2MtZynhsvwI2B40juK6SifR_OSyj4aBA&libraries=places"></script>
     <script src="~/Scripts/WhatsNearby.js"></script>
     <script src="~/Scripts/theme.js"></script>
-    @RenderSection("upload",required:false)
+        @RenderSection("upload",required:false)
     <!--tEST-->
     <script type='text/javascript' src='~/Content/Homeland/wp-includes/js/masonry.min.js'></script>
     <script type='text/javascript' src='~/Content/Homeland/wp-content/themes/homeland/assets/js/superfish.min.js'></script>

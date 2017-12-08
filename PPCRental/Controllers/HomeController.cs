@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PPCRental.Models;
-using System.Linq;
 namespace PPCRental.Controllers
 {
     public class HomeController : Controller
@@ -13,7 +12,7 @@ namespace PPCRental.Controllers
         public ActionResult Index()
         {
             var obj = db.View_project_from_index.ToList().Take(6);
-            
+
             return View(obj);
         }
         public ActionResult Contact()

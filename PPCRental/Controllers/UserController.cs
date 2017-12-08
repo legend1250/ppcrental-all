@@ -4,48 +4,68 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PPCRental.Models;
+using System.Text;
+using System.Security.Cryptography;
 namespace PPCRental.Controllers
 {
     public class UserController : Controller
     {
         ppcrental3119Entities db = new ppcrental3119Entities();
         // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(String une, String pwd)
+        public ActionResult Login(String usrname, String pwd)
         {
             
             try
             {
-                var user = db.USERs.FirstOrDefault(x => x.Email == une);
+                Console.WriteLine(pwd);
+
+                MD5 md5 = new MD5CryptoServiceProvider();
+
+                //compute hash from the bytes of text
+                md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(pwd));
+
+                //get hash result after compute it
+                byte[] result = md5.Hash;
+
+                StringBuilder strBuilder = new StringBuilder();
+                for (int i = 0; i < result.Length; i++)
+                {
+                    //change it into 2 hexadecimal digits
+                    //for each byte
+                    strBuilder.Append(result[i].ToString("x2"));
+                }
+                pwd = strBuilder.ToString();
+                //// Console.WriteLine(pwd);
+                var user = db.USERs.FirstOrDefault(x => x.Email == usrname);
+
                 if (user.Password == pwd)
                 {
-                  
-                    //session.Add("user", user);  
-                    Session["user"] = user.FullName;
-                    Session["userID"] = user.ID;
-                    if ((user.Role).Equals("1"))
+                    if (user.Status == true)
                     {
-                        Session["userRole"] = "ancency";
+                        Session["user"] = user.FullName;
+                        Session["userID"] = user.ID;
+                        string[] name_role = { "None", "Agency", "Sale" };
+                        string role = name_role[(int)user.RoleID];
+                        Session["userRole"] = role;
+                        //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
+                        return Redirect("~/Home/Index");
                     }
                     else
                     {
-                        Session["userRole"] = "sale";
+                        Session.RemoveAll();
+                        Session["login-status"] = "NotActive";
+                        return Redirect("~/User/Login");
                     }
-                  //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
-                    return Redirect("~/Home/Index");
                 }
                 else
                 {
                     Session["error"] = 1;
-                    return View();       
+                    return View();
                 }
 
             }
@@ -66,13 +86,45 @@ namespace PPCRental.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult Security(String Password, String NewPassword)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userid = Session["userID"];
+                    USER user = db.USERs.Find(userid);
+                    if (user.Password == Password)
+                    {
+                        user.Password = NewPassword;
+                        db.SaveChanges();
+                        Session["changeStatus"] = "Your password has been changed successfully";
+                    }
+                    else
+                    {
+                        Session["changeStatus"] = "Your current password not match with the password you gave";
+                    }
+                    
+                   
+                }
+                catch (Exception ex)
+                {
+                    Session["changeStatus"] = ex.Message;
+                    
+                }
+            }
+            return View();
+
+        }
+        [HttpPost]
         public ActionResult changePassword()
         {
             return View();
         }
         public ActionResult Register()
         {
-            return View(); ;
+            var obj = db.security_questions.ToList();
+            return View(obj); ;
         }
         [HttpPost]
         public ActionResult submitRegister(USER newUser)
@@ -81,6 +133,7 @@ namespace PPCRental.Controllers
             try
             {
                 db.USERs.Add(newUser);
+
                 db.SaveChanges();
                 message = "Success";
                 return Json(new { Message = newUser, JsonRequestBehavior.AllowGet });
@@ -92,6 +145,10 @@ namespace PPCRental.Controllers
 
             }
 
+        }
+        public ActionResult forgotPassword()
+        {
+            return View();
         }
 
     }

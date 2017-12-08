@@ -17,7 +17,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult ProjectList()
         {
-            var project = db.PROPERTies.ToList();
+            var project = db.View_project_from_index.ToList();
 
             return View(project);
         }
@@ -137,10 +137,11 @@ namespace PPCRental.Controllers
         public ActionResult Edit(int id)
         {
             var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            Session["ProjectID"] = id;
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectName = project.PropertyName,projectAvatar = project.Avatar,
+            return Json(new {projectID=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
@@ -149,6 +150,28 @@ namespace PPCRental.Controllers
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
                 projectUser = project.UserID, projectNote = project.Note,JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
+        }
+        [HttpPost]
+        public ActionResult deleleProject(int id)
+        {
+            string message = "";
+            try
+            {
+                PROPERTY project = db.PROPERTies.Find(id);
+                db.PROPERTies.Remove(project);
+                db.SaveChanges();
+                message = "Deleted project successfully";
+            }
+            catch (Exception e)
+            {
+
+                message = e.Message;
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+        public ActionResult myProjects()
+        {
+            return View();
         }
     }
 }

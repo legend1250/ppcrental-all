@@ -34,5 +34,11 @@ namespace PPCRental.Models
             get;
             set;
         }
+
+        public List<security_questions> security_questionService
+        {
+            get;
+            set;
+        }
     }
 }
