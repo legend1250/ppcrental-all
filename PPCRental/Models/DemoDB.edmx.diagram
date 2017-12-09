@@ -30,6 +30,7 @@
         <AssociationConnector Association="ppcrental3119Model.FK_USER_ROLE" />
         <EntityTypeShape EntityType="ppcrental3119Model.security_questions" Width="1.5" PointX="0.75" PointY="17.375" />
         <AssociationConnector Association="ppcrental3119Model.FK_USER_SecurityQuestion" />
+        <EntityTypeShape EntityType="ppcrental3119Model.UserManagement" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

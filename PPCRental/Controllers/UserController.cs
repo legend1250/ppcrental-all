@@ -34,7 +34,7 @@ namespace PPCRental.Controllers
                     {
                         Session["user"] = user.FullName;
                         Session["userID"] = user.ID;
-                        string[] name_role = { "None", "Agency", "Sale" };
+                        string[] name_role = { "None", "Agency", "Sale","Technical"};
                         string role = name_role[(int)user.RoleID];
                         Session["userRole"] = role;
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
@@ -137,6 +137,28 @@ namespace PPCRental.Controllers
         {
             return View();
         }
+
+        public ActionResult userManagement(int? role_id)
+        {
+            if(role_id == null)
+            {
+                var users = db.UserManagements.ToList();
+                return View(users);
+            }
+            else if( role_id == 10)
+            {
+                var users = db.UserManagements.ToList();
+                return View(users);
+            }
+            else
+            {
+                var users = db.UserManagements.ToList().Where(x => x.RoleID == role_id);
+                return View(users);
+            }
+
+            
+        }        
+
 
         private string hashPwd(string pwd)
         {

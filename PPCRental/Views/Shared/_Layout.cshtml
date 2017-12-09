@@ -40,18 +40,22 @@
                 String userRole = Session["userRole"] as String;
                 if (userRole.Equals("Agency"))
                 {
-                    @RenderPage("~/Views/Shared/Layout/User/top-menu-2.cshtml")
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
                 }
                 else if (userRole.Equals("Sale"))
                 {
-                    @RenderPage("~/Views/Shared/Layout/User/top-menu-3.cshtml")
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
+                }
+                else if (userRole.Equals("Technical"))
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
                 }
             }
             else
             {
-                @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                }
             }
-        }
         <!-- /site-header-top -->
         <!-- site-menu -->
         @RenderPage("~/Views/Shared/Layout/User/site-menu.cshtml")
