@@ -194,27 +194,6 @@ namespace PPCRental.Controllers
             }
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
-        [HttpPost]
-        public ActionResult deleleProject(int id)
-        {
-            string message = "";
-            try
-            {
-                PROPERTY project = db.PROPERTies.Find(id);
-                db.PROPERTies.Remove(project);
-                db.SaveChanges();
-                message = "Deleted project successfully";
-            }
-            catch (Exception e)
-            {
-
-                message = e.Message;
-            }
-            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-        }
-        public ActionResult myProjects()
-        {
-            return View();
-        }
+      
     }
 }
