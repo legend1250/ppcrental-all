@@ -84,16 +84,26 @@
   <ItemGroup>
     <Compile Include="Drivers\Search\SearchDriver.cs" />
     <Compile Include="Drivers\Search\SearchResultState.cs" />
+    <Compile Include="Features\ProjectRegister.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectRegister.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ProjectSearch.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectSearch.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\ProjectRegisterSteps.cs" />
     <Compile Include="StepDefinitions\ProjectSearchSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\ProjectRegister.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProjectRegister.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\ProjectSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProjectSearch.feature.cs</LastGenOutput>

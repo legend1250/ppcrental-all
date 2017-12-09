@@ -11,6 +11,11 @@ namespace PPCRental.AcceptanceTests.Drivers.Search
     class SearchDriver
     {
         private readonly SearchResultState _state;
+
+        public SearchDriver()
+        {
+        }
+
         public SearchDriver(SearchResultState state)
         {
             _state = state;
