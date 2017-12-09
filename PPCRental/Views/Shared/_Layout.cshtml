@@ -32,34 +32,37 @@
     <!-- site-header -->
     <header id="site-header" class="clearfix">
         <!-- site-header-top -->
-        <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
-        @{
-            // HttpSessionStateBase httpSession;
-            if (Session["user"] != null)
-            {
-                String userRole = Session["userRole"] as String;
-                if (userRole.Equals("Agency"))
+        <div id="qa-top-menu">
+            <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
+            @{
+                // HttpSessionStateBase httpSession;
+                if (Session["user"] != null)
                 {
-                    @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
+                    String userRole = Session["userRole"] as String;
+                    if (userRole.Equals("Agency"))
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
+                    }
+                    else if (userRole.Equals("Sale"))
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
+                    }
+                    else if (userRole.Equals("Technical"))
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
+                    }
                 }
-                else if (userRole.Equals("Sale"))
+                else
                 {
-                    @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
-                }
-                else if (userRole.Equals("Technical"))
-                {
-                    @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
-                }
-            }
-            else
-            {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
             }
+        </div>
         <!-- /site-header-top -->
         <!-- site-menu -->
-        @RenderPage("~/Views/Shared/Layout/User/site-menu.cshtml")
-    
+        <div id="qa-site-menu">
+            @RenderPage("~/Views/Shared/Layout/User/site-menu.cshtml")
+        </div>
         <!-- site-menu -->
     </header>
     <!--site-body-->
@@ -125,6 +128,23 @@
 
     <script type='text/javascript' src='~/Content/Homeland/wp-includes/js/jquery/ui/autocomplete.min.js'></script>
     <script type='text/javascript' src='~/Content/Homeland/wp-content/plugins/dsidxpress/js/autocomplete.js'></script>
+    <!--Bắt sự kiện scroll chuột xuống-->
+    <script>
+    
+        $(window).scroll(function () {
+            var st = $(this).scrollTop();
+            if (st > 100) {
+                $("#qa-top-menu").css("display", "none").fadeOut("slow");
+                $("#site-header").css("background-color", "black");
+                $("#site-header").css("color", "white");
 
+            } else {
+                $("#qa-top-menu").css("display", "normal").show("fast");
+                $("#site-header").css("background-color", "#f5f5f5");
+                $("#site-header").css("color", "#333");
+            }
+           
+        });
+    </script>
 </body>
 </html>
