@@ -141,7 +141,7 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectID = project.ID, projectName = project.PropertyName, projectAvatar = project.Avatar,
+            return Json(new {projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
@@ -150,28 +150,6 @@ namespace PPCRental.Controllers
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
                 projectUser = project.UserID, projectNote = project.Note, JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
-        }
-        [HttpPost]
-        public ActionResult projectupdate(PROPERTY projectupdate)
-        {
-            string message = "";
-            try
-            {
-                var projectID = projectupdate.ID;
-                //var project = db.PROPERTies.FirstOrDefault(x => x.ID == projectID);
-                PROPERTY editProject = db.PROPERTies.Find(projectID);
-                editProject.ID = projectupdate.ID;
-                editProject.PropertyName = projectupdate.PropertyName;
-                editProject.Content = projectupdate.Content;
-                message = "update success";
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                message = e.Message;
-
-            }
-            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
         [HttpPost]
         public ActionResult deleleProject(int id)
@@ -195,5 +173,27 @@ namespace PPCRental.Controllers
         {
             return View();
         }
+       public ActionResult projectupdate(PROPERTY projectupdate)
+        {
+            string message = "";
+            try
+            {
+                var projectID = projectupdate.ID;
+                //var project = db.PROPERTies.FirstOrDefault(x => x.ID == projectID);
+                PROPERTY editProject = db.PROPERTies.Find(projectID);
+                editProject.ID = projectupdate.ID;
+                editProject.PropertyName = projectupdate.PropertyName;
+                editProject.Content = projectupdate.Content;
+                message = "update success";
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+      
     }
 }
