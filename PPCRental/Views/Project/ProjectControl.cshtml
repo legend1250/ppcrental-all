@@ -312,7 +312,7 @@
                     $('.select3').attr('disabled', false);
                     setTimeout(function () {
                         //do what you need here
-                        $(".qa-form #projectID").val(data.projectID);
+                        $(".qa-form #projectID").val(data.projectId);
                         $(".qa-form #projectName").val(data.projectName);
                         $(".qa-form #ava").val(data.projectAvatar);
                         $(".qa-form #ima").val(data.projectImage);
@@ -360,7 +360,9 @@
         });
         //update
         $(".qa-update").on("click", function () {
-            var projectID = $("#projectID").val();
+            var projectID = $(".qa-form #projectID").val();
+            alert()
+            alert(projectID);
             var projectname = $("#projectName").val();
             //var avatar = $("#ava");
             //var image = $("#ima");

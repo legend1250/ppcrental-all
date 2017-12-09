@@ -37,9 +37,10 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         [When(@"I click Submit button")]
         public void WhenIClickSubmitButton()
         {
+            driver.FindElement(By.Id("registerfixed")).Click();
             ScenarioContext.Current.Pending();
         }
-        
+
         [Then(@"Show successful message")]
         public void ThenShowSuccessfulMessage()
         {

@@ -141,7 +141,7 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
+            return Json(new {projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
