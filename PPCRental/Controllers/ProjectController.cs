@@ -141,7 +141,7 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectID = project.ID, projectName = project.PropertyName, projectAvatar = project.Avatar,
+            return Json(new { projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
@@ -152,7 +152,28 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
         }
         [HttpPost]
-        public ActionResult projectupdate(PROPERTY projectupdate)
+        public ActionResult deleleProject(int id)
+        {
+            string message = "";
+            try
+            {
+                PROPERTY project = db.PROPERTies.Find(id);
+                db.PROPERTies.Remove(project);
+                db.SaveChanges();
+                message = "Deleted project successfully";
+            }
+            catch (Exception e)
+            {
+
+                message = e.Message;
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+        public ActionResult myProjects()
+        {
+            return View();
+        }
+       public ActionResult projectupdate(PROPERTY projectupdate)
         {
             string message = "";
             try
