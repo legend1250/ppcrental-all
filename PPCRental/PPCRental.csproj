@@ -154,6 +154,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Driver\ViewModels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -715,6 +716,7 @@
     <Content Include="Views\Project\MyProjects.cshtml" />
     <Content Include="Views\User\UserManagement.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
+    <Content Include="Views\User\VerifyUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

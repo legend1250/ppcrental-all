@@ -1,9 +1,9 @@
-﻿    
+﻿@model PPCRental.Driver.ViewModels    
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<PPCRental.Models.View_project_from_index>
+
 
 <!-- site-slider -->
     @RenderPage("~/Views/Shared/Layout/User/slider.cshtml")
@@ -23,7 +23,7 @@
     </header>
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.zProperties.Take(6))
             {
                 <div class="col-lg-4 col-sm-6 layout-item-wrap">
                     <article class="property layout-item clearfix">
@@ -35,7 +35,7 @@
                             <header class="property-header clearfix">
                                 <div class="pull-left">
                                     <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
-                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName, @item.WardName, @item.DistrictName</span>
+                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.STREET.StreetName, @item.WARD.WardName, @item.DISTRICT.DistrictName</span>
                                 </div>
                                 @{
                                     string _tmp = item.Price.ToString();

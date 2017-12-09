@@ -68,6 +68,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult Security()
         {
+            Session["VerifyUser"] = "NotVerify";
             return View();
         }
         [HttpPost]
@@ -103,11 +104,7 @@ namespace PPCRental.Controllers
             return View();
 
         }
-        [HttpPost]
-        public ActionResult changePassword()
-        {
-            return View();
-        }
+        
         public ActionResult Register()
         {
             var obj = db.security_questions.ToList();
@@ -178,6 +175,10 @@ namespace PPCRental.Controllers
                 strBuilder.Append(result[i].ToString("x2"));
             }
             return strBuilder.ToString();
+        }
+        public ActionResult verifyUser()
+        {
+            return View();
         }
 
     }
