@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PPCRental.Models;
 using System.Text;
 using System.Security.Cryptography;
+using PPCRental.Driver;
 namespace PPCRental.Controllers
 {
     public class UserController : Controller
@@ -37,6 +38,7 @@ namespace PPCRental.Controllers
                         string[] name_role = { "None", "Agency", "Sale","Technical"};
                         string role = name_role[(int)user.RoleID];
                         Session["userRole"] = role;
+                        Session["VerifyUser"] = "NotVerify";
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                         return Redirect("~/Home/Index");
                     }
@@ -68,7 +70,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult Security()
         {
-            Session["VerifyUser"] = "NotVerify";
+            
             return View();
         }
         [HttpPost]
@@ -178,7 +180,10 @@ namespace PPCRental.Controllers
         }
         public ActionResult verifyUser()
         {
-            return View();
+            ViewModels vm = new ViewModels();
+            vm.zSecurity = db.security_questions.ToList();
+            
+            return View(vm);
         }
 
     }

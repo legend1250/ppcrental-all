@@ -29,11 +29,16 @@
             Response.Redirect("~/User/Login", false);
 
         }
-        string verify = Session["VerifyUser"] as String;
-        if (verify.Equals("NotVerify"))
+        else
         {
-
+            string verify = Session["VerifyUser"] as String;
+            if (!verify.Equals("Verified"))
+            {
+                Session["VerifyUser"] = "NotVerify";
+                Response.Redirect("~/User/VerifyUser", false);
+            }
         }
+
     }
     <div id="login">
         <h1><a href="~/Home/Index" title="Real Estate WordPress Theme" tabindex="-1">PPCRental</a></h1>
