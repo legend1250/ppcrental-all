@@ -11,3 +11,4 @@
 	+login xong đưa user vào trang hoạt đông chính của user chứ không đưa user vào trang chủ
 -technical: +active user.
 	    +user control
+-scroll:làm mờ menu
