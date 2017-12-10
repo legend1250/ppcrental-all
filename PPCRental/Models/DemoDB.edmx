@@ -122,6 +122,24 @@
           <Property Name="Status" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ppcrental3119.dbo.UserManagement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserManagement">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="question" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="32" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="question" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="View_project_from_index">
           <Key>
@@ -306,6 +324,20 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySet Name="STREET" EntityType="Self.STREET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WARD" EntityType="Self.WARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserManagement" EntityType="Self.UserManagement" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserManagement].[ID] AS [ID], 
+    [UserManagement].[Email] AS [Email], 
+    [UserManagement].[Password] AS [Password], 
+    [UserManagement].[FullName] AS [FullName], 
+    [UserManagement].[Phone] AS [Phone], 
+    [UserManagement].[Address] AS [Address], 
+    [UserManagement].[RoleID] AS [RoleID], 
+    [UserManagement].[Status] AS [Status], 
+    [UserManagement].[question] AS [question], 
+    [UserManagement].[Answer] AS [Answer]
+    FROM [dbo].[UserManagement] AS [UserManagement]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_project_from_index" EntityType="Self.View_project_from_index" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_project_from_index].[ID] AS [ID], 
@@ -699,6 +731,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             <End Role="security_questions" EntitySet="security_questions" />
             <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
+          <EntitySet Name="UserManagements" EntityType="ppcrental3119Model.UserManagement" />
         </EntityContainer>
         <EntityType Name="View_project_from_index">
           <Key>
@@ -756,6 +789,22 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserManagement">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="question" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -902,6 +951,22 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
                 <ScalarProperty Name="is_active" ColumnName="is_active" />
                 <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserManagements">
+            <EntityTypeMapping TypeName="ppcrental3119Model.UserManagement">
+              <MappingFragment StoreEntitySet="UserManagement">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

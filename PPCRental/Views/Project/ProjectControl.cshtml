@@ -184,14 +184,33 @@
                 <div class="col-sm-10" style="width:100%">
                     <button type="button" class="btn btn-warning qa-reset"><i class="fa fa-undo"></i> Reset</button>
                     <button type="button" class="btn btn-info qa-hide"><i class="fa fa-minus"></i> Hide</button>
-                    <button type="button" class="btn btn-danger pull-right qa-remove"><i class="fa fa-remove"></i> Remove</button>
+                    <button type="button" class="btn btn-danger pull-right qa-remove" data-toggle="modal" data-target="#modalDelete"><i class="fa fa-remove"></i> Remove</button>
                     <button type="button" class="btn btn-primary pull-right qa-update"><i class="fa fa-wrench"></i> Update</button>
-                    <button type="button" class="btn btn-success pull-right qa-remove"><i class="fa fa-plus"></i> Add</button>
                 </div>
             </div>
         </form>
     </div>
+    <!-- Modal for deleted item -->
+    <div class="modal fade" id="modalDelete" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:whitesmoke">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Warning!!!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete &ldquo;<span id="qa-projectNameModal" style="font-weight:bold"></span>&rdquo; ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="qa-accepted"><i class="fa fa-check"></i> Sure</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <!--List-->
@@ -314,6 +333,7 @@
                         //do what you need here
                         $(".qa-form #projectID").val(data.projectId);
                         $(".qa-form #projectName").val(data.projectName);
+                        $("#qa-projectNameModal").html(data.projectName);
                         $(".qa-form #ava").val(data.projectAvatar);
                         $(".qa-form #ima").val(data.projectImage);
                         $(".qa-form #price").val(data.projectPrice);
@@ -326,7 +346,7 @@
                         $(".qa-form #ward").val(data.projectWard);
                         $(".qa-form #ptype").val(data.projectType);
                         $(".qa-form #content").val(data.projectContent);
-                        
+
 
                         //image
                         var Src = "../img/avatar/";
@@ -340,15 +360,15 @@
                             $(".qa-form #qa-view-avatar").attr("src", avatarSrc);
                         } else {
                             $(".qa-form #qa-view-avatar").attr("src", "../img/avatar/not-found.jpg");
-                           
+
                         }
                         if (data.projectAvatar == null) {
                             $(".qa-form #qa-view-image").attr("src", imgSrc);
                         } else {
                             $(".qa-form #qa-view-image").attr("src", "../img/avatar/not-found.jpg");
                         }
-                        
-                        
+
+
 
                     }, 1200);
                 },
@@ -379,10 +399,10 @@
 
             var ProjectEdit = {
                 ID: projectID,
-                PropertyName: projectname, 
-                //Avatar: 
+                PropertyName: projectname,
+                //Avatar:
                 //Images
-                //PropertyType_ID: 
+                //PropertyType_ID:
                 Content: content,
                 Street_ID: street,
                 Ward_ID: ward,
@@ -392,8 +412,8 @@
                 BedRoom: bedroom,
                 BathRoom: bathroom,
                 PackingPlace: parking,
-                UserID: null
-               
+                UserID:@Session["userID"],
+
 
             }
             console.log(JSON.stringify(ProjectEdit, null, 2));
@@ -416,7 +436,7 @@
             })
         });
         //remove
-        $(".qa-remove").on("click", function () {
+        $("#qa-accepted").on("click", function () {
 
             var deletedID = $(".qa-form #projectID").val();
             alert(deletedID)
@@ -427,6 +447,7 @@
                 dataType: "json",
                 success: function (data) {
                     alert(data['Message']);
+                    $('#modalDelete').modal('toggle');
                     $(".qa-form").hide(1000);
                     $("tbody tr[id='" + deletedID + "']").hide();
                     clear();
@@ -455,7 +476,7 @@
             if ($(this).data('options') === undefined) {
                 /*Taking an array of all options-3 and kind of embedding it on the select1*/
                 $(this).data('options', $('.select3 option').clone());
-            } 
+            }
             var id = $(this).val();
             var options = $(this).data('options').filter('[value=' + id + ']');
             $('.select3').html(options);
@@ -510,7 +531,7 @@
             $("#qa-view").css('display', 'block');
             $('#ava').val(avaName);
             readAvatar(this);
-        
+
         });
 
 

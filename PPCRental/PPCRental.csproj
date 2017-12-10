@@ -154,6 +154,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Driver\ViewModels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +204,9 @@
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USER.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserManagement.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\View_project_from_index.cs">
@@ -699,17 +703,22 @@
     <Content Include="Views\Shared\Layout\User\advance-search.cshtml" />
     <Content Include="Views\Shared\Layout\User\slider.cshtml" />
     <Content Include="Views\Project\projectDetail.cshtml" />
-    <Content Include="Views\Shared\Layout\User\top-menu-2.cshtml" />
+    <Content Include="Views\Shared\Layout\User\top-menu-agency.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_Layout_null.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\User\Security.cshtml" />
-    <Content Include="Views\Shared\Layout\User\top-menu-3.cshtml" />
+    <Content Include="Views\Shared\Layout\User\top-menu-sale.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\Project\MyProjects.cshtml" />
+    <Content Include="Views\User\UserManagement.cshtml" />
+    <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
+    <Content Include="Views\User\VerifyUser.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Shared\Layout\User\social.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

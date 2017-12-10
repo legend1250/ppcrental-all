@@ -1,0 +1,25 @@
+﻿<section class="header-block clearfix">
+    <div class="inside clearfix">
+        @RenderPage("~/Views/Shared/Layout/User/social.cshtml")
+        <div class="call-info floatright clearfix">
+            <span class="call-us"><i class="fa fa-phone"></i>Call us: 1-800-234-6789</span> 
+            <div class="dropdown" style="display:inline-block;float:left">
+                <div href="#" class="login re" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>@Session["user"]<span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Account</li>
+                    <li><a href="~/User/Profile">Profile</a></li>
+                    <li><a href="~/User/Security">Change Password</a></li>
+                    <li><a href="#">Your Projects</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Action Role</li>
+                    <li><a href="~/Project/projectControl">Project Control</a></li>
+                </ul>
+            </div>
+            <a href="@Url.Action("Logout","User")" class="login" id="logout">
+                <i class="fa fa-sign-out"></i>Logout
+            </a>  
+        </div>
+    </div>
+</section>  

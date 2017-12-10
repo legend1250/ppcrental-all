@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PPCRental.Models;
 using System.Text;
 using System.Security.Cryptography;
+using PPCRental.Driver;
 namespace PPCRental.Controllers
 {
     public class UserController : Controller
@@ -34,9 +35,10 @@ namespace PPCRental.Controllers
                     {
                         Session["user"] = user.FullName;
                         Session["userID"] = user.ID;
-                        string[] name_role = { "None", "Agency", "Sale" };
+                        string[] name_role = { "None", "Agency", "Sale","Technical"};
                         string role = name_role[(int)user.RoleID];
                         Session["userRole"] = role;
+                        Session["VerifyUser"] = "NotVerify";
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                         return Redirect("~/Home/Index");
                     }
@@ -68,6 +70,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult Security()
         {
+            
             return View();
         }
         [HttpPost]
@@ -103,11 +106,7 @@ namespace PPCRental.Controllers
             return View();
 
         }
-        [HttpPost]
-        public ActionResult changePassword()
-        {
-            return View();
-        }
+        
         public ActionResult Register()
         {
             var obj = db.security_questions.ToList();
@@ -138,6 +137,28 @@ namespace PPCRental.Controllers
             return View();
         }
 
+        public ActionResult userManagement(int? role_id)
+        {
+            if(role_id == null)
+            {
+                var users = db.UserManagements.ToList();
+                return View(users);
+            }
+            else if( role_id == 10)
+            {
+                var users = db.UserManagements.ToList();
+                return View(users);
+            }
+            else
+            {
+                var users = db.UserManagements.ToList().Where(x => x.RoleID == role_id);
+                return View(users);
+            }
+
+            
+        }        
+
+
         private string hashPwd(string pwd)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -157,6 +178,54 @@ namespace PPCRental.Controllers
             }
             return strBuilder.ToString();
         }
+        public ActionResult verifyUser()
+        {
+            ViewModels vm = new ViewModels();
+            vm.zSecurity = db.security_questions.ToList();
+            if (Session["UserID"]==null)
+            {
+                Session["login-status"] = "NotLogin";
+                return Redirect("~/User/Login");
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                USER user = db.USERs.Find(userID);
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+            }
+            
+           
+            return View(vm);
+
+        }
+        [HttpPost]
+        public ActionResult verifyUser(int userQuestion,String userAnswer)
+        {
+            int userID = (int)Session["UserID"];
+            USER user = db.USERs.Find(userID);
+            String yourAnswer = userAnswer;
+            int yourQuestion = userQuestion;
+           
+            if (user.SecretQuestion_ID == yourQuestion && user.Answer == yourAnswer.Trim())
+            {
+                Session["VerifyUser"] = "Verified";
+                return Redirect("~/User/Security");
+            }
+            else
+            {
+                ViewModels vm = new ViewModels();
+                vm.zSecurity = db.security_questions.ToList();
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+                ViewBag.VerifyMessage ="Your anwser not match with your answer in database";
+                return View(vm);
+            }
+            
+        }
+        public ActionResult proFile()
+        {
+            return View();
+        }
+       
 
     }
 }

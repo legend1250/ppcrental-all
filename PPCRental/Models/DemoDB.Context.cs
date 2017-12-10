@@ -37,5 +37,6 @@ namespace PPCRental.Models
         public virtual DbSet<View_project_from_index> View_project_from_index { get; set; }
         public virtual DbSet<ROLE> ROLEs { get; set; }
         public virtual DbSet<security_questions> security_questions { get; set; }
+        public virtual DbSet<UserManagement> UserManagements { get; set; }
     }
 }

@@ -29,13 +29,23 @@
             Response.Redirect("~/User/Login", false);
 
         }
+        else
+        {
+            string verify = Session["VerifyUser"] as String;
+            if (!verify.Equals("Verified"))
+            {
+                Session["VerifyUser"] = "NotVerify";
+                Response.Redirect("~/User/VerifyUser", false);
+            }
+        }
+
     }
     <div id="login">
         <h1><a href="~/Home/Index" title="Real Estate WordPress Theme" tabindex="-1">PPCRental</a></h1>
        @{
            if (Session["changeStatus"] == null)
            {
-            <p class="message">Please enter your old password and set your new password</p>
+            <p class="message">Enter your current password and then your new password twice in order to update</p>
            }
            else
            {
