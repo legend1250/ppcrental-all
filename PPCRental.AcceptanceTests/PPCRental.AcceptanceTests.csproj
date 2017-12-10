@@ -79,6 +79,12 @@
   <ItemGroup>
     <Compile Include="Drivers\Search\SearchDriver.cs" />
     <Compile Include="Drivers\Search\SearchResultState.cs" />
+    <Compile Include="Features\UC002_ViewListOfProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC002_ViewListOfProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\UC002_ViewListOfProjectSteps.cs" />
     <Compile Include="Features\UC007_Login-Logout.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\UC002_ViewListOfProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC002_ViewListOfProject.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\UC007_Login-Logout.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC007_Login-Logout.feature.cs</LastGenOutput>
