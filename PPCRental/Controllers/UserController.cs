@@ -139,24 +139,8 @@ namespace PPCRental.Controllers
         }
         public ActionResult userManagement()
         {
-            return userManagement(10);
-        }
-        [HttpPost]
-        public ActionResult userManagement(int? role_id)
-        {
-
-            if (role_id == null || role_id == 10)
-            {
-                var users = db.UserManagements.ToList();
-                return View(users);
-                
-            }
-            else
-            {
-                var users = db.UserManagements.ToList().Where(x => x.RoleID == role_id);
-                return View(users);
-            }
-
+            var users = db.UserManagements.ToList();
+            return View(users);
         }
 
         public JsonResult manageUser(int role_id)
