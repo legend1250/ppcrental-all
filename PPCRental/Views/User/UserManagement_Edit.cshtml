@@ -43,27 +43,11 @@
                     <td>@item.Address</td>
                     <td>@item.RoleID</td>
                     <td>@item.Status</td>
-                    <td><select id="question" class="form-control">
-                        @{foreach (var ques in ViewData["question"] as List<PPCRental.Models.security_questions>)
-                            {
-                                if (ques.id == item.SecretQuestion_ID)
-                                {
-                                    <option value="@ques.id" selected>@ques.question</option>
-                                }
-                                else
-                                {
-                                    <option value="@ques.id">@ques.question</option>
-                                }
-                            }
-
-                        }
-                    </select>
-
-                    </td>
+                    <td>@item.Question_String</td>
                     <td>@item.Answer</td>
                     <td><button type="button" class="btn btn-success" id="btn-edit" data-id="@item.ID">Edit</button></td>
                 </tr>
-                            }
+             }
         }
         
         
@@ -168,7 +152,47 @@
     </div>
 </div>
 
+
 <script>
+    var role_id;
+    $('#select_role').on('change', function () {
+        role_id = $(this).find(":selected").val();
+        //alert(role_id);
+        $.ajax({
+            url: '/User/ManageUser_Views',
+            type: "POST",
+            data: { role_id },
+            dataType: "json",
+            success: function (result) {
+                //alert(result.Success);
+                console.log(result.Users);
+                $('#table-user tbody > tr').remove();
+
+                $.each(result.Users, function (index, value) {
+                    $('#table-user tbody').append(
+                        '<tr>'// need to change closing tag to an opening `<tr>` tag.
+                        + '<td>' + result.Users[index].ID + '</td>'
+                        + '<td>' + result.Users[index].Email + '</td>'
+                        + '<td>' + result.Users[index].Password + '</td>'
+                        + '<td>' + result.Users[index].FullName + '</td>'
+                        + '<td>' + result.Users[index].Phone + '</td>'
+                        + '<td>' + result.Users[index].Address + '</td>'
+                        + '<td>' + result.Users[index].RoleID + '</td>'
+                        + '<td>' + result.Users[index].Status + '</td>'
+                        + '<td>' + result.Users[index].question + '</td>'
+                        + '<td>' + result.Users[index].Answer + '</td>'
+                        + '<td><button type="button" class="btn btn-success" id="btn-edit" data-id="' + result.Users[index].ID + '">Edit</button></td>'
+                        +'</tr>');
+                });
+            },
+            error: function (err) {
+                alert(err);
+
+            }
+        });
+
+    });
+
     $(document).on('click', '#btn-edit', function () {
         var id = $(this).data('id');
         console.log('id: ', id);
@@ -217,7 +241,7 @@
                     $('#edit-status').append('<option value="' + true + '">Activated</option >');
                     $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Chưa Active</option >');
                 }
-                
+
 
                 $('#edit-question').find('option').remove();
                 var que = ['Cha của bạn sinh ra ở tỉnh/thành phố nào?', 'Bạn thân nhất thời thơ ấu của bạn có họ gì?', 'Tên trường tiểu học của bạn là gì?',
@@ -251,7 +275,7 @@
 
     $('#btn-confirm').on('click', function () {
         //alert('clicked');
-        
+
         if ($('#myModal').hasClass('in')) {
             var id = $('#input-id').val();
             var email = $('#input-email').val();
@@ -286,18 +310,20 @@
                 data: { editedUser: editedUser },
                 dataType: 'text',
                 success: function (data) {
-                    
+
                     if (data) {
-                        $('#myModal').hide(700);
+                        $('#myModal').modal('hide');
                         //alert('ok');
                         setTimeout(function (){
-                            location.reload();
+                            //$('#table-user').DataTable().ajax.reload();
+                            var tab = $('#table-user').DataTable();
+                            console.log(tab);
                         }, 700);
-                        
+
                     }
                     else {
                         //alert(data);
-                        
+
                     }
                 },
                 error: function (err) {
@@ -312,3 +338,4 @@
 
 
 </script>
+

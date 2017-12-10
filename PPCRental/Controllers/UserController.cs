@@ -212,7 +212,8 @@ namespace PPCRental.Controllers
                 Console.WriteLine(editedUser);
 
                 var user = db.USERs.Where(x => x.ID == editedUser.ID).First();
-                Console.WriteLine(user);
+                var user2 = user;
+                Console.WriteLine(user2);
 
                 user.FullName = editedUser.FullName;
                 user.Email = editedUser.Email;
