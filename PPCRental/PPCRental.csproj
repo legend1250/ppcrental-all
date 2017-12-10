@@ -717,6 +717,7 @@
     <Content Include="Views\User\UserManagement.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
     <Content Include="Views\User\VerifyUser.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -221,6 +221,11 @@ namespace PPCRental.Controllers
             }
             
         }
+        public ActionResult proFile()
+        {
+            return View();
+        }
+       
 
     }
 }
