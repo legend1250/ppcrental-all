@@ -22,7 +22,8 @@ namespace PPCRental.Models
         public string Address { get; set; }
         public Nullable<int> RoleID { get; set; }
         public Nullable<bool> Status { get; set; }
-        public string question { get; set; }
+        public Nullable<int> SecretQuestion_ID { get; set; }
+        public string Question_String { get; set; }
         public string Answer { get; set; }
     }
 }

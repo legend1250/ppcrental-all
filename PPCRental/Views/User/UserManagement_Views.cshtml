@@ -3,17 +3,19 @@
     ViewBag.Title = "Active User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<PPCRental.Models.UserManagement>
+
 
 
 <h2>User Management</h2>
 <br />
+<h3 style="color: red;">Views</h3><a href="@Url.Action("userManagement_Edit", "User")"><h3 style="color: blue;">Edit</h3></a>
 <select name="user_role" id="select_role" class="form-control" required="required">
     <option value="10">Tất cả</option>
-    <option value="0">Chưa có vai trò</option>
-    <option value="1">Agency</option>
-    <option value="2">Sale</option>
-    <option value="3">NVKT</option>
+    @{foreach (var item in ViewData["role"] as List<PPCRental.Models.ROLE>)
+        {
+            <option value="@item.id">@item.roleName</option>
+        }
+    }
 </select>
 
 <table class="table table-hover" id="table-user">
@@ -32,24 +34,24 @@
         </tr>
     </thead>
     <tbody>
-        
-            @{foreach (var item in Model)
-                  {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.Email</td>
-                            <td>@item.Password</td>
-                            <td>@item.FullName</td>
-                            <td>@item.Phone</td>
-                            <td>@item.Address</td>
-                            <td>@item.RoleID</td>
-                            <td>@item.Status</td>
-                            <td>@item.question</td>
-                            <td>@item.Answer</td>
-                        
-                        </tr>
-                  }
-              }
+
+        @{foreach (var item in ViewData["users"] as List<PPCRental.Models.UserManagement>)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Email</td>
+                    <td>@item.Password</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.RoleID</td>
+                    <td>@item.Status</td>
+                    <td>@item.Question_String</td>
+                    <td>@item.Answer</td>
+
+                </tr>
+            }
+        }
     </tbody>
 </table>
 
@@ -59,13 +61,13 @@
         role_id = $(this).find(":selected").val();
         //alert(role_id);
         $.ajax({
-            url: '/User/manageUser',
+            url: '/User/ManageUser_Views',
             type: "POST",
-            data: { role_id: role_id },
+            data: { role_id },
             dataType: "json",
             success: function (result) {
                 //alert(result.Success);
-                //console.log(result.Users);
+                console.log(result.Users);
                 $('#table-user tbody > tr').remove();
 
                 $.each(result.Users, function (index, value) {
@@ -74,7 +76,7 @@
                         + '<td>' + result.Users[index].ID + '</td>'
                         + '<td>' + result.Users[index].Email + '</td>'
                         + '<td>' + result.Users[index].Password + '</td>'
-                        + '<td>' + result.Users[index].Fullname + '</td>'
+                        + '<td>' + result.Users[index].FullName + '</td>'
                         + '<td>' + result.Users[index].Phone + '</td>'
                         + '<td>' + result.Users[index].Address + '</td>'
                         + '<td>' + result.Users[index].RoleID + '</td>'
@@ -86,13 +88,11 @@
             },
             error: function (err) {
                 alert(err);
-                
+
             }
-        }
-        );
-        
+        });
+
     });
 
-   
+
 </script>
-    

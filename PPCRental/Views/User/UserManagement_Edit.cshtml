@@ -1,0 +1,314 @@
+﻿
+@{
+    ViewBag.Title = "UserManagement_Edit";
+}
+
+<a href="@Url.Action("userManagement_Views", "User")"><h2 style="color: blue;">Views</h2></a>
+<h2 style="color: red;">Edit</h2>
+<select name="user_role" id="select_role" class="form-control" required="required">
+    <option value="10">Tất cả</option>
+    <option value="0">Chưa có vai trò</option>
+    <option value="1">Agency</option>
+    <option value="2">Sale</option>
+    <option value="3">NVKT</option>
+</select>
+
+<table class="table table-hover" id="table-user">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Fullname</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>RoleID</th>
+            <th>Status</th>
+            <th>Serect Question</th>
+            <th>Answer</th>
+            <th>Edit</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        
+        @{foreach (var item in ViewData["users"] as List<PPCRental.Models.UserManagement>)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Email</td>
+                    <td>@item.Password</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.RoleID</td>
+                    <td>@item.Status</td>
+                    <td><select id="question" class="form-control">
+                        @{foreach (var ques in ViewData["question"] as List<PPCRental.Models.security_questions>)
+                            {
+                                if (ques.id == item.SecretQuestion_ID)
+                                {
+                                    <option value="@ques.id" selected>@ques.question</option>
+                                }
+                                else
+                                {
+                                    <option value="@ques.id">@ques.question</option>
+                                }
+                            }
+
+                        }
+                    </select>
+
+                    </td>
+                    <td>@item.Answer</td>
+                    <td><button type="button" class="btn btn-success" id="btn-edit" data-id="@item.ID">Edit</button></td>
+                </tr>
+                            }
+        }
+        
+        
+    </tbody>
+    
+</table>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover" id="table-modal-user">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td id="td-id" value="">
+                                <input type="text" id="input-id" class="form-control" value="" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td id="td-email">
+                                <input type="text" id="input-email" class="form-control" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td id="td-pwd">
+                                <input type="text" id="input-pwd" class="form-control" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fullname</th>
+                            <td id="td-fullname">
+                                <input type="text" id="input-fullname" class="form-control" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td id="td-phone">
+                                <input type="text" id="input-phone" class="form-control" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td id="td-address">
+                                <input type="text" id="input-address" class="form-control" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>RoleID</th>
+                            <td id="td-role">
+                                <select id="edit-role" class="form-control">
+
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Active</th>
+                            <td id="td-status">
+                                <select id="edit-status" class="form-control">
+
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Question</th>
+                            <td id="td-question">
+                                <select id="edit-question" class="form-control">
+                                 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Answer</th>
+                            <td id="td-answer">
+                                <input type="text" id="input-answer" class="form-control" value="">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btn-confirm">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).on('click', '#btn-edit', function () {
+        var id = $(this).data('id');
+        console.log('id: ', id);
+        $.ajax({
+            url: '/User/ManageUser_GetUser',
+            type: "POST",
+            data: { id: id },
+            dataType: "json",
+            //  contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                //alert(res.User);
+                //console.log(result.Data);
+                $('#table-modal-user #input-id').empty();
+                $('#table-modal-user #input-id').val(result.Data.id);
+                $('#td-email #input-email').empty();
+                $('#td-email #input-email').val(result.Data.email);
+                $('#td-pwd #input-pwd').empty();
+                $('#td-pwd #input-pwd').val(result.Data.pwd);
+                $('#td-fullname #input-fullname').empty();
+                $('#td-fullname #input-fullname').val(result.Data.fullname);
+                $('#td-phone #input-phone').empty();
+                $('#td-phone #input-phone').val(result.Data.phone);
+                $('#td-address #input-address').empty();
+                $('#td-address #input-address').val(result.Data.address);
+                //$('#table-modal-user #td-role').empty();
+                //$('#table-modal-user #td-role').append(result.Data.role_id);
+                $('#edit-role').find('option').remove();
+                var ro = ['Chưa có Vai trò', 'Agency', 'Sale', 'Technical'];
+                for (var i = 0; i < ro.length; i++) {
+                    if (i == parseInt(result.Data.role_id)) {
+                        $('#edit-role').append('<option value="' + i + '" selected style= "color: orange;">' + ro[i] + '</option > ');
+                    }
+                    else {
+                        $('#edit-role').append('<option value="' + i + '">' + ro[i] + '</option > ');
+                    }
+                }
+                //$('#table-modal-user #td-status').empty();
+                //$('#table-modal-user #td-status').append(result.Data.active);
+                $('#edit-status').find('option').remove();
+                //console.log('status: ', parseInt(result.Data.active));
+                if (result.Data.active) {
+                    $('#edit-status').append('<option value="' + true + '" selected style= "color: orange;">Activated</option >');
+                    $('#edit-status').append('<option value="' + false + '">Chưa Active</option >');
+                }
+                else {
+                    $('#edit-status').append('<option value="' + true + '">Activated</option >');
+                    $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Chưa Active</option >');
+                }
+                
+
+                $('#edit-question').find('option').remove();
+                var que = ['Cha của bạn sinh ra ở tỉnh/thành phố nào?', 'Bạn thân nhất thời thơ ấu của bạn có họ gì?', 'Tên trường tiểu học của bạn là gì?',
+                    'Con đường nơi bạn lớn lên tên gì?', 'Con vật cưng đầu tiên của bạn tên gì?', 'Tên của nhạc sĩ bạn thích nhất?', 'Giáo viên bạn thích nhất khi học tiểu học có họ gì?',
+                    'Lúc nhỏ bạn thích xem phim hoạt hình nào nhất?', 'Món khoái khẩu của bạn lúc còn nhỏ là gì?', 'Nhân vật trong phim mà bạn thích nhất là ai?',
+                    'Ai là tác giả bạn thích nhất?', 'Đội thể thao bạn thích nhất tên là gì?', 'Tựa quyển sách bạn thích đọc nhất?'];
+                for (var i = 0; i < que.length; i++){
+                    if (i == parseInt(result.Data.security_question)-1) {
+                        $('#edit-question').append('<option value="' + i + '" selected style= "color: orange;">' + que[i] + '</option > ');
+                    }
+                    else {
+                        $('#edit-question').append('<option value="' + i + '">' + que[i] + '</option > ');
+                    }
+
+                }
+
+                $('#td-answer #input-answer').empty();
+                $('#td-answer #input-answer').val(result.Data.s_answer);
+
+                $('#myModal').modal({ show: true });
+
+
+            },
+            error: function (result) {
+                            alert('failed');
+                            console.log(result.User);
+                        }
+            });
+
+    })
+
+    $('#btn-confirm').on('click', function () {
+        //alert('clicked');
+        
+        if ($('#myModal').hasClass('in')) {
+            var id = $('#input-id').val();
+            var email = $('#input-email').val();
+            var pwd = $('#input-pwd').val();
+            var fullname = $('#input-fullname').val();
+            var phone = $('#input-phone').val();
+            var address = $('#input-address').val();
+            var role_id = parseInt($('#edit-role').val());
+            var status = $('#edit-status').val();
+            var question_id = parseInt($('#edit-question').val())+1;
+            var answer = $('#input-answer').val();
+
+            var editedUser = {
+                ID : id,
+                Email : email,
+                Password : pwd,
+                FullName : fullname,
+                Phone : phone,
+                Address : address,
+                RoleID : role_id,
+                Status : status,
+                SecretQuestion_ID : question_id,
+                Answer : answer
+            }
+            editedUser.Status = status == 'true' ? true : false;
+
+            console.log('editedUser: ', JSON.stringify(editedUser, undefined, 2));
+
+            $.ajax({
+                url: 'User/ManageUser_EditUser',
+                type: 'POST',
+                data: { editedUser: editedUser },
+                dataType: 'text',
+                success: function (data) {
+                    
+                    if (data) {
+                        $('#myModal').hide(700);
+                        //alert('ok');
+                        setTimeout(function (){
+                            location.reload();
+                        }, 700);
+                        
+                    }
+                    else {
+                        //alert(data);
+                        
+                    }
+                },
+                error: function (err) {
+
+                }
+
+            });
+        }
+
+
+    })
+
+
+</script>

@@ -713,8 +713,9 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\Project\MyProjects.cshtml" />
-    <Content Include="Views\User\UserManagement.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
+    <Content Include="Views\User\UserManagement_Views.cshtml" />
+    <Content Include="Views\User\UserManagement_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
