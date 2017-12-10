@@ -84,15 +84,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UC007_Login_Logout.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\RegisteTest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisteTest.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\ProjectSearchSteps.cs" />
-    <Compile Include="StepDefinitions\RegisterTestSteps.cs" />
+    <Compile Include="StepDefinitions\RegisteTestSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Features\ProjectSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC007_Login_Logout.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\RegisteTest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RegisteTest.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
