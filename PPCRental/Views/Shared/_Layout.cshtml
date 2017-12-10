@@ -135,11 +135,13 @@
             var st = $(this).scrollTop();
             if (st > 100) {
                 $("#qa-top-menu").css("display", "none").fadeOut("slow");
-                $("#site-header").css("background-color", "black");
+                $("#site-header").addClass("site-menu-scroll");
+                $("#site-header").css("background-color", "rgba(0,0,0,0.7)");
                 $("#site-header").css("color", "white");
 
             } else {
                 $("#qa-top-menu").css("display", "normal").fadeIn("slow");
+                $("#site-header").removeClass("site-menu-scroll");
                 $("#site-header").css("background-color", "white");
                 $("#site-header").css("color", "#333");
             }

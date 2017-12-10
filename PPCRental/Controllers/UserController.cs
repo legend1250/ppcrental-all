@@ -182,8 +182,44 @@ namespace PPCRental.Controllers
         {
             ViewModels vm = new ViewModels();
             vm.zSecurity = db.security_questions.ToList();
+            if (Session["UserID"]==null)
+            {
+                Session["login-status"] = "NotLogin";
+                return Redirect("~/User/Login");
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                USER user = db.USERs.Find(userID);
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+            }
             
+           
             return View(vm);
+
+        }
+        [HttpPost]
+        public ActionResult verifyUser(int userQuestion,String userAnswer)
+        {
+            int userID = (int)Session["UserID"];
+            USER user = db.USERs.Find(userID);
+            String yourAnswer = userAnswer;
+            int yourQuestion = userQuestion;
+           
+            if (user.SecretQuestion_ID == yourQuestion && user.Answer == yourAnswer.Trim())
+            {
+                Session["VerifyUser"] = "Verified";
+                return Redirect("~/User/Security");
+            }
+            else
+            {
+                ViewModels vm = new ViewModels();
+                vm.zSecurity = db.security_questions.ToList();
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+                ViewBag.VerifyMessage ="Your anwser not match with your answer in database";
+                return View(vm);
+            }
+            
         }
 
     }
