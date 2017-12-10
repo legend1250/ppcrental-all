@@ -137,18 +137,19 @@ namespace PPCRental.Controllers
         {
             return View();
         }
-
+        public ActionResult userManagement()
+        {
+            return userManagement(10);
+        }
+        [HttpPost]
         public ActionResult userManagement(int? role_id)
         {
-            if(role_id == null)
+
+            if (role_id == null || role_id == 10)
             {
                 var users = db.UserManagements.ToList();
                 return View(users);
-            }
-            else if( role_id == 10)
-            {
-                var users = db.UserManagements.ToList();
-                return View(users);
+                
             }
             else
             {
@@ -156,8 +157,23 @@ namespace PPCRental.Controllers
                 return View(users);
             }
 
+        }
+
+        public JsonResult manageUser(int role_id)
+        {
+            if(role_id == 10)
+            {
+                var users = db.UserManagements.ToArray();
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var users = db.UserManagements.ToArray().Where(x => x.RoleID == role_id);
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
+            }
+
             
-        }        
+        }
 
 
         private string hashPwd(string pwd)
