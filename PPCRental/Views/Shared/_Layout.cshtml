@@ -138,12 +138,13 @@
                 $("#site-header").addClass("site-menu-scroll");
                 $("#site-header").css("background-color", "rgba(0,0,0,0.7)");
                 $("#site-header").css("color", "white");
-
+                $("#site-logo img").attr("src","../img/footer-logo.png")
             } else {
                 $("#qa-top-menu").css("display", "normal").fadeIn("slow");
                 $("#site-header").removeClass("site-menu-scroll");
                 $("#site-header").css("background-color", "white");
                 $("#site-header").css("color", "#333");
+                $("#site-logo img").attr("src", "../img/logo.png")
             }
            
         });
