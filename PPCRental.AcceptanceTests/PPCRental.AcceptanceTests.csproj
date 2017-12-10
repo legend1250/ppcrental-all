@@ -85,6 +85,16 @@
       <DependentUpon>UC002_ViewListOfProject.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\UC002_ViewListOfProjectSteps.cs" />
+    <Compile Include="Features\UC003_ViewDetailProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC003_ViewDetailProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\UC004_PostProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC004_PostProject.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\UC007_Login-Logout.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,12 +103,22 @@
     <Compile Include="Features\UC007_Login_LogoutSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\ProjectSearchSteps.cs" />
+    <Compile Include="StepDefinitions\UC003_ViewDetailProjectSteps.cs" />
+    <Compile Include="StepDefinitions\UC004_PostProjectSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Features\UC002_ViewListOfProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC002_ViewListOfProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC003_ViewDetailProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC003_ViewDetailProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC004_PostProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC004_PostProject.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\UC007_Login-Logout.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
