@@ -12,5 +12,10 @@ namespace PPCRental.Driver
         public List<DISTRICT> zDistricts { get; set; }
         public List<STREET> zStreets { get; set; }
         public List<security_questions> zSecurity { get; set; }
+        public List<PROPERTY_TYPE> propertyTypeService
+        {
+            get;
+            set;
+        }
     }
 }

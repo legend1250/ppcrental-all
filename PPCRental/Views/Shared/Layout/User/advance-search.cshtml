@@ -1,57 +1,37 @@
-﻿<div id="advance-search" class="main-page clearfix" role="search">
+﻿@model PPCRental.Driver.ViewModels  
+<div id="advance-search" class="main-page clearfix" role="search">
     <div class="container">
         <button class="btn top-btn">Find Your Place</button>
         <form id="adv-search-form" class="clearfix" action="@Url.Action("Searching","Project")" method="GET">
             <fieldset>
                 <input type="text" name="projectname" id="project-name" placeholder="Project name">
-                <select name="location" id="main-location">
-                    <option value="">All Cities</option>
-                    <option value="chicago"> Chicago</option>
-                    <option value="los-angeles"> Los Angeles</option>
-                    <option value="miami"> Miami</option>
-                    <option value="new-york"> New York</option>
+                <select name="district" id="district">
+                    <option value="-1" selected disabled style="font-weight:bold">District</option>
+                    @foreach (var item in Model.zDistricts)
+                    {
+                        <option value="@item.ID">@item.DistrictName</option>
+                    }
                 </select>
-                <select name="sub-location" id="property-sub-location">
-                    <option value="">All Areas</option>
-                    <option value="brickell"> Brickell</option>
-                    <option value="brickyard"> Brickyard</option>
-                    <option value="bronx"> Bronx</option>
-                    <option value="brooklyn"> Brooklyn</option>
-                    <option value="coconut-grove"> Coconut Grove</option>
-                    <option value="downtown"> Downtown</option>
-                    <option value="eagle-rock"> Eagle Rock</option>
-                    <option value="englewood"> Englewood</option>
-                    <option value="hermosa"> Hermosa</option>
-                    <option value="hollywood"> Hollywood </option>
-                    <option value="lincoln-park"> Lincoln Park</option>
-                    <option value="manhattan"> Manhattan</option>
-                    <option value="midtown"> Midtown</option>
-                    <option value="queens"> Queens</option>
-                    <option value="westwood"> Westwood </option>
-                    <option value="wynwood"> Wynwood</option>
+                <select name="street" id="street">
+                    <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                    @foreach (var item in Model.zStreets)
+                    {
+                        <option value="@item.District_ID">@item.StreetName</option>
+                    }
                 </select>
-                <select id="property-status" name="status">
-                    <option value="">All Status</option>
-                    <option value="for-rent"> For Rent</option>
-                    <option value="for-sale"> For Sale</option>
-                    <option value="foreclosures"> Foreclosures</option>
-                    <option value="new-costruction"> New Costruction</option>
-                    <option value="new-listing"> New Listing</option>
-                    <option value="open-house"> Open House</option>
-                    <option value="reduced-price"> Reduced Price</option>
-                    <option value="resale"> Resale</option>
+                <select id="ward" name="ward">
+                    <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                    @foreach (var item in Model.zWards)
+                    {
+                        <option value="@item.District_ID">@item.WardName</option>
+                    }
                 </select>
-                <select id="property-type" name="type">
-                    <option value="">All Types</option>
-                    <option value="apartment"> Apartment</option>
-                    <option value="condo"> Condo</option>
-                    <option value="farm"> Farm</option>
-                    <option value="loft"> Loft</option>
-                    <option value="lot"> Lot</option>
-                    <option value="multi-family-home"> Multi Family Home</option>
-                    <option value="single-family-home"> Single Family Home</option>
-                    <option value="townhouse"> Townhouse</option>
-                    <option value="villa"> Villa</option>
+                <select id="ptype" name="ptype">
+                    <option value="-1" selected style="font-weight:bold">Type of project</option>
+                    <option value="1">Apartment</option>
+                    <option value="2">Villa</option>
+                    <option value="3">Office</option>
+                    <option value="4">House</option>  
                 </select>
                 <select name="bedrooms" id="property-beds">
                     <option value="">Beds</option>
@@ -81,8 +61,8 @@
                     <option value="10">10</option>
                     <option value="any">Any</option>
                 </select>
-                <input type="text" name="min-area" id="property-min-area" placeholder="Min Area (sqft)">
-                <input type="text" name="max-area" id="property-max-area" placeholder="Max Area (sqft)">
+                <input type="text" name="min-area" id="property-min-area" placeholder="Min Area (m2)">
+                <input type="text" name="max-area" id="property-max-area" placeholder="Max Area (m2)">
                 <select name="min-price" id="property-min-price">
                     <option value="any" selected="selected">Min Price</option>
                     <option value="1000">$1000</option>
