@@ -5,12 +5,11 @@
 
 @mytag
 Scenario: Change Password
-	Given I'm in HomePage
+	Given I'm in Home Page
 	And Navigate to Login Page
 	And I input UserName and Password
 	When I click Log In button
-	Then Navigate to HomePage
-	When I click  Change Password button
+	Then I click  Change Password button
 	And I input my answer for security question
 	And I click Submit button
 	Then Navigate to Set New Password Page

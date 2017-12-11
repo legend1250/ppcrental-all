@@ -9,7 +9,7 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
     public class ChangePasswordTestSteps
     {
         public IWebDriver driver;
-        [Given(@"I'm in HomePage")]
+        [Given(@"I'm in Home Page")]
         public void GivenIMInHomePage()
         {
             driver = new ChromeDriver();
@@ -21,7 +21,7 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         {
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
         }
-        
+
         [Given(@"I input UserName and Password")]
         public void GivenIInputUserNameAndPassword()
         {
@@ -35,26 +35,20 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             driver.FindElement(By.Id("wp-submit")).Click();
         }
 
-        [Then(@"Navigate to HomePage")]
-        public void ThenNavigateToHomePage()
-        {
-            driver.Navigate().GoToUrl("http://localhost:53887/");
-        }
-
-        [When(@"I click  Change Password button")]
-        public void WhenIClickChangePasswordButton()
+        [Then(@"I click  Change Password button")]
+        public void ThenIClickChangePasswordButton()
         {
             driver.Navigate().GoToUrl("http://localhost:53887/User/VerifyUser");
         }
 
-        [When(@"I input my answer for security question")]
-        public void WhenIInputMyAnswerForSecurityQuestion()
+        [Then(@"I input my answer for security question")]
+        public void ThenIInputMyAnswerForSecurityQuestion()
         {
             driver.FindElement(By.Id("Answer")).SendKeys("123456789");
         }
 
-        [When(@"I click Submit button")]
-        public void WhenIClickSubmitButton()
+        [Then(@"I click Submit button")]
+        public void ThenIClickSubmitButton()
         {
             driver.FindElement(By.Id("submit")).Click();
         }
@@ -72,19 +66,17 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             driver.FindElement(By.Id("newPassword")).SendKeys("123456");
             driver.FindElement(By.Id("rePassword")).SendKeys("123456");
         }
-
+        
         [When(@"I Click Set New Password button")]
         public void WhenIClickSetNewPasswordButton()
         {
             driver.FindElement(By.Id("qa_submit")).Click();
         }
 
-
         [Then(@"Show ""(.*)"" message")]
         public void ThenShowMessage(string p0)
         {
             ScenarioContext.Current.Pending();
         }
-
     }
 }

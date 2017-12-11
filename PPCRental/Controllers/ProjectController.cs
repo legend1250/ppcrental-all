@@ -15,7 +15,7 @@ namespace PPCRental.Controllers
         // GET: Project
         public ProjectController()
         {
-            db = new ppcrental3119Entities();
+            db = new ppcrental3119Entities();   
         }
         public ActionResult ProjectList()
         {
