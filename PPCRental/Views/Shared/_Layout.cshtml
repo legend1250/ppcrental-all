@@ -35,9 +35,10 @@
         <div id="qa-top-menu">
             <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
             @{
-                
+
                 //get cookie
                 HttpCookie userName = Request.Cookies["UserName"];
+                
                 // HttpSessionStateBase httpSession;
                 if (Session["user"] != null)
                 {
@@ -58,10 +59,11 @@
                 else if(userName != null){
                     HttpCookie userRole = Request.Cookies["userRole"];
                     HttpCookie userID = Request.Cookies["UserID"];
+                    
                     Session["user"] =userName.Value.ToString();
-                    Session["userID"] = userID.Value.ToString();
+                    Session["userID"] = int.Parse(userID.Value);
                     Session["userRole"] = userRole.Value.ToString();
-                    Session["VerifyUser"] = "NotVerify";
+                   
                     if (userRole.Value.ToString().Equals("Agency"))
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
@@ -82,6 +84,39 @@
                 else
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                }
+                HttpCookie Verify = Request.Cookies["VerifyUser"];
+
+                String verify = Session["VerifyUser"] as String;
+                if (Session["VerifyUser"] ==null||!verify.Equals("Verified"))
+                {
+                    if (Session["userID"] != null)
+                    {
+                        HttpCookie UserID = new HttpCookie(Session["userID"].ToString());
+                        if (HttpContext.Current.Response.Cookies.AllKeys.Contains(Session["userID"].ToString()))
+                        {
+                            if ((int)Session["userID"] == int.Parse(UserID.Value))
+                            {
+                                Session["VerifyUser"] = Verify.Value.ToString();
+                                if (Verify == null)
+                                {
+                                    Session["VerifyUser"] = "NotVerify";
+                                }
+                                else if (UserID != null)
+                                {
+
+                                }
+                            }
+                        }
+
+
+
+
+
+                    }
+                }
+
+
                 }
 
 

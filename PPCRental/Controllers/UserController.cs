@@ -102,6 +102,48 @@ namespace PPCRental.Controllers
         }
         public void Logout()
         {
+            bool rollbackVerify = false,rollbackID=false;
+            //trước khi xóa hết kiểm tra xem user có verify chưa,nó có thì lưu lại
+            HttpCookie Verify = Request.Cookies["VerifyUser"];
+            int userID = (int)Session["userID"];
+            HttpCookie UserID = new HttpCookie(userID.ToString(), userID.ToString());
+            if (Verify!=null)
+            {
+                rollbackVerify = true;
+            }
+            if (UserID!=null)
+            {
+                rollbackID = true;
+            }
+            //remove all cookie
+            HttpCookie aCookie;
+            string cookieName;
+            int limit = Request.Cookies.Count;
+            for (int i = 0; i < limit; i++)
+            {
+                cookieName = Request.Cookies[i].Name;
+                aCookie = new HttpCookie(cookieName);
+                aCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(aCookie);
+
+            }
+            
+            //verify cookie existed
+            if (rollbackVerify)
+            {
+                //roll back verify cookie
+               
+                
+                Verify = new HttpCookie("VerifyUser", "Verified");
+                Verify.Expires.AddDays(7);
+                HttpContext.Response.SetCookie(Verify);
+            }
+            if (rollbackID)
+            {
+                UserID = new HttpCookie(userID.ToString(), userID.ToString());
+                UserID.Expires.AddDays(7);
+                HttpContext.Response.SetCookie(UserID);
+            }
             Session.RemoveAll();
             Session["User"] = null;
             Response.Redirect("~/Home/Index");
@@ -297,14 +339,14 @@ namespace PPCRental.Controllers
         {
             ViewModels vm = new ViewModels();
             vm.zSecurity = db.security_questions.ToList();
-            if (Session["UserID"]==null)
+            if (Session["userID"]==null)
             {
                 Session["login-status"] = "NotLogin";
                 return Redirect("~/User/Login");
             }
             else
             {
-                int userID = (int)Session["UserID"];
+                int userID = (int)Session["userID"];
                 USER user = db.USERs.Find(userID);
                 ViewBag.userQuestion = user.SecretQuestion_ID;
             }
@@ -317,7 +359,7 @@ namespace PPCRental.Controllers
         public ActionResult verifyUser(int userQuestion,String userAnswer)
         {
             String path = Session["SavePath"] as String;
-            int userID = (int)Session["UserID"];
+            int userID = (int)Session["userID"];
             USER user = db.USERs.Find(userID);
             String yourAnswer = userAnswer;
             int yourQuestion = userQuestion;
@@ -325,6 +367,14 @@ namespace PPCRental.Controllers
             if (user.SecretQuestion_ID == yourQuestion && user.Answer == yourAnswer.Trim())
             {
                 Session["VerifyUser"] = "Verified";
+
+                //add cookie
+                HttpCookie UserID = new HttpCookie(userID.ToString(), userID.ToString());
+                UserID.Expires.AddDays(7);
+                HttpContext.Response.SetCookie(UserID);
+                HttpCookie Verify = new HttpCookie("VerifyUser", "Verified");
+                Verify.Expires.AddDays(7);
+                HttpContext.Response.SetCookie(Verify);
 
                 //return Redirect("~/User/Security");
                 return Redirect("~" + path);     
