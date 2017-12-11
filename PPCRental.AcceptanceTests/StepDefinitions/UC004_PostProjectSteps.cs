@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Support.UI;
+using System.Web;
 
 namespace PPCRental.AcceptanceTests.StepDefinitions
 {
@@ -38,8 +39,29 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         [When(@"I fill in all the fields")]
         public void WhenIFillInAllTheFields()
         {
-            driver.FindElement(By.Id("name")).SendKeys("home stay ba con soc");
-            string ava = driver.FindElement(By.Id("ava")).Text;
+            //driver.FindElement(By.Id("name")).SendKeys("home stay ba con soc");
+            //string ava = driver.FindElement(By.Id("ava")).Text;
+            //var httpContextMock = new Mock<HttpContextBase>();
+            //var serverMock = new Mock<HttpServerUtilityBase>();
+            //serverMock.Setup(x => x.MapPath("~/app_data")).Returns(@"c:\work\app_data");
+            //httpContextMock.Setup(x => x.Server).Returns(serverMock.Object);
+            //var sut = new HomeController();
+            //sut.ControllerContext = new ControllerContext(httpContextMock.Object, new RouteData(), sut);
+
+            //var file1Mock = new Mock<HttpPostedFileBase>();
+            //file1Mock.Setup(x => x.FileName).Returns("file1.pdf");
+            //var file2Mock = new Mock<HttpPostedFileBase>();
+            //file2Mock.Setup(x => x.FileName).Returns("file2.doc");
+            //var files = new[] { file1Mock.Object, file2Mock.Object };
+
+            // act
+            //var actual = sut.UploadFile(files);
+
+            //// assert
+            //file1Mock.Verify(x => x.SaveAs(@"c:\work\app_data\file1.pdf"));
+            //file2Mock.Verify(x => x.SaveAs(@"c:\work\app_data\file2.doc"));
+
+
             string ima = driver.FindElement(By.Id("ima")).Text;
             //GetAttribute(attributeName: "");
            string price= driver.FindElement(By.Id("price")).Text;
