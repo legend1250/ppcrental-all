@@ -18,11 +18,11 @@ namespace PPCRental.Models
         public string PropertyName { get; set; }
         public string Avatar { get; set; }
         public Nullable<int> Price { get; set; }
-        public string StreetName { get; set; }
-        public string DistrictName { get; set; }
-        public string WardName { get; set; }
         public string Area { get; set; }
         public Nullable<int> BedRoom { get; set; }
         public Nullable<int> BathRoom { get; set; }
+        public string DistrictName { get; set; }
+        public string WardName { get; set; }
+        public string StreetName { get; set; }
     }
 }
