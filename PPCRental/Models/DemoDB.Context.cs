@@ -31,12 +31,12 @@ namespace PPCRental.Models
         public virtual DbSet<PROPERTY> PROPERTies { get; set; }
         public virtual DbSet<PROPERTY_FEATURE> PROPERTY_FEATURE { get; set; }
         public virtual DbSet<PROPERTY_TYPE> PROPERTY_TYPE { get; set; }
+        public virtual DbSet<ROLE> ROLEs { get; set; }
+        public virtual DbSet<security_questions> security_questions { get; set; }
         public virtual DbSet<STREET> STREETs { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<WARD> WARDs { get; set; }
-        public virtual DbSet<View_project_from_index> View_project_from_index { get; set; }
-        public virtual DbSet<ROLE> ROLEs { get; set; }
-        public virtual DbSet<security_questions> security_questions { get; set; }
         public virtual DbSet<UserManagement> UserManagements { get; set; }
+        public virtual DbSet<View_project_from_index> View_project_from_index { get; set; }
     }
 }

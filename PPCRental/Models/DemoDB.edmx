@@ -53,7 +53,7 @@
           <Property Name="Create_post" Type="date" />
           <Property Name="Status_ID" Type="int" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
-          <Property Name="Updated_at" Type="date" />
+          <Property Name="Updated_at" Type="datetime" />
           <Property Name="Sale_ID" Type="int" />
         </EntityType>
         <EntityType Name="PROPERTY_FEATURE">
@@ -126,7 +126,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.UserManagement' does not have a 
         <EntityType Name="UserManagement">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="question" />
+            <PropertyRef Name="Question_String" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -136,7 +136,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.UserManagement' does not have a 
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="RoleID" Type="int" />
           <Property Name="Status" Type="bit" />
-          <Property Name="question" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SecretQuestion_ID" Type="int" />
+          <Property Name="Question_String" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Answer" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -152,9 +153,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Area" Type="nvarchar" MaxLength="30" />
           <Property Name="BedRoom" Type="int" />
           <Property Name="BathRoom" Type="int" />
+          <Property Name="PackingPlace" Type="int" />
           <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
           <Property Name="WardName" Type="nvarchar" MaxLength="50" />
           <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated_at" Type="date" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
@@ -334,7 +337,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [UserManagement].[Address] AS [Address], 
     [UserManagement].[RoleID] AS [RoleID], 
     [UserManagement].[Status] AS [Status], 
-    [UserManagement].[question] AS [question], 
+    [UserManagement].[SecretQuestion_ID] AS [SecretQuestion_ID], 
+    [UserManagement].[Question_String] AS [Question_String], 
     [UserManagement].[Answer] AS [Answer]
     FROM [dbo].[UserManagement] AS [UserManagement]</DefiningQuery>
           </EntitySet>
@@ -347,9 +351,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[Area] AS [Area], 
     [View_project_from_index].[BedRoom] AS [BedRoom], 
     [View_project_from_index].[BathRoom] AS [BathRoom], 
+    [View_project_from_index].[PackingPlace] AS [PackingPlace], 
     [View_project_from_index].[DistrictName] AS [DistrictName], 
     [View_project_from_index].[WardName] AS [WardName], 
-    [View_project_from_index].[StreetName] AS [StreetName]
+    [View_project_from_index].[StreetName] AS [StreetName], 
+    [View_project_from_index].[Updated_at] AS [Updated_at]
     FROM [dbo].[View_project_from_index] AS [View_project_from_index]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="Self.FK_PROPERTY_DISTRICT">
@@ -409,6 +415,73 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ppcrental3119Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ppcrental3119Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DISTRICTs" EntityType="ppcrental3119Model.DISTRICT" />
+          <EntitySet Name="FEATUREs" EntityType="ppcrental3119Model.FEATURE" />
+          <EntitySet Name="PROJECT_STATUS" EntityType="ppcrental3119Model.PROJECT_STATUS" />
+          <EntitySet Name="PROPERTies" EntityType="ppcrental3119Model.PROPERTY" />
+          <EntitySet Name="PROPERTY_FEATURE" EntityType="ppcrental3119Model.PROPERTY_FEATURE" />
+          <EntitySet Name="PROPERTY_TYPE" EntityType="ppcrental3119Model.PROPERTY_TYPE" />
+          <EntitySet Name="ROLEs" EntityType="ppcrental3119Model.ROLE" />
+          <EntitySet Name="security_questions" EntityType="ppcrental3119Model.security_questions" />
+          <EntitySet Name="STREETs" EntityType="ppcrental3119Model.STREET" />
+          <EntitySet Name="USERs" EntityType="ppcrental3119Model.USER" />
+          <EntitySet Name="WARDs" EntityType="ppcrental3119Model.WARD" />
+          <EntitySet Name="UserManagements" EntityType="ppcrental3119Model.UserManagement" />
+          <EntitySet Name="View_project_from_index" EntityType="ppcrental3119Model.View_project_from_index" />
+          <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="ppcrental3119Model.FK_PROPERTY_DISTRICT">
+            <End Role="DISTRICT" EntitySet="DISTRICTs" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STREET_DISTRICT" Association="ppcrental3119Model.FK_STREET_DISTRICT">
+            <End Role="DISTRICT" EntitySet="DISTRICTs" />
+            <End Role="STREET" EntitySet="STREETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WARD_DISTRICT" Association="ppcrental3119Model.FK_WARD_DISTRICT">
+            <End Role="DISTRICT" EntitySet="DISTRICTs" />
+            <End Role="WARD" EntitySet="WARDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_FEATURE_FEATURE" Association="ppcrental3119Model.FK_PROPERTY_FEATURE_FEATURE">
+            <End Role="FEATURE" EntitySet="FEATUREs" />
+            <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_PROJECT_STATUS" Association="ppcrental3119Model.FK_PROPERTY_PROJECT_STATUS">
+            <End Role="PROJECT_STATUS" EntitySet="PROJECT_STATUS" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_FEATURE_PROPERTY" Association="ppcrental3119Model.FK_PROPERTY_FEATURE_PROPERTY">
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+            <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_PROPERTY_TYPE" Association="ppcrental3119Model.FK_PROPERTY_PROPERTY_TYPE">
+            <End Role="PROPERTY_TYPE" EntitySet="PROPERTY_TYPE" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_STREET1" Association="ppcrental3119Model.FK_PROPERTY_STREET1">
+            <End Role="STREET" EntitySet="STREETs" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_USER" Association="ppcrental3119Model.FK_PROPERTY_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_USER1" Association="ppcrental3119Model.FK_PROPERTY_USER1">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPERTY_WARD" Association="ppcrental3119Model.FK_PROPERTY_WARD">
+            <End Role="WARD" EntitySet="WARDs" />
+            <End Role="PROPERTY" EntitySet="PROPERTies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE" Association="ppcrental3119Model.FK_USER_ROLE">
+            <End Role="ROLE" EntitySet="ROLEs" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_SecurityQuestion" Association="ppcrental3119Model.FK_USER_SecurityQuestion">
+            <End Role="security_questions" EntitySet="security_questions" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="DISTRICT">
           <Key>
             <PropertyRef Name="ID" />
@@ -416,9 +489,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_DISTRICT" FromRole="DISTRICT" ToRole="PROPERTY" />
-          <NavigationProperty Name="STREETs" Relationship="Self.FK_STREET_DISTRICT" FromRole="DISTRICT" ToRole="STREET" />
-          <NavigationProperty Name="WARDs" Relationship="Self.FK_WARD_DISTRICT" FromRole="DISTRICT" ToRole="WARD" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_DISTRICT" FromRole="DISTRICT" ToRole="PROPERTY" />
+          <NavigationProperty Name="STREETs" Relationship="ppcrental3119Model.FK_STREET_DISTRICT" FromRole="DISTRICT" ToRole="STREET" />
+          <NavigationProperty Name="WARDs" Relationship="ppcrental3119Model.FK_WARD_DISTRICT" FromRole="DISTRICT" ToRole="WARD" />
         </EntityType>
         <EntityType Name="FEATURE">
           <Key>
@@ -427,7 +500,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FeatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="PROPERTY_FEATURE" Relationship="Self.FK_PROPERTY_FEATURE_FEATURE" FromRole="FEATURE" ToRole="PROPERTY_FEATURE" />
+          <NavigationProperty Name="PROPERTY_FEATURE" Relationship="ppcrental3119Model.FK_PROPERTY_FEATURE_FEATURE" FromRole="FEATURE" ToRole="PROPERTY_FEATURE" />
         </EntityType>
         <EntityType Name="PROJECT_STATUS">
           <Key>
@@ -436,7 +509,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Status_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_PROJECT_STATUS" FromRole="PROJECT_STATUS" ToRole="PROPERTY" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_PROJECT_STATUS" FromRole="PROJECT_STATUS" ToRole="PROPERTY" />
         </EntityType>
         <EntityType Name="PROPERTY">
           <Key>
@@ -462,16 +535,16 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Create_post" Type="DateTime" Precision="0" />
           <Property Name="Status_ID" Type="Int32" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Updated_at" Type="DateTime" Precision="0" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="Sale_ID" Type="Int32" />
-          <NavigationProperty Name="DISTRICT" Relationship="Self.FK_PROPERTY_DISTRICT" FromRole="PROPERTY" ToRole="DISTRICT" />
-          <NavigationProperty Name="PROJECT_STATUS" Relationship="Self.FK_PROPERTY_PROJECT_STATUS" FromRole="PROPERTY" ToRole="PROJECT_STATUS" />
-          <NavigationProperty Name="PROPERTY_FEATURE" Relationship="Self.FK_PROPERTY_FEATURE_PROPERTY" FromRole="PROPERTY" ToRole="PROPERTY_FEATURE" />
-          <NavigationProperty Name="PROPERTY_TYPE" Relationship="Self.FK_PROPERTY_PROPERTY_TYPE" FromRole="PROPERTY" ToRole="PROPERTY_TYPE" />
-          <NavigationProperty Name="STREET" Relationship="Self.FK_PROPERTY_STREET1" FromRole="PROPERTY" ToRole="STREET" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_PROPERTY_USER" FromRole="PROPERTY" ToRole="USER" />
-          <NavigationProperty Name="USER1" Relationship="Self.FK_PROPERTY_USER1" FromRole="PROPERTY" ToRole="USER" />
-          <NavigationProperty Name="WARD" Relationship="Self.FK_PROPERTY_WARD" FromRole="PROPERTY" ToRole="WARD" />
+          <NavigationProperty Name="DISTRICT" Relationship="ppcrental3119Model.FK_PROPERTY_DISTRICT" FromRole="PROPERTY" ToRole="DISTRICT" />
+          <NavigationProperty Name="PROJECT_STATUS" Relationship="ppcrental3119Model.FK_PROPERTY_PROJECT_STATUS" FromRole="PROPERTY" ToRole="PROJECT_STATUS" />
+          <NavigationProperty Name="PROPERTY_FEATURE" Relationship="ppcrental3119Model.FK_PROPERTY_FEATURE_PROPERTY" FromRole="PROPERTY" ToRole="PROPERTY_FEATURE" />
+          <NavigationProperty Name="PROPERTY_TYPE" Relationship="ppcrental3119Model.FK_PROPERTY_PROPERTY_TYPE" FromRole="PROPERTY" ToRole="PROPERTY_TYPE" />
+          <NavigationProperty Name="STREET" Relationship="ppcrental3119Model.FK_PROPERTY_STREET1" FromRole="PROPERTY" ToRole="STREET" />
+          <NavigationProperty Name="USER" Relationship="ppcrental3119Model.FK_PROPERTY_USER" FromRole="PROPERTY" ToRole="USER" />
+          <NavigationProperty Name="USER1" Relationship="ppcrental3119Model.FK_PROPERTY_USER1" FromRole="PROPERTY" ToRole="USER" />
+          <NavigationProperty Name="WARD" Relationship="ppcrental3119Model.FK_PROPERTY_WARD" FromRole="PROPERTY" ToRole="WARD" />
         </EntityType>
         <EntityType Name="PROPERTY_FEATURE">
           <Key>
@@ -480,8 +553,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Property_ID" Type="Int32" />
           <Property Name="Feature_ID" Type="Int32" />
-          <NavigationProperty Name="FEATURE" Relationship="Self.FK_PROPERTY_FEATURE_FEATURE" FromRole="PROPERTY_FEATURE" ToRole="FEATURE" />
-          <NavigationProperty Name="PROPERTY" Relationship="Self.FK_PROPERTY_FEATURE_PROPERTY" FromRole="PROPERTY_FEATURE" ToRole="PROPERTY" />
+          <NavigationProperty Name="FEATURE" Relationship="ppcrental3119Model.FK_PROPERTY_FEATURE_FEATURE" FromRole="PROPERTY_FEATURE" ToRole="FEATURE" />
+          <NavigationProperty Name="PROPERTY" Relationship="ppcrental3119Model.FK_PROPERTY_FEATURE_PROPERTY" FromRole="PROPERTY_FEATURE" ToRole="PROPERTY" />
         </EntityType>
         <EntityType Name="PROPERTY_TYPE">
           <Key>
@@ -491,7 +564,24 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="CodeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_PROPERTY_TYPE" FromRole="PROPERTY_TYPE" ToRole="PROPERTY" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_PROPERTY_TYPE" FromRole="PROPERTY_TYPE" ToRole="PROPERTY" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_ROLE" FromRole="ROLE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="security_questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="security_questions" ToRole="USER" />
         </EntityType>
         <EntityType Name="STREET">
           <Key>
@@ -501,8 +591,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="District_ID" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="DISTRICT" Relationship="Self.FK_STREET_DISTRICT" FromRole="STREET" ToRole="DISTRICT" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_STREET1" FromRole="STREET" ToRole="PROPERTY" />
+          <NavigationProperty Name="DISTRICT" Relationship="ppcrental3119Model.FK_STREET_DISTRICT" FromRole="STREET" ToRole="DISTRICT" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_STREET1" FromRole="STREET" ToRole="PROPERTY" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -514,13 +604,13 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_USER" FromRole="USER" ToRole="PROPERTY" />
-          <NavigationProperty Name="PROPERTies1" Relationship="Self.FK_PROPERTY_USER1" FromRole="USER" ToRole="PROPERTY" />
           <Property Name="RoleID" Type="Int32" />
-          <NavigationProperty Name="ROLE" Relationship="ppcrental3119Model.FK_USER_ROLE" FromRole="USER" ToRole="ROLE" />
+          <Property Name="Status" Type="Boolean" />
           <Property Name="SecretQuestion_ID" Type="Int32" />
           <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_USER" FromRole="USER" ToRole="PROPERTY" />
+          <NavigationProperty Name="PROPERTies1" Relationship="ppcrental3119Model.FK_PROPERTY_USER1" FromRole="USER" ToRole="PROPERTY" />
+          <NavigationProperty Name="ROLE" Relationship="ppcrental3119Model.FK_USER_ROLE" FromRole="USER" ToRole="ROLE" />
           <NavigationProperty Name="security_questions" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="USER" ToRole="security_questions" />
         </EntityType>
         <EntityType Name="WARD">
@@ -531,12 +621,46 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="District_ID" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="DISTRICT" Relationship="Self.FK_WARD_DISTRICT" FromRole="WARD" ToRole="DISTRICT" />
-          <NavigationProperty Name="PROPERTies" Relationship="Self.FK_PROPERTY_WARD" FromRole="WARD" ToRole="PROPERTY" />
+          <NavigationProperty Name="DISTRICT" Relationship="ppcrental3119Model.FK_WARD_DISTRICT" FromRole="WARD" ToRole="DISTRICT" />
+          <NavigationProperty Name="PROPERTies" Relationship="ppcrental3119Model.FK_PROPERTY_WARD" FromRole="WARD" ToRole="PROPERTY" />
+        </EntityType>
+        <EntityType Name="UserManagement">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Question_String" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="SecretQuestion_ID" Type="Int32" />
+          <Property Name="Question_String" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_project_from_index">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Area" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BedRoom" Type="Int32" />
+          <Property Name="BathRoom" Type="Int32" />
+          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_at" Type="DateTime" Precision="0" />
+          <Property Name="PackingPlace" Type="Int32" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
-          <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DISTRICT">
               <PropertyRef Name="ID" />
@@ -547,8 +671,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STREET_DISTRICT">
-          <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
-          <End Role="STREET" Type="Self.STREET" Multiplicity="*" />
+          <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.STREET" Role="STREET" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DISTRICT">
               <PropertyRef Name="ID" />
@@ -559,8 +683,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WARD_DISTRICT">
-          <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
-          <End Role="WARD" Type="Self.WARD" Multiplicity="*" />
+          <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.WARD" Role="WARD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DISTRICT">
               <PropertyRef Name="ID" />
@@ -571,8 +695,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_FEATURE_FEATURE">
-          <End Role="FEATURE" Type="Self.FEATURE" Multiplicity="0..1" />
-          <End Role="PROPERTY_FEATURE" Type="Self.PROPERTY_FEATURE" Multiplicity="*" />
+          <End Type="ppcrental3119Model.FEATURE" Role="FEATURE" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY_FEATURE" Role="PROPERTY_FEATURE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FEATURE">
               <PropertyRef Name="ID" />
@@ -583,8 +707,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_PROJECT_STATUS">
-          <End Role="PROJECT_STATUS" Type="Self.PROJECT_STATUS" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.PROJECT_STATUS" Role="PROJECT_STATUS" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROJECT_STATUS">
               <PropertyRef Name="ID" />
@@ -595,8 +719,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_FEATURE_PROPERTY">
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="0..1" />
-          <End Role="PROPERTY_FEATURE" Type="Self.PROPERTY_FEATURE" Multiplicity="*" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY_FEATURE" Role="PROPERTY_FEATURE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROPERTY">
               <PropertyRef Name="ID" />
@@ -607,8 +731,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_PROPERTY_TYPE">
-          <End Role="PROPERTY_TYPE" Type="Self.PROPERTY_TYPE" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.PROPERTY_TYPE" Role="PROPERTY_TYPE" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROPERTY_TYPE">
               <PropertyRef Name="ID" />
@@ -619,8 +743,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_STREET1">
-          <End Role="STREET" Type="Self.STREET" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.STREET" Role="STREET" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="STREET">
               <PropertyRef Name="ID" />
@@ -631,8 +755,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="ID" />
@@ -643,8 +767,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_USER1">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="ID" />
@@ -655,8 +779,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROPERTY_WARD">
-          <End Role="WARD" Type="Self.WARD" Multiplicity="0..1" />
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+          <End Type="ppcrental3119Model.WARD" Role="WARD" Multiplicity="0..1" />
+          <End Type="ppcrental3119Model.PROPERTY" Role="PROPERTY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WARD">
               <PropertyRef Name="ID" />
@@ -666,96 +790,6 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ppcrental3119Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DISTRICTs" EntityType="Self.DISTRICT" />
-          <EntitySet Name="FEATUREs" EntityType="Self.FEATURE" />
-          <EntitySet Name="PROJECT_STATUS" EntityType="Self.PROJECT_STATUS" />
-          <EntitySet Name="PROPERTies" EntityType="Self.PROPERTY" />
-          <EntitySet Name="PROPERTY_FEATURE" EntityType="Self.PROPERTY_FEATURE" />
-          <EntitySet Name="PROPERTY_TYPE" EntityType="Self.PROPERTY_TYPE" />
-          <EntitySet Name="STREETs" EntityType="Self.STREET" />
-          <EntitySet Name="USERs" EntityType="Self.USER" />
-          <EntitySet Name="WARDs" EntityType="Self.WARD" />
-          <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="Self.FK_PROPERTY_DISTRICT">
-            <End Role="DISTRICT" EntitySet="DISTRICTs" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STREET_DISTRICT" Association="Self.FK_STREET_DISTRICT">
-            <End Role="DISTRICT" EntitySet="DISTRICTs" />
-            <End Role="STREET" EntitySet="STREETs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WARD_DISTRICT" Association="Self.FK_WARD_DISTRICT">
-            <End Role="DISTRICT" EntitySet="DISTRICTs" />
-            <End Role="WARD" EntitySet="WARDs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_FEATURE_FEATURE" Association="Self.FK_PROPERTY_FEATURE_FEATURE">
-            <End Role="FEATURE" EntitySet="FEATUREs" />
-            <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_PROJECT_STATUS" Association="Self.FK_PROPERTY_PROJECT_STATUS">
-            <End Role="PROJECT_STATUS" EntitySet="PROJECT_STATUS" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_FEATURE_PROPERTY" Association="Self.FK_PROPERTY_FEATURE_PROPERTY">
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-            <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_PROPERTY_TYPE" Association="Self.FK_PROPERTY_PROPERTY_TYPE">
-            <End Role="PROPERTY_TYPE" EntitySet="PROPERTY_TYPE" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_STREET1" Association="Self.FK_PROPERTY_STREET1">
-            <End Role="STREET" EntitySet="STREETs" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_USER" Association="Self.FK_PROPERTY_USER">
-            <End Role="USER" EntitySet="USERs" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_USER1" Association="Self.FK_PROPERTY_USER1">
-            <End Role="USER" EntitySet="USERs" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_WARD" Association="Self.FK_PROPERTY_WARD">
-            <End Role="WARD" EntitySet="WARDs" />
-            <End Role="PROPERTY" EntitySet="PROPERTies" />
-          </AssociationSet>
-          <EntitySet Name="View_project_from_index" EntityType="ppcrental3119Model.View_project_from_index" />
-          <EntitySet Name="ROLEs" EntityType="ppcrental3119Model.ROLE" />
-          <AssociationSet Name="FK_USER_ROLE" Association="ppcrental3119Model.FK_USER_ROLE">
-            <End Role="ROLE" EntitySet="ROLEs" />
-            <End Role="USER" EntitySet="USERs" />
-          </AssociationSet>
-          <EntitySet Name="security_questions" EntityType="ppcrental3119Model.security_questions" />
-          <AssociationSet Name="FK_USER_SecurityQuestion" Association="ppcrental3119Model.FK_USER_SecurityQuestion">
-            <End Role="security_questions" EntitySet="security_questions" />
-            <End Role="USER" EntitySet="USERs" />
-          </AssociationSet>
-          <EntitySet Name="UserManagements" EntityType="ppcrental3119Model.UserManagement" />
-        </EntityContainer>
-        <EntityType Name="View_project_from_index">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="PropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="Int32" />
-          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Area" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="BedRoom" Type="Int32" />
-          <Property Name="BathRoom" Type="Int32" />
-        </EntityType>
-        <EntityType Name="ROLE">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="roleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_ROLE" FromRole="ROLE" ToRole="USER" />
-        </EntityType>
         <Association Name="FK_USER_ROLE">
           <End Type="ppcrental3119Model.ROLE" Role="ROLE" Multiplicity="0..1" />
           <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="*" />
@@ -768,15 +802,6 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="security_questions">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="is_active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="USERs" Relationship="ppcrental3119Model.FK_USER_SecurityQuestion" FromRole="security_questions" ToRole="USER" />
-        </EntityType>
         <Association Name="FK_USER_SecurityQuestion">
           <End Type="ppcrental3119Model.security_questions" Role="security_questions" Multiplicity="0..1" />
           <End Type="ppcrental3119Model.USER" Role="USER" Multiplicity="*" />
@@ -789,22 +814,6 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserManagement">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="question" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="Status" Type="Boolean" />
-          <Property Name="question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -814,125 +823,73 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="DISTRICTs">
             <EntityTypeMapping TypeName="ppcrental3119Model.DISTRICT">
               <MappingFragment StoreEntitySet="DISTRICT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FEATUREs">
             <EntityTypeMapping TypeName="ppcrental3119Model.FEATURE">
               <MappingFragment StoreEntitySet="FEATURE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROJECT_STATUS">
             <EntityTypeMapping TypeName="ppcrental3119Model.PROJECT_STATUS">
               <MappingFragment StoreEntitySet="PROJECT_STATUS">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROPERTies">
             <EntityTypeMapping TypeName="ppcrental3119Model.PROPERTY">
               <MappingFragment StoreEntitySet="PROPERTY">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="Images" ColumnName="Images" />
-                <ScalarProperty Name="PropertyType_ID" ColumnName="PropertyType_ID" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />
-                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
-                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
-                <ScalarProperty Name="BathRoom" ColumnName="BathRoom" />
-                <ScalarProperty Name="PackingPlace" ColumnName="PackingPlace" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
-                <ScalarProperty Name="Create_post" ColumnName="Create_post" />
-                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Sale_ID" ColumnName="Sale_ID" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Create_post" ColumnName="Create_post" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PackingPlace" ColumnName="PackingPlace" />
+                <ScalarProperty Name="BathRoom" ColumnName="BathRoom" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+                <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PropertyType_ID" ColumnName="PropertyType_ID" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROPERTY_FEATURE">
             <EntityTypeMapping TypeName="ppcrental3119Model.PROPERTY_FEATURE">
               <MappingFragment StoreEntitySet="PROPERTY_FEATURE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Property_ID" ColumnName="Property_ID" />
                 <ScalarProperty Name="Feature_ID" ColumnName="Feature_ID" />
+                <ScalarProperty Name="Property_ID" ColumnName="Property_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROPERTY_TYPE">
             <EntityTypeMapping TypeName="ppcrental3119Model.PROPERTY_TYPE">
               <MappingFragment StoreEntitySet="PROPERTY_TYPE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CodeType" ColumnName="CodeType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STREETs">
-            <EntityTypeMapping TypeName="ppcrental3119Model.STREET">
-              <MappingFragment StoreEntitySet="STREET">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USERs">
-            <EntityTypeMapping TypeName="ppcrental3119Model.USER">
-              <MappingFragment StoreEntitySet="USER">
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="SecretQuestion_ID" ColumnName="SecretQuestion_ID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WARDs">
-            <EntityTypeMapping TypeName="ppcrental3119Model.WARD">
-              <MappingFragment StoreEntitySet="WARD">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="WardName" ColumnName="WardName" />
-                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="View_project_from_index">
-            <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
-              <MappingFragment StoreEntitySet="View_project_from_index">
-                <ScalarProperty Name="BathRoom" ColumnName="BathRoom" />
-                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="WardName" ColumnName="WardName" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="CodeType" ColumnName="CodeType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -954,11 +911,21 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserManagements">
-            <EntityTypeMapping TypeName="ppcrental3119Model.UserManagement">
-              <MappingFragment StoreEntitySet="UserManagement">
+          <EntitySetMapping Name="STREETs">
+            <EntityTypeMapping TypeName="ppcrental3119Model.STREET">
+              <MappingFragment StoreEntitySet="STREET">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="ppcrental3119Model.USER">
+              <MappingFragment StoreEntitySet="USER">
                 <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="SecretQuestion_ID" ColumnName="SecretQuestion_ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -966,6 +933,51 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WARDs">
+            <EntityTypeMapping TypeName="ppcrental3119Model.WARD">
+              <MappingFragment StoreEntitySet="WARD">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="WardName" ColumnName="WardName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserManagements">
+            <EntityTypeMapping TypeName="ppcrental3119Model.UserManagement">
+              <MappingFragment StoreEntitySet="UserManagement">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Question_String" ColumnName="Question_String" />
+                <ScalarProperty Name="SecretQuestion_ID" ColumnName="SecretQuestion_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_project_from_index">
+            <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
+              <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="PackingPlace" ColumnName="PackingPlace" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="WardName" ColumnName="WardName" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="BathRoom" ColumnName="BathRoom" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

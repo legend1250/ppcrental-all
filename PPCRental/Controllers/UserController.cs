@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using PPCRental.Models;
 using System.Text;
 using System.Security.Cryptography;
+using System.Web.Services;
+using System.Web.Script.Services;
+using Newtonsoft.Json;
+using System.Data.Entity;
+
 using PPCRental.Driver;
 namespace PPCRental.Controllers
 {
@@ -70,7 +75,6 @@ namespace PPCRental.Controllers
         }
         public ActionResult Security()
         {
-            
             return View();
         }
         [HttpPost]
@@ -106,7 +110,11 @@ namespace PPCRental.Controllers
             return View();
 
         }
-        
+        [HttpPost]
+        public ActionResult changePassword()
+        {
+            return View();
+        }
         public ActionResult Register()
         {
             var obj = db.security_questions.ToList();
@@ -136,27 +144,105 @@ namespace PPCRental.Controllers
         {
             return View();
         }
-
-        public ActionResult userManagement(int? role_id)
+        public ActionResult UserManagement_Views()
         {
-            if(role_id == null)
+            var users = db.UserManagements.ToList();
+            ViewData["users"] = users;
+            ViewData["role"] = db.ROLEs.ToList();
+            return View();
+        }
+
+        public JsonResult ManageUser_Views(int role_id)
+        {
+            if(role_id == 10)
             {
-                var users = db.UserManagements.ToList();
-                return View(users);
-            }
-            else if( role_id == 10)
-            {
-                var users = db.UserManagements.ToList();
-                return View(users);
+                var users = db.UserManagements.ToArray();
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                var users = db.UserManagements.ToList().Where(x => x.RoleID == role_id);
-                return View(users);
+                var users = db.UserManagements.ToArray().Where(x => x.RoleID == role_id);
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
             }
 
             
-        }        
+        }
+
+        public ActionResult UserManagement_Edit()
+        {
+            var users = db.UserManagements.ToList();
+            ViewData["users"] = users;
+            ViewData["question"] = db.security_questions.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public JsonResult ManageUser_GetUser(int id)
+        {
+            //var user = db.USERs.FirstOrDefault( x => x.ID == id);
+            //var user = db.PROPERTies.SingleOrDefault(x => x.ID == id);
+
+            var usr = db.USERs.FirstOrDefault(x => x.ID == id);
+            var user = new
+            {
+                id = usr.ID,
+                email = usr.Email,
+                pwd = usr.Password,
+                fullname = usr.FullName,
+                phone = usr.Phone,
+                address = usr.Address,
+                role_id = usr.RoleID,
+                active = usr.Status,
+                security_question = usr.SecretQuestion_ID,
+                s_answer = usr.Answer
+            };
+            //Console.WriteLine(user); 
+            ViewData["question"] = db.security_questions.ToList();
+            
+            return Json(new { Data = user }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult ManageUser_EditUser(USER editedUser)
+        {
+            try
+            {
+
+                //var userID = editedUser.ID;
+                Console.WriteLine(editedUser);
+
+                var user = db.USERs.Where(x => x.ID == editedUser.ID).First();
+                var user2 = user;
+                Console.WriteLine(user2);
+
+                user.FullName = editedUser.FullName;
+                user.Email = editedUser.Email;
+                user.Password = editedUser.Password;
+                user.Phone = editedUser.Phone;
+                user.Address = editedUser.Address;
+                user.RoleID = editedUser.RoleID;
+                user.Status = editedUser.Status;
+                user.SecretQuestion_ID = editedUser.SecretQuestion_ID;
+                user.Answer = editedUser.Answer;
+
+                Console.WriteLine(user);
+               
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Entry(user).State = EntityState.Modified;
+                
+                db.SaveChanges();
+
+                return Json(true);
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+
+            
+        }
 
 
         private string hashPwd(string pwd)
