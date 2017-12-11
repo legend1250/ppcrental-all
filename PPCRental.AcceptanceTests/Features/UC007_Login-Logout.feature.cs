@@ -18,14 +18,14 @@ namespace PPCRental.AcceptanceTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class ProjectSearchFeature
+    public partial class UC007_Login_LogoutFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-#line 1 "ProjectSearch.feature"
+#line 1 "UC007_Login-Logout.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -44,8 +44,8 @@ namespace PPCRental.AcceptanceTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project Search", "\tAs a  visistor\r\n\tI want to search for project by a name\r\n\tSo that I can easily a" +
-                    "llocate project by something I remember from them.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UC007_Login-Logout", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
+                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,9 +60,9 @@ namespace PPCRental.AcceptanceTests.Features
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "Project Search")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "UC007_Login-Logout")))
             {
-                global::PPCRental.AcceptanceTests.Features.ProjectSearchFeature.FeatureSetup(null);
+                global::PPCRental.AcceptanceTests.Features.UC007_Login_LogoutFeature.FeatureSetup(null);
             }
         }
         
@@ -83,56 +83,30 @@ namespace PPCRental.AcceptanceTests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 6
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "ID",
-                        "Project Name"});
-            table1.AddRow(new string[] {
-                        "1",
-                        "PIS Top Apartment"});
-            table1.AddRow(new string[] {
-                        "2",
-                        "ICON 56 – Modern Style Apartment"});
-            table1.AddRow(new string[] {
-                        "3",
-                        "PIS Serviced Apartment – Boho Style"});
-            table1.AddRow(new string[] {
-                        "4",
-                        "Bigroom with Riverview"});
-            table1.AddRow(new string[] {
-                        "5",
-                        "PIS Serviced Apartment – Style 3"});
-            table1.AddRow(new string[] {
-                        "6",
-                        "Vinhomes Central Park L2 – Duong’s Apartment"});
-            table1.AddRow(new string[] {
-                        "7",
-                        "Saigon Pearl Ruby Block"});
-#line 7
- testRunner.Given("the following Project", ((string)(null)), table1, "Given ");
-#line hidden
-        }
-        
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Name project should be matched")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Project Search")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("LoginAndLogout")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC007_Login-Logout")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void NameProjectShouldBeMatched()
+        public virtual void LoginAndLogout()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Name project should be matched", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("LoginAndLogout", new string[] {
                         "mytag"});
-#line 18
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 6
-this.FeatureBackground();
-#line 19
- testRunner.When("I search for books by the phrase \'ICON\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
- testRunner.Then("the list of found project should contain only: \'ICON 56 – Modern Style Apartment\'" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.Given("I am in homepage.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.And("Navigate to login page.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.When("I enter username and password.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.And("Click on login button.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.Then("I could see logout button.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.When("Click on logout button.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("I could see login button.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

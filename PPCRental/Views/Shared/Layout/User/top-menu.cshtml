@@ -1,37 +1,12 @@
 ﻿<section class="header-block clearfix">
     <div class="inside clearfix">
-        <div class="social floatleft">
-            <ul class="clearfix" style="margin-bottom:0">
-                <li class='twitter'>
-                    <a href='http://twitter.com/mabuc' target='_blank'><i class='fa fa-twitter'></i></a>
-                </li>
-                <li class='facebook'>
-                    <a href='http://facebook.com/mabuc' target='_blank'><i class='fa fa-facebook'></i></a>
-                </li>
-                <li class='youtube'>
-                    <a href='http://youtube.com' target='_blank'><i class='fa fa-youtube'></i></a>
-                </li>
-                <li class='linkedin'>
-                    <a href='http://linkedin.com' target='_blank'><i class='fa fa-linkedin'></i></a>
-                </li>
-                <li class='pinterest'>
-                    <a href='http://pinterest.com/mabuc' target='_blank'><i class='fa fa-pinterest'></i></a>
-                </li>
-                <li class='gplus'>
-                    <a href='http://google.com' target='_blank'><i class='fa fa-google-plus'></i></a>
-                </li>
-                <li class='instagram'>
-                    <a href='http://instagram.com/envato' target='_blank'><i class='fa fa-instagram'></i></a>
-                </li>
-                
-            </ul>
-        </div>
+        @RenderPage("~/Views/Shared/Layout/User/social.cshtml")
         <div class="call-info floatright clearfix"> 
             <span class="call-us"><i class="fa fa-phone"></i>Call us: 1-800-234-6789</span> 
             <a href="@Url.Action("Register","User")" id="registerfixed" class="register login">
                 <i class="fa fa-pencil"></i>Register
             </a> 
-            <a href="#login" class="login modal-popup">
+            <a href="#login" class="login modal-popup" id="loginbtn">
                 <i class="fa fa-sign-in"></i>Login
             </a>
         </div>

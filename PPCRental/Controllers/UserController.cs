@@ -6,6 +6,12 @@ using System.Web.Mvc;
 using PPCRental.Models;
 using System.Text;
 using System.Security.Cryptography;
+using System.Web.Services;
+using System.Web.Script.Services;
+using Newtonsoft.Json;
+using System.Data.Entity;
+
+using PPCRental.Driver;
 namespace PPCRental.Controllers
 {
     public class UserController : Controller
@@ -34,9 +40,10 @@ namespace PPCRental.Controllers
                     {
                         Session["user"] = user.FullName;
                         Session["userID"] = user.ID;
-                        string[] name_role = { "None", "Agency", "Sale" };
+                        string[] name_role = { "None", "Agency", "Sale","Technical"};
                         string role = name_role[(int)user.RoleID];
                         Session["userRole"] = role;
+                        Session["VerifyUser"] = "NotVerify";
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                         return Redirect("~/Home/Index");
                     }
@@ -137,6 +144,106 @@ namespace PPCRental.Controllers
         {
             return View();
         }
+        public ActionResult UserManagement_Views()
+        {
+            var users = db.UserManagements.ToList();
+            ViewData["users"] = users;
+            ViewData["role"] = db.ROLEs.ToList();
+            return View();
+        }
+
+        public JsonResult ManageUser_Views(int role_id)
+        {
+            if(role_id == 10)
+            {
+                var users = db.UserManagements.ToArray();
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var users = db.UserManagements.ToArray().Where(x => x.RoleID == role_id);
+                return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
+            }
+
+            
+        }
+
+        public ActionResult UserManagement_Edit()
+        {
+            var users = db.UserManagements.ToList();
+            ViewData["users"] = users;
+            ViewData["question"] = db.security_questions.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public JsonResult ManageUser_GetUser(int id)
+        {
+            //var user = db.USERs.FirstOrDefault( x => x.ID == id);
+            //var user = db.PROPERTies.SingleOrDefault(x => x.ID == id);
+
+            var usr = db.USERs.FirstOrDefault(x => x.ID == id);
+            var user = new
+            {
+                id = usr.ID,
+                email = usr.Email,
+                pwd = usr.Password,
+                fullname = usr.FullName,
+                phone = usr.Phone,
+                address = usr.Address,
+                role_id = usr.RoleID,
+                active = usr.Status,
+                security_question = usr.SecretQuestion_ID,
+                s_answer = usr.Answer
+            };
+            //Console.WriteLine(user); 
+            ViewData["question"] = db.security_questions.ToList();
+            
+            return Json(new { Data = user }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult ManageUser_EditUser(USER editedUser)
+        {
+            try
+            {
+
+                //var userID = editedUser.ID;
+                Console.WriteLine(editedUser);
+
+                var user = db.USERs.Where(x => x.ID == editedUser.ID).First();
+                var user2 = user;
+                Console.WriteLine(user2);
+
+                user.FullName = editedUser.FullName;
+                user.Email = editedUser.Email;
+                user.Password = editedUser.Password;
+                user.Phone = editedUser.Phone;
+                user.Address = editedUser.Address;
+                user.RoleID = editedUser.RoleID;
+                user.Status = editedUser.Status;
+                user.SecretQuestion_ID = editedUser.SecretQuestion_ID;
+                user.Answer = editedUser.Answer;
+
+                Console.WriteLine(user);
+               
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Entry(user).State = EntityState.Modified;
+                
+                db.SaveChanges();
+
+                return Json(true);
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+
+            
+        }
+
 
         private string hashPwd(string pwd)
         {
@@ -157,6 +264,54 @@ namespace PPCRental.Controllers
             }
             return strBuilder.ToString();
         }
+        public ActionResult verifyUser()
+        {
+            ViewModels vm = new ViewModels();
+            vm.zSecurity = db.security_questions.ToList();
+            if (Session["UserID"]==null)
+            {
+                Session["login-status"] = "NotLogin";
+                return Redirect("~/User/Login");
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                USER user = db.USERs.Find(userID);
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+            }
+            
+           
+            return View(vm);
+
+        }
+        [HttpPost]
+        public ActionResult verifyUser(int userQuestion,String userAnswer)
+        {
+            int userID = (int)Session["UserID"];
+            USER user = db.USERs.Find(userID);
+            String yourAnswer = userAnswer;
+            int yourQuestion = userQuestion;
+           
+            if (user.SecretQuestion_ID == yourQuestion && user.Answer == yourAnswer.Trim())
+            {
+                Session["VerifyUser"] = "Verified";
+                return Redirect("~/User/Security");
+            }
+            else
+            {
+                ViewModels vm = new ViewModels();
+                vm.zSecurity = db.security_questions.ToList();
+                ViewBag.userQuestion = user.SecretQuestion_ID;
+                ViewBag.VerifyMessage ="Your anwser not match with your answer in database";
+                return View(vm);
+            }
+            
+        }
+        public ActionResult proFile()
+        {
+            return View();
+        }
+       
 
     }
 }

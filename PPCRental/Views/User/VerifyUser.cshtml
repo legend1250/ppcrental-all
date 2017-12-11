@@ -1,0 +1,89 @@
+﻿@model PPCRental.Driver.ViewModels    
+@{
+    ViewBag.Title = "Verify User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    if (Session["user"] == null)
+    {
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else
+    {
+        string verify = Session["VerifyUser"] as String;
+        if (!verify.Equals("NotVerify"))
+        {
+            Response.Redirect("~/User/Sercurity", false);
+        }
+    }
+
+}
+<style>
+    .qa-security {      
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        min-height:400px;
+    }
+    .qa-security h1{
+        margin-bottom: 50px;
+    }
+</style>
+<form name="questionform" id="questionform" action="@Url.Action("verifyUser","User")" method="post">
+    <div class="qa-security">
+        <div class="row content">
+            <div class="col-lg-12">
+                <center><h1>Verify User</h1></center>
+                @{
+                    if (ViewBag.VerifyMessage != null)
+                    {
+                        <div class="alert alert-danger alert-dismissable fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> Your answer not match with the answer in database.
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <strong>Please answer your security question</strong><br> These questions help us verify your identity.
+                        </div>
+                    }
+                } 
+                <div class="form-group">
+                    <label>Your security question:</label>
+                    <div class="input-group" id="f-question">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
+                        <select id="Question" class="form-control" name="userQuestion" >
+                            @{
+                                int userID = ViewBag.userQuestion;
+                                foreach (var item in Model.zSecurity)
+                                {
+                                    if (item.id == userID)
+                                    {
+                                        <option value="@item.id" selected>@item.question</option>
+                                    }
+                                    
+
+                                }
+                            }
+
+                        </select>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label>Your Answer</label>
+                        <div class="input-group" id="f-answer">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
+                            <input type="text" name="userAnswer" id="Answer" placeholder="Answer" class="form-control" autocomplete="off" autofocus>
+                        </div>
+                    </div>
+                    <input type="submit" id="submit" value="Submit" class="btn btn-primary pull-right">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

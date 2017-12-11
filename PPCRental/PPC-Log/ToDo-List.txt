@@ -4,3 +4,11 @@
 -chưa xử lý tên ảnh
 -Lỗi select
 -Hàm clear chưa được
+-Update project:
+	+khi update project,chưa có action load lại project
+-search: tìm cách gọi 2 model ở view
+-login: thêm đăng nhập = username 
+	+login xong đưa user vào trang hoạt đông chính của user chứ không đưa user vào trang chủ
+-technical: +active user.
+	    +user control
+-scroll:làm mờ menu

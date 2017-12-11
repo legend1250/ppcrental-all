@@ -12,15 +12,8 @@ namespace PPCRental.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class UserManagement
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USER()
-        {
-            this.PROPERTies = new HashSet<PROPERTY>();
-            this.PROPERTies1 = new HashSet<PROPERTY>();
-        }
-    
         public int ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -30,13 +23,7 @@ namespace PPCRental.Models
         public Nullable<int> RoleID { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<int> SecretQuestion_ID { get; set; }
+        public string Question_String { get; set; }
         public string Answer { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROPERTY> PROPERTies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROPERTY> PROPERTies1 { get; set; }
-        public virtual ROLE ROLE { get; set; }
-        public virtual security_questions security_questions { get; set; }
     }
 }

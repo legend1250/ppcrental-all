@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "Active User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    //kiểm tra User-Role
+    String userRole = Session["userRole"] as String;
+    if (Session["user"] == null)
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else if (!(userRole.Equals("Technical")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
+
+
+<h2>User Management</h2>
+<br />
+<h3 style="color: red;">Views</h3><a href="@Url.Action("userManagement_Edit", "User")"><h3 style="color: blue;">Edit</h3></a>
+<select name="user_role" id="select_role" class="form-control" required="required">
+    <option value="10">Tất cả</option>
+    @{foreach (var item in ViewData["role"] as List<PPCRental.Models.ROLE>)
+        {
+            <option value="@item.id">@item.roleName</option>
+        }
+    }
+</select>
+
+<table class="table table-hover" id="table-user">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Fullname</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>RoleID</th>
+            <th>Status</th>
+            <th>Serect Question</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        
+    </tbody>
+</table>
+
+<script>
+    //refactor table
+    $(document).ready(function () {
+        $.ajax({
+            url: '/User/ManageUser_Views',
+            type: "POST",
+            data: { role_id: 10 },
+            dataType: "json",
+            success: function (result) {
+                
+                var data = [];
+                for (var i = 0; i < result.Users.length; i++) {
+                    var arr = $.map(result.Users[i], function (value, index) {
+                        return value;
+                    });
+                    arr.splice(8, 1);
+                    data.push(arr);
+                }
+                console.log(data);
+                var table = $('#table-user').DataTable();
+                table.destroy();
+                table
+                    .clear()
+                    .draw();
+                $('#table-user').DataTable({
+                    data: data,
+                    "language": {
+                        "paginate": {
+                            "previous": "Previous ",
+                            "next": " Next page"
+                        }
+                    }
+                });
+            },
+            error: function (err) {
+                alert(err);
+
+            }
+        });
+    })
+    var role_id;
+    $('#select_role').on('change', function () {
+        role_id = $(this).find(":selected").val();
+        //alert(role_id);
+        $.ajax({
+            url: '/User/ManageUser_Views',
+            type: "POST",
+            data: { role_id },
+            dataType: "json",
+            success: function (result) {
+                //alert(result.Success);
+                //console.log(result.Users);
+                //$('#table-user tbody > tr').remove();
+
+                //$.each(result.Users, function (index, value) {
+                //    $('#table-user tbody').append(
+                //        '<tr>'// need to change closing tag to an opening `<tr>` tag.
+                //        + '<td>' + result.Users[index].ID + '</td>'
+                //        + '<td>' + result.Users[index].Email + '</td>'
+                //        + '<td>' + result.Users[index].Password + '</td>'
+                //        + '<td>' + result.Users[index].FullName + '</td>'
+                //        + '<td>' + result.Users[index].Phone + '</td>'
+                //        + '<td>' + result.Users[index].Address + '</td>'
+                //        + '<td>' + result.Users[index].RoleID + '</td>'
+                //        + '<td>' + result.Users[index].Status + '</td>'
+                //        + '<td>' + result.Users[index].question + '</td>'
+                //        + '<td>' + result.Users[index].Answer + '</td>'
+                //        + '</tr>');
+                //});
+                var data = [];
+                for (var i = 0; i < result.Users.length; i++) {
+                    var arr = $.map(result.Users[i], function (value, index) {
+                        return value;
+                    });
+                    arr.splice(8, 1);
+                    data.push(arr);
+                }
+                console.log(data);
+                var table = $('#table-user').DataTable();
+                table.destroy();
+                table
+                    .clear()
+                    .draw();
+                $('#table-user').DataTable({
+                    data: data,
+                    "language": {
+                        "paginate": {
+                            "previous": "Previous ",
+                            "next": " Next page"
+                        }
+                    }
+                });
+            },
+            error: function (err) {
+                alert(err);
+
+            }
+        });
+
+    });
+
+
+</script>

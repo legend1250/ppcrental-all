@@ -49,6 +49,7 @@ namespace PPCRental.Controllers
         public ActionResult Submit([Bind(Exclude = "ID")] PROPERTY newProject)
         {
             String message;
+            int status;
             //if (ModelState.IsValid)
             //{   
             // db.PROPERTies.Add(newProject);
@@ -68,23 +69,26 @@ namespace PPCRental.Controllers
                 db.PROPERTies.Add(newProject);
                 db.SaveChanges();
 
-                message = "Add Success,wait for appover";
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                message = "Add Success,wait for appover.";
+                status = 1;
+                                
             }
             catch (Exception e)
             {
                 message = e.Message;
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                status = 0;
+                
+                
 
 
             }
-
+            return Json(new { Status = status, Message=message, JsonRequestBehavior.AllowGet });
 
         }
         [HttpPost]
         public ActionResult saveImage(HttpPostedFileBase avaFile, HttpPostedFileBase imaFile)
         {
-            int errorCount = 0;
+            int errorCount = 0,status;
             string message, error = "";
             try
             {
@@ -111,12 +115,15 @@ namespace PPCRental.Controllers
             if (errorCount == 0)
             {
                 message = "Save ảnh thành công!!";
+                status = 1;
             }
             else
             {
+                status = 0;
                 message = "Save ảnh thất bại:" + error;
             }
-            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+            ViewBag.imageMessage = message;
+            return Json(new { Status = status, Message=message, JsonRequestBehavior.AllowGet });
             ////var path = VirtualPathUtility.Combine(Server.MapPath("~/img/avatar/"), avaFile.FileName);
 
             ////avaFile.SaveAs(path);
@@ -141,7 +148,7 @@ namespace PPCRental.Controllers
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
             var area = areaRaw.Replace("m2", "");
-            return Json(new { projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
+            return Json(new {projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
