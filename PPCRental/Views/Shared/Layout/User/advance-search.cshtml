@@ -1,30 +1,29 @@
-﻿@model PPCRental.Driver.ViewModels 
-
+﻿
 <div id="advance-search" class="main-page clearfix" role="search">
     <div class="container">
         <button class="btn top-btn">Find Your Place</button>
         <form id="adv-search-form" class="clearfix" action="@Url.Action("Searching","Project")" method="GET">
             <fieldset>
-                <input type="text" name="projectname" id="project-name" placeholder="Project name">
-                <select name="district" id="district">
-                    <option value="-1" selected disabled style="font-weight:bold">District</option>
-                    @foreach (var item in Model.zDistricts)
-                    {
-                        <option value="@item.ID">@item.DistrictName</option>
-                    }
-                </select>
+                <input type="text" name="projectname" id="project-name" placeholder="Project name" value="">
                 <select name="street" id="street">
                     <option value="-1" selected disabled style="font-weight:bold">Street</option>
-                    @foreach (var item in Model.zStreets)
+                    @foreach (var item in ViewData["Street"] as List<PPCRental.Models.STREET>)
                     {
                         <option value="@item.District_ID">@item.StreetName</option>
                     }
                 </select>
                 <select id="ward" name="ward">
                     <option value="-1" selected disabled style="font-weight:bold">Ward</option>
-                    @foreach (var item in Model.zWards)
+                    @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
                     {
                         <option value="@item.District_ID">@item.WardName</option>
+                    }
+                </select>
+                <select name="district" id="district">
+                    <option value="-1" selected disabled style="font-weight:bold">District</option>
+                    @foreach (var item in ViewData["District"] as List<PPCRental.Models.DISTRICT>)
+                    {
+                        <option value="@item.ID">@item.DistrictName</option>
                     }
                 </select>
                 <select id="ptype" name="ptype">

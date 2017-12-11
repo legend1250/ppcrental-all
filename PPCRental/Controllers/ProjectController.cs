@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using PPCRental.Models;
 using System.IO;
+using System.Data.Entity;
+
 namespace PPCRental.Controllers
 {
     public class ProjectController : Controller
@@ -18,16 +20,36 @@ namespace PPCRental.Controllers
         public ActionResult ProjectList()
         {
             var project = db.View_project_from_index.ToList();
+            ViewData["Project_View"] = project;
+            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["Street"] = db.STREETs.ToList();
+            ViewData["Ward"] = db.WARDs.ToList();
 
-            return View(project);
+            return View();
         }
 
         [HttpGet]
-        public ActionResult Searching(String projectname)
+        public ActionResult Searching(String projectname, String street)
         {
-            var product = db.PROPERTies.ToList().Where(x => x.PropertyName.Contains(projectname));
-            return View(product);
+            var project = db.View_project_from_index.AsEnumerable();
+           
+            if(projectname != null && projectname != "")
+            {
+                project = project.Where(x => x.PropertyName.ToLower().Contains(projectname.ToLower()));
+            }
 
+            if(street != null && street != "")
+            {
+                int streetID = int.Parse(street);
+                project = project.Where(x => (int) x.Street_ID == streetID);
+            }
+
+            ViewData["Project_View"] = project.ToList();
+            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["Street"] = db.STREETs.ToList();
+            ViewData["Ward"] = db.WARDs.ToList();
+
+            return View();
         }
         [HttpGet]
         public ActionResult projectDetail(int id)
