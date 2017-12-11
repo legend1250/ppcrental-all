@@ -79,6 +79,11 @@
   <ItemGroup>
     <Compile Include="Drivers\Search\SearchDriver.cs" />
     <Compile Include="Drivers\Search\SearchResultState.cs" />
+    <Compile Include="Features\ChangePasswordTest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChangePasswordTest.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\UC007_Login-Logout.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,10 +91,15 @@
     </Compile>
     <Compile Include="Features\UC007_Login_LogoutSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\ChangePasswordTestSteps.cs" />
     <Compile Include="StepDefinitions\ProjectSearchSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\ChangePasswordTest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ChangePasswordTest.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\UC007_Login-Logout.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC007_Login-Logout.feature.cs</LastGenOutput>
