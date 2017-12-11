@@ -53,7 +53,7 @@
           <Property Name="Create_post" Type="date" />
           <Property Name="Status_ID" Type="int" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
-          <Property Name="Updated_at" Type="date" />
+          <Property Name="Updated_at" Type="datetime" />
           <Property Name="Sale_ID" Type="int" />
         </EntityType>
         <EntityType Name="PROPERTY_FEATURE">
@@ -153,9 +153,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Area" Type="nvarchar" MaxLength="30" />
           <Property Name="BedRoom" Type="int" />
           <Property Name="BathRoom" Type="int" />
+          <Property Name="PackingPlace" Type="int" />
           <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
           <Property Name="WardName" Type="nvarchar" MaxLength="50" />
           <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated_at" Type="date" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
@@ -349,9 +351,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[Area] AS [Area], 
     [View_project_from_index].[BedRoom] AS [BedRoom], 
     [View_project_from_index].[BathRoom] AS [BathRoom], 
+    [View_project_from_index].[PackingPlace] AS [PackingPlace], 
     [View_project_from_index].[DistrictName] AS [DistrictName], 
     [View_project_from_index].[WardName] AS [WardName], 
-    [View_project_from_index].[StreetName] AS [StreetName]
+    [View_project_from_index].[StreetName] AS [StreetName], 
+    [View_project_from_index].[Updated_at] AS [Updated_at]
     FROM [dbo].[View_project_from_index] AS [View_project_from_index]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="Self.FK_PROPERTY_DISTRICT">
@@ -531,7 +535,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Create_post" Type="DateTime" Precision="0" />
           <Property Name="Status_ID" Type="Int32" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Updated_at" Type="DateTime" Precision="0" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="Sale_ID" Type="Int32" />
           <NavigationProperty Name="DISTRICT" Relationship="ppcrental3119Model.FK_PROPERTY_DISTRICT" FromRole="PROPERTY" ToRole="DISTRICT" />
           <NavigationProperty Name="PROJECT_STATUS" Relationship="ppcrental3119Model.FK_PROPERTY_PROJECT_STATUS" FromRole="PROPERTY" ToRole="PROJECT_STATUS" />
@@ -651,6 +655,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_at" Type="DateTime" Precision="0" />
+          <Property Name="PackingPlace" Type="Int32" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
@@ -961,6 +967,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="PackingPlace" ColumnName="PackingPlace" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="StreetName" ColumnName="StreetName" />
                 <ScalarProperty Name="WardName" ColumnName="WardName" />
                 <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />

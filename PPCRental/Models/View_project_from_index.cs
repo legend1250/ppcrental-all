@@ -24,5 +24,7 @@ namespace PPCRental.Models
         public string DistrictName { get; set; }
         public string WardName { get; set; }
         public string StreetName { get; set; }
+        public Nullable<System.DateTime> Updated_at { get; set; }
+        public Nullable<int> PackingPlace { get; set; }
     }
 }
