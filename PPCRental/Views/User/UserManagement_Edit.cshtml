@@ -3,6 +3,25 @@
     ViewBag.Title = "UserManagement_Edit";
 }
 
+@{
+    //kiểm tra User-Role
+    String userRole = Session["userRole"] as String;
+    if (Session["user"] == null)
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else if (!(userRole.Equals("Technical")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
+
 <a href="@Url.Action("userManagement_Views", "User")"><h2 style="color: blue;">Views</h2></a>
 <h2 style="color: red;">Edit</h2>
 <select name="user_role" id="select_role" class="form-control" required="required">
@@ -82,7 +101,7 @@
                         <tr>
                             <th>Email</th>
                             <td id="td-email">
-                                <input type="text" id="input-email" class="form-control" value="">
+                                <input type="text" id="input-email" class="form-control" value="" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -112,7 +131,7 @@
                         <tr>
                             <th>RoleID</th>
                             <td id="td-role">
-                                <select id="edit-role" class="form-control">
+                                <select id="edit-role" class="form-control" disabled>
 
                                 </select>
                             </td>
@@ -128,7 +147,7 @@
                         <tr>
                             <th>Question</th>
                             <td id="td-question">
-                                <select id="edit-question" class="form-control">
+                                <select id="edit-question" class="form-control" disabled>
                                  
                                 </select>
                             </td>
@@ -136,7 +155,7 @@
                         <tr>
                             <th>Answer</th>
                             <td id="td-answer">
-                                <input type="text" id="input-answer" class="form-control" value="">
+                                <input type="text" id="input-answer" class="form-control" value="" readonly>
                             </td>
                         </tr>
 
@@ -318,6 +337,7 @@
                             //$('#table-user').DataTable().ajax.reload();
                             var tab = $('#table-user').DataTable();
                             console.log(tab);
+                            location.reload();
                         }, 700);
 
                     }

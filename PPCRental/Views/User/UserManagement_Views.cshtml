@@ -4,6 +4,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    //kiểm tra User-Role
+    String userRole = Session["userRole"] as String;
+    if (Session["user"] == null)
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else if (!(userRole.Equals("Technical")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
 
 
 <h2>User Management</h2>
