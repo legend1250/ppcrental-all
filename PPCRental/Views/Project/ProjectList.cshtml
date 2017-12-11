@@ -3,7 +3,7 @@
     ViewBag.Title = "List Of Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<PPCRental.Models.View_project_from_index>
+
 
 <div id="site-banner" class="text-center clearfix">
     <div class="container">
@@ -36,7 +36,7 @@
     </header>
     <div class="container section-layout">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in ViewData["Project_View"] as List<PPCRental.Models.View_project_from_index>)
             {
                 <div class="col-lg-4 col-sm-6 layout-item-wrap">
                     <article class="property layout-item clearfix">
