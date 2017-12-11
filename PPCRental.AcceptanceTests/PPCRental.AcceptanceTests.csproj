@@ -109,7 +109,6 @@
     <Compile Include="Features\UC007_Login_LogoutSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\ChangePasswordTestSteps.cs" />
-    <Compile Include="StepDefinitions\ProjectSearchSteps.cs" />
     <Compile Include="StepDefinitions\UC003_ViewDetailProjectSteps.cs" />
     <Compile Include="StepDefinitions\UC004_PostProjectSteps.cs" />
   </ItemGroup>

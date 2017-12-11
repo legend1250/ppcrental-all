@@ -6,8 +6,7 @@
 @mytag
 Scenario: Add Project Success
 	Given I login role Agency
-	When I press add project button
-	And Navigate to add project page
-	When I fill in all the fields 
+	When  Navigate to add project page
+	And I fill in all the fields 
 	And I press submit button
 	Then I could see message add success  
