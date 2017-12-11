@@ -5,10 +5,12 @@
 }
 @{
     String userRole = Session["userRole"] as String;
+    string path = HttpContext.Current.Request.Url.AbsolutePath;
     if (Session["user"] == null)
     {
         Session.RemoveAll();
         Session["login-status"] = "NotLogin";
+        Session["SavePath"] = path;
         Response.Redirect("~/User/Login", false);
 
     }

@@ -28,6 +28,7 @@ namespace PPCRental.Controllers
             
             try
             {
+                String path = Session["SavePath"] as String;
                 //Console.WriteLine(pwd);
 
                 pwd = hashPwd(pwd);
@@ -45,7 +46,7 @@ namespace PPCRental.Controllers
                         Session["userRole"] = role;
                         Session["VerifyUser"] = "NotVerify";
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
-                        return Redirect("~/Home/Index");
+                        return Redirect("~"+path);
                     }
                     else
                     {
@@ -287,6 +288,7 @@ namespace PPCRental.Controllers
         [HttpPost]
         public ActionResult verifyUser(int userQuestion,String userAnswer)
         {
+            String path = Session["SavePath"] as String;
             int userID = (int)Session["UserID"];
             USER user = db.USERs.Find(userID);
             String yourAnswer = userAnswer;
@@ -295,7 +297,9 @@ namespace PPCRental.Controllers
             if (user.SecretQuestion_ID == yourQuestion && user.Answer == yourAnswer.Trim())
             {
                 Session["VerifyUser"] = "Verified";
-                return Redirect("~/User/Security");
+
+                //return Redirect("~/User/Security");
+                return Redirect("~" + path);     
             }
             else
             {

@@ -18,13 +18,23 @@
 </style>
 @{ 
     String userRole = Session["userRole"] as String;
+    String verify = Session["VerifyUser"] as String;
+    string path = HttpContext.Current.Request.Url.AbsolutePath;
     if (Session["user"] == null)
     {
         Session.RemoveAll();
         Session["login-status"] = "NotLogin";
+        Session["SavePath"] = path;
         Response.Redirect("~/User/Login",false);
 
-    }else if (!(userRole.Equals("Agency")))
+    }else if (!verify.Equals("Verified"))
+    {
+
+        Session["VerifyUser"] = "NotVerify";
+        Session["SavePath"] = path;
+        Response.Redirect("~/User/VerifyUser", false);
+    }
+    else if (!(userRole.Equals("Agency")))
     {
         Session.RemoveAll();
         Session["login-status"] = "WrongRole";
