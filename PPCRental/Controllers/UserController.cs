@@ -164,8 +164,6 @@ namespace PPCRental.Controllers
                 var users = db.UserManagements.ToArray().Where(x => x.RoleID == role_id);
                 return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
             }
-
-            
         }
 
         public ActionResult UserManagement_Edit()
@@ -177,8 +175,6 @@ namespace PPCRental.Controllers
         }
 
         [HttpPost]
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public JsonResult ManageUser_GetUser(int id)
         {
             //var user = db.USERs.FirstOrDefault( x => x.ID == id);

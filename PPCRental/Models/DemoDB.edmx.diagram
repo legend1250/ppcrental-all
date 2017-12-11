@@ -31,6 +31,8 @@
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_WARD" />
         <AssociationConnector Association="ppcrental3119Model.FK_USER_ROLE" />
         <AssociationConnector Association="ppcrental3119Model.FK_USER_SecurityQuestion" />
+        <EntityTypeShape EntityType="ppcrental3119Model.View_District_Street" Width="1.5" PointX="7.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ppcrental3119Model.View_District_Ward" Width="1.5" PointX="9.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

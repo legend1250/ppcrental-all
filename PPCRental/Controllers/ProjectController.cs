@@ -29,7 +29,7 @@ namespace PPCRental.Controllers
         }
 
         [HttpGet]
-        public ActionResult Searching(String projectname, String street)
+        public ActionResult Searching(String projectname, int district, int street, int ward)
         {
             var project = db.View_project_from_index.AsEnumerable();
            
@@ -37,12 +37,19 @@ namespace PPCRental.Controllers
             {
                 project = project.Where(x => x.PropertyName.ToLower().Contains(projectname.ToLower()));
             }
-
-            if(street != null && street != "")
+            if(district != 0)
             {
-                int streetID = int.Parse(street);
-                project = project.Where(x => (int) x.Street_ID == streetID);
+                project = project.Where(x => (int) x.District_ID == district);
             }
+            if (street != 0)
+            {
+                project = project.Where(x => (int)x.Street_ID == street);
+            }
+            if (ward != 0)
+            {
+                project = project.Where(x => (int)x.Ward_ID == ward);
+            }
+
 
             ViewData["Project_View"] = project.ToList();
             ViewData["District"] = db.DISTRICTs.ToList();
@@ -51,6 +58,16 @@ namespace PPCRental.Controllers
 
             return View();
         }
+
+        
+        public JsonResult filterFollowDistrict(int district_id)
+        {
+            var ward = db.View_District_Ward.Where(x => x.District_ID == district_id).Select( x => new { x.Ward_ID, x.WardName }).ToArray();
+            var street = db.View_District_Street.Where(x => x.District_ID == district_id).Select( x => new { x.Street_ID, x.StreetName }).ToArray();
+
+            return Json(new { Success = true, Ward = ward, Street = street }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult projectDetail(int id)
         {

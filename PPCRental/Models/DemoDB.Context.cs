@@ -38,5 +38,7 @@ namespace PPCRental.Models
         public virtual DbSet<WARD> WARDs { get; set; }
         public virtual DbSet<UserManagement> UserManagements { get; set; }
         public virtual DbSet<View_project_from_index> View_project_from_index { get; set; }
+        public virtual DbSet<View_District_Street> View_District_Street { get; set; }
+        public virtual DbSet<View_District_Ward> View_District_Ward { get; set; }
     }
 }

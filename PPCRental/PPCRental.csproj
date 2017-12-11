@@ -209,6 +209,12 @@
     <Compile Include="Models\UserManagement.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View_District_Street.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_District_Ward.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\View_project_from_index.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
