@@ -23,11 +23,13 @@ namespace PPCRental.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(String usrname, String pwd)
+        public ActionResult Login(String usrname, String pwd,bool rememberme = false)
         {
             
             try
             {
+                bool rememberMe = rememberme;
+
                 String path = Session["SavePath"] as String;
                 //Console.WriteLine(pwd);
 
@@ -39,12 +41,42 @@ namespace PPCRental.Controllers
                 {
                     if (user.Status == true)
                     {
+                        int UserID = user.ID;
                         Session["user"] = user.FullName;
-                        Session["userID"] = user.ID;
+                        Session["userID"] = UserID;
                         string[] name_role = { "None", "Agency", "Sale","Technical"};
                         string role = name_role[(int)user.RoleID];
                         Session["userRole"] = role;
                         Session["VerifyUser"] = "NotVerify";
+
+                        //add cookie
+
+                        HttpCookie userName = new HttpCookie("UserName", user.FullName);
+                        HttpCookie userRole = new HttpCookie("UserRole", role);
+                        HttpCookie userID = new HttpCookie("UserID", UserID.ToString());
+                        
+                        //if checkbox rememberme is checked
+                        if (rememberMe==true)
+                        {
+                            //set cookie's expire day in 365 day
+                            userName.Expires.AddDays(365);
+                            userRole.Expires.AddDays(365);
+                            userID.Expires.AddDays(365);
+                            
+                        }
+                        else
+                        {
+                            //remove cookie
+                            userName.Expires = DateTime.Now.AddDays(-1);
+                            userRole.Expires = DateTime.Now.AddDays(-1);
+                            userID.Expires = DateTime.Now.AddDays(-1);
+                            
+                        }
+                        
+                        HttpContext.Response.SetCookie(userName);
+                        HttpContext.Response.SetCookie(userRole);
+                        HttpContext.Response.SetCookie(userID);
+                       
                         //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
                         return Redirect("~"+path);
                     }
@@ -71,7 +103,7 @@ namespace PPCRental.Controllers
         public void Logout()
         {
             Session.RemoveAll();
-
+            Session["User"] = null;
             Response.Redirect("~/Home/Index");
         }
         public ActionResult Security()

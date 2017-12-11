@@ -35,6 +35,9 @@
         <div id="qa-top-menu">
             <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
             @{
+                
+                //get cookie
+                HttpCookie userName = Request.Cookies["UserName"];
                 // HttpSessionStateBase httpSession;
                 if (Session["user"] != null)
                 {
@@ -52,10 +55,36 @@
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
                     }
                 }
+                else if(userName != null){
+                    HttpCookie userRole = Request.Cookies["userRole"];
+                    HttpCookie userID = Request.Cookies["UserID"];
+                    Session["user"] =userName.Value.ToString();
+                    Session["userID"] = userID.Value.ToString();
+                    Session["userRole"] = userRole.Value.ToString();
+                    Session["VerifyUser"] = "NotVerify";
+                    if (userRole.Value.ToString().Equals("Agency"))
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
+                        }
+                    else if (userRole.Equals("Sale"))
+                        {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
+                        }
+                    else if (userRole.Equals("Technical"))
+                        {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
+                    }
+                    else
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                    }
+                }
                 else
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
+
+
             }
         </div>
         <!-- /site-header-top -->
