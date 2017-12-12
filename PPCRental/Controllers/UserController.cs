@@ -115,19 +115,14 @@ namespace PPCRental.Controllers
             {
                 rollbackID = true;
             }
-            //remove all cookie
-            HttpCookie aCookie;
-            string cookieName;
-            int limit = Request.Cookies.Count;
-            for (int i = 0; i < limit; i++)
+            //remove  cookie
+            if (Request.Cookies["UserName"] != null)
             {
-                cookieName = Request.Cookies[i].Name;
-                aCookie = new HttpCookie(cookieName);
-                aCookie.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(aCookie);
-
+                var c = new HttpCookie("UserName");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
             }
-            
+
             //verify cookie existed
             if (rollbackVerify)
             {
