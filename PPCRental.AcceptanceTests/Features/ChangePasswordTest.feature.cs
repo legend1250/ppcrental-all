@@ -93,28 +93,42 @@ namespace PPCRental.AcceptanceTests.Features
                         "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table1.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table1.AddRow(new string[] {
+                        "password",
+                        "123456"});
 #line 8
- testRunner.Given("I\'m in Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.And("Navigate to Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.And("I input UserName and Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
- testRunner.When("I click Log In button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I login success with the given username and password", ((string)(null)), table1, "Given ");
 #line 12
- testRunner.Then("I click  Change Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I go to Change Pasword page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table2.AddRow(new string[] {
+                        "Your answer",
+                        "123456789"});
+            table2.AddRow(new string[] {
+                        "Password",
+                        "123456"});
+            table2.AddRow(new string[] {
+                        "New Password",
+                        "123456"});
+            table2.AddRow(new string[] {
+                        "Cofirm Password",
+                        "123456"});
 #line 13
- testRunner.And("I input my answer for security question", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("I click Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.Then("Navigate to Set New Password Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
- testRunner.When("I input my current Password, my new Password and Confirm it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
- testRunner.And("I Click Set New Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
- testRunner.Then("Show \"Your password has been changed successfully\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I input all the following fields", ((string)(null)), table2, "When ");
+#line 20
+ testRunner.And("I click Set new Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.Then("I see a message \"Your password has been changed successfully\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
