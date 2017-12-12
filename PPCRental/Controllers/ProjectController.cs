@@ -30,7 +30,7 @@ namespace PPCRental.Controllers
         }
 
         [HttpGet]
-        public ActionResult Searching(String projectname, int district, int street, int ward)
+        public ActionResult Searching(String projectname, int district, int street, int ward, int ptype)
         {
             var project = db.View_project_from_index.AsEnumerable();
            
@@ -50,12 +50,16 @@ namespace PPCRental.Controllers
             {
                 project = project.Where(x => (int)x.Ward_ID == ward);
             }
-
+            if(ptype != 0)
+            {
+                project = project.Where(x => x.PropertyType_ID == ptype);
+            }
 
             ViewData["Project_View"] = project.ToList();
             ViewData["District"] = db.DISTRICTs.ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
+            ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
 
             return View();
         }
