@@ -169,9 +169,9 @@ namespace PPCRental.Controllers
 
         public ActionResult UserManagement_Edit()
         {
-            var users = db.UserManagements.ToList();
+            var users = db.UserManagements.ToArray();
             ViewData["users"] = users;
-            ViewData["question"] = db.security_questions.ToList();
+            ViewData["role"] = db.ROLEs.ToList();
             return View();
         }
 
