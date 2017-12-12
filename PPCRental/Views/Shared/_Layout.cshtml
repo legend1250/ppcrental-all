@@ -98,14 +98,11 @@
                             if ((int)Session["userID"] == int.Parse(UserID.Value))
                             {
                                 Session["VerifyUser"] = Verify.Value.ToString();
-                                if (Verify == null)
-                                {
-                                    Session["VerifyUser"] = "NotVerify";
-                                }
-                                else if (UserID != null)
-                                {
-
-                                }
+                                
+                                
+                            }else 
+                            {
+                                Session["VerifyUser"] = "NotVerify";
                             }
                         }
 

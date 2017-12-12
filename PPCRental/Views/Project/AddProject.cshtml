@@ -27,13 +27,15 @@
         Session["SavePath"] = path;
         Response.Redirect("~/User/Login",false);
 
-    }else if (!verify.Equals("Verified"))
-    {
-
-        Session["VerifyUser"] = "NotVerify";
-        Session["SavePath"] = path;
-        Response.Redirect("~/User/VerifyUser", false);
     }
+    //verify user
+    //else if (!verify.Equals("Verified"))
+    //{
+
+    //    Session["VerifyUser"] = "NotVerify";
+    //    Session["SavePath"] = path;
+    //    Response.Redirect("~/User/VerifyUser", false);
+    //}
     else if (!(userRole.Equals("Agency")))
     {
         Session.RemoveAll();
