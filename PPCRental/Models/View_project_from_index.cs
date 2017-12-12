@@ -29,5 +29,6 @@ namespace PPCRental.Models
         public Nullable<int> Street_ID { get; set; }
         public Nullable<int> Ward_ID { get; set; }
         public Nullable<int> District_ID { get; set; }
+        public Nullable<int> PropertyType_ID { get; set; }
     }
 }

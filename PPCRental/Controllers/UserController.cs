@@ -259,9 +259,9 @@ namespace PPCRental.Controllers
 
         public ActionResult UserManagement_Edit()
         {
-            var users = db.UserManagements.ToList();
+            var users = db.UserManagements.ToArray();
             ViewData["users"] = users;
-            ViewData["question"] = db.security_questions.ToList();
+            ViewData["role"] = db.ROLEs.ToList();
             return View();
         }
 
@@ -306,7 +306,7 @@ namespace PPCRental.Controllers
 
                 user.FullName = editedUser.FullName;
                 user.Email = editedUser.Email;
-                user.Password = editedUser.Password;
+                //user.Password = editedUser.Password;
                 user.Phone = editedUser.Phone;
                 user.Address = editedUser.Address;
                 user.RoleID = editedUser.RoleID;
