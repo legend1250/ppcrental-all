@@ -17,13 +17,16 @@
         Session["SavePath"] = path;
         Response.Redirect("~/User/Login", false);
 
-    }else if (!verify.Equals("Verified"))
+    }
+    //verify user
+    else if (!verify.Equals("Verified"))
     {
 
         Session["VerifyUser"] = "NotVerify";
         Session["SavePath"] = path;
         Response.Redirect("~/User/VerifyUser", false);
-    }else if (!(userRole.Equals("Sale")))
+    }
+    else if (!(userRole.Equals("Sale")))
     {
         Session.RemoveAll();
         Session["login-status"] = "WrongRole";
@@ -117,30 +120,30 @@
                 <div class="col-sm-3">
                     <select class="form-control select1 qa-select" id="district" name="select1" onchange='change2()'>
                         <option value="-1" selected disabled style="font-weight:bold">District</option>
-                        @foreach (var item in Model.districtService)
+                        @*@foreach (var item in Model.districtService)
                         {
                             <option value="@item.ID">@item.DistrictName</option>
-                        }
+                        }*@
                     </select>
                 </div>
                 <label class="control-label col-sm-1" for="street">Street:</label>
                 <div class="col-sm-3">
                     <select class="form-control select2 qa-select" id="street" name="select2" disabled onchange='change3()'>
                         <option value="-1" selected disabled style="font-weight:bold">Street</option>
-                        @foreach (var item in Model.streetService)
+                        @*@foreach (var item in Model.streetService)
                         {
                             <option value="@item.District_ID">@item.StreetName</option>
-                        }
+                        }*@
                     </select>
                 </div>
                 <label class="control-label col-sm-1" for="ward">Ward:</label>
                 <div class="col-sm-3">
                     <select class="form-control select3 qa-select" id="ward" name="select3" disabled>
                         <option value="-1" selected disabled style="font-weight:bold">Ward</option>
-                        @foreach (var item in Model.wardService)
+                        @*@foreach (var item in Model.wardService)
                         {
                             <option value="@item.District_ID">@item.WardName</option>
-                        }
+                        }*@
                     </select>
                 </div>
 

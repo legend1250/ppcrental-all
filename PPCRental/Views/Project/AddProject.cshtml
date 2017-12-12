@@ -28,6 +28,7 @@
         Response.Redirect("~/User/Login",false);
 
     }
+    //verify user
     //else if (!verify.Equals("Verified"))
     //{
 
@@ -36,12 +37,12 @@
     //    Response.Redirect("~/User/VerifyUser", false);
     //}
     else if (!(userRole.Equals("Agency")))
-        {
-            Session.RemoveAll();
-            Session["login-status"] = "WrongRole";
-            Response.Redirect("~/User/Login", false);
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
 
-        }
+    }
 }
 <div class="container qa-form">
      <center><h1>Add Project</h1></center>
@@ -177,7 +178,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="btn btn-default pull-right qa-submit" id="qa-submit"><i class="fa fa-share"></i> Submit</button>
+                <button type="button" class="btn btn-default pull-right qa-submit" id="submit"><i class="fa fa-share"></i> Submit</button>
                 <button type="button" class="btn btn-success pull-right qa-reset"><i class="fa fa-undo"></i> Reset</button>
                 <button type="button" class="btn btn-warning pull-right qa-save"><i class="fa fa-save"></i> Save</button>
             </div>

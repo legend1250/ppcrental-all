@@ -35,6 +35,10 @@
         <div id="qa-top-menu">
             <!--#include virtual="~Views/Shared/Layout/User/Menu/top-menu.cshtml"-->
             @{
+
+                //get cookie
+                HttpCookie userName = Request.Cookies["UserName"];
+                
                 // HttpSessionStateBase httpSession;
                 if (Session["user"] != null)
                 {
@@ -52,11 +56,77 @@
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
                     }
                 }
+                else if(userName != null){
+                    HttpCookie userRole = Request.Cookies["userRole"];
+                    HttpCookie userID = Request.Cookies["UserID"];
+                    
+                    Session["user"] =userName.Value.ToString();
+                    Session["userID"] = int.Parse(userID.Value);
+                    Session["userRole"] = userRole.Value.ToString();
+                   
+                    if (userRole.Value.ToString().Equals("Agency"))
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
+                        }
+                    else if (userRole.Equals("Sale"))
+                        {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
+                        }
+                    else if (userRole.Equals("Technical"))
+                        {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
+                    }
+                    else
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                    }
+                }
                 else
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
-            }
+
+
+                String verify = Session["VerifyUser"] as String;
+                if (Session["VerifyUser"] ==null||!verify.Equals("Verified"))
+                {
+                    if (Session["userID"] != null)
+                    {
+                        String sessionUser = Session["userID"].ToString();
+                        HttpCookie UserID = Request.Cookies[sessionUser];
+                        HttpCookie Verify = Request.Cookies["VerifyUser3"];
+
+
+                        if (Request.Cookies.Get(sessionUser) != null)
+                        {
+                            if (UserID.Value.ToString() == sessionUser)
+                            {
+                                if (Verify.Value=="Verified")
+                                {
+                                    Session["VerifyUser"] = "Verified";
+                                }
+
+
+                            }
+
+                        }
+
+
+
+
+
+                    }
+                }
+                if (verify == null)
+                {
+                    Session["VerifyUser"] = "NotVerify";
+                }
+
+
+                }
+
+
+                
         </div>
         <!-- /site-header-top -->
         <!-- site-menu -->
