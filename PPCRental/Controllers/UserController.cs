@@ -209,10 +209,18 @@ namespace PPCRental.Controllers
             string message = "";
             try
             {
-                db.USERs.Add(newUser);
+                var checkEmail = db.USERs.FirstOrDefault(x => x.Email == newUser.Email);
+                if (checkEmail == null)
+                {
 
-                db.SaveChanges();
-                message = "Success";
+                    db.USERs.Add(newUser);
+                    db.SaveChanges();
+                    message = "Success";
+                }
+                else
+                {
+                    message = "This email address already corresponds to a PPCRental member account. Please sign in or, if you forgot your password, reset it.";
+                }
                 return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
             catch (Exception e)
