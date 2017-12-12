@@ -85,28 +85,35 @@
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
-                HttpCookie Verify = Request.Cookies["VerifyUser"];
+
 
                 String verify = Session["VerifyUser"] as String;
                 if (Session["VerifyUser"] ==null||!verify.Equals("Verified"))
                 {
                     if (Session["userID"] != null)
                     {
+
                         HttpCookie UserID = new HttpCookie(Session["userID"].ToString());
+                        HttpCookie Verify = Request.Cookies["VerifyUser"+ Session["userID"].ToString()];
                         if (HttpContext.Current.Response.Cookies.AllKeys.Contains(Session["userID"].ToString()))
                         {
                             if ((int)Session["userID"] == int.Parse(UserID.Value))
                             {
-                                Session["VerifyUser"] = Verify.Value.ToString();
+                                if (Verify.Value.ToString().Equals("Verified"))
+                                {
+                                    Session["VerifyUser"] = Verify.Value.ToString();
+                                }
+
+
+                            }
+                            else
+                            {
                                 if (Verify == null)
                                 {
                                     Session["VerifyUser"] = "NotVerify";
                                 }
-                                else if (UserID != null)
-                                {
-
-                                }
                             }
+
                         }
 
 
@@ -117,10 +124,10 @@
                 }
 
 
+                    }
+
+
                 }
-
-
-            }
         </div>
         <!-- /site-header-top -->
         <!-- site-menu -->

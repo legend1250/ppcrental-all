@@ -104,8 +104,8 @@ namespace PPCRental.Controllers
         {
             bool rollbackVerify = false,rollbackID=false;
             //trước khi xóa hết kiểm tra xem user có verify chưa,nó có thì lưu lại
-            HttpCookie Verify = Request.Cookies["VerifyUser"];
             int userID = (int)Session["userID"];
+            HttpCookie Verify = Request.Cookies["VerifyUser"+ userID.ToString()];
             HttpCookie UserID = new HttpCookie(userID.ToString(), userID.ToString());
             if (Verify!=null)
             {
@@ -134,15 +134,15 @@ namespace PPCRental.Controllers
                 //roll back verify cookie
                
                 
-                Verify = new HttpCookie("VerifyUser", "Verified");
+                Verify = new HttpCookie("VerifyUser"+ userID.ToString(), "Verified");
                 Verify.Expires.AddDays(7);
-                HttpContext.Response.SetCookie(Verify);
+                HttpContext.Response.AppendCookie(Verify);
             }
             if (rollbackID)
             {
                 UserID = new HttpCookie(userID.ToString(), userID.ToString());
                 UserID.Expires.AddDays(7);
-                HttpContext.Response.SetCookie(UserID);
+                HttpContext.Response.AppendCookie(UserID);
             }
             Session.RemoveAll();
             Session["User"] = null;
@@ -372,7 +372,7 @@ namespace PPCRental.Controllers
                 HttpCookie UserID = new HttpCookie(userID.ToString(), userID.ToString());
                 UserID.Expires.AddDays(7);
                 HttpContext.Response.SetCookie(UserID);
-                HttpCookie Verify = new HttpCookie("VerifyUser", "Verified");
+                HttpCookie Verify = new HttpCookie("VerifyUser"+ userID.ToString(), "Verified");
                 Verify.Expires.AddDays(7);
                 HttpContext.Response.SetCookie(Verify);
 
