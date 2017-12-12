@@ -85,25 +85,30 @@
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
-                HttpCookie Verify = Request.Cookies["VerifyUser"];
+
 
                 String verify = Session["VerifyUser"] as String;
                 if (Session["VerifyUser"] ==null||!verify.Equals("Verified"))
                 {
                     if (Session["userID"] != null)
                     {
-                        HttpCookie UserID = new HttpCookie(Session["userID"].ToString());
-                        if (HttpContext.Current.Response.Cookies.AllKeys.Contains(Session["userID"].ToString()))
+                        String sessionUser = Session["userID"].ToString();
+                        HttpCookie UserID = Request.Cookies[sessionUser];
+                        HttpCookie Verify = Request.Cookies["VerifyUser3"];
+
+
+                        if (Request.Cookies.Get(sessionUser) != null)
                         {
-                            if ((int)Session["userID"] == int.Parse(UserID.Value))
+                            if (UserID.Value.ToString() == sessionUser)
                             {
-                                Session["VerifyUser"] = Verify.Value.ToString();
-                                
-                                
-                            }else 
-                            {
-                                Session["VerifyUser"] = "NotVerify";
+                                if (Verify.Value=="Verified")
+                                {
+                                    Session["VerifyUser"] = "Verified";
+                                }
+
+
                             }
+
                         }
 
 
@@ -112,12 +117,16 @@
 
                     }
                 }
+                if (verify == null)
+                {
+                    Session["VerifyUser"] = "NotVerify";
+                }
 
 
                 }
 
 
-            }
+                
         </div>
         <!-- /site-header-top -->
         <!-- site-menu -->
