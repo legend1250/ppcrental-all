@@ -23,7 +23,7 @@
     </header>
     <div class="container">
         <div class="row">
-            @foreach (var item in Model.zProperties.OrderByDescending(x => x.Updated_at).ToList().Take(6))
+            @foreach (var item in ViewData["Project"] as List<PPCRental.Models.View_project_from_index>)
             {
                 <div class="col-lg-4 col-sm-6 layout-item-wrap">
                     <article class="property layout-item clearfix">
@@ -35,7 +35,7 @@
                             <header class="property-header clearfix">
                                 <div class="pull-left">
                                     <h6 class="entry-title"><a href="~/Project/projectDetail/@item.ID">@item.PropertyName</a></h6>
-                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.STREET.StreetName, @item.WARD.WardName, @item.DISTRICT.DistrictName</span>
+                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName, @item.WardName, @item.DistrictName</span>
                                 </div>
                                 @{
                                     string _tmp = item.Price.ToString();

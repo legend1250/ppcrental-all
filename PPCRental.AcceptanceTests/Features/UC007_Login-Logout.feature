@@ -10,5 +10,4 @@ Scenario: LoginAndLogout
 	When I enter username and password.
 	And  Click on login button.
 	Then I could see logout button.
-	When Click on logout button.
-	Then I could see login button.
+	

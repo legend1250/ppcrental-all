@@ -48,6 +48,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -98,6 +99,18 @@
     <None Include="Features\ChangePasswordTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ChangePasswordTest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC002_ViewListOfProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC002_ViewListOfProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC003_ViewDetailProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC003_ViewDetailProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC004_PostProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC004_PostProject.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\UC007_Login-Logout.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

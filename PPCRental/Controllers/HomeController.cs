@@ -13,15 +13,22 @@ namespace PPCRental.Controllers
         ppcrental3119Entities db = new ppcrental3119Entities();
         public ActionResult Index()
         {
-            //vb.View_project_from_index.ToList().Take(6);
+            var projects = db.View_project_from_index.OrderByDescending(x => x.Updated_at).Take(6).ToList();
+            ViewData["Project"] = projects;
+            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["Street"] = db.STREETs.ToList();
+            ViewData["Ward"] = db.WARDs.ToList();
 
-            ViewModels vm = new ViewModels();
-            vm.zProperties = db.PROPERTies.ToList();
-            vm.zDistricts = db.DISTRICTs.ToList();
-            vm.zWards = db.WARDs.ToList();
-            vm.zStreets = db.STREETs.ToList();
 
-            return View(vm);
+
+
+            //ViewModels vm = new ViewModels();
+            //vm.zProperties = db.PROPERTies.ToList();
+            //vm.zDistricts = db.DISTRICTs.ToList();
+            //vm.zWards = db.WARDs.ToList();
+            //vm.zStreets = db.STREETs.ToList();
+
+            return View();
         }
         public ActionResult Contact()
         {

@@ -15,7 +15,7 @@
         string verify = Session["VerifyUser"] as String;
         if (!verify.Equals("NotVerify"))
         {
-            Response.Redirect("~/User/Sercurity", false);
+            Response.Redirect("~/Home/Index", false);
         }
     }
 

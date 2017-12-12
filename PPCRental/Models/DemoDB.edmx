@@ -141,6 +141,30 @@ warning 6002: The table/view 'ppcrental3119.dbo.UserManagement' does not have a 
           <Property Name="Answer" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ppcrental3119.dbo.View_District_Street' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_District_Street">
+          <Key>
+            <PropertyRef Name="District_ID" />
+            <PropertyRef Name="Street_ID" />
+          </Key>
+          <Property Name="District_ID" Type="int" Nullable="false" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Street_ID" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ppcrental3119.dbo.View_District_Ward' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_District_Ward">
+          <Key>
+            <PropertyRef Name="District_ID" />
+            <PropertyRef Name="Ward_ID" />
+          </Key>
+          <Property Name="District_ID" Type="int" Nullable="false" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ward_ID" Type="int" Nullable="false" />
+          <Property Name="WardName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="View_project_from_index">
           <Key>
@@ -157,7 +181,10 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
           <Property Name="WardName" Type="nvarchar" MaxLength="50" />
           <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Updated_at" Type="date" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Street_ID" Type="int" />
+          <Property Name="Ward_ID" Type="int" />
+          <Property Name="District_ID" Type="int" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
@@ -342,6 +369,22 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [UserManagement].[Answer] AS [Answer]
     FROM [dbo].[UserManagement] AS [UserManagement]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="View_District_Street" EntityType="Self.View_District_Street" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_District_Street].[District_ID] AS [District_ID], 
+    [View_District_Street].[DistrictName] AS [DistrictName], 
+    [View_District_Street].[Street_ID] AS [Street_ID], 
+    [View_District_Street].[StreetName] AS [StreetName]
+    FROM [dbo].[View_District_Street] AS [View_District_Street]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_District_Ward" EntityType="Self.View_District_Ward" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_District_Ward].[District_ID] AS [District_ID], 
+    [View_District_Ward].[DistrictName] AS [DistrictName], 
+    [View_District_Ward].[Ward_ID] AS [Ward_ID], 
+    [View_District_Ward].[WardName] AS [WardName]
+    FROM [dbo].[View_District_Ward] AS [View_District_Ward]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_project_from_index" EntityType="Self.View_project_from_index" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_project_from_index].[ID] AS [ID], 
@@ -355,7 +398,10 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[DistrictName] AS [DistrictName], 
     [View_project_from_index].[WardName] AS [WardName], 
     [View_project_from_index].[StreetName] AS [StreetName], 
-    [View_project_from_index].[Updated_at] AS [Updated_at]
+    [View_project_from_index].[Updated_at] AS [Updated_at], 
+    [View_project_from_index].[Street_ID] AS [Street_ID], 
+    [View_project_from_index].[Ward_ID] AS [Ward_ID], 
+    [View_project_from_index].[District_ID] AS [District_ID]
     FROM [dbo].[View_project_from_index] AS [View_project_from_index]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="Self.FK_PROPERTY_DISTRICT">
@@ -481,6 +527,8 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             <End Role="security_questions" EntitySet="security_questions" />
             <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
+          <EntitySet Name="View_District_Street" EntityType="ppcrental3119Model.View_District_Street" />
+          <EntitySet Name="View_District_Ward" EntityType="ppcrental3119Model.View_District_Ward" />
         </EntityContainer>
         <EntityType Name="DISTRICT">
           <Key>
@@ -655,8 +703,11 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Updated_at" Type="DateTime" Precision="0" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="PackingPlace" Type="Int32" />
+          <Property Name="Street_ID" Type="Int32" />
+          <Property Name="Ward_ID" Type="Int32" />
+          <Property Name="District_ID" Type="Int32" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
@@ -814,6 +865,26 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="View_District_Street">
+          <Key>
+            <PropertyRef Name="District_ID" />
+            <PropertyRef Name="Street_ID" />
+          </Key>
+          <Property Name="District_ID" Type="Int32" Nullable="false" />
+          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Street_ID" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_District_Ward">
+          <Key>
+            <PropertyRef Name="District_ID" />
+            <PropertyRef Name="Ward_ID" />
+          </Key>
+          <Property Name="District_ID" Type="Int32" Nullable="false" />
+          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ward_ID" Type="Int32" Nullable="false" />
+          <Property Name="WardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -967,6 +1038,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+                <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />
                 <ScalarProperty Name="PackingPlace" ColumnName="PackingPlace" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="StreetName" ColumnName="StreetName" />
@@ -979,6 +1053,26 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_District_Street">
+            <EntityTypeMapping TypeName="ppcrental3119Model.View_District_Street">
+              <MappingFragment StoreEntitySet="View_District_Street">
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_District_Ward">
+            <EntityTypeMapping TypeName="ppcrental3119Model.View_District_Ward">
+              <MappingFragment StoreEntitySet="View_District_Ward">
+                <ScalarProperty Name="WardName" ColumnName="WardName" />
+                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
