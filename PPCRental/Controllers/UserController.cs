@@ -102,19 +102,7 @@ namespace PPCRental.Controllers
         }
         public void Logout()
         {
-            bool rollbackVerify = false,rollbackID=false;
-            //trước khi xóa hết kiểm tra xem user có verify chưa,nó có thì lưu lại
-            int userID = (int)Session["userID"];
-            HttpCookie Verify = Request.Cookies["VerifyUser"+ userID.ToString()];
-            HttpCookie UserID = new HttpCookie(userID.ToString(), userID.ToString());
-            if (Verify!=null)
-            {
-                rollbackVerify = true;
-            }
-            if (UserID!=null)
-            {
-                rollbackID = true;
-            }
+            
             //remove  cookie
             if (Request.Cookies["UserName"] != null)
             {
@@ -123,22 +111,39 @@ namespace PPCRental.Controllers
                 Response.Cookies.Add(c);
             }
 
-            //verify cookie existed
-            if (rollbackVerify)
+            if (Session["userID"]!=null)
             {
-                //roll back verify cookie
-               
-                
-                Verify = new HttpCookie("VerifyUser"+ userID.ToString(), "Verified");
-                Verify.Expires.AddDays(7);
-                HttpContext.Response.AppendCookie(Verify);
+                bool rollbackVerify = false, rollbackID = false;
+                //trước khi xóa hết kiểm tra xem user có verify chưa,nó có thì lưu lại
+                int userID = (int)Session["userID"];
+                HttpCookie Verify = Request.Cookies["VerifyUser" + userID.ToString()];
+                HttpCookie UserID = Request.Cookies[userID.ToString()];
+                if (Verify != null)
+                {
+                    rollbackVerify = true;
+                }
+                if (UserID != null)
+                {
+                    rollbackID = true;
+                }
+                //verify cookie existed
+                if (rollbackVerify)
+                {
+                    //roll back verify cookie
+
+
+                    Verify = new HttpCookie("VerifyUser" + userID.ToString(), "Verified");
+                    Verify.Expires.AddDays(7);
+                    HttpContext.Response.AppendCookie(Verify);
+                }
+                if (rollbackID)
+                {
+                    UserID = new HttpCookie(userID.ToString(), userID.ToString());
+                    UserID.Expires.AddDays(7);
+                    HttpContext.Response.AppendCookie(UserID);
+                }
             }
-            if (rollbackID)
-            {
-                UserID = new HttpCookie(userID.ToString(), userID.ToString());
-                UserID.Expires.AddDays(7);
-                HttpContext.Response.AppendCookie(UserID);
-            }
+            
             Session.RemoveAll();
             Session["User"] = null;
             Response.Redirect("~/Home/Index");
@@ -157,12 +162,20 @@ namespace PPCRental.Controllers
                     var userid = Session["userID"];
                     USER user = db.USERs.Find(userid);
                     Password = hashPwd(Password);
+                    NewPassword = hashPwd(NewPassword);
                     if (user.Password == Password)
                     {
-                        NewPassword = hashPwd(NewPassword);
-                        user.Password = NewPassword;
-                        db.SaveChanges();
-                        Session["changeStatus"] = "Your password has been changed successfully";
+                        if (user.Password != NewPassword)
+                        {
+                            NewPassword = hashPwd(NewPassword);
+                            user.Password = NewPassword;
+                            db.SaveChanges();
+                            Session["changeStatus"] = "Your password has been changed successfully";
+                        }
+                        else
+                        {
+                            Session["changeStatus"] = "Your new password mustn't the same with your current password";
+                        }
                     }
                     else
                     {

@@ -92,26 +92,21 @@
                 {
                     if (Session["userID"] != null)
                     {
+                        String sessionUser = Session["userID"].ToString();
+                        HttpCookie UserID = Request.Cookies[sessionUser];
+                        HttpCookie Verify = Request.Cookies["VerifyUser3"];
 
-                        HttpCookie UserID = new HttpCookie(Session["userID"].ToString());
-                        HttpCookie Verify = Request.Cookies["VerifyUser"+ Session["userID"].ToString()];
-                        if (HttpContext.Current.Response.Cookies.AllKeys.Contains(Session["userID"].ToString()))
+
+                        if (Request.Cookies.Get(sessionUser) != null)
                         {
-                            if ((int)Session["userID"] == int.Parse(UserID.Value))
+                            if (UserID.Value.ToString() == sessionUser)
                             {
-                                if (Verify.Value.ToString().Equals("Verified"))
+                                if (Verify.Value=="Verified")
                                 {
-                                    Session["VerifyUser"] = Verify.Value.ToString();
+                                    Session["VerifyUser"] = "Verified";
                                 }
 
 
-                            }
-                            else
-                            {
-                                if (Verify == null)
-                                {
-                                    Session["VerifyUser"] = "NotVerify";
-                                }
                             }
 
                         }
@@ -122,12 +117,16 @@
 
                     }
                 }
-
-
-                    }
+                if (verify == null)
+                {
+                    Session["VerifyUser"] = "NotVerify";
+                }
 
 
                 }
+
+
+                
         </div>
         <!-- /site-header-top -->
         <!-- site-menu -->
