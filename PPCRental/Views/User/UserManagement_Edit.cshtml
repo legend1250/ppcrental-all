@@ -160,6 +160,7 @@
             data: { role_id: 10 },
             dataType: "json",
             success: function (result) {
+                //alert(result.Success);
                 var data = [];
                 data = convertDataToArray(result.Users);
 
@@ -260,7 +261,7 @@
                 $('#td-email #input-email').empty();
                 $('#td-email #input-email').val(result.Data.email);
                 $('#td-pwd #input-pwd').empty();
-                $('#td-pwd #input-pwd').val(result.Data.pwd);
+                $('#td-pwd #input-pwd').val(".................................");
                 $('#td-fullname #input-fullname').empty();
                 $('#td-fullname #input-fullname').val(result.Data.fullname);
                 $('#td-phone #input-phone').empty();
@@ -360,9 +361,10 @@
                         //alert('ok');
                         setTimeout(function () {
                             //$('#table-user').DataTable().ajax.reload();
-                            var tab = $('#table-user').DataTable();
-                            console.log(tab);
-                            location.reload();
+                            //$('#table-user').DataTable().ajax.reload();
+                            //console.log(tab);
+                            //location.reload();
+                           
                         }, 700);
 
                     }
@@ -385,7 +387,12 @@
         var d = [];
         for (var i = 0; i < data.length; i++) {
             var arr = $.map(data[i], function (value, index) {
+                if (index == 'Password') {
+                    value = '.................................';
+                }
+
                 if (index == 'RoleID') {
+
                     if (value == 0) {
                         value = 'Chưa có Vai trò';
                     }

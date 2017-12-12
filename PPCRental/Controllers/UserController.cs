@@ -216,7 +216,7 @@ namespace PPCRental.Controllers
 
                 user.FullName = editedUser.FullName;
                 user.Email = editedUser.Email;
-                user.Password = editedUser.Password;
+                //user.Password = editedUser.Password;
                 user.Phone = editedUser.Phone;
                 user.Address = editedUser.Address;
                 user.RoleID = editedUser.RoleID;

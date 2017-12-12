@@ -18,6 +18,7 @@ namespace PPCRental.Controllers
             ViewData["District"] = db.DISTRICTs.ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
+            ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
 
             //ViewModels vm = new ViewModels();
             //vm.zProperties = db.PROPERTies.ToList();

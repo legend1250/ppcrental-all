@@ -1,8 +1,12 @@
-﻿﻿@model PPCRental.Models.PROPERTY
-@{
+﻿@{
     ViewBag.Title = "Project Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var project = ViewData["project"] as PPCRental.Models.PROPERTY;
+    var street = ViewData["street"] as PPCRental.Models.STREET;
+    var ward = ViewData["ward"] as PPCRental.Models.WARD;
+    var district = ViewData["district"] as PPCRental.Models.DISTRICT;
 }
+
 <div id="property-single">
     <div id="main-slider">
         <div class="slide"><img src="~/img/slider/1.jpg" alt="Slide"></div>
@@ -15,17 +19,29 @@
             <div class="col-lg-8 col-md-7">
                
                 <section class="property-meta-wrapper common">
-                    <h3 class="entry-title">@Html.DisplayFor(model => model.PropertyName)</h3>
+                    <h3 class="entry-title">project.PropertyName</h3>
                     <div class="property-single-meta">
                         <ul class="clearfix">
-                            <li><span>Property Size :</span>@Html.DisplayFor(model =>model.Area) </li>
-                            <li><span>Property ID :</span> #@Html.DisplayFor(model => model.ID)</li>
-                            <li><span>Bedrooms :</span> @Html.DisplayFor(model => model.BedRoom) Room</li>
-                            <li><span>Bathrooms :</span> @Html.DisplayFor(model =>model.BathRoom) Room</li>
+                            <li><span>Property Size :</span>@project.Area</li>
+                            <li><span>Property ID :</span> #@project.ID</li>
+                            <li><span>Bedrooms :</span> @project.BedRoom</li>
+                            <li><span>Bathrooms :</span> @project.BathRoom </li>
                             <li><span>Garage Size :</span> Yes - 200 SqFt </li>
                             <li><span>Year Built :</span> 2016-01-09</li>
-                            <li><span>Price :</span> $97,000</li>
-                            <li><span>Address :</span> 14 Tottenham Road, London</li>
+                            @{
+                                string _tmp = project.Price.ToString();
+                                int? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                                string price = _tmp.Substring(0, (int)i);
+                                _tmp = _tmp.Substring((int)i);
+                                while (_tmp.Length > 0 && _tmp.Length >= 3)
+                                {
+                                    price += "," + _tmp.Substring(0, 3);
+                                    _tmp = _tmp.Substring(3);
+                                }
+
+                            }
+                            <li><span>Price :</span>$@price</li>
+                            <li><span>Address :</span> @street.StreetName,  @ward.WardName,  @district.DistrictName</li>
                         </ul>
                     </div>
                 </section>
@@ -33,7 +49,7 @@
                     <div class="entry-title clearfix">
                         <h4 class="pull-left">Description </h4><a class="pull-right print-btn" href="javascript:window.print()">Print This Property <i class="fa fa-print"></i></a>
                     </div>
-                    <p>@Html.DisplayFor(model=>model.Content)</p>
+                    <p>@project.Content</p>
                 </section>
                 <section class="property-single-features common clearfix">
                     <h4 class="entry-title">Property Features</h4>
