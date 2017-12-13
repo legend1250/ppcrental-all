@@ -15,7 +15,7 @@ namespace PPCRental.Controllers
         {
             var projects = db.View_project_from_index.OrderByDescending(x => x.Updated_at).Take(6).ToList();
             ViewData["Project"] = projects;
-            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["District"] = db.DISTRICTs.OrderBy(x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();

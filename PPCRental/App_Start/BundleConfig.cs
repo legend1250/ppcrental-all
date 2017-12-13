@@ -14,9 +14,9 @@ namespace PPCRental
                       "~/Scripts/modernizr.custom.js","~/Scripts/wow.min.js","~/Scripts/zoom.js","~/Scripts/mixitup.min.js","~/Scripts/WhatsNearby.js","~/Scripts/theme.js",
                       "~/Scripts/md5.min.js", "~/Scripts/md5.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/font-awesome.min.css","~/Content/slick.css", "~/Content/slicknav.css","~/Content/animate.css",
-                     "~/Content/bootstrap.css", "~/Content/style.css","~/Content/theme.css"));
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //          "~/Content/font-awesome.min.css","~/Content/slick.css", "~/Content/slicknav.css","~/Content/animate.css",
+            //         "~/Content/bootstrap.css", "~/Content/style.css","~/Content/theme.css"));
         }
     }
 }

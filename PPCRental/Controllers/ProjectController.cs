@@ -21,7 +21,7 @@ namespace PPCRental.Controllers
         {
             var project = db.View_project_from_index.ToList();
             ViewData["Project_View"] = project;
-            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["District"] = db.DISTRICTs.OrderBy(x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
@@ -56,7 +56,7 @@ namespace PPCRental.Controllers
             }
 
             ViewData["Project_View"] = project.ToList();
-            ViewData["District"] = db.DISTRICTs.ToList();
+            ViewData["District"] = db.DISTRICTs.OrderBy( x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
