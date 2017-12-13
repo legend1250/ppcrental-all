@@ -217,6 +217,7 @@ namespace PPCRental.Controllers
         public ActionResult submitRegister(USER newUser)
         {
             string message = "";
+            int status = 1;
             try
             {
                 var checkEmail = db.USERs.FirstOrDefault(x => x.Email == newUser.Email);
@@ -225,21 +226,24 @@ namespace PPCRental.Controllers
 
                     db.USERs.Add(newUser);
                     db.SaveChanges();
-                    message = "Success";
+                    message = "you have signed up successfully.Your account will be actived after 24 hour if all information is valid";
+                     
                 }
                 else
                 {
+                    status = 0;
                     message = "This email address already corresponds to a PPCRental member account. Please sign in or, if you forgot your password, reset it.";
                 }
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                
             }
             catch (Exception e)
             {
                 message = e.Message;
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                status = 0;
+                
 
             }
-
+            return Json(new { Message = message,Status = status, JsonRequestBehavior.AllowGet });
         }
         public ActionResult forgotPassword()
         {
