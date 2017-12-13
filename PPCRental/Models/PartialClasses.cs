@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 namespace PPCRental.Models
 {
-    [MetadataType(typeof(UserMetadata))]
+    [MetadataType(typeof(userData))]
     public partial class USER
     {
     }

@@ -200,36 +200,50 @@ namespace PPCRental.Controllers
         }
         public ActionResult Register()
         {
-            var obj = db.security_questions.ToList();
-            return View(obj); ;
+            //var obj = db.security_questions.ToList();
+            return View(); ;
         }
         [HttpPost]
-        public ActionResult submitRegister(USER newUser)
+        public ActionResult submitRegister(userData newUser)
         {
             string message = "";
-            try
+            if (ModelState.IsValid)
             {
-                var checkEmail = db.USERs.FirstOrDefault(x => x.Email == newUser.Email);
-                if (checkEmail == null)
+                try
                 {
+                    var user = new USER();
+                    user.Email = newUser.Email;
+                    user.FullName = newUser.FullName;
+                    user.Phone = newUser.Phone;
+                    user.Password = newUser.Password;
+                    user.Address = newUser.Address;
+                    user.RoleID = 0;
+                    user.Status = newUser.Status;
+                    user.SecretQuestion_ID = newUser.SecretQuestion_ID;
+                    user.Answer = newUser.Answer;
 
-                    db.USERs.Add(newUser);
-                    db.SaveChanges();
-                    message = "Success";
+                    var checkEmail = db.USERs.FirstOrDefault(x => x.Email == newUser.Email);
+                    if (checkEmail == null)
+                    {
+
+                        db.USERs.Add(user);
+                        db.SaveChanges();
+                        message = "Success";
+                    }
+                    else
+                    {
+                        message = "This email address already corresponds to a PPCRental member account. Please sign in or, if you forgot your password, reset it.";
+                    }
+                    return Json(new { Message = message, JsonRequestBehavior.AllowGet });
                 }
-                else
+                catch (Exception e)
                 {
-                    message = "This email address already corresponds to a PPCRental member account. Please sign in or, if you forgot your password, reset it.";
+                    message = e.Message;
+                    return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+
                 }
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
-            catch (Exception e)
-            {
-                message = e.Message;
-                return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-
-            }
-
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
         public ActionResult forgotPassword()
         {

@@ -1,26 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using PPCRental.Controllers;
+using System.Web.Mvc;
 
-namespace PPCRental.UnitTest.Support
+
+namespace PPCRental.UnitTests.Support
 {
-    public static IList<ValidationResult> ValidateModel(this Controller controller, object viewModel)
+    public static class TestModelHelper
     {
-        controller.ModelState.Clear();
-
-        var validationContext = new ValidationContext(viewModel, null, null);
-        var validationResults = new List<ValidationResult>();
-
-        Validator.TryValidateObject(viewModel, validationContext, validationResults, true);
-
-        foreach (var result in validationResults)
+        public static IList<ValidationResult> ValidateModel(this Controller controller, object viewModel)
         {
-            foreach (var name in result.MemberNames)
-            {
-                controller.ModelState.AddModelError(name, result.ErrorMessage);
-            }
-        }
+            controller.ModelState.Clear();
 
-        return validationResults;
+            var validationContext = new ValidationContext(viewModel, null, null);
+            var validationResults = new List<ValidationResult>();
+
+            Validator.TryValidateObject(viewModel, validationContext, validationResults, true);
+
+            foreach (var result in validationResults)
+            {
+                foreach (var name in result.MemberNames)
+                {
+                    controller.ModelState.AddModelError(name, result.ErrorMessage);
+                }
+            }
+
+            return validationResults;
+        }
     }
 }
