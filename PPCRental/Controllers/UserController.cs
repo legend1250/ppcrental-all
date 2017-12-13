@@ -169,8 +169,11 @@ namespace PPCRental.Controllers
                     {
                         if (user.Password != NewPassword)
                         {
-                            NewPassword = hashPwd(NewPassword);
+                            //NewPassword = hashPwd(NewPassword);
                             user.Password = NewPassword;
+                            //db.USERs.Attach(user);
+                            //db.Entry(user).State = EntityState.Modified;
+                            db.Configuration.ValidateOnSaveEnabled = false;
                             db.SaveChanges();
                             changeError = 1;
                             Session["changeStatus"] = "Your password has been changed successfully";
