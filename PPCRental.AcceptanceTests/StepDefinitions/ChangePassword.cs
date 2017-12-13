@@ -21,8 +21,8 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:53887/");
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
-            driver.FindElement(By.Id("user_login")).SendKeys("sale");
-            driver.FindElement(By.Id("user_pass")).SendKeys("123456");
+            driver.FindElement(By.Id("user_login")).SendKeys("md5");
+            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
             driver.FindElement(By.Id("wp-submit")).Click();
         }
 
@@ -35,12 +35,12 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         [When(@"I input all the following fields")]
         public void WhenIInputAllTheFollowingFields(Table table)
         {
-            driver.FindElement(By.Id("Answer")).SendKeys("Tran Hung Dao");
+            driver.FindElement(By.Id("Answer")).SendKeys("123456789");
             driver.FindElement(By.Id("submit")).Click();
             driver.Navigate().GoToUrl("http://localhost:53887/User/Security");
-            driver.FindElement(By.Id("password")).SendKeys("123456");
-            driver.FindElement(By.Id("newPassword")).SendKeys("ppc123");
-            driver.FindElement(By.Id("rePassword")).SendKeys("ppc123");
+            driver.FindElement(By.Id("password")).SendKeys("ppc123");
+            driver.FindElement(By.Id("newPassword")).SendKeys("123456");
+            driver.FindElement(By.Id("rePassword")).SendKeys("123456");
         }
 
         [When(@"I click Set new Password button")]
