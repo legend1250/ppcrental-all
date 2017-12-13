@@ -82,6 +82,9 @@
             background-color: #f2dede;
             border-color: #ebccd1;
         }
+    .qa-register-status{
+        display:none;
+    }
     
 </style>
 
@@ -89,6 +92,12 @@
     <div class="row content">
         <div class="col-lg-12">
             <center><h1>Register</h1></center>
+            <div class="alert alert-success qa-register-status">
+                <strong>Success!</strong> <span>Indicates a successful or positive action.</span>
+            </div>
+            <div class="alert alert-danger qa-register-status">
+                <strong>Danger!</strong> <span>Indicates a dangerous or potentially negative action.</span>
+            </div>
             <div class="form-group" id="f-username">
                 <label>Username</label>
                 <div class="input-group">
@@ -276,7 +285,19 @@ $('#submit').on('click', function (e) {
             dataType: "json",
             //  contentType: "application/json; charset=utf-8",
             success: function (response) {
-                alert(response['Message']);
+                
+                var status = response['Status'];
+                //alert(status);
+                if (status) {
+                    $(".alert-success").show();
+                    $(".alert-danger").hide();
+                    $(".alert-success span").html(response['Message']);
+                } else if (status == 0) {
+                    $(".alert-danger").show();
+                    $(".alert-success").hide();
+                    $(".alert-danger span").html(response['Message']);
+                }
+                //alert(response['Message']);
                
             },
             error: function (response) {
