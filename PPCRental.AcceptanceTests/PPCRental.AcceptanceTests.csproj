@@ -78,10 +78,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\UC011_ChangePassword.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC011_ChangePassword.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\ChangePassword.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\UC011_ChangePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC011_ChangePassword.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,8 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="Features\" />
-    <Folder Include="StepDefinitions\" />
     <Folder Include="Support\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

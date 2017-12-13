@@ -155,6 +155,7 @@ namespace PPCRental.Controllers
         [HttpPost]
         public ActionResult Security(string Password, string NewPassword)
         {
+            int changeError = 0;
             if (ModelState.IsValid)
             {
                 try
@@ -163,6 +164,7 @@ namespace PPCRental.Controllers
                     USER user = db.USERs.Find(userid);
                     Password = hashPwd(Password);
                     NewPassword = hashPwd(NewPassword);
+                    
                     if (user.Password == Password)
                     {
                         if (user.Password != NewPassword)
@@ -170,15 +172,18 @@ namespace PPCRental.Controllers
                             NewPassword = hashPwd(NewPassword);
                             user.Password = NewPassword;
                             db.SaveChanges();
+                            changeError = 1;
                             Session["changeStatus"] = "Your password has been changed successfully";
                         }
                         else
                         {
+                            changeError = 0;
                             Session["changeStatus"] = "Your new password mustn't the same with your current password";
                         }
                     }
                     else
                     {
+                        changeError = 0;
                         Session["changeStatus"] = "Your current password not match with the password you gave";
                     }
                     
@@ -186,10 +191,12 @@ namespace PPCRental.Controllers
                 }
                 catch (Exception ex)
                 {
+                    changeError = 0;
                     Session["changeStatus"] = ex.Message;
                     
                 }
             }
+            Session["changeError"] = changeError;
             return View();
 
         }
@@ -259,9 +266,9 @@ namespace PPCRental.Controllers
 
         public ActionResult UserManagement_Edit()
         {
-            var users = db.UserManagements.ToList();
+            var users = db.UserManagements.ToArray();
             ViewData["users"] = users;
-            ViewData["question"] = db.security_questions.ToList();
+            ViewData["role"] = db.ROLEs.ToList();
             return View();
         }
 
@@ -306,7 +313,7 @@ namespace PPCRental.Controllers
 
                 user.FullName = editedUser.FullName;
                 user.Email = editedUser.Email;
-                user.Password = editedUser.Password;
+                //user.Password = editedUser.Password;
                 user.Phone = editedUser.Phone;
                 user.Address = editedUser.Address;
                 user.RoleID = editedUser.RoleID;

@@ -27,11 +27,13 @@
                     }
                 </select>
                 <select id="ptype" name="ptype">
-                    <option value="-1" selected style="font-weight:bold">Type of project</option>
-                    <option value="1">Apartment</option>
-                    <option value="2">Villa</option>
-                    <option value="3">Office</option>
-                    <option value="4">House</option>  
+                    <option value="0" selected style="font-weight:bold">Type of project</option>
+                    @{
+                        foreach (var item in ViewData["property_type"] as List<PPCRental.Models.PROPERTY_TYPE>)
+                        {
+                            <option value="@item.ID">@item.Description</option>
+                        }
+                    } 
                 </select>
                 <select name="bedrooms" id="property-beds">
                     <option value="">Beds</option>

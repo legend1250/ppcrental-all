@@ -51,8 +51,17 @@
            }
            else
            {
+               int statusChange = (int)Session["changeError"];
                String changeMessage = Session["changeStatus"] as String;
-            <p class="message">@changeMessage</p>
+               if (statusChange == 1)
+               {
+                <p class="message">@changeMessage</p>
+               }
+               else if(statusChange==0)
+               {
+                <p class="message" id="login_error" style="color:red">@changeMessage</p>
+               }
+
                Session.Remove("changeStatus");
            }
 
