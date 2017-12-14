@@ -93,11 +93,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UC011_ChangePassword.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\UC06-Register.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UC06-Register.feature</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\LoginLogoutSteps.cs" />
    <Compile Include="StepDefinitions\ChangePassword.cs" />
