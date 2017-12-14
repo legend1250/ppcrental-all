@@ -94,7 +94,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UC007_Login-Logout.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\UC002_ViewListOfPrpject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC002_ViewListOfPrpject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\UC011_ChangePassword.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC011_ChangePassword.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\UC06-Register.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC06-Register.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\ChangePassword.cs" />
+    <Compile Include="StepDefinitions\Register.cs" />
+    <Compile Include="StepDefinitions\ViewListOfPrpjectSteps.cs" />
     <Compile Include="StepDefinitions\LoginLogoutSteps.cs" />
     <Compile Include="StepDefinitions\ViewDetailFeaturesSteps.cs" />
     <Compile Include="StepDefinitions\ViewListOfProjectSteps.cs" />
@@ -103,6 +121,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\UC002_ViewListOfPrpject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC002_ViewListOfPrpject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC011_ChangePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC011_ChangePassword.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC06-Register.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC06-Register.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\UC002_ViewListOfProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC002_ViewListOfProject.feature.cs</LastGenOutput>
@@ -123,7 +153,10 @@
       <Name>PPCRental</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Drivers\" />
+    <Folder Include="Support\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
