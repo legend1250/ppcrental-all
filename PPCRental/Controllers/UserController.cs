@@ -214,7 +214,7 @@ namespace PPCRental.Controllers
             return View(); ;
         }
         [HttpPost]
-        public ActionResult submitRegister(userData newUser)
+        public ActionResult submitRegister(Metadata newUser)
         {
             string message = "";
             if (ModelState.IsValid)

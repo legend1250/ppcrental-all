@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PPCRental.Models
 {
-    public class userData
+    public class Metadata
     {
         
         [Key]
