@@ -320,13 +320,7 @@ namespace PPCRental.Controllers
         {
             try
             {
-
-                //var userID = editedUser.ID;
-                Console.WriteLine(editedUser);
-
                 var user = db.USERs.Where(x => x.ID == editedUser.ID).First();
-                var user2 = user;
-                Console.WriteLine(user2);
 
                 user.FullName = editedUser.FullName;
                 user.Email = editedUser.Email;

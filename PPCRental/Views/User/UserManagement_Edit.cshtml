@@ -154,6 +154,8 @@
 
 <script>
     $(document).ready(function () {
+
+
         $.ajax({
             url: '/User/ManageUser_Views',
             type: "POST",
@@ -346,26 +348,29 @@
             }
             editedUser.Status = status == 'true' ? true : false;
 
-            console.log('editedUser: ', JSON.stringify(editedUser, undefined, 2));
+            //console.log('editedUser: ', JSON.stringify(editedUser, undefined, 2));
 
             $.ajax({
                 url: 'User/ManageUser_EditUser',
                 type: 'POST',
                 data: { editedUser: editedUser },
-                dataType: 'text',
-                success: function (data) {
-
-
-                    if (data) {
+                dataType: 'json',
+                success: function (result) {
+                    if (result) {
                         $('#myModal').modal('hide');
-                        //alert('ok');
-                        setTimeout(function () {
-                            //$('#table-user').DataTable().ajax.reload();
-                            //$('#table-user').DataTable().ajax.reload();
-                            //console.log(tab);
-                            //location.reload();
-                           
-                        }, 700);
+                        swal({
+                            title: 'Auto close alert!',
+                            text: 'I will close in 5 seconds.',
+                            timer: 1000,
+                            onOpen: () => {
+                                swal.showLoading()
+                            }
+                        }).then((result) => {
+                            if (result.dismiss === 'timer') {
+                                location.reload()
+                                console.log('I was closed by the timer')
+                            }
+                        })
 
                     }
                     else {

@@ -714,6 +714,7 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\superfish.min.js" />
+    <Content Include="Scripts\sweetalert\sweetalert2.all.min.js" />
     <Content Include="Scripts\test.js" />
     <Content Include="Scripts\theme.js" />
     <Content Include="Scripts\tweetie.js" />

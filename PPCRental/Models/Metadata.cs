@@ -27,12 +27,6 @@ namespace PPCRental.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Password must not be null")]
-        [Display(Name = "ConfirmPassword")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage ="Confirm Password must be the same with Password")]
-        public string ConfirmPassword { get; set; }
-
         [Required(ErrorMessage ="Fullname must not be null")]
         [Display(Name = "FullName")]
         public string FullName { get; set; }
