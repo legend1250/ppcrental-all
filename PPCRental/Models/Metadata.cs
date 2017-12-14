@@ -17,7 +17,7 @@ namespace PPCRental.Models
 
         [Required(ErrorMessage="Email must not be null")]
         [DataType(DataType.EmailAddress)]
-        //[Display(Name = "UserEmail")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
 
@@ -34,15 +34,15 @@ namespace PPCRental.Models
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage ="Fullname must not be null")]
-        [Display(Name = "UserFullName")]
+        [Display(Name = "FullName")]
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "Phone must not be null")]
-        [Display(Name = "UserPhone")]
+        [Display(Name = "Phone")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Address must not be null")]
-        [Display(Name ="UserPhone")]
+        [Display(Name ="Address")]
         public string Address { get; set; }
 
         [Required]
@@ -55,13 +55,13 @@ namespace PPCRental.Models
         public Boolean Status { get; set; }
 
         [Required]
-        [Display(Name = "UserQuestion")]
+        [Display(Name = "Security Question")]
         [ForeignKey(nameof(Models.security_questions))]
         public int SecretQuestion_ID { get; set; }
 
 
         [Required(ErrorMessage = "Answer must not be null")]
-        [Display(Name = "UserAnswer")]
+        [Display(Name = "Answer")]
         public string Answer { get; set; }
 
 
