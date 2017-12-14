@@ -14,7 +14,7 @@
         Response.Redirect("~/User/Login", false);
 
     }
-    else if (!(userRole.Equals("ancency")))
+    else if (!(userRole.Equals("Agency")))
     {
         Session.RemoveAll();
         Session["login-status"] = "WrongRole";
