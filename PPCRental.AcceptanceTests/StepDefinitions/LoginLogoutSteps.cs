@@ -69,5 +69,41 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             Assert.AreEqual(true, driver.FindElement(By.Id("loginbtn")).Displayed);
         }
 
+        [When(@"I enter right username and wrong password")]
+        public void WhenIEnterRightUsernameAndWrongPassword()
+        {
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
+            driver.FindElement(By.Id("user_login")).SendKeys("sale");
+            driver.FindElement(By.Id("user_pass")).SendKeys("ppc12345");
+            driver.FindElement(By.Id("wp-submit")).Click();
+        }
+
+        [Then(@"I could see message wrong password or username")]
+        public void ThenICouldSeeMessageWrongPasswordOrUsername()
+        {
+            Assert.AreEqual(true, driver.FindElement(By.Id("login_error")).Displayed);
+        }
+
+        [When(@"I enter wrong username and right password")]
+        public void WhenIEnterWrongUsernameAndRightPassword()
+        {
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
+            driver.FindElement(By.Id("user_login")).SendKeys("saless");
+            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
+            driver.FindElement(By.Id("wp-submit")).Click();
+        }
+
+        [When(@"I enter wrong username and password")]
+        public void WhenIEnterWrongUsernameAndPassword()
+        {
+            driver = new ChromeDriver();
+          
+            driver.FindElement(By.Id("user_login")).SendKeys("saless");
+            driver.FindElement(By.Id("user_pass")).SendKeys("ppc12345");
+            driver.FindElement(By.Id("wp-submit")).Click();
+        }
+
     }
 }
