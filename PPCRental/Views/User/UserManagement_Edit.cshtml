@@ -359,12 +359,9 @@
                     if (result) {
                         $('#myModal').modal('hide');
                         swal({
-                            title: 'Auto close alert!',
-                            text: 'I will close in 5 seconds.',
-                            timer: 1000,
-                            onOpen: () => {
-                                swal.showLoading()
-                            }
+                            text: 'Saved succeed',
+                            icon: 'success',
+                            timer: 1200
                         }).then((result) => {
                             if (result.dismiss === 'timer') {
                                 location.reload()

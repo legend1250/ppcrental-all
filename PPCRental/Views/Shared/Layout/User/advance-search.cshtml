@@ -4,28 +4,34 @@
         <button class="btn top-btn">Find Your Place</button>
         <form id="adv-search-form" class="clearfix" action="@Url.Action("Searching","Project")" method="GET">
             <fieldset>
-                <input type="text" name="projectname" id="project-name" placeholder="Project name" value="">
-                <select name="district" id="district">
-                    <option value="0" selected style="font-weight:bold">District</option>
-                    @foreach (var item in ViewData["District"] as List<PPCRental.Models.DISTRICT>)
-                    {
-                        <option value="@item.ID">@item.DistrictName</option>
-                    }
-                </select>
-                <select name="street" id="street">
-                    <option value="0" selected style="font-weight:bold">Street</option>
-                    @foreach (var item in ViewData["Street"] as List<PPCRental.Models.STREET>)
-                    {
-                        <option value="@item.District_ID">@item.StreetName</option>
-                    }
-                </select>
-                <select id="ward" name="ward">
-                    <option value="0" selected style="font-weight:bold">Ward</option>
-                    @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
-                    {
-                        <option value="@item.District_ID">@item.WardName</option>
-                    }
-                </select>
+                <div class="row">
+                    <input class="form-control" type="hidden" name="projectname" id="project-name" placeholder="Project name" value="">
+                </div>
+                <div class="row">
+                    <select class="selectpicker col-sm-3" data-live-search="true" name="district" id="districtSelect" data-style="btn-warning">
+                        <option value="0" selected style="font-weight:bold">District</option>
+                        @foreach (var item in ViewData["District"] as List<PPCRental.Models.DISTRICT>)
+                        {
+                            <option data-tokens="@item.DistrictName" value="@item.ID">@item.DistrictName</option>
+                        }
+                    </select>
+                    <select class="selectpicker col-sm-3" data-live-search="true" name="street" id="streetSelect">
+                        <option value="0" selected style="font-weight:bold">Street</option>
+                        @foreach (var item in ViewData["Street"] as List<PPCRental.Models.STREET>)
+                        {
+                            <option data-tokens="@item.StreetName" value="@item.District_ID">@item.StreetName</option>
+                        }
+                    </select>
+                    <select class="selectpicker col-sm-3" data-live-search="true" id="wardSelect" name="ward">
+                        <option value="0" selected style="font-weight:bold">Ward</option>
+                        @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
+                        {
+                            <option data-tokens="@item.WardName" value="@item.District_ID">@item.WardName</option>
+                        }
+                    </select>
+                </div>
+                
+                
                 <select id="ptype" name="ptype">
                     <option value="0" selected style="font-weight:bold">Type of project</option>
                     @{
@@ -115,7 +121,7 @@
 
 <script>
     var district_id;
-    $('#district').on('change', function () {
+    $('#districtSelect').on('change', function () {
         //alert('Changed');
         district_id = $(this).find(":selected").val();
         console.log('district: ', district_id);
@@ -125,8 +131,22 @@
             data: { district_id },
             dataType: "json",
             success: function (result) {
-                console.log(result);
-                $('#edit-status').find('option').remove();
+                var streets = result.Street;
+                var wards = result.Ward;
+                //console.log(streets);
+                $('#streetSelect').find('option').remove();
+                $('#streetSelect').append('<option value="0" selected style="font-weight:bold">Street</option>');
+                for (var i = 0; i < streets.length; i++) {
+                    $('#streetSelect').append('<option data-tokens="' + streets[i].StreetName + '" value="' + streets[i].Street_ID + '">' + streets[i].StreetName + '</option>');
+                }
+                $('#streetSelect').selectpicker('refresh');
+                //WARDS
+                $('#wardSelect').find('option').remove();
+                $('#wardSelect').append('<option value="0" selected style="font-weight:bold">Ward</option>');
+                for (var i = 0; i < wards.length; i++) {
+                    $('#wardSelect').append('<option data-tokens="' + wards[i].StreetName + '" value="' + wards[i].Ward_ID + '">' + wards[i].WardName + '</option>');
+                }
+                $('#wardSelect').selectpicker('refresh');
             },
             error: function (err) {
                 console.log(err);
