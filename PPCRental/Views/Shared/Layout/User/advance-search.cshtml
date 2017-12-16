@@ -5,7 +5,7 @@
         <form id="adv-search-form" class="clearfix" action="@Url.Action("Searching","Project")" method="GET">
             <fieldset>
                 <div class="row">
-                    <input class="form-control" type="hidden" name="projectname" id="project-name" placeholder="Project name" value="">
+                    <input class="form-control" type="text" name="projectname" id="project-name" placeholder="Project name" value="">
                 </div>
                 <div class="row">
                     <select class="selectpicker col-sm-3" data-live-search="true" name="district" id="districtSelect" data-style="btn-warning">
@@ -19,14 +19,14 @@
                         <option value="0" selected style="font-weight:bold">Street</option>
                         @foreach (var item in ViewData["Street"] as List<PPCRental.Models.STREET>)
                         {
-                            <option data-tokens="@item.StreetName" value="@item.District_ID">@item.StreetName</option>
+                            <option data-tokens="@item.StreetName" value="@item.ID">@item.StreetName</option>
                         }
                     </select>
                     <select class="selectpicker col-sm-3" data-live-search="true" id="wardSelect" name="ward">
                         <option value="0" selected style="font-weight:bold">Ward</option>
                         @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
                         {
-                            <option data-tokens="@item.WardName" value="@item.District_ID">@item.WardName</option>
+                            <option data-tokens="@item.WardName" value="@item.ID">@item.WardName</option>
                         }
                     </select>
                 </div>
