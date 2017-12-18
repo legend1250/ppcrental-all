@@ -227,6 +227,18 @@ namespace PPCRental.Controllers
         }
         public ActionResult myProjects()
         {
+            if (Session["user"] == null)
+            {
+                Session.RemoveAll();
+                Session["login-status"] = "NotLogin";
+                Session["SavePath"] = "/Project/MyProjects";
+                return Redirect("~/User/Login");
+
+            }
+            var sessionUser = Session["userID"];
+            int userID =  int.Parse(sessionUser.ToString());
+            var myProject = db.View_project_from_index.Where(x => x.UserID == userID).ToList();
+            ViewData["MyProject"] = myProject;
             return View();
         }
        public ActionResult projectupdate(PROPERTY projectupdate)
