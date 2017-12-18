@@ -616,6 +616,14 @@
     <Content Include="img\loader\3.gif" />
     <Content Include="img\loader\4.gif" />
     <Content Include="img\logo.png" />
+    <Content Include="img\News\banh-trung-thujpg.jpg" />
+    <Content Include="img\News\canh-tu-dinh-langbiang.jpg" />
+    <Content Include="img\News\giánginh.jpg" />
+    <Content Include="img\News\images2571788_tet_trung_thu_dspl.jpg" />
+    <Content Include="img\News\Noel.jpg" />
+    <Content Include="img\News\nucuoitreem.jpg" />
+    <Content Include="img\News\saigon.jpg" />
+    <Content Include="img\News\sữađá.png" />
     <Content Include="img\playstore-btn.png" />
     <Content Include="img\Product\1.jpg" />
     <Content Include="img\Product\2.jpg" />
@@ -772,6 +780,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\User\News.cshtml" />
+    <Content Include="Views\User\NewsDetailChristmas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -801,7 +811,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53887</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

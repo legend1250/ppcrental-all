@@ -355,7 +355,6 @@ namespace PPCRental.Controllers
             
         }
 
-
         private string hashPwd(string pwd)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -433,7 +432,15 @@ namespace PPCRental.Controllers
         {
             return View();
         }
-       
+        
+        public ActionResult news()
+        {
+            return View();
+        }
+        public ActionResult newsDetail1()
+        {
+            return View();
+        }
 
     }
 }
