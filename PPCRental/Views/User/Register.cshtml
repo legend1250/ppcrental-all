@@ -6,6 +6,7 @@
 
 @model  PPCRental.Models.Metadata
 
+
 <style>
     .qa-register {
         margin: auto;
@@ -176,7 +177,7 @@
         <div class="col-lg-12">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-group" })
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "email", @placeholder = "Requested Email" } })
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
@@ -184,23 +185,15 @@
         <div class="col-lg-12">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-group" })
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "password", @placeholder = "Password" } })
                 @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
         <div class="col-lg-12">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "confirm", @placeholder = "Confirm Password" } })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword)
-            </div>
-        </div>
-        <div class="col-lg-12">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-group" })
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
                 @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address", @placeholder = "Address" } })
                 @Html.ValidationMessageFor(model => model.Address)
             </div>
@@ -208,23 +201,23 @@
         <div class="col-lg-12">
             @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "form-group" })
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phone", @placeholder = "Phone Number" } })
                 @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
-        @*<div class="col-lg-12">
+        <div class="col-lg-12">
             <label class="form-group" for="SecretQuestion_ID">Security Question</label>
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.DropDownList("SecretQuestion_ID", String.Empty)
+                <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
+                @Html.DropDownList("SecretQuestion_ID", (IEnumerable<SelectListItem>)ViewBag.question,"Select question", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SecretQuestion_ID)
             </div>
-        </div>*@
+        </div>
         <div class="col-lg-12">
             @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "form-group" })
             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
                 @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", @id = "answer", @placeholder = "Answer" } })
                 @Html.ValidationMessageFor(model => model.Answer)
             </div>

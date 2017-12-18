@@ -53,19 +53,12 @@ namespace PPCRental.Models
         [ForeignKey(nameof(Models.security_questions))]
         public int SecretQuestion_ID { get; set; }
 
-
         [Required(ErrorMessage = "Answer must not be null")]
         [Display(Name = "Answer")]
         public string Answer { get; set; }
 
-
-
-
-
-
-
-
-
-
+        [NotMapped] // Does not effect with your database
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
     }
 }

@@ -211,6 +211,19 @@ namespace PPCRental.Controllers
         public ActionResult Register()
         {
             //var obj = db.security_questions.ToList();
+            var ques = db.security_questions.ToList();
+            List<SelectListItem> item = new List<SelectListItem>();
+            foreach(var i in ques)
+            {
+                item.Add(new SelectListItem
+                {
+                    Text = i.question,
+                    Value = i.id.ToString()
+                });
+            }
+
+            ViewBag.question = item;
+
             return View(); ;
         }
         [HttpPost]
