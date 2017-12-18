@@ -5,24 +5,47 @@
         <form id="adv-search-form" class="clearfix" action="@Url.Action("Searching","Project")" method="GET">
             <fieldset>
                 <div class="row">
-                    <input class="selectpicker" type="text" name="projectname" id="project-name" placeholder="Project name" value="">
+                    <input class="col-sm-2" type="text" name="keyword" id="keyword" placeholder="Keyword" value="">
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="minarea">
+                        <option value="0" selected style="font-weight:bold" placholder="Min Area (m2)">Min Area</option>
+                        <option data-token="50" value="50">50 m2</option>
+                        <option data-token="100" value="50">10 m2</option>
+                        <option data-token="150" value="50">150 m2</option>
+                        <option data-token="200" value="50">200 m2</option>
+                    </select>
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="maxarea">
+                        <option value="0" selected style="font-weight:bold" placholder="Max Area (m2)">Max Area</option>
+                        <option data-token="50" value="50">50 m2</option>
+                        <option data-token="100" value="50">10 m2</option>
+                        <option data-token="150" value="50">150 m2</option>
+                        <option data-token="200" value="50">200 m2</option>
+                    </select>
                 </div>
                 <div class="row">
-                    <select class="selectpicker col-sm-3" data-live-search="true" name="district" id="districtSelect" data-style="btn-warning">
+                    <select class="selectpicker col-sm-2" data-live-search="true" id="ptype" name="ptype" >
+                        <option value="0" selected style="font-weight:bold">Type of project</option>
+                        @{
+                            foreach (var item in ViewData["property_type"] as List<PPCRental.Models.PROPERTY_TYPE>)
+                            {
+                                <option data-tokens="@item.Description" value="@item.ID">@item.Description</option>
+                            }
+                        }
+                    </select>
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="district" id="districtSelect" >
                         <option value="0" selected style="font-weight:bold">District</option>
                         @foreach (var item in ViewData["District"] as List<PPCRental.Models.DISTRICT>)
                         {
                             <option data-tokens="@item.DistrictName" value="@item.ID">@item.DistrictName</option>
                         }
                     </select>
-                    <select class="selectpicker col-sm-3" data-live-search="true" name="street" id="streetSelect">
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="street" id="streetSelect" data-width="fit">
                         <option value="0" selected style="font-weight:bold">Street</option>
                         @foreach (var item in ViewData["Street"] as List<PPCRental.Models.STREET>)
                         {
                             <option data-tokens="@item.StreetName" value="@item.ID">@item.StreetName</option>
                         }
                     </select>
-                    <select class="selectpicker col-sm-3" data-live-search="true" id="wardSelect" name="ward">
+                    <select class="selectpicker col-sm-2" data-live-search="true" id="wardSelect" name="ward" >
                         <option value="0" selected style="font-weight:bold">Ward</option>
                         @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
                         {
@@ -30,89 +53,77 @@
                         }
                     </select>
                 </div>
-                
-                
-                <select id="ptype" name="ptype">
-                    <option value="0" selected style="font-weight:bold">Type of project</option>
-                    @{
-                        foreach (var item in ViewData["property_type"] as List<PPCRental.Models.PROPERTY_TYPE>)
-                        {
-                            <option value="@item.ID">@item.Description</option>
-                        }
-                    } 
-                </select>
-                <select name="bedrooms" id="property-beds">
-                    <option value="">Beds</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="any">Any</option>
-                </select>
-                <select name="bathrooms" id="property-baths">
-                    <option value="">Bathrooms</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="any">Any</option>
-                </select>
-                <input type="text" name="min-area" id="property-min-area" placeholder="Min Area (m2)">
-                <input type="text" name="max-area" id="property-max-area" placeholder="Max Area (m2)">
-                <select name="min-price" id="property-min-price">
-                    <option value="any" selected="selected">Min Price</option>
-                    <option value="1000">$1000</option>
-                    <option value="5000">$5000</option>
-                    <option value="10000">$10000</option>
-                    <option value="50000">$50000</option>
-                    <option value="100000">$100000</option>
-                    <option value="200000">$200000</option>
-                    <option value="300000">$300000</option>
-                    <option value="400000">$400000</option>
-                    <option value="500000">$500000</option>
-                    <option value="600000">$600000</option>
-                    <option value="700000">$700000</option>
-                    <option value="800000">$800000</option>
-                    <option value="900000">$900000</option>
-                    <option value="1000000">$1000000</option>
-                    <option value="1500000">$1500000</option>
-                    <option value="2000000">$2000000</option>
-                    <option value="2500000">$2500000</option>
-                    <option value="5000000">$5000000</option>
-                </select>
-                <select name="max-price" id="property-max-price">
-                    <option value="any" selected="selected">Max Price</option>
-                    <option value="5000">$5000</option>
-                    <option value="10000">$10000</option>
-                    <option value="50000">$50000</option>
-                    <option value="100000">$100000</option>
-                    <option value="200000">$200000</option>
-                    <option value="300000">$300000</option>
-                    <option value="400000">$400000</option>
-                    <option value="500000">$500000</option>
-                    <option value="600000">$600000</option>
-                    <option value="700000">$700000</option>
-                    <option value="800000">$800000</option>
-                    <option value="900000">$900000</option>
-                    <option value="1000000">$1000000</option>
-                    <option value="1500000">$1500000</option>
-                    <option value="2000000">$2000000</option>
-                    <option value="2500000">$2500000</option>
-                    <option value="5000000">$5000000</option>
-                    <option value="10000000">$10000000</option>
-                </select>
+                <br />
+                <div class="row">
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="bedrooms" id="property-beds" >
+                        <option data-token="0" value="0">Beds</option>
+                        <option data-token="1" value="1">1</option>
+                        <option data-token="2" value="2">2</option>
+                        <option data-token="3" value="3">3</option>
+                        <option data-token="4" value="4">4</option>
+                        <option data-token="5" value="5">5</option>
+                        <option data-token="6" value="6">6</option>
+                        <option data-token="7" value="7">7</option>
+                        <option data-token="8" value="8">8</option>
+                        <option data-token="9" value="9">9</option>
+                        <option data-token="10" value="10">10</option>
+                    </select>
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="bathrooms" id="property-baths" >
+                        <option data-token="0" value="0">Bathrooms</option>
+                        <option data-token="1" value="1">1</option>
+                        <option data-token="2" value="2">2</option>
+                        <option data-token="3" value="3">3</option>
+                        <option data-token="4" value="4">4</option>
+                        <option data-token="5" value="5">5</option>
+                        <option data-token="6" value="6">6</option>
+                        <option data-token="7" value="7">7</option>
+                        <option data-token="8" value="8">8</option>
+                        <option data-token="9" value="9">9</option>
+                        <option data-token="10" value="10">10</option>
+                    </select>
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="min-price" id="property-min-price" >
+                        <option value="0" selected="selected">Min Price</option>
+                        <option data-token="1000" value="1000">$1.000</option>
+                        <option data-token="5000" value="5000">$5.000</option>
+                        <option data-token="10000" value="10000">$10.000</option>
+                        <option data-token="20000" value="20000">$20.000</option>
+                        <option data-token="30000" value="30000">$30.000</option>
+                        <option data-token="50000" value="50000">$50.000</option>
+                        <option data-token="70000" value="70000">$70.000</option>
+                        <option data-token="100000" value="100000">$100.000</option>
+                        <option data-token="200000" value="200000">$200.000</option>
+                        <option data-token="300000" value="300000">$300.000</option>
+                        <option data-token="500000" value="500000">$500.000</option>
+                        <option data-token="700000" value="700000">$700.000</option>
+                        <option data-token="1000000" value="1000000">$1.000.000</option>
+                        <option data-token="1500000" value="1500000">$1.500.000</option>
+                        <option data-token="2000000" value="2000000">$2.000.000</option>
+                        <option data-token="2500000" value="2500000">$2.500.000</option>
+                        <option data-token="5000000" value="5000000">$5.000.000</option>
+                        <option data-token="10000000" value="10000000">$10.000.000</option>
+                    </select>
+                    <select class="selectpicker col-sm-2" data-live-search="true" name="max-price" id="property-max-price" >
+                        <option value="0" selected="selected">Max Price</option>
+                        <option data-token="1000" value="1000">$1.000</option>
+                        <option data-token="5000" value="5000">$5.000</option>
+                        <option data-token="10000" value="10000">$10.000</option>
+                        <option data-token="20000" value="20000">$20.000</option>
+                        <option data-token="30000" value="30000">$30.000</option>
+                        <option data-token="50000" value="50000">$50.000</option>
+                        <option data-token="70000" value="70000">$70.000</option>
+                        <option data-token="100000" value="100000">$100.000</option>
+                        <option data-token="200000" value="200000">$200.000</option>
+                        <option data-token="300000" value="300000">$300.000</option>
+                        <option data-token="500000" value="500000">$500.000</option>
+                        <option data-token="700000" value="700000">$700.000</option>
+                        <option data-token="1000000" value="1000000">$1.000.000</option>
+                        <option data-token="1500000" value="1500000">$1.500.000</option>
+                        <option data-token="2000000" value="2000000">$2.000.000</option>
+                        <option data-token="2500000" value="2500000">$2.500.000</option>
+                        <option data-token="5000000" value="5000000">$5.000.000</option>
+                        <option data-token="10000000" value="10000000">$10.000.000</option>
+                    </select>
+                </div>
             </fieldset>
             <button type="submit" class="btn btn-default btn-lg text-center">Search <br class="hidden-sm hidden-xs"> Property</button>
         </form>
