@@ -39,60 +39,51 @@ namespace PPCRental.Controllers
 
                 if (user.Password == pwd)
                 {
-                    if (user.Status == true)
+                    int UserID = user.ID;
+                    Session["user"] = user.FullName;
+                    Session["userID"] = UserID;
+                    string[] name_role = { "None", "Agency", "Sale","Technical"};
+                    string role = name_role[(int)user.RoleID];
+                    Session["userRole"] = role;
+                    Session["VerifyUser"] = "NotVerify";
+
+                    //add cookie
+
+                    HttpCookie userName = new HttpCookie("UserName", user.FullName);
+                    HttpCookie userRole = new HttpCookie("UserRole", role);
+                    HttpCookie userID = new HttpCookie("UserID", UserID.ToString());
+                        
+                    //if checkbox rememberme is checked
+                    if (rememberMe==true)
                     {
-                        int UserID = user.ID;
-                        Session["user"] = user.FullName;
-                        Session["userID"] = UserID;
-                        string[] name_role = { "None", "Agency", "Sale","Technical"};
-                        string role = name_role[(int)user.RoleID];
-                        Session["userRole"] = role;
-                        Session["VerifyUser"] = "NotVerify";
-
-                        //add cookie
-
-                        HttpCookie userName = new HttpCookie("UserName", user.FullName);
-                        HttpCookie userRole = new HttpCookie("UserRole", role);
-                        HttpCookie userID = new HttpCookie("UserID", UserID.ToString());
-                        
-                        //if checkbox rememberme is checked
-                        if (rememberMe==true)
-                        {
-                            //set cookie's expire day in 365 day
-                            userName.Expires.AddDays(365);
-                            userRole.Expires.AddDays(365);
-                            userID.Expires.AddDays(365);
+                        //set cookie's expire day in 365 day
+                        userName.Expires.AddDays(365);
+                        userRole.Expires.AddDays(365);
+                        userID.Expires.AddDays(365);
                             
-                        }
-                        else
-                        {
-                            //remove cookie
-                            userName.Expires = DateTime.Now.AddDays(-1);
-                            userRole.Expires = DateTime.Now.AddDays(-1);
-                            userID.Expires = DateTime.Now.AddDays(-1);
-                            
-                        }
-                        
-                        HttpContext.Response.SetCookie(userName);
-                        HttpContext.Response.SetCookie(userRole);
-                        HttpContext.Response.SetCookie(userID);
-                       
-                        //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
-                        return Redirect("~"+path);
                     }
                     else
                     {
-                        Session.RemoveAll();
-                        Session["login-status"] = "NotActive";
-                        return Redirect("~/User/Login");
+                        //remove cookie
+                        userName.Expires = DateTime.Now.AddDays(-1);
+                        userRole.Expires = DateTime.Now.AddDays(-1);
+                        userID.Expires = DateTime.Now.AddDays(-1);
+                            
                     }
+                        
+                    HttpContext.Response.SetCookie(userName);
+                    HttpContext.Response.SetCookie(userRole);
+                    HttpContext.Response.SetCookie(userID);
+                       
+                    //  HttpResponse.RemoveOutputCacheItem("~/Home/Index");
+                    return Redirect("~"+path);
                 }
                 else
                 {
-                    Session["error"] = 1;
-                    return View();
+                    Session.RemoveAll();
+                    Session["login-status"] = "NotActive";
+                    return Redirect("~/User/Login");
                 }
-
             }
             catch (Exception)
             {
@@ -224,50 +215,61 @@ namespace PPCRental.Controllers
 
             ViewBag.question = item;
 
-            return View(); ;
+            return View(new USERMetadata());
         }
+
         [HttpPost]
-        public ActionResult submitRegister(Metadata newUser)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(USERMetadata newUser)
         {
-            string message = "";
-            if (ModelState.IsValid)
+            using (ppcrental3119Entities db = new ppcrental3119Entities())
             {
-                try
+                if (db.USERs.Any(x => x.Email == newUser.Email))
                 {
-                    var user = new USER();
-                    user.Email = newUser.Email;
-                    user.FullName = newUser.FullName;
-                    user.Phone = newUser.Phone;
-                    user.Password = newUser.Password;
-                    user.Address = newUser.Address;
-                    user.RoleID = 0;
-                    user.Status = newUser.Status;
-                    user.SecretQuestion_ID = newUser.SecretQuestion_ID;
-                    user.Answer = newUser.Answer;
-
-                    var checkEmail = db.USERs.FirstOrDefault(x => x.Email == newUser.Email);
-                    if (checkEmail == null)
+                    ViewBag.DuplicateMessage = "Email already exist";
+                    return ViewBag();
+                }
+                else
+                {
+                    int nextID = db.USERs.Max(x => x.ID) + 1;
+                    USER usr = new USER
                     {
+                        ID = nextID,
+                        Email = newUser.Email,
+                        Password = hashPwd(newUser.Password),
 
-                        db.USERs.Add(user);
+                        FullName = newUser.Phone,
+                        Phone = newUser.Phone,
+                        Address = newUser.Address,
+                        RoleID = 0,
+                        Status = false,
+                        SecretQuestion_ID = newUser.SecretQuestion_ID,
+                        Answer = newUser.Answer
+                    };
+                    try
+                    {
+                        db.USERs.Add(usr);
                         db.SaveChanges();
-                        message = "Success";
                     }
-                    else
+                    catch (Exception e)
                     {
-                        message = "This email address already corresponds to a PPCRental member account. Please sign in or, if you forgot your password, reset it.";
+                        ViewBag.DuplicateMessage = "Error";
+                        Console.WriteLine(e.ToString());
+                        return RedirectToAction("Register");
+                        throw;
                     }
-                    return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                    ModelState.Clear();
+                    ViewBag.SuccessMessage = "Successful Register";
+                    Session["user"] = newUser.FullName;
+                    Session["userID"] = nextID;
+                    Session["userRole"] = "None";
+                    return RedirectToAction("Index", "Home");
                 }
-                catch (Exception e)
-                {
-                    message = e.Message;
-                    return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+                
 
-                }
             }
-            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
+
         public ActionResult forgotPassword()
         {
             return View();

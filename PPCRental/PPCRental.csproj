@@ -20,7 +20,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44393</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -185,7 +185,6 @@
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\PROJECT_STATUS.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
@@ -753,7 +752,6 @@
     <Content Include="Views\User\Security.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-sale.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\Project\MyProjects.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
@@ -773,6 +771,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Shared\Layout\User\top-menu-noneRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

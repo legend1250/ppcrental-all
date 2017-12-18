@@ -67,15 +67,19 @@
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
                     }
+                    else
+                    {
+                        @RenderPage("~/Views/Shared/Layout/User/top-menu-noneRole.cshtml")
+                    }
                 }
                 else if(userName != null){
                     HttpCookie userRole = Request.Cookies["userRole"];
                     HttpCookie userID = Request.Cookies["UserID"];
-                    
+
                     Session["user"] =userName.Value.ToString();
                     Session["userID"] = int.Parse(userID.Value);
                     Session["userRole"] = userRole.Value.ToString();
-                   
+
                     if (userRole.Value.ToString().Equals("Agency"))
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
