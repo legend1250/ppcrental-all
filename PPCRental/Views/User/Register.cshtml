@@ -1,11 +1,9 @@
-﻿
+﻿@model PPCRental.Models.USERMetadata
+
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@model  PPCRental.Models.Metadata
-
 <style>
     .qa-register {
         margin: auto;
@@ -83,233 +81,106 @@
             border-color: #ebccd1;
         }
 </style>
+<h2>Register</h2>
 
-	<div class="qa-register">
-    <div class="row content">
-        @*<section class="col-lg-12">
-            <center><h1>Register</h1></center>
-            <div class="form-group" id="f-username">
-                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-                <label>Username</label>
-                <div class="input-group">
 
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" class="form-control" name="Username" id="Username" placeholder="Requested Username">
-                </div>
-            </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="qa-register">
+        <div class="form-horizontal">
+            <h4>USERMetadata</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                <label>Email</label>
-                <div class="input-group" id="f-email">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input type="email" class="form-control" name="Email" id="Email" placeholder="Requested Email">
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                <label>Password</label>
-                <div class="input-group" id="f-password">
-                    <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required data-toggle="popover" title="Password Strength" data-content="Enter Password...">
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                <label>Confirm Password</label>
-                <div class="input-group" id="f-repassword">
-                    <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                <label>Address:</label>
-                <div class="input-group" id="f-address">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                    <input type="text" class="form-control" name="Username" id="address" placeholder="Requested Username">
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                <label>Phone:</label>
-                <div class="input-group" id="f-phone">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
-                    <input id="phone" name="textinput" type="tel" placeholder="Phone number" class="form-control">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Security Question:</label>
-                <div class="input-group" id="f-question">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
-                    <select id="question" class="form-control">
-                        @{
-                                foreach (var item in Model.SecretQuestion_ID.)
-                                {
-                                    <option value="@item.id">@item.question</option>
-                                }
-                            }
-
-                    </select>
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecretQuestion_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SecretQuestion_ID", (IEnumerable<SelectListItem>)ViewBag.question, "Select question", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SecretQuestion_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
-                    <label>Answer</label>
-                    <div class="input-group" id="f-answer">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
-                        <input type="text" id="answer" name="answer" placeholder="Answer" class="form-control">
-                    </div>
                 </div>
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary pull-right">
             </div>
 
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
 
-        </section>*@
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @id = "username", @placeholder = "Requested Username" } })
-                @Html.ValidationMessageFor(model => model.FullName)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <label class=" label-success">@ViewBag.SuccessMessage</label>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "email", @placeholder = "Requested Email" } })
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "password", @placeholder = "Password" } })
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>
-        </div>
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "confirm", @placeholder = "Confirm Password" } })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword)
-            </div>
-        </div>
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address", @placeholder = "Address" } })
-                @Html.ValidationMessageFor(model => model.Address)
-            </div>
-        </div>
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phone", @placeholder = "Phone Number" } })
-                @Html.ValidationMessageFor(model => model.Phone)
-            </div>
-        </div>
-        @*<div class="col-lg-12">
-            <label class="form-group" for="SecretQuestion_ID">Security Question</label>
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.DropDownList("SecretQuestion_ID", String.Empty)
-                @Html.ValidationMessageFor(model => model.SecretQuestion_ID)
-            </div>
-        </div>*@
-        <div class="col-lg-12">
-            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "form-group" })
-            <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", @id = "answer", @placeholder = "Answer" } })
-                @Html.ValidationMessageFor(model => model.Answer)
-            </div>
-        </div>
 
-        <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary pull-right">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <label class=" label-danger">@ViewBag.DuplicateMessage</label>
+                </div>
+            </div>
+        </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-<script src="~/Scripts/md5.min.js"></script>
-<script>
-    //kiểm tra độ mạnh mật khẩu
-    $(document).ready(function () {
-        //minimum 8 characters
-        var bad = /(?=.{8,}).*/;
-        //Alpha Numeric plus minimum 8
-        var good = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{8,}$/;
-        //Must contain at least one upper case letter, one lower case letter and (one number OR one special char).
-        var better = /^(?=\S*?[A-Z])(?=\S*?[a-z])((?=\S*?[0-9])|(?=\S*?[^\w\*]))\S{8,}$/;
-        //Must contain at least one upper case letter, one lower case letter and (one number AND one special char).
-        var best = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
-
-        $('#password').on('keyup', function () {
-            var password = $(this);
-            var pass = password.val();
-            var passLabel = $('[for="password"]');
-            var stength = 'Weak';
-            var pclass = 'danger';
-            if (best.test(pass) == true) {
-                stength = 'Very Strong';
-                pclass = 'success';
-            } else if (better.test(pass) == true) {
-                stength = 'Strong';
-                pclass = 'warning';
-            } else if (good.test(pass) == true) {
-                stength = 'Almost Strong';
-                pclass = 'warning';
-            } else if (bad.test(pass) == true) {
-                stength = 'Weak';
-            } else {
-                stength = 'Very Weak';
-            }
-
-            var popover = password.attr('data-content', stength).data('bs.popover');
-            popover.setContent();
-            popover.$tip.addClass(popover.options.placement).removeClass('danger success info warning primary').addClass(pclass);
-
-        });
-
-        $('input[data-toggle="popover"]').popover({
-            placement: 'top',
-            trigger: 'focus'
-        });
-        //Ajax
-        $('#submit').on('click', function (e) {
-            e.preventDefault();
-            var newUser = {
-                FullName: $('#Username').val(),
-                Email: $('#Email').val(),
-                Password: md5($('#password').val()),
-                Phone: $('#phone').val(),
-                Address: $('#address').val(),
-                SecretQuestion_ID: 2,
-                Answer: $('#answer').val(),
-                RoleID: 0,
-                Status: false
-                //parseInt($('#question').val())
-            }
-            $.ajax({
-                url: '/User/submitRegister/',
-                type: "POST",
-                data: { newUser },
-                dataType: "json",
-                //  contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    alert(response['Message']);
-
-                },
-                error: function (response) {
-                    alert("Error:" + response['Message']);
-                },
-            });
-
-        });
-    })
-</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

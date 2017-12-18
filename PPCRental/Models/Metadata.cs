@@ -7,9 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PPCRental.Models
 {
-    public class Metadata
+    public class USERMetadata
     {
-        
         [Key]
         [Display(Name = "UserID")]
         public string ID { get; set; }
@@ -21,17 +20,19 @@ namespace PPCRental.Models
         public string Email { get; set; }
 
 
-
         [Required(ErrorMessage = "Password must not be null")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+
         [Required(ErrorMessage = "Password must not be null")]
-        [Display(Name = "ConfirmPassword")]
+        [Compare("Password", ErrorMessage = "Password Mismatched. Re-enter your password")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage ="Confirm Password must be the same with Password")]
+        [Display(Name = "Confirm Password")]
+        [NotMapped]
         public string ConfirmPassword { get; set; }
+
 
         [Required(ErrorMessage ="Fullname must not be null")]
         [Display(Name = "FullName")]
@@ -59,19 +60,10 @@ namespace PPCRental.Models
         [ForeignKey(nameof(Models.security_questions))]
         public int SecretQuestion_ID { get; set; }
 
-
         [Required(ErrorMessage = "Answer must not be null")]
         [Display(Name = "Answer")]
         public string Answer { get; set; }
 
-
-
-
-
-
-
-
-
-
+        
     }
 }

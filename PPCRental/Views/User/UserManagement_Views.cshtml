@@ -65,37 +65,50 @@
 </div>
 
 <script>
+    //$.ajax({
+    //    url: '/User/ManageUser_Views',
+    //    type: "POST",
+    //    data: { role_id: 10 },
+    //    dataType: "json",
+    //    success: function (result) {
+
+    //        var data = [];
+    //        data = convertDataToArray(result.Users);
+
+    //        console.log(data);
+    //        var table = $('#table-user').DataTable();
+    //        table.destroy();
+    //        table
+    //            .clear()
+    //            .draw();
+    //        $('#table-user').DataTable({
+    //            data: data,
+    //            "language": {
+    //                "paginate": {
+    //                    "previous": "Previous ",
+    //                    "next": " Next page"
+    //                }
+    //            }
+    //        });
+    //    },
+    //    error: function (err) {
+    //        alert(err);
+
+    //    }
+    //});
+
     //refactor table
     $(document).ready(function () {
-        $.ajax({
-            url: '/User/ManageUser_Views',
-            type: "POST",
-            data: { role_id: 10 },
-            dataType: "json",
-            success: function (result) {
-                
-                var data = [];
-                data = convertDataToArray(result.Users);
-
-                //console.log(data);
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table
-                    .clear()
-                    .draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
-                        }
-                    }
-                });
-            },
-            error: function (err) {
-                alert(err);
-
+        $('#table-user').DataTable({
+            "ajax": {
+                "url": '/User/ManageUser_Views',
+                "type": "POST",
+                "data": { role_id: 10 },
+                "dataSrc": function (result) {
+                    var data = [];
+                    data = convertDataToArray(result.Users);
+                    return data
+                }
             }
         });
     })

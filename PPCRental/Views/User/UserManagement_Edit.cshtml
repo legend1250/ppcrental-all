@@ -117,7 +117,7 @@
                             <tr>
                                 <th>RoleID</th>
                                 <td id="td-role">
-                                    <select id="edit-role" class="form-control" disabled></select>
+                                    <select id="edit-role" class="form-control" ></select>
                                 </td>
                             </tr>
                             <tr>
@@ -129,13 +129,13 @@
                             <tr>
                                 <th>Question</th>
                                 <td id="td-question">
-                                    <select id="edit-question" class="form-control" disabled></select>
+                                    <select id="edit-question" class="form-control"></select>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Answer</th>
                                 <td id="td-answer">
-                                    <input type="text" id="input-answer" class="form-control" value="" readonly>
+                                    <input type="text" id="input-answer" class="form-control" value="">
                                 </td>
                             </tr>
 
@@ -154,6 +154,8 @@
 
 <script>
     $(document).ready(function () {
+
+
         $.ajax({
             url: '/User/ManageUser_Views',
             type: "POST",
@@ -346,26 +348,26 @@
             }
             editedUser.Status = status == 'true' ? true : false;
 
-            console.log('editedUser: ', JSON.stringify(editedUser, undefined, 2));
+            //console.log('editedUser: ', JSON.stringify(editedUser, undefined, 2));
 
             $.ajax({
                 url: 'User/ManageUser_EditUser',
                 type: 'POST',
                 data: { editedUser: editedUser },
-                dataType: 'text',
-                success: function (data) {
-
-
-                    if (data) {
+                dataType: 'json',
+                success: function (result) {
+                    if (result) {
                         $('#myModal').modal('hide');
-                        //alert('ok');
-                        setTimeout(function () {
-                            //$('#table-user').DataTable().ajax.reload();
-                            //$('#table-user').DataTable().ajax.reload();
-                            //console.log(tab);
-                            //location.reload();
-                           
-                        }, 700);
+                        swal({
+                            text: 'Saved succeed',
+                            icon: 'success',
+                            timer: 1200
+                        }).then((result) => {
+                            if (result.dismiss === 'timer') {
+                                location.reload()
+                                console.log('I was closed by the timer')
+                            }
+                        })
 
                     }
                     else {
