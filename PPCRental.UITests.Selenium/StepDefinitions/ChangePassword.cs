@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace PPCRental.AcceptanceTests.StepDefinitions
+namespace PPCRental.UITests.Selenium.StepDefinitions
 {
     [Binding]
     public class ChangePassword
@@ -53,8 +53,9 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         [Then(@"I see a message ""(.*)""")]
         public void ThenISeeAMessage(string p0)
         {
-            IWebElement element = driver.FindElement(By.XPath("//*[@id='login']/p[1]"));
-            Assert.AreEqual("Your password has been changed successfully", element.Text);
+            //IWebElement element = driver.FindElement(By.XPath("//*[@id='login']/p[1]"));
+            //Assert.AreEqual("Your password has been changed successfully", element.Text);
+            driver.FindElement(By.XPath("//*[@id='login']/p[1]")).Text.CompareTo("Your password has been changed successfully");
         }
 
         //
