@@ -24,6 +24,21 @@
 
     }
 }
+<style>
+    .qa-btn-date {
+        font-size: 10px;
+        font-weight: 600;
+        position: absolute;
+        right: 8px;
+        top: 8px;
+       
+        padding: 3px 7px 2px 7px;
+        z-index: 1;
+    }
+    .view-more:hover{
+        color:darkorange;
+    }
+</style>
 <div class="qa-my-list-projects">
     <center><h1 style="margin-bottom:100px;margin-top:50px;">My Projects</h1></center>
    
@@ -34,8 +49,15 @@
                 {
                     <article class="property layout-item clearfix list-style">
                         <figure class="feature-image">
-                            <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image" class="" style=""></a>
-                            <span class="btn btn-warning btn-sale">for sale</span>
+                            <div style="position:relative;width:100%">
+                                <span class="btn btn-warning btn-sale">for sale</span>
+                                <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image" class="" style=""></a>
+                                @{
+                                    var time = item.Updated_at;
+                                    var formatTime = String.Format("{0:dd MMM}", time);
+                                    <span class="btn btn-warning btn-date qa-btn-date">@formatTime</span>
+                                }
+                            </div>
                         </figure>
                         <div class="property-contents clearfix">
                             <header class="property-header clearfix">
@@ -43,8 +65,19 @@
                                     <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
                                     <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName,@item.WardName,@item.DistrictName</span>
                                 </div>
+                                @{
+                                    string _tmp = item.Price.ToString();
+                                    int? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                                    string price = _tmp.Substring(0, (int)i);
+                                    _tmp = _tmp.Substring((int)i);
+                                    while (_tmp.Length > 0 && _tmp.Length >= 3)
+                                    {
+                                        price += "," + _tmp.Substring(0, 3);
+                                        _tmp = _tmp.Substring(3);
+                                    }
 
-                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$3,232,213"><strong>@item.Price</strong></button>
+                                }
+                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$@Html.DisplayName(price)"><strong>$@Html.DisplayName(price)</strong></button>
                             </header>
                             <div class="property-meta clearfix">
                                 <span><i class="fa fa-arrows-alt"></i> @item.Area</span>
@@ -53,7 +86,7 @@
                                 <span><i class="fa fa-cab"></i>@item.PackingPlace Slots</span>
                             </div>
                             <div class="contents clearfix">
-                                <p>@item </p>
+                                <p>@item.Content.Substring(1,160).....<a href="#" class="view-more">[view more]</a></p>
                             </div>
                             <div class="author-box clearfix">
                                 <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
