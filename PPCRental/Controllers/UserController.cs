@@ -224,10 +224,23 @@ namespace PPCRental.Controllers
         {
             using (ppcrental3119Entities db = new ppcrental3119Entities())
             {
+                var ques = db.security_questions.ToList();
+                List<SelectListItem> item = new List<SelectListItem>();
+                foreach (var i in ques)
+                {
+                    item.Add(new SelectListItem
+                    {
+                        Text = i.question,
+                        Value = i.id.ToString()
+                    });
+                }
+
+                ViewBag.question = item;
+
                 if (db.USERs.Any(x => x.Email == newUser.Email))
                 {
-                    ViewBag.DuplicateMessage = "Email already exist";
-                    return ViewBag();
+                    ModelState.AddModelError("Email", "Email already exist");
+                    return View(newUser);
                 }
                 else
                 {
@@ -237,7 +250,6 @@ namespace PPCRental.Controllers
                         ID = nextID,
                         Email = newUser.Email,
                         Password = hashPwd(newUser.Password),
-
                         FullName = newUser.Phone,
                         Phone = newUser.Phone,
                         Address = newUser.Address,
@@ -253,20 +265,15 @@ namespace PPCRental.Controllers
                     }
                     catch (Exception e)
                     {
-                        ViewBag.DuplicateMessage = "Error";
-                        Console.WriteLine(e.ToString());
-                        return RedirectToAction("Register");
+                        ViewBag.DuplicateMessage = e.ToString();
+                        return View();
                         throw;
                     }
-                    ModelState.Clear();
                     ViewBag.SuccessMessage = "Successful Register";
-                    Session["user"] = newUser.FullName;
-                    Session["userID"] = nextID;
-                    Session["userRole"] = "None";
-                    return RedirectToAction("Index", "Home");
+                    ModelState.Clear();
                 }
-                
 
+                return View();
             }
         }
 

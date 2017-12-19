@@ -1,10 +1,8 @@
 ﻿@{
     ViewBag.Title = "Project Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var project = ViewData["project"] as PPCRental.Models.PROPERTY;
-    var street = ViewData["street"] as PPCRental.Models.STREET;
-    var ward = ViewData["ward"] as PPCRental.Models.WARD;
-    var district = ViewData["district"] as PPCRental.Models.DISTRICT;
+    var project = ViewData["project"] as PPCRental.Models.View_project_from_index;
+    
 }
 
 <div id="property-single">
@@ -41,7 +39,7 @@
 
                             }
                             <li><span>Price :</span>$@price</li>
-                            <li><span>Address :</span> @street.StreetName,  @ward.WardName,  @district.DistrictName</li>
+                            <li><span>Address :</span> @project.StreetName,  @project.WardName,  @project.DistrictName</li>
                         </ul>
                     </div>
                 </section>
