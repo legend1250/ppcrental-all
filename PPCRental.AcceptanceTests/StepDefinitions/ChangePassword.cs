@@ -21,7 +21,7 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:53887/");
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
-            driver.FindElement(By.Id("user_login")).SendKeys("md5");
+            driver.FindElement(By.Id("user_login")).SendKeys("agency");
             driver.FindElement(By.Id("user_pass")).SendKeys("123456");
             driver.FindElement(By.Id("wp-submit")).Click();
         }
@@ -56,6 +56,22 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
             IWebElement element = driver.FindElement(By.XPath("//*[@id='login']/p[1]"));
             Assert.AreEqual("Your password has been changed successfully", element.Text);
         }
+
+        //
+
+        //[When(@"I input wrong answer for security question")]
+        //public void WhenIInputWrongAnswerForSecurityQuestion(Table table)
+        //{
+        //    driver.FindElement(By.Id("Answer")).SendKeys("abcd");
+        //}
+
+        //[Then(@"I will see a message ""(.*)""")]
+        //public void ThenIWillSeeAMessage(string p0)
+        //{
+        //    IWebElement element = driver.FindElement(By.XPath("//*[@id='questionform']/div/div/div/div[1]/span"));
+        //    Assert.AreEqual("Your password has been changed successfully", element.Text);
+        //}
+
 
     }
 }

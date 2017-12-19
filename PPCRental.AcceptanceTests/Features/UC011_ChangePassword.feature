@@ -18,3 +18,14 @@ Scenario: Change Password
 	| Cofirm Password   | 123456    |
 	And I click Set new Password button
 	Then I see a message "Your password has been changed successfully"
+
+#Scenario: Change Password failed with wrong answer for security question
+#	Given I login success with the given username and password
+#	| Title    |  Value		 |
+#	| username |   md5       |
+#	| password |   123456    |
+#	And I go to Change Password page
+#	When I input wrong answer for security question
+#	| Title				| Value     |
+#	| Your answer		| abcd	    |
+#	Then I will see a message "Error! Your answer not match with the answer in database."
