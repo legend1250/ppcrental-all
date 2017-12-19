@@ -90,7 +90,7 @@ namespace PPCRental.AcceptanceTests.Features
 #line 7
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Title",
+                        "PropertyName",
                         "District",
                         "Street",
                         "Ward",

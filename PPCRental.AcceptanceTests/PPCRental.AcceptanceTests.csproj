@@ -78,12 +78,6 @@
     <Reference Include="TechTalk.SpecFlow, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.2.2.1\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.8.0\lib\net45\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.8.0\lib\net45\WebDriver.Support.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drivers\Search\SearchDriver.cs" />
@@ -141,6 +135,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PPCRental.AcceptanceTests.Common\PPCRental.AcceptanceTests.Common.csproj">
+      <Project>{45725434-7906-4bb5-bd2f-8f001019a8ad}</Project>
+      <Name>PPCRental.AcceptanceTests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PPCRental.UITests.Selenium\PPCRental.UITests.Selenium.csproj">
+      <Project>{f1326591-51d8-4ae7-9715-f5856ed57f8e}</Project>
+      <Name>PPCRental.UITests.Selenium</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PPCRental\PPCRental.csproj">
       <Project>{7a13d3d0-5c0f-4084-a104-c850508c3b92}</Project>
       <Name>PPCRental</Name>

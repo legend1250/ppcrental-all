@@ -6,7 +6,7 @@ Feature: UC001_Search
 	So that I can easily allocate project by something I remember from them.
 Background: 
 Given the following project
-| Title             | District   | Street              | Ward      | Type of Project | Beds | Bathroom | Area | Price  |
+| PropertyName      | District   | Street              | Ward      | Type of Project | Beds | Bathroom | Area | Price  |
 | ASA LightT        | Q.1        | Mạc Đĩnh Chi        | Bến Nghé  | Appartment      | 3    | 3        | 150  | 71000  |
 | CALEDON Tan Phu   | Tân phú    | Điện Biên Phủ       | 3         | Appartment      | 2    | 2        | 130  | 55000  |
 | VINH LOC Central  | Q.8        | Bà Huyện Thanh Quan | 1         | Appartment      | 3    | 2        | 120  | 70000  |

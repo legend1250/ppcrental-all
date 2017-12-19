@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using PPCRental.Controllers;
 using PPCRental.Models;
-using BookShop.AcceptanceTests.Drivers.Search;
-using BookShop.AcceptanceTests.Common;
-using BookShop.AcceptanceTests.Support;
+using PPCRental.AcceptanceTests.Common;
+using PPCRental.AcceptanceTests.Support;
 
 namespace PPCRental.AcceptanceTests.Drivers.Search
 {

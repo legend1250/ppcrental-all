@@ -58,5 +58,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PPCRental\PPCRental.csproj">
+      <Project>{7a13d3d0-5c0f-4084-a104-c850508c3b92}</Project>
+      <Name>PPCRental</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
