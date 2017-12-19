@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace BookShop.AcceptanceTests.Drivers.Search
+namespace PPCRental.AcceptanceTests.Drivers.Search
 {
     public class SearchResultState
     {

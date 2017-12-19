@@ -8,7 +8,7 @@ namespace PPCRental.AcceptanceTests.Support
 {
     public static class ActionResultExtensions
     {
-        public static TModel Model<TModel>(this  result)
+        public static TModel Model<TModel>(this result)
         {
             return result.Should().NotBeNull()
                          .And.Subject.Should().BeAssignableTo<ViewResult>()
