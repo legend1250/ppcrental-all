@@ -155,7 +155,6 @@
 <script>
     $(document).ready(function () {
 
-
         $.ajax({
             url: '/User/ManageUser_Views',
             type: "POST",
@@ -165,8 +164,7 @@
                 //alert(result.Success);
                 var data = [];
                 data = convertDataToArray(result.Users);
-
-                console.log(data);
+                //console.log(data);
                 var table = $('#table-user').DataTable();
                 table.destroy();
                 table.clear().draw();
@@ -219,7 +217,7 @@
 
                 var data = [];
                 data = convertDataToArray(result.Users);
-                console.log(data);
+                //console.log(data);
 
                 var table = $('#table-user').DataTable();
                 table.destroy();
@@ -256,6 +254,8 @@
             success: function (result) {
                 //alert(res.User);
                 //console.log(result.Data);
+                //console.log(result.Question);
+                
                 $('.modal-header #modal-header').empty();
                 $('.modal-header #modal-header').text(result.Data.email);
                 $('#table-modal-user #input-id').empty();
@@ -270,18 +270,28 @@
                 $('#td-phone #input-phone').val(result.Data.phone);
                 $('#td-address #input-address').empty();
                 $('#td-address #input-address').val(result.Data.address);
+
+                //Edit Role ID
                 //$('#table-modal-user #td-role').empty();
                 //$('#table-modal-user #td-role').append(result.Data.role_id);
                 $('#edit-role').find('option').remove();
-                var ro = ['Chưa có Vai trò', 'Agency', 'Sale', 'Technical'];
-                for (var i = 0; i < ro.length; i++) {
-                    if (i == parseInt(result.Data.role_id)) {
-                        $('#edit-role').append('<option value="' + i + '" selected style= "color: orange;">' + ro[i] + '</option > ');
+                var role = [];
+                result.Role.forEach((value) => {
+                    var arr = $.map(value, function (value, index) {
+                        return value;
+                    })
+                    role.push(arr);
+                })
+                role.forEach((value) => {
+                    if (value[0] == parseInt(result.Data.role_id)) {
+                        $('#edit-role').append('<option value="' + value[0] + '" selected style= "color: orange;">' + value[1] + '</option > ');
                     }
                     else {
-                        $('#edit-role').append('<option value="' + i + '">' + ro[i] + '</option > ');
+                        $('#edit-role').append('<option value="' + value[0] + '">' + value[1] + '</option > ');
                     }
-                }
+                })
+
+                //Set Active user
                 //$('#table-modal-user #td-status').empty();
                 //$('#table-modal-user #td-status').append(result.Data.active);
                 $('#edit-status').find('option').remove();
@@ -295,21 +305,29 @@
                     $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Chưa Active</option >');
                 }
 
+                //Edit security question
                 $('#edit-question').find('option').remove();
-                var que = ['Cha của bạn sinh ra ở tỉnh/thành phố nào?', 'Bạn thân nhất thời thơ ấu của bạn có họ gì?', 'Tên trường tiểu học của bạn là gì?',
-                    'Con đường nơi bạn lớn lên tên gì?', 'Con vật cưng đầu tiên của bạn tên gì?', 'Tên của nhạc sĩ bạn thích nhất?', 'Giáo viên bạn thích nhất khi học tiểu học có họ gì?',
-                    'Lúc nhỏ bạn thích xem phim hoạt hình nào nhất?', 'Món khoái khẩu của bạn lúc còn nhỏ là gì?', 'Nhân vật trong phim mà bạn thích nhất là ai?',
-                    'Ai là tác giả bạn thích nhất?', 'Đội thể thao bạn thích nhất tên là gì?', 'Tựa quyển sách bạn thích đọc nhất?'];
-                for (var i = 0; i < que.length; i++) {
-                    if (i == parseInt(result.Data.security_question) - 1) {
-                        $('#edit-question').append('<option value="' + i + '" selected style= "color: orange;">' + que[i] + '</option > ');
+                var question = [];
+                result.Question.forEach((value) => {
+                    var arr = $.map(value, function (value, index) {
+                        return value;
+                    })
+                    question.push(arr);
+                });
+                question.forEach((value) => {
+                    if (value[0] == parseInt(result.Data.security_question)) {
+                        $('#edit-question').append('<option value="' + value[0] + '" selected style= "color: orange;">' + value[1] + '</option > ');
                     }
                     else {
-                        $('#edit-question').append('<option value="' + i + '">' + que[i] + '</option > ');
+                        $('#edit-question').append('<option value="' + value[0] + '">' + value[1] + '</option > ');
                     }
-                }
+                })
+
+                //Edit security answer
                 $('#td-answer #input-answer').empty();
                 $('#td-answer #input-answer').val(result.Data.s_answer);
+
+                //show modal if success
                 $('#myModal').modal({ show: true });
             },
             error: function (result) {
@@ -387,6 +405,7 @@
 
     function convertDataToArray(data) {
         var d = [];
+        var role = ['Chưa có Vai trò', 'Agency', 'Sale', 'Technical'];
         for (var i = 0; i < data.length; i++) {
             var arr = $.map(data[i], function (value, index) {
                 if (index == 'Password') {

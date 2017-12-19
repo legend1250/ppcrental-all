@@ -331,11 +331,11 @@ namespace PPCRental.Controllers
                 security_question = usr.SecretQuestion_ID,
                 s_answer = usr.Answer
             };
-            //Console.WriteLine(user); 
-            ViewData["question"] = db.security_questions.ToList();
-            
-            return Json(new { Data = user }, JsonRequestBehavior.AllowGet);
 
+            var question = db.security_questions.Select(x => new { x.id, x.question }).ToArray();
+            var role = db.ROLEs.Select(x => new { x.id, x.roleName }).ToArray();
+
+            return Json(new { Data = user, Role = role, Question = question }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ManageUser_EditUser(USER editedUser)
