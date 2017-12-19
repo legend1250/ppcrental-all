@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Mvc;
+using FluentAssertions;
 
 namespace PPCRental.AcceptanceTests.Support
 {
     public static class ActionResultExtensions
     {
-        public static TModel Model<TModel>(this result)
+        public static TModel Model<TModel>(this ActionResult result)
         {
             return result.Should().NotBeNull()
                          .And.Subject.Should().BeAssignableTo<ViewResult>()

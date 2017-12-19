@@ -25,23 +25,23 @@ namespace PPCRental.AcceptanceTests.Drivers.Search
         }
         public void ShowProject(string expectedTitlesString)
         {
-            var expectesTitles= form t in expectedTitlesString.Slit(',')
+            var expectesTitles = from t in expectedTitlesString.Split(',')
                 select t.Trim().Trim('\'');
-            var ShowProject = _state.ActionResult.Model<IEnumerable<DBModel>>();
+            var ShowProject = _state.ActionResult.Model<IEnumerable<PROPERTY>>();
             ProjectAssertions.HomeScreenShouldShow(ShowProject, expectesTitles);
 
 
         }
-        public void ShowBooks(Table expectedProject)
-        {
-            //Arrange
-            var expectedTitles = expectedProject.Rows.Select(r => r["Title"]);
+        //public void ShowListProject(Table expectedProject)
+        //{
+        //    //Arrange
+        //    var expectedTitles = expectedProject.Rows.Select(r => r["Title"]);
 
-            //Action
-            var ShownBooks = _state.ActionResult.Model<IEnumerable<DBModel>>();
+        //    //Action
+        //    var ShownBooks = _state.ActionResult.Model<IEnumerable<DBModel>>();
 
-            //Assert
-            ProjectAssertions.HomeScreenShouldShowInOrder(ShownBooks, expectedTitles);
-        }
+        //    //Assert
+        //    ProjectAssertions.HomeScreenShouldShowInOrder(ShownBooks, expectedTitles);
+        //}
     }
 }

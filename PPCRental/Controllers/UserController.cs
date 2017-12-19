@@ -453,7 +453,7 @@ namespace PPCRental.Controllers
         {
             return View();
         }
-        public ActionResult newsDetail1()
+        public ActionResult blogDetail()
         {
             return View();
         }

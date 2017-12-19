@@ -4,6 +4,7 @@ Feature: UC001_Search
 	As a potential customer i want search 
 	I want to search for project by a simple phrase
 	So that I can easily allocate project by something I remember from them.
+
 Background: 
 Given the following project
 | PropertyName      | District   | Street              | Ward      | Type of Project | Beds | Bathroom | Area | Price  |
@@ -18,8 +19,7 @@ Given the following project
 | CITY Gate         | Q.1        | Nguyễn Văn Cừ       | 5         | Appartment      | 4    | 4        | 250  | 120000 |
 | MY HUNG Prop 3    | Bình Thạnh | Võ Thị Sáu          | Thủ Thiêm | Appartment      | 4    | 4        | 280  | 115000 |
 
-
-@mytag
+#@mytag
 Scenario: Title should be matched
 	When I search for project by the phrase 'city'
 	Then the list of found project should contain only: 'CITY Gate'

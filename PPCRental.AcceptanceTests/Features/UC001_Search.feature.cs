@@ -87,7 +87,7 @@ namespace PPCRental.AcceptanceTests.Features
         
         public virtual void FeatureBackground()
         {
-#line 7
+#line 8
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
@@ -199,7 +199,7 @@ namespace PPCRental.AcceptanceTests.Features
                         "4",
                         "280",
                         "115000"});
-#line 8
+#line 9
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
         }
@@ -208,14 +208,12 @@ testRunner.Given("the following project", ((string)(null)), table1, "Given ");
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Title should be matched")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("web")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
         public virtual void TitleShouldBeMatched()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", new string[] {
-                        "mytag"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", ((string[])(null)));
 #line 23
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 8
 this.FeatureBackground();
 #line 24
  testRunner.When("I search for project by the phrase \'city\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -234,7 +232,7 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Distric should be matched", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 8
 this.FeatureBackground();
 #line 28
  testRunner.When("I search for project by the phrase \'Q.12\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
