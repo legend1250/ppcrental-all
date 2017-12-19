@@ -49,7 +49,7 @@
                             <option data-tokens="@item.StreetName" value="@item.ID">@item.StreetName</option>
                         }
                     </select>
-                    <select class="selectpicker col-sm-2" data-live-search="true" id="wardSelect" name="ward" data-size="9">
+                    <select class="selectpicker col-sm-2" data-live-search="true" id="wardSelect" name="ward" data-width="fit" data-size="9">
                         <option value="0" selected style="font-weight:bold">Ward</option>
                         @foreach (var item in ViewData["Ward"] as List<PPCRental.Models.WARD>)
                         {
