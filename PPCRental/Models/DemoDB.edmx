@@ -178,11 +178,20 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Area" Type="nvarchar" MaxLength="30" />
           <Property Name="BedRoom" Type="int" />
           <Property Name="BathRoom" Type="int" />
-          <Property Name="PackingPlace" Type="int" />
           <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
           <Property Name="WardName" Type="nvarchar" MaxLength="50" />
           <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
           <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Images" Type="varchar" MaxLength="200" />
+          <Property Name="Content" Type="nvarchar" MaxLength="500" />
+          <Property Name="PackingPlace" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Created_at" Type="date" />
+          <Property Name="Create_post" Type="date" />
+          <Property Name="UnitPrice" Type="nvarchar" MaxLength="30" />
+          <Property Name="Status_ID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sale_ID" Type="int" />
           <Property Name="Street_ID" Type="int" />
           <Property Name="Ward_ID" Type="int" />
           <Property Name="District_ID" Type="int" />
@@ -396,11 +405,20 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[Area] AS [Area], 
     [View_project_from_index].[BedRoom] AS [BedRoom], 
     [View_project_from_index].[BathRoom] AS [BathRoom], 
-    [View_project_from_index].[PackingPlace] AS [PackingPlace], 
     [View_project_from_index].[DistrictName] AS [DistrictName], 
     [View_project_from_index].[WardName] AS [WardName], 
     [View_project_from_index].[StreetName] AS [StreetName], 
     [View_project_from_index].[Updated_at] AS [Updated_at], 
+    [View_project_from_index].[Images] AS [Images], 
+    [View_project_from_index].[Content] AS [Content], 
+    [View_project_from_index].[PackingPlace] AS [PackingPlace], 
+    [View_project_from_index].[UserID] AS [UserID], 
+    [View_project_from_index].[Created_at] AS [Created_at], 
+    [View_project_from_index].[Create_post] AS [Create_post], 
+    [View_project_from_index].[UnitPrice] AS [UnitPrice], 
+    [View_project_from_index].[Status_ID] AS [Status_ID], 
+    [View_project_from_index].[Note] AS [Note], 
+    [View_project_from_index].[Sale_ID] AS [Sale_ID], 
     [View_project_from_index].[Street_ID] AS [Street_ID], 
     [View_project_from_index].[Ward_ID] AS [Ward_ID], 
     [View_project_from_index].[District_ID] AS [District_ID]
@@ -711,6 +729,15 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Ward_ID" Type="Int32" />
           <Property Name="District_ID" Type="Int32" />
           <Property Name="PropertyType_ID" Type="Int32" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Created_at" Type="DateTime" Precision="0" />
+          <Property Name="Create_post" Type="DateTime" Precision="0" />
+          <Property Name="UnitPrice" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Status_ID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sale_ID" Type="Int32" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Type="ppcrental3119Model.DISTRICT" Role="DISTRICT" Multiplicity="0..1" />
@@ -1041,6 +1068,15 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="Sale_ID" ColumnName="Sale_ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Create_post" ColumnName="Create_post" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
                 <ScalarProperty Name="PropertyType_ID" ColumnName="PropertyType_ID" />
                 <ScalarProperty Name="District_ID" ColumnName="District_ID" />
                 <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />

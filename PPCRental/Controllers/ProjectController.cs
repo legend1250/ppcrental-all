@@ -25,18 +25,21 @@ namespace PPCRental.Controllers
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
+            //Count
+            ViewData["TotalProperty"] = db.PROPERTies.Count();
+            ViewData["TotalPropertyFound"] = project.Count();
 
             return View();
         }
 
         [HttpGet]
-        public ActionResult Searching(String projectname, int district, int street, int ward, int ptype)
+        public ActionResult Searching(String keyword, int district, int street, int ward, int ptype)
         {
             var project = db.View_project_from_index.AsEnumerable();
            
-            if(projectname != null && projectname != "")
+            if(keyword != null && keyword != "")
             {
-                project = project.Where(x => x.PropertyName.ToLower().Contains(projectname.ToLower()));
+                project = project.Where(x => x.PropertyName.ToLower().Contains(keyword.ToLower()));
             }
             if(district != 0)
             {
@@ -55,11 +58,16 @@ namespace PPCRental.Controllers
                 project = project.Where(x => x.PropertyType_ID == ptype);
             }
 
+            
+
             ViewData["Project_View"] = project.ToList();
             ViewData["District"] = db.DISTRICTs.OrderBy( x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
+            //Count
+            ViewData["TotalProperty"] = db.PROPERTies.Count();
+            ViewData["TotalPropertyFound"] = project.Count();
 
             return View();
         }
@@ -76,11 +84,8 @@ namespace PPCRental.Controllers
         [HttpGet]
         public ActionResult projectDetail(int id)
         {
-            var project = db.PROPERTies.FirstOrDefault(x => x.ID == id);
+            var project = db.View_project_from_index.FirstOrDefault(x => x.ID == id);
             ViewData["project"] = project;
-            ViewData["street"] = db.STREETs.FirstOrDefault(x => x.ID == project.Street_ID);
-            ViewData["ward"] = db.WARDs.FirstOrDefault(x => x.ID == project.Ward_ID);
-            ViewData["district"] = db.DISTRICTs.FirstOrDefault(x => x.ID == project.District_ID);
 
             return View();
         }
@@ -227,6 +232,18 @@ namespace PPCRental.Controllers
         }
         public ActionResult myProjects()
         {
+            if (Session["user"] == null)
+            {
+                Session.RemoveAll();
+                Session["login-status"] = "NotLogin";
+                Session["SavePath"] = "/Project/MyProjects";
+                return Redirect("~/User/Login");
+
+            }
+            var sessionUser = Session["userID"];
+            int userID =  int.Parse(sessionUser.ToString());
+            var myProject = db.View_project_from_index.Where(x => x.UserID == userID).ToList();
+            ViewData["MyProject"] = myProject;
             return View();
         }
        public ActionResult projectupdate(PROPERTY projectupdate)
