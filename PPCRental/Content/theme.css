@@ -479,6 +479,9 @@ img.zoom-img {
 .controls .mixitup-control-active {
   color: #6c98e1;
 }
+.layout-item-wrap{
+    max-height: 410px;
+}
 .layout-item-wrap,
 .layout-item {
   transition-duration: 0.4s;
@@ -704,7 +707,7 @@ img.zoom-img {
 }
 #adv-search-form select,
 #adv-search-form input {
-  width: 15%;
+  /*width: 15%;*/
   height: 40px;
   margin-bottom: 15px;
   border: 1px solid #dfdfdf;

@@ -20,9 +20,6 @@ namespace PPCRental.Controllers
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
 
-
-
-
             //ViewModels vm = new ViewModels();
             //vm.zProperties = db.PROPERTies.ToList();
             //vm.zDistricts = db.DISTRICTs.ToList();
@@ -34,6 +31,18 @@ namespace PPCRental.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(string name, string email, string subject, string message)
+        {
+            ContactInfo newContact = new ContactInfo{
+                Name = name,
+                Email = email,
+                Subject = subject,
+                Message = message
+            };
+
+            return Json(new { Contact = newContact});
         }
     }
 }
