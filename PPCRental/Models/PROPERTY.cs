@@ -31,7 +31,7 @@ namespace PPCRental.Models
         public Nullable<int> District_ID { get; set; }
         public Nullable<int> Price { get; set; }
         public string UnitPrice { get; set; }
-        public string Area { get; set; }
+        public Nullable<int> Area { get; set; }
         public Nullable<int> BedRoom { get; set; }
         public Nullable<int> BathRoom { get; set; }
         public Nullable<int> PackingPlace { get; set; }

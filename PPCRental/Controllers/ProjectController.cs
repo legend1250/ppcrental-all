@@ -33,32 +33,65 @@ namespace PPCRental.Controllers
         }
 
         [HttpGet]
-        public ActionResult Searching(String keyword, int district, int street, int ward, int ptype)
+        public ActionResult Searching(String keyword, int minarea, int maxarea, int district, int street, int ward, int ptype,
+                                                      int bedrooms, int bathrooms, int minprice, int maxprice)
         {
             var project = db.View_project_from_index.AsEnumerable();
            
             if(keyword != null && keyword != "")
             {
-                project = project.Where(x => x.PropertyName.ToLower().Contains(keyword.ToLower()));
+                project = project.Where(x => x.PropertyName.ToLower().Contains(keyword.ToLower()) || x.Content.ToLower().Contains(keyword.ToLower()));
             }
-            if(district != 0)
+            // Filter type Property
+            if (ptype != 0)
             {
-                project = project.Where(x => (int) x.District_ID == district);
+                project = project.Where(x => x.PropertyType_ID == ptype);
             }
-            if (street != 0)
+            //Filter district
+            if (district != 0)
             {
-                project = project.Where(x => (int)x.Street_ID == street);
+                project = project.Where(x => (int)x.District_ID == district);
             }
+            //Filter ward
             if (ward != 0)
             {
                 project = project.Where(x => (int)x.Ward_ID == ward);
             }
-            if(ptype != 0)
+            //Filter street
+            if (street != 0)
             {
-                project = project.Where(x => x.PropertyType_ID == ptype);
+                project = project.Where(x => (int)x.Street_ID == street);
             }
-
-            
+            //Filter min-area
+            if (minarea != 0)
+            {
+                project = project.Where(x => x.Area >= minarea);
+            }
+            //Filter max-area
+            if(maxarea != 0)
+            {
+                project = project.Where(x => x.Area <= maxarea);
+            }
+            //Filter bedrooms
+            if(bedrooms != 0)
+            {
+                project = project.Where(x => x.BedRoom <= bedrooms);
+            }
+            //Filter bathrooms
+            if(bathrooms != 0)
+            {
+                project = project.Where(x => x.BathRoom <= bathrooms);
+            }
+            //Filter min price
+            if (minprice != 0)
+            {
+                project = project.Where(x => x.Price >= minprice);
+            }
+            //Filter max price
+            if(maxprice != 0)
+            {
+                project = project.Where(x => x.Price <= maxprice);
+            }
 
             ViewData["Project_View"] = project.ToList();
             ViewData["District"] = db.DISTRICTs.OrderBy( x => x.DistrictName).ToList();
@@ -201,13 +234,13 @@ namespace PPCRental.Controllers
             Session["ProjectID"] = id;
             //return Json(new { projectEdit = project });
             var areaRaw = project.Area;
-            var area = areaRaw.Replace("m2", "");
+            
             return Json(new {projectId=project.ID,projectName = project.PropertyName,projectAvatar = project.Avatar,
                 projectImage = project.Images, projectType = project.PropertyType_ID,
                 projectContent = project.Content, projectStreet = project.District_ID,
                 projectWard = project.Ward_ID, projectDistrict = project.District_ID,
                 projectPrice = project.Price, projectUnit = project.UnitPrice,
-                projectArea = area, projectBed = project.BedRoom,
+                projectArea = project.Area, projectBed = project.BedRoom,
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
                 projectUser = project.UserID, projectNote = project.Note, JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });

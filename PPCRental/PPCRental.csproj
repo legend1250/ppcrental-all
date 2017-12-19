@@ -162,6 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactInfo.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBModel.cs" />
     <Compile Include="Models\DemoDB.Context.cs">
       <AutoGen>True</AutoGen>
