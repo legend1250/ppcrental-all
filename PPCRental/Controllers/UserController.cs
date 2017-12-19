@@ -81,7 +81,7 @@ namespace PPCRental.Controllers
                 else
                 {
                     Session.RemoveAll();
-                    Session["login-status"] = "NotActive";
+                    Session["error"] = "1";
                     return Redirect("~/User/Login");
                 }
             }
