@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace PPCRental.AcceptanceTests.StepDefinitions
+namespace PPCRental.UITests.Selenium.StepDefinitions
 {
     [Binding]
    public class LoginLogoutSteps

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PPCRental.AcceptanceTests.StepDefinitions
 {
     [Binding]
