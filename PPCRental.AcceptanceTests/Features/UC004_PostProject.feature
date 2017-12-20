@@ -4,8 +4,8 @@
 	I want to be told the sum of two numbers
 
 @mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Scenario: Post Project success
+	Given Login successful
+	And Navigate to Add Project page
+	When I input information for a new project
+	Then Show message "Success! Add Success,wait for appover."

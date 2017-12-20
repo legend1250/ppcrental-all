@@ -101,6 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UC003_ViewDetailProject.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\UC004_PostProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC004_PostProject.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\UC007_Login-Logout.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +142,10 @@
     <None Include="Features\UC003_ViewDetailProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC003_ViewDetailProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC004_PostProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC004_PostProject.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\UC011_ChangePassword.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
