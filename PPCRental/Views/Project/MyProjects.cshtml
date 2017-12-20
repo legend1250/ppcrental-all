@@ -48,12 +48,12 @@
         text-overflow: ellipsis;
     }
 </style>
-<div class="qa-my-list-projects">
+<div class="qa-my-list-projects clearfix">
     <center><h1 style="margin-bottom:100px;margin-top:50px;">My Projects</h1></center>
    
-    <div class="container section-layout">
+    <div class="container section-layout clearfix">
         <div class="row">
-            <div class="layout-item-wrap col-xs-12" style="position:relative;">
+            <div class="layout-item-wrap col-xs-12 clearfix" style="max-height:100%">
                 @foreach (var item in ViewData["MyProject"] as List<PPCRental.Models.View_project_from_index>)
                 {
                     <article class="property layout-item clearfix list-style">
