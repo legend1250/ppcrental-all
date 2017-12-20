@@ -18,10 +18,10 @@ namespace PPCRental.AcceptanceTests.Drivers.Search
         {
             _state = state;
         }
-        public void Searching(String projectname, int district, int street, int ward, int ptype)
+        public void Searching(String projectname)
         {
             var controller = new ProjectController();
-            _state.ActionResult = controller.Searching( projectname,  district,  street,ward, ptype);
+            _state.ActionResult = controller.Searching(projectname,null,null,null,null);
         }
         public void ShowProject(string expectedTitlesString)
         {
