@@ -38,13 +38,22 @@
     .view-more:hover{
         color:darkorange;
     }
+    .qa-content {
+        width: auto;
+        height:60px;
+        padding: 1em;
+        background: #FFF; 
+        overflow: hidden;
+        /*white-space: nowrap;*/
+        text-overflow: ellipsis;
+    }
 </style>
 <div class="qa-my-list-projects">
     <center><h1 style="margin-bottom:100px;margin-top:50px;">My Projects</h1></center>
    
     <div class="container section-layout">
         <div class="row">
-            <div class="layout-item-wrap col-xs-12">
+            <div class="layout-item-wrap col-xs-12" style="position:relative;">
                 @foreach (var item in ViewData["MyProject"] as List<PPCRental.Models.View_project_from_index>)
                 {
                     <article class="property layout-item clearfix list-style">
@@ -86,7 +95,7 @@
                                 <span><i class="fa fa-cab"></i>@item.PackingPlace Slots</span>
                             </div>
                             <div class="contents clearfix">
-                                <p>@item.Content.Substring(1,160).....<a href="#" class="view-more">[view more]</a></p>
+                                <p class="qa-content">@item.Content</p>
                             </div>
                             <div class="author-box clearfix">
                                 <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
@@ -98,6 +107,7 @@
 
 
             </div>
+
         </div>
     </div>
 
