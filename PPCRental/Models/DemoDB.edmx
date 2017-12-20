@@ -200,6 +200,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Create_post" Type="datetime" />
           <Property Name="UnitPrice" Type="nvarchar" MaxLength="30" />
           <Property Name="Status_ID" Type="int" />
+          <Property Name="Status_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
           <Property Name="Sale_ID" Type="int" />
           <Property Name="Street_ID" Type="int" />
@@ -428,6 +429,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[Create_post] AS [Create_post], 
     [View_project_from_index].[UnitPrice] AS [UnitPrice], 
     [View_project_from_index].[Status_ID] AS [Status_ID], 
+    [View_project_from_index].[Status_Name] AS [Status_Name], 
     [View_project_from_index].[Note] AS [Note], 
     [View_project_from_index].[Sale_ID] AS [Sale_ID], 
     [View_project_from_index].[Street_ID] AS [Street_ID], 
@@ -936,6 +938,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Street_ID" Type="Int32" />
           <Property Name="Ward_ID" Type="Int32" />
           <Property Name="District_ID" Type="Int32" />
+          <Property Name="Status_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1121,6 +1124,7 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
                 <ScalarProperty Name="District_ID" ColumnName="District_ID" />
                 <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
                 <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />

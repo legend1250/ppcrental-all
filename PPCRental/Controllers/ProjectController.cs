@@ -279,6 +279,27 @@ namespace PPCRental.Controllers
             ViewData["MyProject"] = myProject;
             return View();
         }
+        [HttpPost]
+        public ActionResult getMyProject(int option)
+        {
+            int userOption = option;
+            var sessionUser = Session["userID"];
+            int userID = int.Parse(sessionUser.ToString());
+            var myProject= db.View_project_from_index.AsEnumerable();
+            if (userOption==1)
+            {
+                myProject = myProject.Where(x => x.UserID == userID).ToList();
+               
+
+            }
+            else
+            {
+                myProject = myProject.Where(x => x.UserID == userID && x.Status_ID == userOption).ToList();
+
+            }
+            return Json(new { MyProject = myProject,JsonRequestBehavior.AllowGet });
+          
+        }
        public ActionResult projectupdate(PROPERTY projectupdate)
         {
             string message = "";
