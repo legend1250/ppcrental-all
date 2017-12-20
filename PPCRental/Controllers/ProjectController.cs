@@ -276,6 +276,12 @@ namespace PPCRental.Controllers
             var sessionUser = Session["userID"];
             int userID =  int.Parse(sessionUser.ToString());
             var myProject = db.View_project_from_index.Where(x => x.UserID == userID).ToList();
+            int countProject = 0;
+            foreach (var item in myProject)
+            {
+                countProject++;
+            }
+            Session["countMyProject"] = countProject.ToString();
             ViewData["MyProject"] = myProject;
             return View();
         }
@@ -297,7 +303,12 @@ namespace PPCRental.Controllers
                 myProject = myProject.Where(x => x.UserID == userID && x.Status_ID == userOption).ToList();
 
             }
-            return Json(new { MyProject = myProject,JsonRequestBehavior.AllowGet });
+            int countProject = 0;
+            foreach (var item in myProject)
+            {
+                countProject++;
+            }
+            return Json(new { MyProject = myProject,Count=countProject,JsonRequestBehavior.AllowGet });
           
         }
        public ActionResult projectupdate(PROPERTY projectupdate)

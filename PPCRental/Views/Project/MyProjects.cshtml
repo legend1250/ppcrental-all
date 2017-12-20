@@ -47,11 +47,17 @@
         /*white-space: nowrap;*/
         text-overflow: ellipsis;
     }
+    .qa-my-list-projects{
+        min-height:500px;
+    }
+    .qa-my-list-projects h3{
+        margin:0px;
+    }
 </style>
 <div class="qa-my-list-projects clearfix">
     <center><h1 style="margin-bottom:100px;margin-top:50px;">My Projects</h1></center>
     <div class="container section-layout clearfix">
-        <select id="qa-myproject-option" style="background-color:white;margin-bottom:50px;">
+        <select id="qa-myproject-option" style="background-color:white;margin-bottom:20px;">
             <option value="1">All projects</option>
             <option value="2">Saved</option>
             <option value="3">approved</option>
@@ -59,75 +65,100 @@
         </select>   
         <div class="row">
             <div class="layout-item-wrap col-xs-12 clearfix list-my-project" style="max-height:100%">
-                @foreach (var item in ViewData["MyProject"] as List<PPCRental.Models.View_project_from_index>)
-                {
-                    <article class="property layout-item clearfix list-style my-project">
-                        <figure class="feature-image">
-                            <div style="position:relative;width:100%">
-                                @{
-                                    var statusProperty = item.Status_Name;
-                                    if (statusProperty.Equals("Đã duyệt"))
-                                    {
-                                        <span class="btn btn-success btn-sale">@statusProperty</span>
-                                    }
-                                    else if (statusProperty.Equals("Chưa duyệt"))
-                                    {
-                                        <span class="btn btn-warning btn-sale">@statusProperty</span>
-                                    }
-                                    else if (statusProperty.Equals("Lưu nháp"))
-                                    {
-                                        <span class="btn btn-primary btn-sale">@statusProperty</span>
-                                    }
-                                    else if (statusProperty.Equals("Hết hạn"))
-                                    {
-                                        <span class="btn btn-danger btn-sale">@statusProperty</span>
-                                    }
-                                }
-                                
-                                <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image" class="" style=""></a>
-                                @{
-                                    var time = item.Updated_at;
-                                    var formatTime = String.Format("{0:dd MMM}", time);
-                                    <span class="btn btn-default btn-date qa-btn-date">@formatTime</span>
-                                }
-                            </div>
-                        </figure>
-                        <div class="property-contents clearfix">
-                            <header class="property-header clearfix">
-                                <div class="pull-left">
-                                    <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
-                                    <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName,@item.WardName,@item.DistrictName</span>
-                                </div>
-                                @{
-                                    string _tmp = item.Price.ToString();
-                                    int? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
-                                    string price = _tmp.Substring(0, (int)i);
-                                    _tmp = _tmp.Substring((int)i);
-                                    while (_tmp.Length > 0 && _tmp.Length >= 3)
-                                    {
-                                        price += "," + _tmp.Substring(0, 3);
-                                        _tmp = _tmp.Substring(3);
-                                    }
+                @{
+        int count = 0;
+        if (Session["countMyProject"] != null)
+        {
+            String sCount = Session["countMyProject"] as String;
+            count = int.Parse(sCount);
+            Session.Remove("countMyProject");
+        }
+                }
 
-                                }
-                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$@Html.DisplayName(price)"><strong>$@Html.DisplayName(price)</strong></button>
-                            </header>
-                            <div class="property-meta clearfix">
-                                <span><i class="fa fa-arrows-alt"></i> @item.Area</span>
-                                <span><i class="fa fa-bed"></i> @item.BedRoom Beds</span>
-                                <span><i class="fa fa-bathtub"></i> @item.BathRoom Baths</span>
-                                <span><i class="fa fa-cab"></i>@item.PackingPlace Slots</span>
-                            </div>
-                            <div class="contents clearfix">
-                                <p class="qa-content">@item.Content</p>...
-                            </div>
-                            <div class="author-box clearfix">
-                                <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                                <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                            </div>
+                @{
+
+        if (count > 0)
+        {
+            <h3 class="MyCount">There are @count project was found</h3>
+
+foreach (var item in ViewData["MyProject"] as List<PPCRental.Models.View_project_from_index>)
+{
+            <article class="property layout-item clearfix list-style my-project">
+                <figure class="feature-image">
+                    <div style="position:relative;width:100%">
+                        @{
+                var statusProperty = item.Status_Name;
+                if (statusProperty.Equals("Đã duyệt"))
+                {
+                    <span class="btn btn-success btn-sale">@statusProperty</span>
+    }
+    else if (statusProperty.Equals("Chưa duyệt"))
+    {
+            <span class="btn btn-warning btn-sale">@statusProperty</span>
+}
+else if (statusProperty.Equals("Lưu nháp"))
+{
+            <span class="btn btn-primary btn-sale">@statusProperty</span>
+}
+else if (statusProperty.Equals("Hết hạn"))
+{
+            <span class="btn btn-danger btn-sale">@statusProperty</span>
+}
+                        }
+
+                        <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image" class="" style=""></a>
+                        @{
+                var time = item.Updated_at;
+                var formatTime = String.Format("{0:dd MMM}", time);
+                <span class="btn btn-default btn-date qa-btn-date">@formatTime</span>
+                        }
+                    </div>
+                </figure>
+                <div class="property-contents clearfix">
+                    <header class="property-header clearfix">
+                        <div class="pull-left">
+                            <h6 class="entry-title"><a href="single-property.html">@item.PropertyName</a></h6>
+                            <span class="property-location"><i class="fa fa-map-marker"></i>@item.StreetName,@item.WardName,@item.DistrictName</span>
                         </div>
-                    </article>
-                 }
+                        @{
+                string _tmp = item.Price.ToString();
+                int? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                string price = _tmp.Substring(0, (int)i);
+                _tmp = _tmp.Substring((int)i);
+                while (_tmp.Length > 0 && _tmp.Length >= 3)
+                {
+                    price += "," + _tmp.Substring(0, 3);
+                    _tmp = _tmp.Substring(3);
+                }
+
+                        }
+                        <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$@Html.DisplayName(price)"><strong>$@Html.DisplayName(price)</strong></button>
+                    </header>
+                    <div class="property-meta clearfix">
+                        <span><i class="fa fa-arrows-alt"></i> @item.Area</span>
+                        <span><i class="fa fa-bed"></i> @item.BedRoom Beds</span>
+                        <span><i class="fa fa-bathtub"></i> @item.BathRoom Baths</span>
+                        <span><i class="fa fa-cab"></i>@item.PackingPlace Slots</span>
+                    </div>
+                    <div class="contents clearfix">
+                        <p class="qa-content">@item.Content</p>...
+                    </div>
+                    <div class="author-box clearfix">
+                        <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
+                        <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                    </div>
+                </div>
+            </article>
+}
+}
+else
+{
+            <h3 class="MyCount">There are @count project was found</h3>
+}
+
+
+
+                }
 
 
             </div>
@@ -148,77 +179,85 @@
             dataType: "json",
             success: function (data) {
                 $('.my-project').remove();
-
+                $('.MyCount').remove();
                 var myNewListPro = data.MyProject;
-                console.log(myNewListPro);
-                $.each(myNewListPro, function () {
-                    //test
-                    console.log(this.PropertyName);
-                    var myHTML = '<article class="property layout-item clearfix list-style my-project">';
-                    myHTML += '<figure class="feature-image">';
-                    myHTML += '<div style="position:relative;width:100%">';
-                    var statusProperty = this.Status_Name;
-                     if (statusProperty ==="Đã duyệt")
-                     {
-                         myHTML += '<span class="btn btn-success btn-sale">' + statusProperty+'</span>';
-                    }
-                     else if (statusProperty === "Chưa duyệt")
-                     {
-                         myHTML += '<span class="btn btn-warning btn-sale">' + statusProperty + '</span>';
-
-                    }
-                    else if (statusProperty ==="Lưu nháp")
-                     {
-                         myHTML += '<span class="btn btn-primary btn-sale">' + statusProperty + '</span>';
-
-                    }
-                    else if (statusProperty ==="Hết hạn")
-                     {
-                         myHTML += '<span class="btn btn-danger btn-sale">' + statusProperty + '</span>';
-
-                    }
-                    myHTML += '<a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/'+this.Avatar+'" alt="Property Image" class="" style=""></a>';
-
-                    //var time = item.Updated_at;
-                    //var formatTime = String.Format("{0:dd MMM}", time);
-
-                    //myHTML += '<span class="btn btn-default btn-date qa-btn-date">'+formatTime+'</span>';
-                    myHTML += '</figure>';
-                    myHTML += '<div class="property-contents clearfix">';
-                    myHTML += '<header class="property-header clearfix">';
-                    myHTML += '<div class="pull-left">';
-                    myHTML += '<h6 class="entry-title"><a href="single-property.html">'+this.PropertyName+'</a></h6>';
-                    myHTML += '<span class="property-location"><i class="fa fa-map-marker"></i>'+this.StreetName,this.WardName,this.DistrictName+'</span>';
-                    myHTML += '</div>';
-
-                    //var _tmp = this.Price.ToString();
-                    //int ? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
-                    //var price = _tmp.Substring(0, (int)i);
-                    //_tmp = _tmp.Substring((int)i);
-                    //while (_tmp.Length > 0 && _tmp.Length >= 3) {
-                    //    price += "," + _tmp.Substring(0, 3);
-                    //    _tmp = _tmp.Substring(3);
-                    //}
-                    myHTML += '<button class="btn btn-default btn-price pull-right btn-3d" data-hover="$' + this.Price + '"><strong>$' + this.Price+'</strong></button>';
-                    myHTML += '</header>';
-                    myHTML += '<div class="property-meta clearfix">';
-                    myHTML += '<span><i class="fa fa-arrows-alt"></i>'+this.Area+'</span>';
-                    myHTML += '<span><i class="fa fa-bed"></i>'+this.BedRoom+' Beds</span>';
-                    myHTML += '<span><i class="fa fa-bathtub"></i>'+this.BathRoom+' Baths</span>';
-                    myHTML += '<span><i class="fa fa-cab"></i>'+this.PackingPlace+' Slots</span>';
-                    myHTML += '</div>';
-                    myHTML += '<div class="contents clearfix">';
-                    myHTML += '<p class="qa-content">'+this.Content+'</p>...';
-                    myHTML += '</div>';
-                    myHTML += '<div class="author-box clearfix">';
-                    myHTML += '<cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>';
-                    myHTML += '<span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>';
-                    myHTML += '</div>';
-                    myHTML += '</div>';
-                    myHTML += '</article>';
-                    $('.list-my-project').append(myHTML);
-                });
+                var iCount = parseInt(data.Count);
                 
+                console.log(myNewListPro);
+                if (iCount > 0) {
+                    var count = '<h3 class="MyCount">There are ' + iCount + ' project was found</h3>';
+                    $('.list-my-project').append(count);
+                    //loop
+                    $.each(myNewListPro, function () {
+                        //test
+                        console.log(this.PropertyName);
+                        
+                        var myHTML = '<article class="property layout-item clearfix list-style my-project">';
+                        myHTML += '<figure class="feature-image">';
+                        myHTML += '<div style="position:relative;width:100%">';
+                        var statusProperty = this.Status_Name;
+                        if (statusProperty === "Đã duyệt") {
+                            myHTML += '<span class="btn btn-success btn-sale">' + statusProperty + '</span>';
+                        }
+                        else if (statusProperty === "Chưa duyệt") {
+                            myHTML += '<span class="btn btn-warning btn-sale">' + statusProperty + '</span>';
+
+                        }
+                        else if (statusProperty === "Lưu nháp") {
+                            myHTML += '<span class="btn btn-primary btn-sale">' + statusProperty + '</span>';
+
+                        }
+                        else if (statusProperty === "Hết hạn") {
+                            myHTML += '<span class="btn btn-danger btn-sale">' + statusProperty + '</span>';
+
+                        }
+                        myHTML += '<a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/' + this.Avatar + '" alt="Property Image" class="" style=""></a>';
+
+                        //var time = item.Updated_at;
+                        //var formatTime = String.Format("{0:dd MMM}", time);
+
+                        //myHTML += '<span class="btn btn-default btn-date qa-btn-date">'+formatTime+'</span>';
+                        myHTML += '</figure>';
+                        myHTML += '<div class="property-contents clearfix">';
+                        myHTML += '<header class="property-header clearfix">';
+                        myHTML += '<div class="pull-left">';
+                        myHTML += '<h6 class="entry-title"><a href="single-property.html">' + this.PropertyName + '</a></h6>';
+                        myHTML += '<span class="property-location"><i class="fa fa-map-marker"></i>' + this.StreetName + ',' + this.WardName + ',' + this.DistrictName + '</span>';
+                        myHTML += '</div>';
+
+                        //var _tmp = this.Price.ToString();
+                        //int ? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                        //var price = _tmp.Substring(0, (int)i);
+                        //_tmp = _tmp.Substring((int)i);
+                        //while (_tmp.Length > 0 && _tmp.Length >= 3) {
+                        //    price += "," + _tmp.Substring(0, 3);
+                        //    _tmp = _tmp.Substring(3);
+                        //}
+                        myHTML += '<button class="btn btn-default btn-price pull-right btn-3d" data-hover="$' + this.Price + '"><strong>$' + this.Price + '</strong></button>';
+                        myHTML += '</header>';
+                        myHTML += '<div class="property-meta clearfix">';
+                        myHTML += '<span><i class="fa fa-arrows-alt"></i>' + this.Area + '</span>';
+                        myHTML += '<span><i class="fa fa-bed"></i>' + this.BedRoom + ' Beds</span>';
+                        myHTML += '<span><i class="fa fa-bathtub"></i>' + this.BathRoom + ' Baths</span>';
+                        myHTML += '<span><i class="fa fa-cab"></i>' + this.PackingPlace + ' Slots</span>';
+                        myHTML += '</div>';
+                        myHTML += '<div class="contents clearfix">';
+                        myHTML += '<p class="qa-content">' + this.Content + '</p>...';
+                        myHTML += '</div>';
+                        myHTML += '<div class="author-box clearfix">';
+                        myHTML += '<cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>';
+                        myHTML += '<span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>';
+                        myHTML += '</div>';
+                        myHTML += '</div>';
+                        myHTML += '</article>';
+                        $('.list-my-project').append(myHTML);
+                    });
+
+                } else {
+                    var count = '<h3 class="MyCount">There are ' + iCount + ' project was found</h3>';
+                    $('.list-my-project').append(count);
+                }
+               
 
             },
             error: function (err) {
