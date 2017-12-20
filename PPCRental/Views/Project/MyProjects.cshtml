@@ -149,14 +149,80 @@
             success: function (data) {
                 $('.my-project').remove();
 
+                var myNewListPro = data.MyProject;
+                console.log(myNewListPro);
+                $.each(myNewListPro, function () {
+                    //test
+                    console.log(this.PropertyName);
+                    var myHTML = '<article class="property layout-item clearfix list-style my-project">';
+                    myHTML += '<figure class="feature-image">';
+                    myHTML += '<div style="position:relative;width:100%">';
+                    var statusProperty = this.Status_Name;
+                     if (statusProperty ==="Đã duyệt")
+                     {
+                         myHTML += '<span class="btn btn-success btn-sale">' + statusProperty+'</span>';
+                    }
+                     else if (statusProperty === "Chưa duyệt")
+                     {
+                         myHTML += '<span class="btn btn-warning btn-sale">' + statusProperty + '</span>';
+
+                    }
+                    else if (statusProperty ==="Lưu nháp")
+                     {
+                         myHTML += '<span class="btn btn-primary btn-sale">' + statusProperty + '</span>';
+
+                    }
+                    else if (statusProperty ==="Hết hạn")
+                     {
+                         myHTML += '<span class="btn btn-danger btn-sale">' + statusProperty + '</span>';
+
+                    }
+                    myHTML += '<a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/'+this.Avatar+'" alt="Property Image" class="" style=""></a>';
+
+                    //var time = item.Updated_at;
+                    //var formatTime = String.Format("{0:dd MMM}", time);
+
+                    //myHTML += '<span class="btn btn-default btn-date qa-btn-date">'+formatTime+'</span>';
+                    myHTML += '</figure>';
+                    myHTML += '<div class="property-contents clearfix">';
+                    myHTML += '<header class="property-header clearfix">';
+                    myHTML += '<div class="pull-left">';
+                    myHTML += '<h6 class="entry-title"><a href="single-property.html">'+this.PropertyName+'</a></h6>';
+                    myHTML += '<span class="property-location"><i class="fa fa-map-marker"></i>'+this.StreetName,this.WardName,this.DistrictName+'</span>';
+                    myHTML += '</div>';
+
+                    //var _tmp = this.Price.ToString();
+                    //int ? i = _tmp.Length % 3 == 0 ? 3 : _tmp.Length % 3;
+                    //var price = _tmp.Substring(0, (int)i);
+                    //_tmp = _tmp.Substring((int)i);
+                    //while (_tmp.Length > 0 && _tmp.Length >= 3) {
+                    //    price += "," + _tmp.Substring(0, 3);
+                    //    _tmp = _tmp.Substring(3);
+                    //}
+                    myHTML += '<button class="btn btn-default btn-price pull-right btn-3d" data-hover="$' + this.Price + '"><strong>$' + this.Price+'</strong></button>';
+                    myHTML += '</header>';
+                    myHTML += '<div class="property-meta clearfix">';
+                    myHTML += '<span><i class="fa fa-arrows-alt"></i>'+this.Area+'</span>';
+                    myHTML += '<span><i class="fa fa-bed"></i>'+this.BedRoom+' Beds</span>';
+                    myHTML += '<span><i class="fa fa-bathtub"></i>'+this.BathRoom+' Baths</span>';
+                    myHTML += '<span><i class="fa fa-cab"></i>'+this.PackingPlace+' Slots</span>';
+                    myHTML += '</div>';
+                    myHTML += '<div class="contents clearfix">';
+                    myHTML += '<p class="qa-content">'+this.Content+'</p>...';
+                    myHTML += '</div>';
+                    myHTML += '<div class="author-box clearfix">';
+                    myHTML += '<cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>';
+                    myHTML += '<span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>';
+                    myHTML += '</div>';
+                    myHTML += '</div>';
+                    myHTML += '</article>';
+                    $('.list-my-project').append(myHTML);
+                });
                 
-                data.MyProject.forEach((value) => {
-                    $('.list-my-project').append();
-                })
- 
+
             },
             error: function (err) {
-                
+
             },
         });
         return false;
