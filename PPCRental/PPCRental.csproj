@@ -189,6 +189,7 @@
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\PROJECT_STATUS.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
@@ -571,6 +572,7 @@
     <Content Include="Content\slicknav.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\theme.css" />
+    <Content Include="ErrorDemo\ErrorAfterResetPassword.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -788,6 +790,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\BlogDetail.cshtml" />
+    <Content Include="Views\User\LostPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
