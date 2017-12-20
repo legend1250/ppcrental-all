@@ -18,14 +18,14 @@ namespace PPCRental.AcceptanceTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class UC001_SearchFeature
+    public partial class UC003_ViewDetailProjectFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-#line 1 "UC001_Search.feature"
+#line 1 "UC003_ViewDetailProject.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -44,9 +44,8 @@ namespace PPCRental.AcceptanceTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UC001_Search", "\tAs a potential customer i want search \r\n\tI want to search for project by a simpl" +
-                    "e phrase\r\n\tSo that I can easily allocate project by something I remember from th" +
-                    "em.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UC003_ViewDetailProject", "\tAs a potential customer\r\n\tI want to see the details of a project\r\n\tSo that I can" +
+                    " better decide to buy it.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -61,9 +60,9 @@ namespace PPCRental.AcceptanceTests.Features
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "UC001_Search")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "UC003_ViewDetailProject")))
             {
-                global::PPCRental.AcceptanceTests.Features.UC001_SearchFeature.FeatureSetup(null);
+                global::PPCRental.AcceptanceTests.Features.UC003_ViewDetailProjectFeature.FeatureSetup(null);
             }
         }
         
@@ -86,69 +85,106 @@ namespace PPCRental.AcceptanceTests.Features
         
         public virtual void FeatureBackground()
         {
-#line 7
+#line 5
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "PropertyName"});
+                        "PropertyName",
+                        "Price",
+                        "Area",
+                        "Bedroom",
+                        "Bathroom",
+                        "ParkingPlace"});
             table1.AddRow(new string[] {
-                        "ASA LightT"});
+                        "ASA LightT",
+                        "71000",
+                        "150",
+                        "3",
+                        "3",
+                        "1"});
             table1.AddRow(new string[] {
-                        "CALEDON Tan Phu"});
+                        "CALEDON Tan Phu",
+                        "55000",
+                        "130",
+                        "2",
+                        "2",
+                        "1"});
             table1.AddRow(new string[] {
-                        "VINH LOC Central"});
+                        "VINH LOC Central",
+                        "70000",
+                        "120",
+                        "3",
+                        "2",
+                        "1"});
             table1.AddRow(new string[] {
-                        "SAIGONRESE Plaza"});
+                        "SAIGONRESE Plaza",
+                        "90000",
+                        "200",
+                        "3",
+                        "3",
+                        "1"});
             table1.AddRow(new string[] {
-                        "CAPSULE Residence"});
+                        "CAPSULE Residence",
+                        "49500",
+                        "130",
+                        "2",
+                        "2",
+                        "1"});
             table1.AddRow(new string[] {
-                        "FLORAL HOA BINH"});
+                        "FLORAL HOA BINH",
+                        "79000",
+                        "180",
+                        "4",
+                        "4",
+                        "1"});
             table1.AddRow(new string[] {
-                        "ORIENT Plaza"});
+                        "ORIENT Plaza",
+                        "42200",
+                        "100",
+                        "2",
+                        "2",
+                        "1"});
             table1.AddRow(new string[] {
-                        "RIVA Garden"});
+                        "RIVA Garden",
+                        "78400",
+                        "168",
+                        "3",
+                        "4",
+                        "1"});
             table1.AddRow(new string[] {
-                        "CITY Gate"});
+                        "CITY Gate",
+                        "120000",
+                        "250",
+                        "4",
+                        "4",
+                        "1"});
             table1.AddRow(new string[] {
-                        "MY HUNG Prop 3"});
-#line 8
+                        "MY HUNG Prop 3",
+                        "115000",
+                        "280",
+                        "4",
+                        "4",
+                        "1"});
+#line 6
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Space should be treated as multiple OR search")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("web")]
-        public virtual void SpaceShouldBeTreatedAsMultipleORSearch()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("detail project can be seen")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC003_ViewDetailProject")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        public virtual void DetailProjectCanBeSeen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", new string[] {
-                        "web"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("detail project can be seen", new string[] {
+                        "mytag"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 5
+this.FeatureBackground();
+#line 21
+ testRunner.When("I open the details of \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 23
- testRunner.When("I search for project by the phrase \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 24
- testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("itle should be matched")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
-        public virtual void ItleShouldBeMatched()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("itle should be matched", ((string[])(null)));
-#line 26
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 27
- testRunner.When("I search for project by the phrase \'gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 28
- testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the project details should show detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

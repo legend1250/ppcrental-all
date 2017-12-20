@@ -1,19 +1,15 @@
-﻿using PPCRental.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using FluentAssert;
+﻿using System.Collections.Generic;
+using PPCRental.Models;
+using FluentAssertions;
 
 namespace PPCRental.AcceptanceTests.Support
 {
-    public class ReferenceProjectList : Dictionary<string, DBModel>
+    class ReferenceProjectList: Dictionary<string, PROPERTY>
     {
-        //public DBModel GetById(string projectId)
-        //{
-        //    return this[projectId.Trim()].Should().NotBeNull()
-        //                              .And.Subject.Should().BeOfType<DBModel>().Which;
-        //}
+        public PROPERTY GetById(string projectId)
+        {
+            return this[projectId.Trim()].Should().NotBeNull()
+                                      .And.Subject.Should().BeOfType<PROPERTY>().Which;
+        }
     }
 }

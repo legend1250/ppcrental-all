@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 using PPCRental.AcceptanceTests.Drivers.Search;
 namespace PPCRental.AcceptanceTests.StepDefinitions
 {
-    [Binding, Scope(Tag = "web")]
+    [Binding, Scope(Tag = "automated")]
     public class UC001_SearchSteps
     {
         private  SearchDriver _searchDriver;
@@ -11,16 +11,11 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         {
             _searchDriver = driver;
         }
-        [Given(@"the following project")]
-        public void GivenTheFollowingProject(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
         
         [When(@"I search for project by the phrase '(.*)'")]
-        public void WhenISearchForProjectByThePhrase(string searchText,int district, int street, int ward, int ptype)
+        public void WhenISearchForProjectByThePhrase(string searchText)
         {
-            _searchDriver.Searching(searchText,district,street,ward,ptype);
+            _searchDriver.Searching(searchText);
         }
         
         [Then(@"the list of found project should contain only: '(.*)'")]

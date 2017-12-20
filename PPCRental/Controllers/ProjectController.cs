@@ -33,7 +33,7 @@ namespace PPCRental.Controllers
         }
 
         [HttpGet]
-        public ActionResult Searching(String keyword, int district, int street, int ward, int ptype)
+        public ActionResult Searching(String keyword, int? district, int? street, int? ward, int? ptype)
         {
             var project = db.View_project_from_index.AsEnumerable();
            
