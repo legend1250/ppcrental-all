@@ -42,8 +42,7 @@ namespace PPCRental.Controllers
                     int UserID = user.ID;
                     Session["user"] = user.FullName;
                     Session["userID"] = UserID;
-                    string[] name_role = { "None", "Agency", "Sale","Technical"};
-                    string role = name_role[(int)user.RoleID];
+                    string role = db.ROLEs.SingleOrDefault( x => x.id == user.RoleID).roleName;
                     Session["userRole"] = role;
                     Session["VerifyUser"] = "NotVerify";
 
@@ -331,11 +330,11 @@ namespace PPCRental.Controllers
                 security_question = usr.SecretQuestion_ID,
                 s_answer = usr.Answer
             };
-            //Console.WriteLine(user); 
-            ViewData["question"] = db.security_questions.ToList();
-            
-            return Json(new { Data = user }, JsonRequestBehavior.AllowGet);
 
+            var question = db.security_questions.Select(x => new { x.id, x.question }).ToArray();
+            var role = db.ROLEs.Select(x => new { x.id, x.roleName }).ToArray();
+
+            return Json(new { Data = user, Role = role, Question = question }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ManageUser_EditUser(USER editedUser)
@@ -458,5 +457,11 @@ namespace PPCRental.Controllers
             return View();
         }
 
+        public ActionResult getRole()
+        {
+            var role = db.ROLEs.Select( x => new { x.roleName}).ToArray();
+
+            return Json(new { Role = role }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
