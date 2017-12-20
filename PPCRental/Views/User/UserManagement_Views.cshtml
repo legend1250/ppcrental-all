@@ -99,16 +99,28 @@
 
     //refactor table
     $(document).ready(function () {
-        $('#table-user').DataTable({
-            "ajax": {
-                "url": '/User/ManageUser_Views',
-                "type": "POST",
-                "data": { role_id: 10 },
-                "dataSrc": function (result) {
-                    var data = [];
-                    data = convertDataToArray(result.Users);
-                    return data
-                }
+        $.ajax({
+            url: '/User/ManageUser_Views',
+            type: "POST",
+            data: { role_id: 10 },
+            dataType: "json",
+            success: function (result) {
+                convertDataToArray(result.Users).then((x) => {
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
+                        }
+                    });
+                }).catch((e) => {
+                    console.log(e);
+                });
+            },
+            error: function (err) {
+                alert(err);
             }
         });
     })
@@ -141,62 +153,71 @@
                 //        + '<td>' + result.Users[index].Answer + '</td>'
                 //        + '</tr>');
                 //});
-                var data = [];
-                data = convertDataToArray(result.Users);
-                
-                console.log(data);
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table
-                    .clear()
-                    .draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
+                convertDataToArray(result.Users).then((x) => {
+                    var table = $('#table-user').DataTable();
+                    table.destroy();
+                    table
+                        .clear()
+                        .draw();
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
                         }
-                    }
+                    });
+                }).catch((e) => {
+                    console.log(e);
                 });
             },
             error: function (err) {
                 alert(err);
-
             }
         });
 
     });
 
     function convertDataToArray(data) {
-        var d = [];
-        for (var i = 0; i < data.length; i++) {
-            var arr = $.map(data[i], function (value, index) {
-                if (index == 'Password') {
-                    value = '.................................';
+        return new Promise((resolve, reject) => {
+            var d = [];
+            getRole().then((role) => {
+                for (var i = 0; i < data.length; i++) {
+                    var arr = $.map(data[i], function (value, index) {
+                        if (index == 'Password') {
+                            value = '.................................';
+                        }
+                        if (index == 'RoleID') {
+                            value = role[value];
+                        }
+                        return value;
+                    });
+                    arr.splice(8, 1);
+                    d.push(arr);
                 }
-
-                if (index == 'RoleID') {
-                    if (value == 0) {
-                        value = 'Chưa có Vai trò';
-                    }
-                    else if (value == 1) {
-                        value = 'Agency';
-                    }
-                    else if (value == 2) {
-                        value = 'Sale';
-                    }
-                    else if (value == 3) {
-                        value = 'Technical';
-                    }
-                }
-
-                return value;
-            });
-            arr.splice(8, 1);
-            d.push(arr);
-        }
-        return d;
+                resolve(d);
+            })
+        })
     }
 
+    function getRole() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: 'User/getRole',
+                type: 'GET',
+                dataType: 'json',
+                success: (result) => {
+                    var role = $.map(result.Role, function (value, index) {
+                        return value.roleName;
+                    })
+                    resolve(role);
+                },
+                error: (err) => {
+                    alert("Can't get role list");
+                    reject(err);
+                }
+            })
+        })
+    }
 </script>

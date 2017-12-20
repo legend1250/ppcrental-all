@@ -42,8 +42,7 @@ namespace PPCRental.Controllers
                     int UserID = user.ID;
                     Session["user"] = user.FullName;
                     Session["userID"] = UserID;
-                    string[] name_role = { "None", "Agency", "Sale","Technical"};
-                    string role = name_role[(int)user.RoleID];
+                    string role = db.ROLEs.SingleOrDefault( x => x.id == user.RoleID).roleName;
                     Session["userRole"] = role;
                     Session["VerifyUser"] = "NotVerify";
 
@@ -458,5 +457,11 @@ namespace PPCRental.Controllers
             return View();
         }
 
+        public ActionResult getRole()
+        {
+            var role = db.ROLEs.Select( x => new { x.roleName}).ToArray();
+
+            return Json(new { Role = role }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "UserManagement_Edit";
+    var role_list = ViewData["role"] as List<PPCRental.Models.ROLE>;
 }
 
 @{
@@ -34,10 +35,12 @@
 
     <select name="user_role" id="select_role" class="form-control" required="required">
         <option value="10">Tất cả</option>
-        <option value="0">Chưa có vai trò</option>
-        <option value="1">Agency</option>
-        <option value="2">Sale</option>
-        <option value="3">NVKT</option>
+        @{ 
+            foreach(var item in role_list)
+            {
+                <option value="@item.id">@item.roleName</option>
+            }
+        }
     </select>
 
     <table class="table table-hover table-bordered table-striped" id="table-user" style="background-color: antiquewhite;">
@@ -153,6 +156,7 @@
 </div>
 
 <script>
+
     $(document).ready(function () {
 
         $.ajax({
@@ -161,21 +165,18 @@
             data: { role_id: 10 },
             dataType: "json",
             success: function (result) {
-                //alert(result.Success);
-                var data = [];
-                data = convertDataToArray(result.Users);
-                //console.log(data);
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table.clear().draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
+                convertDataToArray(result.Users).then((x) => {
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
                         }
-                    }
+                    });    
+                }).catch((e) => {
+                    console.log(e);
                 });
             },
             error: function (err) {
@@ -215,23 +216,21 @@
                 //        + '</tr>');
                 //});
 
-                var data = [];
-                data = convertDataToArray(result.Users);
-                //console.log(data);
-
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table
-                    .clear()
-                    .draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
+                convertDataToArray(result.Users).then((x) => {
+                    var table = $('#table-user').DataTable();
+                    table.destroy();
+                    table.clear().draw();
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
                         }
-                    }
+                    });
+                }).catch((e) => {
+                    console.log(e);
                 });
             },
             error: function (err) {
@@ -404,38 +403,49 @@
     })
 
     function convertDataToArray(data) {
-        var d = [];
-        var role = ['Chưa có Vai trò', 'Agency', 'Sale', 'Technical'];
-        for (var i = 0; i < data.length; i++) {
-            var arr = $.map(data[i], function (value, index) {
-                if (index == 'Password') {
-                    value = '.................................';
+        return new Promise((resolve, reject) => {
+            getRole().then((role) => {
+                var d = [];
+                for (var i = 0; i < data.length; i++) {
+                    var arr = $.map(data[i], function (value, index) {
+                        if (index == 'Password') {
+                            value = '.................................';
+                        }
+
+                        if (index == 'RoleID') {
+                            value = role[value];
+                        }
+
+                        return value;
+                    });
+                    arr.splice(8, 1);
+                    var button = '<button type="button" class="btn btn-success" id="btn-edit" data-id="' + data[i].ID + '">Edit</button>';
+                    arr.push(button);
+                    d.push(arr);
                 }
+                resolve(d);
+            })
+        })
+    }
 
-                if (index == 'RoleID') {
-
-                    if (value == 0) {
-                        value = 'Chưa có Vai trò';
-                    }
-                    else if (value == 1) {
-                        value = 'Agency';
-                    }
-                    else if (value == 2) {
-                        value = 'Sale';
-                    }
-                    else if (value == 3) {
-                        value = 'Technical';
-                    }
+    function getRole() {
+        return new Promise( (resolve, reject) => {
+            let role = [];
+            $.ajax({
+                url: 'User/getRole',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    role = $.map(result.Role, function (value, index) {
+                        return value.roleName;
+                    })
+                    resolve(role);
+                },
+                error: function (err) {
+                    reject(role);
                 }
-
-                return value;
             });
-            arr.splice(8, 1);
-            var button = '<button type="button" class="btn btn-success" id="btn-edit" data-id="' + data[i].ID + '">Edit</button>';
-            arr.push(button);
-            d.push(arr);
-        }
-        return d;
+        });
     }
 </script>
 
