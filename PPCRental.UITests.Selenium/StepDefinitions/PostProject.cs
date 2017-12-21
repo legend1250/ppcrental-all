@@ -45,19 +45,19 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
             IWebElement district = driver.FindElement(By.Id("district"));
             district.Click();
             SelectElement district_select = new SelectElement(district);
-            district_select.SelectByIndex(2);
+            district_select.SelectByIndex(1);
 
             //add street
-            IWebElement street = driver.FindElement(By.Id("street"));
-            district.Click();
+            IWebElement street = driver.FindElement(By.Id("streetSelect"));
+            street.Click();
             SelectElement street_select = new SelectElement(street);
-            district_select.SelectByIndex(2);
+            street_select.SelectByIndex(24);
 
             //add ward
-            IWebElement ward = driver.FindElement(By.Id("ward"));
-            district.Click();
+            IWebElement ward = driver.FindElement(By.Id("wardSelect"));
+            ward.Click();
             SelectElement ward_select = new SelectElement(ward);
-            district_select.SelectByIndex(2);
+            ward_select.SelectByIndex(6);
 
             //add price
             driver.FindElement(By.Id("price")).SendKeys("53000");
@@ -66,9 +66,9 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
 
             //Project type
             IWebElement type = driver.FindElement(By.Id("ptype"));
-            district.Click();
+            type.Click();
             SelectElement type_select = new SelectElement(type);
-            district_select.SelectByIndex(2);
+            type_select.SelectByIndex(4);
 
             //add number of bedroom
             driver.FindElement(By.Id("bed")).SendKeys("2");
