@@ -204,6 +204,12 @@
             formData.append('avaFile', avaFiles[0]);
             formData.append('imaFile', imaFiles[0]);
 
+            //date
+            //var d = new Date();
+            //var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "." + d.getMilliseconds();
+            //console.log(strDate);
+            //var date = DateTime.parse(strDate, "yyyy-MM-dd HH:mm:ss.SSS")
+
             var newProject = {
                 PropertyName : $('#name').val(),
                 Avatar : $('#ava').val(),
@@ -222,6 +228,9 @@
                 BathRoom : $('#bath').val(),
                 PackingPlace: $('#packing').val(),
                 UserID:@Session["userID"],
+                Status_ID: 1,
+                //Created_at: date,
+                //Updated_at: date,
             }
             $.ajax({
                 url: '/Project/Submit/',

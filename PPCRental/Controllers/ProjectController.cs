@@ -136,22 +136,11 @@ namespace PPCRental.Controllers
         {
             String message;
             int status;
-            //if (ModelState.IsValid)
-            //{   
-            // db.PROPERTies.Add(newProject);
-            /// db.SaveChanges();
-            /// message = "Add Success,wait for appover";
-            // return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-            //}
-            //else
-            //{
-            //   message = "Add Fail";
-
-            //}
-            //return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-            //return Json(newProject, JsonRequestBehavior.AllowGet);
+            DateTime time = DateTime.Now;      
             try
             {
+                newProject.Updated_at = time;
+                newProject.Created_at = time;
                 db.PROPERTies.Add(newProject);
                 db.SaveChanges();
 
@@ -313,6 +302,7 @@ namespace PPCRental.Controllers
        public ActionResult projectupdate(PROPERTY projectupdate)
         {
             string message = "";
+            DateTime date = DateTime.Now;
             try
             {
                 var projectID = projectupdate.ID;
