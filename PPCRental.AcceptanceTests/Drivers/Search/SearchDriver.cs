@@ -21,7 +21,7 @@ namespace PPCRental.AcceptanceTests.Drivers.Search
         public void Searching(String projectname)
         {
             var controller = new ProjectController();
-            _state.ActionResult = controller.Searching(projectname,null,null,null,null);
+            _state.ActionResult = controller.Searching(projectname,0,0,0,0,0,0,0,0,0,0);
         }
         public void ShowProject(string expectedTitlesString)
         {

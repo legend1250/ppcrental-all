@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace PPCRental.AcceptanceTests.Support
 {
-    class ReferenceProjectList: Dictionary<string, PROPERTY>
+    public class ReferenceProjectList: Dictionary<string, PROPERTY>
     {
         public PROPERTY GetById(string projectId)
         {

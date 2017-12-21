@@ -6,14 +6,12 @@ namespace PPCRental.AcceptanceTests.Support
     [Binding]
    public class DatabaseTools
     {
-        [BeforeScenario]
+      //  [BeforeScenario]
         public void CleanDatabase()
         {
-            using (var db = new DatabaseContext())
+            using (var db = new ppcrental3119Entities())
             {
-                db.OrderLines.RemoveRange(db.OrderLines);
-                db.Orders.RemoveRange(db.Orders);
-                db.Books.RemoveRange(db.Books);
+                db.PROPERTies.RemoveRange(db.PROPERTies);
                 db.SaveChanges();
             }
         }

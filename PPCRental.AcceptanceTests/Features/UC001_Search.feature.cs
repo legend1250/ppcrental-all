@@ -89,27 +89,217 @@ namespace PPCRental.AcceptanceTests.Features
 #line 7
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "PropertyName"});
+                        "PropertyName",
+                        "Avatar",
+                        "Images",
+                        "PropertyType",
+                        "Content",
+                        "Street",
+                        "Ward",
+                        "District",
+                        "Price",
+                        "UnitPrice",
+                        "Area",
+                        "Bedroom",
+                        "Bathroom",
+                        "PackingPlace",
+                        "User",
+                        "Status"});
             table1.AddRow(new string[] {
-                        "ASA LightT"});
+                        "ASA LightT",
+                        "Asa Light.jpg",
+                        "",
+                        "Apartment",
+                        "NaN",
+                        "Bùi Viện",
+                        "P.Bến Nghé",
+                        "Quận 1",
+                        "71000",
+                        "USD",
+                        "150",
+                        "3",
+                        "3",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "CALEDON Tan Phu"});
+                        "CALEDON Tan Phu",
+                        "Caledon Tan Phu.jpg",
+                        "",
+                        "Villa",
+                        @"ICON 56 – Modern Style Apartment $ 950 Per Month.Condominium in Rentals 56 Ben Van Don, Ho Chi Minh City, District 4 add to favorites. 22 See all 12 photos.Icon 56 is 4 star building with strategic location and excellent amenities including infinity swimming pool and modern gym. Just walking through Mong bridge (Saigon oldest bridge) or drive through Calmette bridge, you have reached District 1 – the business center of the city",
+                        "Bà Lê Chân",
+                        "P.Đa Kao",
+                        "Quận 1",
+                        "55000",
+                        "USD",
+                        "130",
+                        "2",
+                        "2",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "VINH LOC Central"});
+                        "VINH LOC Central",
+                        "Vinh Loc Central.jpg",
+                        "",
+                        "Villa",
+                        "Brand new apartments with unbelievable river and city view, completely renovated " +
+                            "and tastefully furnished, with attention to details, modern colors, designer lig" +
+                            "hting and high quality accessories.",
+                        "Đồng Khởi",
+                        "P.Cô Giang",
+                        "Quận 1",
+                        "70000",
+                        "USD",
+                        "120",
+                        "3",
+                        "2",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "SAIGONRESE Plaza"});
+                        "SAIGONRESE Plaza",
+                        "Saigonrese.jpg",
+                        "",
+                        "Office",
+                        "Very close to the Super Market Co.op Mart Phan Xich Long, 3 min from the Swimming" +
+                            " Pool Rach Mieu and also close to the Gym/Yoga on Phan Xich Long Street. 3 min g" +
+                            "o to Tan Dinh market or Phu Nhuan market.",
+                        "Chu Văn An",
+                        "P.Phú Hữu",
+                        "Quận 2",
+                        "90000",
+                        "USD",
+                        "200",
+                        "3",
+                        "3",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "CAPSULE Residence"});
+                        "CAPSULE Residence",
+                        "Capsule Residence .jpg",
+                        "",
+                        "Office",
+                        "The well equipped kitchen is opened on a cozy living room and a dining area with " +
+                            "table and chairs.. Behind the industrial glass wall you will find the bedroom ar" +
+                            "ea with a double bed and a large closet.",
+                        "Thảo Điền",
+                        "P.An Lợi Đông",
+                        "Quận 2",
+                        "49500",
+                        "USD",
+                        "130",
+                        "2",
+                        "2",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "FLORAL HOA BINH"});
+                        "FLORAL HOA BINH",
+                        "Floral Hoa Binh.jpg",
+                        "",
+                        "Villa",
+                        @"Vinhomes Central Park is a new development that is in the heart of everything that Ho Chi Minh has to offer. Located in Binh Thanh District, it is within easy reach of the new Metro Line No. 1 Ben Thanh – Suoi Tien, 4 minutes to downtown District 1 and 3 minutes to the new Thu Thiem urban area in the near future.",
+                        "Nguyễn Tư Nghiêm",
+                        "P.An Phú",
+                        "Quận 2",
+                        "79000",
+                        "USD",
+                        "180",
+                        "4",
+                        "4",
+                        "1",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "ORIENT Plaza"});
+                        "ORIENT Plaza",
+                        "Orient Plaza.jpg",
+                        "",
+                        "Apartment",
+                        @"Located on Nguyen Huu Canh Street, this nice apartment has all amenities like swimming pool, sauna, jacuzzi, gym and pet allowed…It has fully furnished with everything you need like TV, fridge, washing machine, wardrobe, sofa, dining table, kitchenette, …With $1600/month for 3 bedroom apartment. Inclusive of management fee",
+                        "Nguyễn Tư Nghiêm",
+                        "P.01",
+                        "Quận 3",
+                        "42200",
+                        "USD",
+                        "100",
+                        "2",
+                        "2",
+                        "1",
+                        "annguyen",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "RIVA Garden"});
+                        "RIVA Garden",
+                        "Riva Garden.jpg",
+                        "",
+                        "Apartment",
+                        @"The Nguyen Dinh Chinh  is a lovely option for the renter seeking home-comfort away from the noise of the city center. Located in Phu Nhuan district, the unit is conveniently accessible to local shops and eateries. This serviced apartment provides space and everything needed for you to feel at home.",
+                        "Vườn Chuối",
+                        "P.02",
+                        "Quận 3",
+                        "78400",
+                        "USD",
+                        "168",
+                        "3",
+                        "4",
+                        "2",
+                        "annguyen",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "CITY Gate"});
+                        "CITY Gate",
+                        "City Gate.jpg",
+                        "",
+                        "Villa",
+                        @"Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.",
+                        "Nguyễn Hiền",
+                        "P.03",
+                        "Quận 3",
+                        "120000",
+                        "USD",
+                        "250",
+                        "4",
+                        "4",
+                        "2",
+                        "Thang@gmail.com",
+                        "Đã duyệt"});
             table1.AddRow(new string[] {
-                        "MY HUNG Prop 3"});
+                        "MY HUNG Prop 3",
+                        "My Hung Prop.jpg",
+                        "",
+                        "Villa",
+                        "NaN",
+                        "Phú Lâm A",
+                        "P.07",
+                        "Quận 6",
+                        "115000",
+                        "USD",
+                        "280",
+                        "4",
+                        "4",
+                        "2",
+                        "lythihuyenchau@gmail.com",
+                        "Đã duyệt"});
+            table1.AddRow(new string[] {
+                        "NovaLand",
+                        "NovaLand.jpg",
+                        "NovaLand.jpg",
+                        "House",
+                        "The well equipped kitchen is opened on a cozy living room and a dining area with " +
+                            "table and chairs.. Behind the industrial glass wall you will find the bedroom ar" +
+                            "ea with a double bed and a large closet.",
+                        "Đặng Dung",
+                        "P.Bình Khánh",
+                        "Q. Bình Thạnh",
+                        "45000",
+                        "USD",
+                        "",
+                        "2",
+                        "2",
+                        "2",
+                        "annguyen",
+                        "Đã duyệt"});
 #line 8
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
@@ -123,14 +313,49 @@ testRunner.Given("the following project", ((string)(null)), table1, "Given ");
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", new string[] {
                         "web"});
-#line 22
+#line 23
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 23
- testRunner.When("I search for project by the phrase \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
- testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I search for project by the phrase \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PropertyName",
+                        "Avatar",
+                        "Images",
+                        "PropertyType",
+                        "Content",
+                        "Street",
+                        "Ward",
+                        "District",
+                        "Price",
+                        "UnitPrice",
+                        "Area",
+                        "Bedroom",
+                        "Bathroom",
+                        "PackingPlace",
+                        "User",
+                        "Status"});
+            table2.AddRow(new string[] {
+                        "CITY Gate",
+                        "City Gate.jpg",
+                        "",
+                        "Villa",
+                        @"Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.",
+                        "Nguyễn Hiền",
+                        "P.03",
+                        "Quận 3",
+                        "120000",
+                        "USD",
+                        "250",
+                        "4",
+                        "4",
+                        "2",
+                        "Thang@gmail.com",
+                        "Đã duyệt"});
+#line 25
+ testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -141,13 +366,13 @@ this.FeatureBackground();
         public virtual void ItleShouldBeMatched()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("itle should be matched", ((string[])(null)));
-#line 26
+#line 28
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 27
+#line 29
  testRunner.When("I search for project by the phrase \'gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 28
+#line 30
  testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
