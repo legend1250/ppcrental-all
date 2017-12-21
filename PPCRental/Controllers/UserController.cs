@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using System.Data.Entity;
 
 using PPCRental.Driver;
+using System.Web.Security;
+
 namespace PPCRental.Controllers
 {
     public class UserController : Controller
@@ -42,8 +44,7 @@ namespace PPCRental.Controllers
                     int UserID = user.ID;
                     Session["user"] = user.FullName;
                     Session["userID"] = UserID;
-                    string[] name_role = { "None", "Agency", "Sale","Technical"};
-                    string role = name_role[(int)user.RoleID];
+                    string role = db.ROLEs.SingleOrDefault( x => x.id == user.RoleID).roleName;
                     Session["userRole"] = role;
                     Session["VerifyUser"] = "NotVerify";
 
@@ -331,11 +332,11 @@ namespace PPCRental.Controllers
                 security_question = usr.SecretQuestion_ID,
                 s_answer = usr.Answer
             };
-            //Console.WriteLine(user); 
-            ViewData["question"] = db.security_questions.ToList();
-            
-            return Json(new { Data = user }, JsonRequestBehavior.AllowGet);
 
+            var question = db.security_questions.Select(x => new { x.id, x.question }).ToArray();
+            var role = db.ROLEs.Select(x => new { x.id, x.roleName }).ToArray();
+
+            return Json(new { Data = user, Role = role, Question = question }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ManageUser_EditUser(USER editedUser)
@@ -458,5 +459,73 @@ namespace PPCRental.Controllers
             return View();
         }
 
+        public ActionResult getRole()
+        {
+            var role = db.ROLEs.Select( x => new { x.roleName}).ToArray();
+
+            return Json(new { Role = role }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LostPassword()
+        {
+            var ques = db.security_questions.ToList();
+            List<SelectListItem> item = new List<SelectListItem>();
+            foreach (var i in ques)
+            {
+                item.Add(new SelectListItem
+                {
+                    Text = i.question,
+                    Value = i.id.ToString()
+                });
+            }
+
+            ViewBag.question = item;
+
+            return View(new LostPasswordViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LostPassword(LostPasswordViewModel model)
+        {
+            var ques = db.security_questions.ToList();
+            List<SelectListItem> item = new List<SelectListItem>();
+            foreach (var i in ques)
+            {
+                item.Add(new SelectListItem
+                {
+                    Text = i.question,
+                    Value = i.id.ToString()
+                });
+            }
+
+            ViewBag.question = item;
+
+            var user = db.USERs.FirstOrDefault(x => x.Email == model.Email);
+            string error_message = "The email or question/answer doesn't match. Please check again";
+            if (user != null && user.SecretQuestion_ID == model.SecretQuestion_ID)
+            {
+                if (user.Answer.Equals(model.Answer))
+                {
+                    // Generate a new 12-character password with 1 non-alphanumeric character.
+                    string NewPassword = Membership.GeneratePassword(12, 1);
+                    user.Password = hashPwd(NewPassword);
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.SuccessMessage = "Successful reset your password. Your new password is " +NewPassword;
+                    return View();
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = error_message;
+                    return View(model);
+                }
+            }
+            else {
+                ViewBag.ErrorMessage = error_message;
+                return View(model);
+            }
+
+        }
     }
 }

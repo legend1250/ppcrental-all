@@ -104,6 +104,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\ChangePassword.cs" />
     <Compile Include="StepDefinitions\LoginLogoutSteps.cs" />
+    <Compile Include="StepDefinitions\PostProject.cs" />
     <Compile Include="StepDefinitions\Register.cs" />
     <Compile Include="StepDefinitions\SearchSteps1.cs" />
     <Compile Include="StepDefinitions\ViewListOfPrpjectSteps.cs" />

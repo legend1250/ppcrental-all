@@ -14,7 +14,7 @@ namespace PPCRental.Models
         public string ID { get; set; }
 
 
-        [Required(ErrorMessage="Email must not be null")]
+        [Required(ErrorMessage = "Email must not be null")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -34,7 +34,7 @@ namespace PPCRental.Models
         public string ConfirmPassword { get; set; }
 
 
-        [Required(ErrorMessage ="Fullname must not be null")]
+        [Required(ErrorMessage = "Fullname must not be null")]
         [Display(Name = "FullName")]
         public string FullName { get; set; }
 
@@ -43,7 +43,7 @@ namespace PPCRental.Models
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Address must not be null")]
-        [Display(Name ="Address")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
 
         [Required]
@@ -64,6 +64,22 @@ namespace PPCRental.Models
         [Display(Name = "Answer")]
         public string Answer { get; set; }
 
-        
+    }
+
+    public class LostPasswordViewModel{
+
+        [Required(ErrorMessage = "Email must not be null")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Security Question")]
+        [ForeignKey(nameof(Models.security_questions))]
+        public int SecretQuestion_ID { get; set; }
+
+        [Required(ErrorMessage = "Answer must not be null")]
+        [Display(Name = "Answer")]
+        public string Answer { get; set; }
     }
 }

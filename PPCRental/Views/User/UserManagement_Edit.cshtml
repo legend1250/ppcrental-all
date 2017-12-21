@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "UserManagement_Edit";
+    var role_list = ViewData["role"] as List<PPCRental.Models.ROLE>;
 }
 
 @{
@@ -34,10 +35,12 @@
 
     <select name="user_role" id="select_role" class="form-control" required="required">
         <option value="10">Tất cả</option>
-        <option value="0">Chưa có vai trò</option>
-        <option value="1">Agency</option>
-        <option value="2">Sale</option>
-        <option value="3">NVKT</option>
+        @{ 
+            foreach(var item in role_list)
+            {
+                <option value="@item.id">@item.roleName</option>
+            }
+        }
     </select>
 
     <table class="table table-hover table-bordered table-striped" id="table-user" style="background-color: antiquewhite;">
@@ -153,8 +156,8 @@
 </div>
 
 <script>
-    $(document).ready(function () {
 
+    $(document).ready(function () {
 
         $.ajax({
             url: '/User/ManageUser_Views',
@@ -162,22 +165,18 @@
             data: { role_id: 10 },
             dataType: "json",
             success: function (result) {
-                //alert(result.Success);
-                var data = [];
-                data = convertDataToArray(result.Users);
-
-                console.log(data);
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table.clear().draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
+                convertDataToArray(result.Users).then((x) => {
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
                         }
-                    }
+                    });    
+                }).catch((e) => {
+                    console.log(e);
                 });
             },
             error: function (err) {
@@ -217,23 +216,21 @@
                 //        + '</tr>');
                 //});
 
-                var data = [];
-                data = convertDataToArray(result.Users);
-                console.log(data);
-
-                var table = $('#table-user').DataTable();
-                table.destroy();
-                table
-                    .clear()
-                    .draw();
-                $('#table-user').DataTable({
-                    data: data,
-                    "language": {
-                        "paginate": {
-                            "previous": "Previous ",
-                            "next": " Next page"
+                convertDataToArray(result.Users).then((x) => {
+                    var table = $('#table-user').DataTable();
+                    table.destroy();
+                    table.clear().draw();
+                    $('#table-user').DataTable({
+                        data: x,
+                        "language": {
+                            "paginate": {
+                                "previous": "Previous ",
+                                "next": " Next page"
+                            }
                         }
-                    }
+                    });
+                }).catch((e) => {
+                    console.log(e);
                 });
             },
             error: function (err) {
@@ -256,6 +253,8 @@
             success: function (result) {
                 //alert(res.User);
                 //console.log(result.Data);
+                //console.log(result.Question);
+                
                 $('.modal-header #modal-header').empty();
                 $('.modal-header #modal-header').text(result.Data.email);
                 $('#table-modal-user #input-id').empty();
@@ -270,18 +269,28 @@
                 $('#td-phone #input-phone').val(result.Data.phone);
                 $('#td-address #input-address').empty();
                 $('#td-address #input-address').val(result.Data.address);
+
+                //Edit Role ID
                 //$('#table-modal-user #td-role').empty();
                 //$('#table-modal-user #td-role').append(result.Data.role_id);
                 $('#edit-role').find('option').remove();
-                var ro = ['Chưa có Vai trò', 'Agency', 'Sale', 'Technical'];
-                for (var i = 0; i < ro.length; i++) {
-                    if (i == parseInt(result.Data.role_id)) {
-                        $('#edit-role').append('<option value="' + i + '" selected style= "color: orange;">' + ro[i] + '</option > ');
+                var role = [];
+                result.Role.forEach((value) => {
+                    var arr = $.map(value, function (value, index) {
+                        return value;
+                    })
+                    role.push(arr);
+                })
+                role.forEach((value) => {
+                    if (value[0] == parseInt(result.Data.role_id)) {
+                        $('#edit-role').append('<option value="' + value[0] + '" selected style= "color: orange;">' + value[1] + '</option > ');
                     }
                     else {
-                        $('#edit-role').append('<option value="' + i + '">' + ro[i] + '</option > ');
+                        $('#edit-role').append('<option value="' + value[0] + '">' + value[1] + '</option > ');
                     }
-                }
+                })
+
+                //Set Active user
                 //$('#table-modal-user #td-status').empty();
                 //$('#table-modal-user #td-status').append(result.Data.active);
                 $('#edit-status').find('option').remove();
@@ -295,21 +304,29 @@
                     $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Chưa Active</option >');
                 }
 
+                //Edit security question
                 $('#edit-question').find('option').remove();
-                var que = ['Cha của bạn sinh ra ở tỉnh/thành phố nào?', 'Bạn thân nhất thời thơ ấu của bạn có họ gì?', 'Tên trường tiểu học của bạn là gì?',
-                    'Con đường nơi bạn lớn lên tên gì?', 'Con vật cưng đầu tiên của bạn tên gì?', 'Tên của nhạc sĩ bạn thích nhất?', 'Giáo viên bạn thích nhất khi học tiểu học có họ gì?',
-                    'Lúc nhỏ bạn thích xem phim hoạt hình nào nhất?', 'Món khoái khẩu của bạn lúc còn nhỏ là gì?', 'Nhân vật trong phim mà bạn thích nhất là ai?',
-                    'Ai là tác giả bạn thích nhất?', 'Đội thể thao bạn thích nhất tên là gì?', 'Tựa quyển sách bạn thích đọc nhất?'];
-                for (var i = 0; i < que.length; i++) {
-                    if (i == parseInt(result.Data.security_question) - 1) {
-                        $('#edit-question').append('<option value="' + i + '" selected style= "color: orange;">' + que[i] + '</option > ');
+                var question = [];
+                result.Question.forEach((value) => {
+                    var arr = $.map(value, function (value, index) {
+                        return value;
+                    })
+                    question.push(arr);
+                });
+                question.forEach((value) => {
+                    if (value[0] == parseInt(result.Data.security_question)) {
+                        $('#edit-question').append('<option value="' + value[0] + '" selected style= "color: orange;">' + value[1] + '</option > ');
                     }
                     else {
-                        $('#edit-question').append('<option value="' + i + '">' + que[i] + '</option > ');
+                        $('#edit-question').append('<option value="' + value[0] + '">' + value[1] + '</option > ');
                     }
-                }
+                })
+
+                //Edit security answer
                 $('#td-answer #input-answer').empty();
                 $('#td-answer #input-answer').val(result.Data.s_answer);
+
+                //show modal if success
                 $('#myModal').modal({ show: true });
             },
             error: function (result) {
@@ -386,37 +403,49 @@
     })
 
     function convertDataToArray(data) {
-        var d = [];
-        for (var i = 0; i < data.length; i++) {
-            var arr = $.map(data[i], function (value, index) {
-                if (index == 'Password') {
-                    value = '.................................';
+        return new Promise((resolve, reject) => {
+            getRole().then((role) => {
+                var d = [];
+                for (var i = 0; i < data.length; i++) {
+                    var arr = $.map(data[i], function (value, index) {
+                        if (index == 'Password') {
+                            value = '.................................';
+                        }
+
+                        if (index == 'RoleID') {
+                            value = role[value];
+                        }
+
+                        return value;
+                    });
+                    arr.splice(8, 1);
+                    var button = '<button type="button" class="btn btn-success" id="btn-edit" data-id="' + data[i].ID + '">Edit</button>';
+                    arr.push(button);
+                    d.push(arr);
                 }
+                resolve(d);
+            })
+        })
+    }
 
-                if (index == 'RoleID') {
-
-                    if (value == 0) {
-                        value = 'Chưa có Vai trò';
-                    }
-                    else if (value == 1) {
-                        value = 'Agency';
-                    }
-                    else if (value == 2) {
-                        value = 'Sale';
-                    }
-                    else if (value == 3) {
-                        value = 'Technical';
-                    }
+    function getRole() {
+        return new Promise( (resolve, reject) => {
+            let role = [];
+            $.ajax({
+                url: 'User/getRole',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    role = $.map(result.Role, function (value, index) {
+                        return value.roleName;
+                    })
+                    resolve(role);
+                },
+                error: function (err) {
+                    reject(role);
                 }
-
-                return value;
             });
-            arr.splice(8, 1);
-            var button = '<button type="button" class="btn btn-success" id="btn-edit" data-id="' + data[i].ID + '">Edit</button>';
-            arr.push(button);
-            d.push(arr);
-        }
-        return d;
+        });
     }
 </script>
 
