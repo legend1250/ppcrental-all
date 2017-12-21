@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Approve";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    String userRole = Session["userRole"] as String;
+    String verify = Session["VerifyUser"] as String;
+    string path = HttpContext.Current.Request.Url.AbsolutePath;
+    if (Session["user"] == null)
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "NotLogin";
+        Session["SavePath"] = path;
+        Response.Redirect("~/User/Login", false);
+
+    }
+    else if (!(userRole.Equals("Sale")))
+    {
+        Session.RemoveAll();
+        Session["login-status"] = "WrongRole";
+        Response.Redirect("~/User/Login", false);
+
+    }
+}
+<style>
+    .my-project-avatar{
+        width:300px;
+        height:180px;
+    }
+    .my-card {
+        border: 1px solid rgb(165, 162, 162);
+        max-width: 300px;
+        padding: 0px;
+    }.my-content{
+         padding:10px;
+     }
+    .my-footer {
+        background-color: rgb(226, 224, 224);
+        border: 1px solid rgb(165, 162, 162);
+        padding: 10px;
+    }
+
+</style>
+<div class="container">
+    <center><h1>Project Approval</h1></center>
+    <div class="col-sm-4 my-card">
+        <img src="~/img/avatar/Asa Light.jpg" class="my-project-avatar"/>
+        <div class="my-content">
+            <h3>Card title</h3>
+            <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+        <div class="my-footer">
+            <span>Last updated 3 mins ago</span>
+        </div>
+    </div>
+    
+   
+</div>
+

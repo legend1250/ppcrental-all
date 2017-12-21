@@ -332,6 +332,13 @@ namespace PPCRental.Controllers
             }
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
-      
+        public ActionResult Approve()
+        {
+            var project = db.View_project_from_index.Where(x => x.Status_ID==1).ToList();
+            ViewData["project-not-approve"] = project;
+            return View();
+        }
+
+
     }
 }
