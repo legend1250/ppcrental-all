@@ -26,8 +26,7 @@ namespace PPCRental.Controllers
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
             //Count
-            ViewData["TotalProperty"] = db.PROPERTies.Count();
-            ViewData["TotalPropertyFound"] = project.Count();
+            ViewData["TotalProperty"] = db.View_project_from_index.Count();
 
             return View();
         }

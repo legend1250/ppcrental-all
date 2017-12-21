@@ -102,32 +102,26 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="district">District:</label>
             <div class="col-sm-3">
-                <select class="form-control select1 qa-select" id="district" name="select1" onchange='change2()'>
-                    <option value="-1" selected disabled style="font-weight:bold">District</option>
-                    @foreach (var item in Model.districtService)
-                    {
-                        <option value="@item.ID">@item.DistrictName</option>
+                <select class="selectpicker form-control qa-select" data-live-search="true" id="district" name="district">
+                    <option value="0" selected style="font-weight:bold; color: white;">District</option>
+                    @{ 
+                        foreach (var item in Model.districtService)
+                        {
+                            <option data-tokens="@item.DistrictName" value="@item.ID">@item.DistrictName</option>
+                        }
                     }
                 </select>
             </div>
             <label class="control-label col-sm-1" for="street">Street:</label>
             <div class="col-sm-3">
-                <select class="form-control select2 qa-select" id="street" name="select2" disabled onchange='change3()'>
-                    <option value="-1" selected disabled style="font-weight:bold">Street</option>
-                    @foreach (var item in Model.streetService)
-                    {
-                        <option value="@item.District_ID">@item.StreetName</option>
-                    }
+                <select class="form-control select2 qa-select" id="streetSelect" name="street" disabled>
+                    <option value="0" selected disabled style="font-weight:bold">Street</option>
                 </select>
             </div>  
             <label class="control-label col-sm-1" for="ward">Ward:</label>
             <div class="col-sm-3">
-                <select class="form-control select3 qa-select" id="ward" name="select3" disabled>
+                <select class="form-control select3 qa-select" id="wardSelect" name="ward" disabled>
                     <option value="-1" selected disabled style="font-weight:bold">Ward</option>
-                    @foreach (var item in Model.wardService)
-                    {
-                        <option value="@item.District_ID">@item.WardName</option>
-                    }
                 </select>
             </div>
             
@@ -216,9 +210,9 @@
                 Images : $('#ima').val(),
                 //Avatar: $('#avaUpload')[0].files[0].name,
                 //Images : $('#imaUpload')[0].files[0].name,
-                District_ID : $('select[id=district]').val(),
-                Street_ID : $('select[id=street]').val(),
-                Ward_ID : $('select[id=ward]').val(),
+                District_ID: $('select[id=district]').val(),
+                Street_ID: $('select[id=streetSelect]').val(),
+                Ward_ID: $('select[id=wardSelect]').val(),
                 PropertyType_ID: $('select[id=ptype]').val(),
                 Content: $('#content').val(),
                 Price: $('#price').val(),
@@ -358,32 +352,68 @@
     </script>
 }
 <script type="text/javascript">
-        $(".select1").change(function () {
-            if ($(this).data('options') === undefined) {
-                /*Taking an array of all options-2 and kind of embedding it on the select1*/
-                $(this).data('options', $('.select2 option').clone());
-            }
-            var id = $(this).val();    
-            var options = $(this).data('options').filter('[value=' + id + ']');
-            $('.select2').html(options);
-            $('.select2 select').html(options).change();
-        });
+        //$(".select1").change(function () {
+        //    if ($(this).data('options') === undefined) {
+        //        /*Taking an array of all options-2 and kind of embedding it on the select1*/
+        //        $(this).data('options', $('.select2 option').clone());
+        //    }
+        //    var id = $(this).val();    
+        //    var options = $(this).data('options').filter('[value=' + id + ']');
+        //    $('.select2').html(options);
+        //    $('.select2 select').html(options).change();
+        //});
 
-        $(".select2").change(function () {
-            if ($(this).data('options') === undefined) {
-                /*Taking an array of all options-3 and kind of embedding it on the select1*/
-                $(this).data('options', $('.select3 option').clone());
-            }
-            var id = $(this).val();
-            var options = $(this).data('options').filter('[value=' + id + ']');
-            $('.select3').html(options);
-        });
+        //$(".select2").change(function () {
+        //    if ($(this).data('options') === undefined) {
+        //        /*Taking an array of all options-3 and kind of embedding it on the select1*/
+        //        $(this).data('options', $('.select3 option').clone());
+        //    }
+        //    var id = $(this).val();
+        //    var options = $(this).data('options').filter('[value=' + id + ']');
+        //    $('.select3').html(options);
+        //});
 
-        function change2() {
-            if ($('.select1 option:selected').length) {
-                $('.select2').attr('disabled', false);
-                $('.select3').attr('disabled', false);
-            }
-        }
+        //function change2() {
+        //    if ($('.select1 option:selected').length) {
+        //        $('.select2').attr('disabled', false);
+        //        $('.select3').attr('disabled', false);
+        //    }
+        //}
+
+        var district_id;
+        $('#district').on('change', function () {
+            //alert('Changed');
+            district_id = $(this).find(":selected").val();
+            console.log('district: ', district_id);
+            $('#streetSelect').prop('disabled', false);
+            $('#wardSelect').prop('disabled', false);
+            $.ajax({
+                url: '/Project/filterFollowDistrict',
+                type: "POST",
+                data: { district_id },
+                dataType: "json",
+                success: function (result) {
+                    var streets = result.Street;
+                    var wards = result.Ward;
+                    //console.log(streets);
+                    $('#streetSelect').find('option').remove();
+                    $('#streetSelect').append('<option value="0" selected style="font-weight:bold">Street</option>');
+                    for (var i = 0; i < streets.length; i++) {
+                        $('#streetSelect').append('<option data-tokens="' + streets[i].StreetName + '" value="' + streets[i].Street_ID + '">' + streets[i].StreetName + '</option>');
+                    }
+                    $('#streetSelect').selectpicker('refresh');
+                    //WARDS
+                    $('#wardSelect').find('option').remove();
+                    $('#wardSelect').append('<option value="0" selected style="font-weight:bold">Ward</option>');
+                    for (var i = 0; i < wards.length; i++) {
+                        $('#wardSelect').append('<option data-tokens="' + wards[i].StreetName + '" value="' + wards[i].Ward_ID + '">' + wards[i].WardName + '</option>');
+                    }
+                    $('#wardSelect').selectpicker('refresh');
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
 </script>
 
