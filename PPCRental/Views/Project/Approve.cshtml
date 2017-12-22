@@ -50,7 +50,7 @@
                 <img class="card-img-top" src="~/img/avatar/@item.Avatar" alt="@item.PropertyName">
                 <div class="card-body">
                     <!--subtring name-->
-                    <p class="project-id" style="display:none">@item.ID</p>
+                    <p class="qa-project-id" style="display:none">@item.ID</p>
                     @{
                         var maxLength = 30;
                         var currentLength = item.PropertyName.Length;
@@ -94,8 +94,8 @@
                     }
                     <p style="font-size:smaller"><span style="font-weight:bold">Last update:</span>@item.Updated_at</p>
 
-                    <button class="btn btn-success" data-toggle="modal" data-target="#approve-modal">Approve</button>
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#reject-model">Reject</button>
+                    <button class="btn btn-success qa-btn-approve" data-toggle="modal" data-target="#approve-modal">Approve</button>
+                    <button class="btn btn-danger qa-btn-reject" data-toggle="modal" data-target="#reject-model">Reject</button>
                 </div>
             </div>
         }
@@ -156,8 +156,8 @@
                        
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">A</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
 
@@ -166,3 +166,25 @@
 
     </div>
 
+    <script>
+        $(".qa-btn-approve").on("click", function () {
+            var projectid = $(this).parents(".card-body").find(".qa-project-id").text();
+            console.log(projectid);
+            //call ajax
+            $.ajax({
+                url: '/Project/getProject/',
+                type: "POST",
+                data: { id: projectid },
+                dataType: "json",
+                //  contentType: "application/json; charset=utf-8",
+                success: function (response) {
+
+                   
+
+                },
+                error: function (err) {
+                    
+                },
+            });
+        });
+    </script>
