@@ -24,24 +24,27 @@
 }
 <link href="~/Content/mycard.css" rel="stylesheet">
 <style>
-    .qa-list-projects h1{
-        margin-bottom:100px;
+    .qa-list-projects h1 {
+        margin-bottom: 100px;
     }
-    .card{
-        padding:0px;
-        margin:20px;
+
+    .card {
+        padding: 0px;
+        margin: 20px;
     }
-    .card-title:hover{
-        color:dodgerblue;
+
+    .card-title:hover {
+        color: dodgerblue;
     }
-    .qa-title{
-        font-weight:bold;
+
+    .qa-title {
+        font-weight: bold;
     }
-    .modal-dialog{
-        max-height:800px;
-        overflow:visible;
+
+    .modal-dialog {
+        max-height: 800px;
+        overflow: visible;
     }
-    
 </style>
 <div class="container qa-list-projects">
     <center><h1>Project Approval</h1></center>
@@ -109,153 +112,153 @@
 
     </div>
 </div>
-    <!--Model-->
-    <!--Approve Modal -->
-    <div class="modal fade" id="approve-modal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Warning</h4>
-                </div>
-                <div class="modal-body" style="height:500px">
-                    <p>Are you sure to approve "<span class="modal-project-name qa-title"></span>"?</p>
-                    <div class="modal-img row" style="margin-bottom:50px;">
-                        <div class="col-sm-6">
-                            <h6 style="margin-bottom:0">Avatar:</h6><br/>
-                            <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-avatar-modal" />
-                        </div>
-                        <div class="col-sm-6">
-                            <h6 style="margin-bottom:0">Image:</h6><br />
-                            <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-image-modal"/>
-                        </div>
-                    </div>
-                    
-                    <div class="col-sm-6">
-                        <ul>
-                            <li style="display:none"><span class="qa-title">Id:</span>: <span class="modal-project-id"></span></li>
-                            <li><span class="qa-title">Name</span>: <span class="modal-project-name"></span></li>
-                            <li><span class="qa-title">By</span>: <span class="modal-project-author"></span></li>
-                            <li><span class="qa-title">Property Type</span>:<span class="modal-project-type"></span></li>
-                            <li><span class="qa-title">Price</span>: <span class="modal-project-price"></span></li>
-                            <li><span class="qa-title">Area</span>: <span class="modal-project-area"></span></li>
-                            <li><span class="qa-title">BedRoom</span>: <span class="modal-project-bed"></span></li>
-                            <li><span class="qa-title">BathRoom</span>: <span class="modal-project-bath"></span></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <ul>
-                            <li><span class="qa-title">Packing Place</span>: <span class="modal-project-park"></span></li>
-                            <li><span class="qa-title">District</span>: <span class="modal-project-district"></span></li>
-                            <li><span class="qa-title">Ward</span>: <span class="modal-project-ward"></span></li>
-                            <li><span class="qa-title">Street</span>: <span class="modal-project-street"></span></li>
-                            <li><span class="qa-title">Create at</span>: <span class="modal-project-create"></span></li>
-                            <li><span class="qa-title">Update at</span>: <span class="modal-project-update"></span></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-12">
-                        <ul>
-                            <li><span class="qa-title">Description</span>: <span class="modal-project-content"></span></li>
-                        </ul>
-                    </div>
-                       
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success qa-btn-approve-yes" data-dismiss="modal">Yes</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-    <!--Reject Modal -->
-    <div class="modal fade" id="reject-modal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Warning</h4>
-                </div>
-                <div class="modal-body" style="height:500px">
-                    <p>Are you sure to reject "<span class="modal-project-name qa-title"></span>"?</p>
-                    <div class="modal-img row" style="margin-bottom:50px;">
-                        <div class="col-sm-6">
-                            <h6 style="margin-bottom:0">Avatar:</h6><br />
-                            <img src="~/img/avatar/not-found.jpg" class="qa-avatar-modal" />
-                        </div>
-                        <div class="col-sm-6">
-                            <h6 style="margin-bottom:0">Image:</h6><br />
-                            <img src="~/img/avatar/not-found.jpg" class="qa-image-modal" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <ul>
-                            <li style="display:none"><span class="qa-title">Id:</span>: <span class="modal-project-id"></span></li>
-                            <li><span class="qa-title">Name</span>: <span class="modal-project-name"></span></li>
-                            <li><span class="qa-title">By</span>: <span class="modal-project-author"></span></li>
-                            <li><span class="qa-title">Property Type</span>:<span class="modal-project-type"></span></li>
-                            <li><span class="qa-title">Price</span>: <span class="modal-project-price"></span></li>
-                            <li><span class="qa-title">Area</span>: <span class="modal-project-area"></span></li>
-                            <li><span class="qa-title">BedRoom</span>: <span class="modal-project-bed"></span></li>
-                            <li><span class="qa-title">BathRoom</span>: <span class="modal-project-bath"></span></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <ul>
-                            <li><span class="qa-title">Packing Place</span>: <span class="modal-project-park"></span></li>
-                            <li><span class="qa-title">District</span>: <span class="modal-project-district"></span></li>
-                            <li><span class="qa-title">Ward</span>: <span class="modal-project-ward"></span></li>
-                            <li><span class="qa-title">Street</span>: <span class="modal-project-street"></span></li>
-                            <li><span class="qa-title">Create at</span>: <span class="modal-project-create"></span></li>
-                            <li><span class="qa-title">Update at</span>: <span class="modal-project-update"></span></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-12">
-                        <ul>
-                            <li><span class="qa-title">Description</span>: <span class="modal-project-content"></span></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success qa-btn-reject-yes" data-dismiss="modal">Yes</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-    <!--reason modal-->
-    <div id="reason-modal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+<!--Model-->
+<!--Approve Modal -->
+<div class="modal fade" id="approve-modal" role="dialog">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Note</h4>
-          </div>
-          <div class="modal-body">
-            <p>Please tell agency the reason why their project is rejected</p>
-            <input type="text" class="form-control" placeholder="input the reason(optional)" id="qa-input-reason"/>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-success qa-btn-reason-yes" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Warning</h4>
+            </div>
+            <div class="modal-body" style="height:500px">
+                <p>Are you sure to approve "<span class="modal-project-name qa-title"></span>"?</p>
+                <div class="modal-img row" style="margin-bottom:50px;">
+                    <div class="col-sm-6">
+                        <h6 style="margin-bottom:0">Avatar:</h6><br />
+                        <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-avatar-modal" />
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 style="margin-bottom:0">Image:</h6><br />
+                        <img data-action="zoom" src="~/img/avatar/not-found.jpg" class="qa-image-modal" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <ul>
+                        <li style="display:none"><span class="qa-title">Id:</span>: <span class="modal-project-id"></span></li>
+                        <li><span class="qa-title">Name</span>: <span class="modal-project-name"></span></li>
+                        <li><span class="qa-title">By</span>: <span class="modal-project-author"></span></li>
+                        <li><span class="qa-title">Property Type</span>:<span class="modal-project-type"></span></li>
+                        <li><span class="qa-title">Price</span>: <span class="modal-project-price"></span></li>
+                        <li><span class="qa-title">Area</span>: <span class="modal-project-area"></span></li>
+                        <li><span class="qa-title">BedRoom</span>: <span class="modal-project-bed"></span></li>
+                        <li><span class="qa-title">BathRoom</span>: <span class="modal-project-bath"></span></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <ul>
+                        <li><span class="qa-title">Packing Place</span>: <span class="modal-project-park"></span></li>
+                        <li><span class="qa-title">District</span>: <span class="modal-project-district"></span></li>
+                        <li><span class="qa-title">Ward</span>: <span class="modal-project-ward"></span></li>
+                        <li><span class="qa-title">Street</span>: <span class="modal-project-street"></span></li>
+                        <li><span class="qa-title">Create at</span>: <span class="modal-project-create"></span></li>
+                        <li><span class="qa-title">Update at</span>: <span class="modal-project-update"></span></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul>
+                        <li><span class="qa-title">Description</span>: <span class="modal-project-content"></span></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success qa-btn-approve-yes" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
 
-      </div>
     </div>
+
+
+</div>
+<!--Reject Modal -->
+<div class="modal fade" id="reject-modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Warning</h4>
+            </div>
+            <div class="modal-body" style="height:500px">
+                <p>Are you sure to reject "<span class="modal-project-name qa-title"></span>"?</p>
+                <div class="modal-img row" style="margin-bottom:50px;">
+                    <div class="col-sm-6">
+                        <h6 style="margin-bottom:0">Avatar:</h6><br />
+                        <img src="~/img/avatar/not-found.jpg" class="qa-avatar-modal" />
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 style="margin-bottom:0">Image:</h6><br />
+                        <img src="~/img/avatar/not-found.jpg" class="qa-image-modal" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <ul>
+                        <li style="display:none"><span class="qa-title">Id:</span>: <span class="modal-project-id"></span></li>
+                        <li><span class="qa-title">Name</span>: <span class="modal-project-name"></span></li>
+                        <li><span class="qa-title">By</span>: <span class="modal-project-author"></span></li>
+                        <li><span class="qa-title">Property Type</span>:<span class="modal-project-type"></span></li>
+                        <li><span class="qa-title">Price</span>: <span class="modal-project-price"></span></li>
+                        <li><span class="qa-title">Area</span>: <span class="modal-project-area"></span></li>
+                        <li><span class="qa-title">BedRoom</span>: <span class="modal-project-bed"></span></li>
+                        <li><span class="qa-title">BathRoom</span>: <span class="modal-project-bath"></span></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <ul>
+                        <li><span class="qa-title">Packing Place</span>: <span class="modal-project-park"></span></li>
+                        <li><span class="qa-title">District</span>: <span class="modal-project-district"></span></li>
+                        <li><span class="qa-title">Ward</span>: <span class="modal-project-ward"></span></li>
+                        <li><span class="qa-title">Street</span>: <span class="modal-project-street"></span></li>
+                        <li><span class="qa-title">Create at</span>: <span class="modal-project-create"></span></li>
+                        <li><span class="qa-title">Update at</span>: <span class="modal-project-update"></span></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul>
+                        <li><span class="qa-title">Description</span>: <span class="modal-project-content"></span></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success qa-btn-reject-yes" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!--reason modal-->
+<div id="reason-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Note</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please tell agency the reason why their project is rejected</p>
+                <input type="text" class="form-control" placeholder="input the reason(optional)" id="qa-input-reason" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success qa-btn-reason-yes" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <script>
     //modal
     $('.qa-btn-approve').on("click", function () {
@@ -275,10 +278,10 @@
                 $(".modal-project-id").html(project.ID);
                 $(".modal-project-name").html(project.PropertyName);
                 $(".modal-project-price").html(project.Price + " " + project.UnitPrice);
-                $(".modal-project-area").html(project.Area+" m2");
-                $(".modal-project-bed").html(project.BedRoom+" Room");
-                $(".modal-project-bath").html(project.BathRoom+" Room");
-                $(".modal-project-park").html(project.PackingPlace+" Slot");
+                $(".modal-project-area").html(project.Area + " m2");
+                $(".modal-project-bed").html(project.BedRoom + " Room");
+                $(".modal-project-bath").html(project.BathRoom + " Room");
+                $(".modal-project-park").html(project.PackingPlace + " Slot");
                 $(".modal-project-district").html(project.DistrictName);
                 $(".modal-project-ward").html(project.WardName);
                 $(".modal-project-street").html(project.StreetName);
@@ -287,24 +290,24 @@
                 $(".modal-project-create").html(project.Create_at);
                 $(".modal-project-update").html(project.Update_at);
                 $(".modal-project-content").html(project.Content);
-                if (project.Avatar!=null) {
+                if (project.Avatar != null) {
                     $(".qa-avatar-modal").attr("src", "../img/avatar/" + project.Avatar);
                 }
                 if (project.Image != null) {
                     $(".qa-image-modal").attr("src", "../img/avatar/" + project.Image);
                 }
-                
-              
+
+
                 $('#approve-modal').modal('toggle');
 
-               
+
             },
             error: function (err) {
             },
         });
         return false;
     });
-    $('.qa-btn-reject').on("click", function () {       
+    $('.qa-btn-reject').on("click", function () {
         //get id
         var projectid = $(this).parents(".card-body").find(".qa-project-id").text();
         console.log(projectid);
@@ -317,7 +320,7 @@
             success: function (data) {
                 console.log(data.Project);
                 var project = data.Project
-                $(".modal-project-id").html(project.ID);    
+                $(".modal-project-id").html(project.ID);
                 $(".modal-project-name").html(project.PropertyName);
                 $(".modal-project-price").html(project.Price + " " + project.UnitPrice);
                 $(".modal-project-area").html(project.Area + " m2");
@@ -353,7 +356,7 @@
     $('.qa-btn-approve-yes').on("click", function () {
         var id = $('.modal-project-id').html();
         console.log(id);
-       // alert(id);
+        // alert(id);
         $.ajax({
             url: '/Project/Approve/',
             type: "POST",
@@ -408,25 +411,3 @@
     });
 </script>
 
-    <script>
-        $(".qa-btn-approve").on("click", function () {
-            var projectid = $(this).parents(".card-body").find(".qa-project-id").text();
-            console.log(projectid);
-            //call ajax
-            $.ajax({
-                url: '/Project/getProject/',
-                type: "POST",
-                data: { id: projectid },
-                dataType: "json",
-                //  contentType: "application/json; charset=utf-8",
-                success: function (response) {
-
-                   
-
-                },
-                error: function (err) {
-                    
-                },
-            });
-        });
-    </script>
