@@ -12,24 +12,24 @@ namespace PPCRental.AcceptanceTests.Common
             foundProjects.Select(b => b.PropertyName).Should().BeEquivalentTo(expectedTitles);
         }
 
-        //public static void FoundProjectShouldMatchTitlesInOrder(IEnumerable<DBModel> foundProjects, IEnumerable<string> expectedTitles)
-        //{
-        //    foundProjects.Select(b => b.Title).Should().Equal(expectedTitles);
-        //}
-
-        public static void HomeScreenShouldShow(IEnumerable<PROPERTY> shownBooks, string expectedTitle)
+        public static void FoundProjectShouldMatchTitlesInOrder(IEnumerable<PROPERTY> foundProjects, IEnumerable<string> expectedTitles)
         {
-            shownBooks.Select(b => b.PropertyName).Should().Contain(expectedTitle);
+            foundProjects.Select(b => b.PropertyName).Should().Equal(expectedTitles);
         }
 
-        public static void HomeScreenShouldShow(IEnumerable<PROPERTY> shownBooks, IEnumerable<string> expectedTitles)
+        public static void HomeScreenShouldShow(IEnumerable<PROPERTY> shownProjects, string expectedTitle)
         {
-            shownBooks.Select(b => b.PropertyName).Should().BeEquivalentTo(expectedTitles);
+            shownProjects.Select(b => b.PropertyName).Should().Contain(expectedTitle);
         }
 
-        //public static void HomeScreenShouldShowInOrder(IEnumerable<Book> shownBooks, IEnumerable<string> expectedTitles)
-        //{
-        //    shownBooks.Select(b => b.Title).Should().Equal(expectedTitles);
-        //}
+        public static void HomeScreenShouldShow(IEnumerable<PROPERTY> shownProjects, IEnumerable<string> expectedTitles)
+        {
+            shownProjects.Select(b => b.PropertyName).Should().BeEquivalentTo(expectedTitles);
+        }
+
+        public static void HomeScreenShouldShowInOrder(IEnumerable<PROPERTY> shownProjects, IEnumerable<string> expectedTitles)
+        {
+            shownProjects.Select(b => b.PropertyName).Should().Equal(expectedTitles);
+        }
     }
 }

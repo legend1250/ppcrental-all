@@ -86,7 +86,7 @@ namespace PPCRental.AcceptanceTests.Features
         
         public virtual void FeatureBackground()
         {
-#line 7
+#line 8
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
@@ -104,7 +104,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "Bathroom",
                         "PackingPlace",
                         "User",
-                        "Status"});
+                        "Status",
+                        "Note"});
             table1.AddRow(new string[] {
                         "ASA LightT",
                         "Asa Light.jpg",
@@ -121,7 +122,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "3",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "CALEDON Tan Phu",
                         "Caledon Tan Phu.jpg",
@@ -138,7 +140,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "VINH LOC Central",
                         "Vinh Loc Central.jpg",
@@ -157,7 +160,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "SAIGONRESE Plaza",
                         "Saigonrese.jpg",
@@ -176,7 +180,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "3",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "CAPSULE Residence",
                         "Capsule Residence .jpg",
@@ -195,7 +200,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "FLORAL HOA BINH",
                         "Floral Hoa Binh.jpg",
@@ -212,7 +218,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "4",
                         "1",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "ORIENT Plaza",
                         "Orient Plaza.jpg",
@@ -229,7 +236,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "1",
                         "annguyen",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "RIVA Garden",
                         "Riva Garden.jpg",
@@ -246,7 +254,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "4",
                         "2",
                         "annguyen",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "CITY Gate",
                         "City Gate.jpg",
@@ -263,7 +272,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "4",
                         "2",
                         "Thang@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "MY HUNG Prop 3",
                         "My Hung Prop.jpg",
@@ -280,7 +290,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "4",
                         "2",
                         "lythihuyenchau@gmail.com",
-                        "Đã duyệt"});
+                        "Đã duyệt",
+                        "Done"});
             table1.AddRow(new string[] {
                         "NovaLand",
                         "NovaLand.jpg",
@@ -299,8 +310,9 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "2",
                         "annguyen",
-                        "Đã duyệt"});
-#line 8
+                        "Đã duyệt",
+                        "Done"});
+#line 9
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
         }
@@ -308,16 +320,16 @@ testRunner.Given("the following project", ((string)(null)), table1, "Given ");
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Space should be treated as multiple OR search")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("web")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("automated")]
         public virtual void SpaceShouldBeTreatedAsMultipleORSearch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", new string[] {
-                        "web"});
-#line 23
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
+                        "automated"});
 #line 24
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line 25
  testRunner.When("I search for project by the phrase \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -336,7 +348,8 @@ this.FeatureBackground();
                         "Bathroom",
                         "PackingPlace",
                         "User",
-                        "Status"});
+                        "Status",
+                        "Note"});
             table2.AddRow(new string[] {
                         "CITY Gate",
                         "City Gate.jpg",
@@ -353,26 +366,27 @@ this.FeatureBackground();
                         "4",
                         "2",
                         "Thang@gmail.com",
-                        "Đã duyệt"});
-#line 25
+                        "Đã duyệt",
+                        "Done"});
+#line 26
  testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("itle should be matched")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Title should be matched")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
-        public virtual void ItleShouldBeMatched()
+        public virtual void TitleShouldBeMatched()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("itle should be matched", ((string[])(null)));
-#line 28
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 29
- testRunner.When("I search for project by the phrase \'gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", ((string[])(null)));
 #line 30
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line 31
+ testRunner.When("I search for project by the phrase \'gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
  testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

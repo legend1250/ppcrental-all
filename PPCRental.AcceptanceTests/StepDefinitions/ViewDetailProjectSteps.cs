@@ -9,6 +9,7 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
     public class UC003_ViewDetailProjectSteps
     {
         private readonly ProjectDetailDriver _projectDriver;
+
         public UC003_ViewDetailProjectSteps(ProjectDetailDriver driver)
         {
             _projectDriver = driver;
@@ -17,17 +18,21 @@ namespace PPCRental.AcceptanceTests.StepDefinitions
         [Given(@"the following project")]
         public void GivenTheFollowingProject(Table givenProjects)
         {
+            //gọi hàm insert vào db khi đã xóa 
             _projectDriver.InsertProjectToDB(givenProjects);
         }
+
         [When(@"I open the details of '(.*)'")]
         public void WhenIOpenTheDetailsOf(string projectId)
         {
             _projectDriver.OpenProjectDetails(projectId);
         }
-        [Then(@"the project details should show detail")]
-        public void ThenTheProjectDetailsShouldShowDetail(Table shownBookDetails)
+
+        [Then(@"the project details should show")]
+        public void ThenTheProjectDetailsShouldShow(Table shownBookDetails)
         {
             _projectDriver.ShowProjectDetails(shownBookDetails);
         }
+        
     }
 }
