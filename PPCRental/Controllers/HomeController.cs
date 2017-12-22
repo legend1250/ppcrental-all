@@ -48,7 +48,7 @@ namespace PPCRental.Controllers
             {
                 db.ContactInfoes.Add(newContact);
                 db.SaveChanges();
-                ViewBag.SuccessMessage = "Message sent";
+                ViewBag.SuccessMessage = "Message sent successfully";
             }
             catch (Exception e)
             {
