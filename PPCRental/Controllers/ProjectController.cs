@@ -324,6 +324,12 @@ namespace PPCRental.Controllers
         public ActionResult Approve()
         {
             var project = db.View_project_from_index.Where(x => x.Status_ID==1).ToList();
+            int count = 0;
+            foreach (var item in project)
+            {
+                count++;
+            }
+            ViewBag.Count = count;
             ViewData["project-not-approve"] = project;
             return View();
         }
