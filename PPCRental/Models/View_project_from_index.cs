@@ -40,5 +40,8 @@ namespace PPCRental.Models
         public Nullable<int> Ward_ID { get; set; }
         public Nullable<int> District_ID { get; set; }
         public string Status_Name { get; set; }
+        public string CodeType { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
     }
 }
