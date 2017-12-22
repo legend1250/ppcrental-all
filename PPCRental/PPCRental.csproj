@@ -765,7 +765,7 @@
     <Content Include="Views\User\Security.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-sale.cshtml" />
     <Content Include="Views\Project\ProjectControl.cshtml" />
-    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\User\_ForgotPassword.cshtml" />
     <Content Include="Views\Project\MyProjects.cshtml" />
     <Content Include="Views\Shared\Layout\User\top-menu-technical.cshtml" />
     <Content Include="Views\User\UserManagement_Views.cshtml" />
@@ -789,7 +789,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\BlogDetail.cshtml" />
-    <Content Include="Views\User\LostPassword.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\Project\Approve.cshtml" />
   </ItemGroup>
   <ItemGroup>
