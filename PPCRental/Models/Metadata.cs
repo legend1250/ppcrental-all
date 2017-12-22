@@ -66,7 +66,7 @@ namespace PPCRental.Models
 
     }
 
-    public class LostPasswordViewModel{
+    public class ForgotPasswordViewModel{
 
         [Required(ErrorMessage = "Email must not be null")]
         [DataType(DataType.EmailAddress)]
