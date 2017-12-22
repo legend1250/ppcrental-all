@@ -19,49 +19,24 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
         {
             _context = context;
         }
-
-        //public void InsertProjectToDB(Table projects)
-        //{
-        //    using (var db = new ppcrental3119Entities())
-        //    {
-        //        foreach (var row in projects.Rows)
-        //        {
-        //            var project = new PROPERTY
-        //            {
-        //                PropertyName = row["Property"],
-        //                //Price = projects.Header.Contains("Price")
-        //                //    ? Convert.ToDecimal(row["Price"])
-        //                //    : ProjectDefaultPrice
-        //            };
-
-        //            _context.ReferenceProjects.Add(
-        //                    projects.Header.Contains("Id") ? row["Id"] : project.Property,
-        //                    project);
-
-        //            db.Books.Add(project);
-        //        }
-
-        //        db.SaveChanges();
-        //    }
-        //}
+         
         public void InsertProjectToDB(Table projects)
         {
             using (var db = new ppcrental3119Entities())
             {
                 var oStreets = db.STREETs.ToList();
-
+                //chạy insert từng cột, các cột này dựa vào dữ liệu mình muốn kt mà khai cho khớp
                 foreach (var item in projects.Rows)
                 {
-                    var tPropertyName = item["PropertyName"].ToString();
-                    var tPropertyType = item["PropertyType"].ToString();
-                    var tStreet_ID = item["Street"].ToString();
-                    var tDistrict_ID = item["District"].ToString();
-                    var tWard_ID = item["Ward"].ToString();
-                    
-                    var tUnitPrice = item["Price"].ToString();
-                    var tContent = item["Content"].ToString();
-                    var a = db.PROPERTY_TYPE.FirstOrDefault(d1 => d1.CodeType == tPropertyType);
-                    var b = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID);
+                    //var tPropertyName = item["PropertyName"].ToString();
+                    ////var tPropertyType = item["PropertyType"].ToString();
+                    //var tStreet_ID = item["Street"].ToString();
+                    //var tDistrict_ID = item["District"].ToString();
+                    //var tWard_ID = item["Ward"].ToString();
+                    //var tUnitPrice = item["Price"].ToString();
+                    //var tContent = item["Content"].ToString();
+                    ////var a = db.PROPERTY_TYPE.FirstOrDefault(d1 => d1.CodeType == tPropertyType);
+                    //var b = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID);
                     //var c = db.DISTRICTs.FirstOrDefault(d2 =  > d2.DistrictName == tDistrict_ID);
                     //var d3 = db.WARDs.FirstOrDefault(d2 => d2.WardName == tWard_ID);
 
@@ -70,19 +45,23 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
                     {
 
                         PropertyName = item["PropertyName"].ToString(),
-                        PropertyType_ID = db.PROPERTY_TYPE.FirstOrDefault(d1 => d1.CodeType == tPropertyType).ID,
-                        Street_ID = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID).ID,
-                        District_ID = db.DISTRICTs.FirstOrDefault(d => d.DistrictName == tDistrict_ID).ID,
-                        Ward_ID = db.WARDs.FirstOrDefault(d => d.WardName == tWard_ID).ID,
-                        UnitPrice = item["Price"].ToString(),
+                        PropertyType_ID = db.PROPERTY_TYPE.ToList().FirstOrDefault(d1 => d1.CodeType == item["PropertyType"]).ID,
 
+                        Street_ID = db.STREETs.ToList().FirstOrDefault(s => s.StreetName == item["Street"]).ID,
+                        District_ID = db.DISTRICTs.ToList().FirstOrDefault(d => d.DistrictName == item["District"]).ID,
+                        Ward_ID = db.WARDs.ToList().FirstOrDefault(d => d.WardName == item["Ward"]).ID,
+                        UnitPrice = item["Price"].ToString(),
+                        Created_at = DateTime.Now,
+                        Create_post = DateTime.Now,
+                        Note = item["Note"].ToString(),
+                        UserID= db.USERs.ToList().FirstOrDefault(u => u.Address == item["User"]).ID,
                         Price = int.Parse(item["Price"].ToString()),
                         BathRoom = int.Parse(item["Bathroom"].ToString()),
                         BedRoom = int.Parse(item["Bedroom"].ToString()),
                         PackingPlace = int.Parse(item["PackingPlace"].ToString()),
                         Content = item["Content"].ToString(),
-                        //Area = "200m2",
-
+                        Area = int.Parse(item["Area"].ToString())
+                        
 
                     };
                     //project.STREET = db.STREETs.Find(project.Street_ID);
@@ -100,13 +79,21 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
             var expectedProjectDetails = shownProjectDetails.Rows.Single();
 
             //Act
-            var actualProjectDetails = _result.Model<PROPERTY>();
+            var actualProjectDetails = _result.Model<View_project_from_index>();
 
             //Assert
-            //actualProjectDetails.Should().Match<PROPERTY>(
-            //    b => b.PropertyName == expectedProjectDetails["PropertyName"]
-            //    && b.Street_ID == expectedProjectDetails["Street"]
-            //    && b.Price == decimal.Parse(expectedBookDetails["Price"]));
+            actualProjectDetails.Should().Match<View_project_from_index>(
+                b => b.PropertyName == expectedProjectDetails["PropertyName"]
+                && b.StreetName == expectedProjectDetails["Street"]
+                && b.Avatar == expectedProjectDetails["Avatar"]
+                && b.PropertyType_ID == int.Parse(expectedProjectDetails["PropertyType_ID"])
+                && b.Price == int.Parse(expectedProjectDetails["Price"])
+                && b.Area == int.Parse(expectedProjectDetails["Area"])
+                && b.BedRoom == int.Parse(expectedProjectDetails["Bedroom"])
+                && b.BathRoom == int.Parse(expectedProjectDetails["Bathroom"])
+                && b.PackingPlace == int.Parse(expectedProjectDetails["PackingPlace"])
+                && b.UserID == int.Parse(expectedProjectDetails["User"]));
+
         }
 
         public void OpenProjectDetails(string projectId)
