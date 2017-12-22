@@ -99,10 +99,10 @@ this.ScenarioSetup(scenarioInfo);
                         "Value"});
             table1.AddRow(new string[] {
                         "username",
-                        "md5"});
+                        "qqqq"});
             table1.AddRow(new string[] {
                         "password",
-                        "123456"});
+                        "ppc123"});
 #line 8
  testRunner.Given("I login success with the given username and password", ((string)(null)), table1, "Given ");
 #line 12
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
                         "123456789"});
             table2.AddRow(new string[] {
                         "Password",
-                        "123456"});
+                        "ppc123"});
             table2.AddRow(new string[] {
                         "New Password",
                         "123456"});
@@ -129,6 +129,235 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I click Set new Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
  testRunner.Then("I see a message \"Your password has been changed successfully\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Change Password failed with wrong answer for security question")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC011_ChangePassword")]
+        public virtual void ChangePasswordFailedWithWrongAnswerForSecurityQuestion()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Password failed with wrong answer for security question", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table3.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table3.AddRow(new string[] {
+                        "password",
+                        "123456"});
+#line 23
+ testRunner.Given("Login successfully", ((string)(null)), table3, "Given ");
+#line 27
+ testRunner.And("Navigate to Change Pasword page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table4.AddRow(new string[] {
+                        "Your answer",
+                        "abcd"});
+#line 28
+ testRunner.When("I input wrong answer for security question", ((string)(null)), table4, "When ");
+#line 32
+ testRunner.Then("I will see a message \"Error! Your answer not match with the answer in database.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Input wrong current Password on Change Password page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC011_ChangePassword")]
+        public virtual void InputWrongCurrentPasswordOnChangePasswordPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Input wrong current Password on Change Password page", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table5.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table5.AddRow(new string[] {
+                        "password",
+                        "123456"});
+#line 35
+ testRunner.Given("I Login successfully", ((string)(null)), table5, "Given ");
+#line 39
+ testRunner.And("I Navigate to Change Pasword page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table6.AddRow(new string[] {
+                        "Your answer",
+                        "123456789"});
+            table6.AddRow(new string[] {
+                        "Password",
+                        "111111"});
+            table6.AddRow(new string[] {
+                        "New Password",
+                        "ppc123"});
+            table6.AddRow(new string[] {
+                        "Cofirm Password",
+                        "ppc123"});
+#line 40
+ testRunner.When("I input wrong current password", ((string)(null)), table6, "When ");
+#line 46
+ testRunner.And("I click Set new Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+ testRunner.Then("Show a message \"Your current password not match with the password you gave\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New password does not meet the requirements")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC011_ChangePassword")]
+        public virtual void NewPasswordDoesNotMeetTheRequirements()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New password does not meet the requirements", ((string[])(null)));
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table7.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table7.AddRow(new string[] {
+                        "password",
+                        "123456"});
+#line 50
+testRunner.Given("I login success with my account", ((string)(null)), table7, "Given ");
+#line 54
+ testRunner.And("Go to change password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table8.AddRow(new string[] {
+                        "Your answer",
+                        "123456789"});
+            table8.AddRow(new string[] {
+                        "Password",
+                        "123456"});
+            table8.AddRow(new string[] {
+                        "New Password",
+                        "ad"});
+            table8.AddRow(new string[] {
+                        "Cofirm Password",
+                        "ad"});
+#line 55
+ testRunner.When("I Input a new wrong password", ((string)(null)), table8, "When ");
+#line 61
+ testRunner.And("Click Set new Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 62
+ testRunner.Then("There will show a message \"New Password must be at least 6 characters\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Confirm password does not match the new one")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC011_ChangePassword")]
+        public virtual void ConfirmPasswordDoesNotMatchTheNewOne()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Confirm password does not match the new one", ((string[])(null)));
+#line 64
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table9.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table9.AddRow(new string[] {
+                        "password",
+                        "123456"});
+#line 65
+ testRunner.Given("I login to my account", ((string)(null)), table9, "Given ");
+#line 69
+ testRunner.And("I navigate to page Change Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table10.AddRow(new string[] {
+                        "Your answer",
+                        "123456789"});
+            table10.AddRow(new string[] {
+                        "Password",
+                        "123456"});
+            table10.AddRow(new string[] {
+                        "New Password",
+                        "ppc123"});
+            table10.AddRow(new string[] {
+                        "Cofirm Password",
+                        "ppp123"});
+#line 70
+ testRunner.When("I input a wrong cofirm password", ((string)(null)), table10, "When ");
+#line 76
+ testRunner.And("I choose the Set new Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.Then("It will show a message \"RePassword does not match the new password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current password form is empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC011_ChangePassword")]
+        public virtual void CurrentPasswordFormIsEmpty()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Current password form is empty", ((string[])(null)));
+#line 79
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table11.AddRow(new string[] {
+                        "username",
+                        "md5"});
+            table11.AddRow(new string[] {
+                        "password",
+                        "123456"});
+#line 80
+ testRunner.Given("Login success to my account", ((string)(null)), table11, "Given ");
+#line 84
+ testRunner.And("Go to page Change Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Value"});
+            table12.AddRow(new string[] {
+                        "Your answer",
+                        "123456789"});
+            table12.AddRow(new string[] {
+                        "Password",
+                        ""});
+            table12.AddRow(new string[] {
+                        "New Password",
+                        "ppc123"});
+            table12.AddRow(new string[] {
+                        "Cofirm Password",
+                        "ppp123"});
+#line 85
+ testRunner.When("I forgot to input current password form", ((string)(null)), table12, "When ");
+#line 91
+ testRunner.And("I click the Set new password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.Then("It show message \"Password must not be at least empty\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
