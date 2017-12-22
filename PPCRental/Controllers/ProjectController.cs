@@ -334,6 +334,57 @@ namespace PPCRental.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult getProject(int id)
+        {
+            int projectID = id;
+            var projectInfor = db.View_project_from_index.FirstOrDefault(x => x.ID == projectID);
 
+            return Json(new { Project = projectInfor, JsonRequestBehavior.AllowGet });
+        }
+        [HttpPost]
+        public ActionResult Approve(int id)
+        {
+            String message = "";
+            try
+            {
+                var project = db.PROPERTies.Find(id);
+                project.Status_ID = 3;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                message = "Approve successfully";
+            }
+            catch (Exception ex)
+            {
+
+                message = ex.Message;
+
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+        [HttpPost]
+        public ActionResult Reject(int id,String reason)
+        {
+            String message = "";
+            try
+            {
+                var project = db.PROPERTies.Find(id);
+                project.Status_ID = 5;
+                if (reason!="")
+                {
+                    project.Note = reason;
+                }
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                message = "Reject successfully";
+            }
+            catch (Exception ex)
+            {
+
+                message = ex.Message;
+
+            }
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
     }
 }

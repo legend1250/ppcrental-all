@@ -206,6 +206,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Street_ID" Type="int" />
           <Property Name="Ward_ID" Type="int" />
           <Property Name="District_ID" Type="int" />
+          <Property Name="CodeType" Type="varchar" MaxLength="10" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_PROPERTY_DISTRICT">
           <End Role="DISTRICT" Type="Self.DISTRICT" Multiplicity="0..1" />
@@ -434,7 +437,10 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
     [View_project_from_index].[Sale_ID] AS [Sale_ID], 
     [View_project_from_index].[Street_ID] AS [Street_ID], 
     [View_project_from_index].[Ward_ID] AS [Ward_ID], 
-    [View_project_from_index].[District_ID] AS [District_ID]
+    [View_project_from_index].[District_ID] AS [District_ID], 
+    [View_project_from_index].[CodeType] AS [CodeType], 
+    [View_project_from_index].[FullName] AS [FullName], 
+    [View_project_from_index].[Email] AS [Email]
     FROM [dbo].[View_project_from_index] AS [View_project_from_index]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_PROPERTY_DISTRICT" Association="Self.FK_PROPERTY_DISTRICT">
@@ -939,6 +945,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Ward_ID" Type="Int32" />
           <Property Name="District_ID" Type="Int32" />
           <Property Name="Status_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1124,6 +1133,9 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CodeType" ColumnName="CodeType" />
                 <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
                 <ScalarProperty Name="District_ID" ColumnName="District_ID" />
                 <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
