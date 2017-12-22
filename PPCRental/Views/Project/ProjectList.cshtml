@@ -3,7 +3,6 @@
     ViewBag.Title = "List Of Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int TotalProperty = int.Parse(ViewData["TotalProperTy"].ToString());
-    int CountProperty = int.Parse(ViewData["TotalPropertyFound"].ToString());
 }
 
 
@@ -22,7 +21,7 @@
 <section id="property-listing">
     <header class="section-header text-center" style="z-index:1">
         <div class="container">
-            <h2 class="pull-left">Showing @CountProperty of @TotalProperty total properties</h2>
+            <h2 class="pull-left">Showing @TotalProperty total properties</h2>
             <div class="pull-right">
                 <div class="property-sorting pull-left">
                     <label for="property-sort-dropdown"> Sort by:   </label>

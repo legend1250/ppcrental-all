@@ -17,17 +17,22 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         [Given(@"Login successful")]
         public void GivenLoginSuccessful()
         {
+            //Homepage
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:53887/");
+            //Navigate to Login page 
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
+            //input username & password
             driver.FindElement(By.Id("user_login")).SendKeys("annguyen");
             driver.FindElement(By.Id("user_pass")).SendKeys("123456");
+            //Click Login button
             driver.FindElement(By.Id("wp-submit")).Click();
         }
 
         [Given(@"Navigate to Add Project page")]
         public void GivenNavigateToAddProjectPage()
         {
+            //Navigate to Post project page
             driver.Navigate().GoToUrl("http://localhost:53887/Project/addProject");
         }
 
@@ -40,24 +45,30 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
             IWebElement district = driver.FindElement(By.Id("district"));
             district.Click();
             SelectElement district_select = new SelectElement(district);
-            district_select.SelectByIndex(2);
+            district_select.SelectByIndex(1);
 
             //add street
-            IWebElement street = driver.FindElement(By.Id("street"));
-            district.Click();
+            IWebElement street = driver.FindElement(By.Id("streetSelect"));
+            street.Click();
             SelectElement street_select = new SelectElement(street);
-            district_select.SelectByIndex(2);
+            street_select.SelectByIndex(24);
 
             //add ward
-            IWebElement ward = driver.FindElement(By.Id("ward"));
-            district.Click();
+            IWebElement ward = driver.FindElement(By.Id("wardSelect"));
+            ward.Click();
             SelectElement ward_select = new SelectElement(ward);
-            district_select.SelectByIndex(3);
+            ward_select.SelectByIndex(6);
 
             //add price
             driver.FindElement(By.Id("price")).SendKeys("53000");
             //add area
             driver.FindElement(By.Id("area")).SendKeys("140");
+
+            //Project type
+            IWebElement type = driver.FindElement(By.Id("ptype"));
+            type.Click();
+            SelectElement type_select = new SelectElement(type);
+            type_select.SelectByIndex(4);
 
             //add number of bedroom
             driver.FindElement(By.Id("bed")).SendKeys("2");

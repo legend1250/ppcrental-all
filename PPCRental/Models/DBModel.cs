@@ -8,7 +8,7 @@ namespace PPCRental.Models
 {
     public class DBModel
     {
-        
+
         public List<PROPERTY> projectService
         {
             get;

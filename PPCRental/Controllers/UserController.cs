@@ -278,10 +278,6 @@ namespace PPCRental.Controllers
             }
         }
 
-        public ActionResult forgotPassword()
-        {
-            return View();
-        }
         public ActionResult UserManagement_Views()
         {
             var users = db.UserManagements.ToList();
@@ -466,7 +462,7 @@ namespace PPCRental.Controllers
             return Json(new { Role = role }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult LostPassword()
+        public ActionResult ForgotPassword()
         {
             var ques = db.security_questions.ToList();
             List<SelectListItem> item = new List<SelectListItem>();
@@ -481,12 +477,12 @@ namespace PPCRental.Controllers
 
             ViewBag.question = item;
 
-            return View(new LostPasswordViewModel());
+            return View(new ForgotPasswordViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LostPassword(LostPasswordViewModel model)
+        public ActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
             var ques = db.security_questions.ToList();
             List<SelectListItem> item = new List<SelectListItem>();
@@ -512,7 +508,8 @@ namespace PPCRental.Controllers
                     user.Password = hashPwd(NewPassword);
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
-                    ViewBag.SuccessMessage = "Successful reset your password. Your new password is " +NewPassword;
+                    ViewBag.SuccessMessage = "Successful reset your password. Your new password is ";
+                    ViewBag.PasswordMessage = NewPassword;
                     return View();
                 }
                 else

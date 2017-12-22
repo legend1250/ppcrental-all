@@ -26,8 +26,7 @@ namespace PPCRental.Controllers
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
             //Count
-            ViewData["TotalProperty"] = db.PROPERTies.Count();
-            ViewData["TotalPropertyFound"] = project.Count();
+            ViewData["TotalProperty"] = db.View_project_from_index.Count();
 
             return View();
         }
@@ -137,22 +136,11 @@ namespace PPCRental.Controllers
         {
             String message;
             int status;
-            //if (ModelState.IsValid)
-            //{   
-            // db.PROPERTies.Add(newProject);
-            /// db.SaveChanges();
-            /// message = "Add Success,wait for appover";
-            // return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-            //}
-            //else
-            //{
-            //   message = "Add Fail";
-
-            //}
-            //return Json(new { Message = message, JsonRequestBehavior.AllowGet });
-            //return Json(newProject, JsonRequestBehavior.AllowGet);
+            DateTime time = DateTime.Now;      
             try
             {
+                newProject.Updated_at = time;
+                newProject.Created_at = time;
                 db.PROPERTies.Add(newProject);
                 db.SaveChanges();
 
@@ -314,6 +302,7 @@ namespace PPCRental.Controllers
        public ActionResult projectupdate(PROPERTY projectupdate)
         {
             string message = "";
+            DateTime date = DateTime.Now;
             try
             {
                 var projectID = projectupdate.ID;
@@ -335,6 +324,12 @@ namespace PPCRental.Controllers
         public ActionResult Approve()
         {
             var project = db.View_project_from_index.Where(x => x.Status_ID==1).ToList();
+            int count = 0;
+            foreach (var item in project)
+            {
+                count++;
+            }
+            ViewBag.Count = count;
             ViewData["project-not-approve"] = project;
             return View();
         }

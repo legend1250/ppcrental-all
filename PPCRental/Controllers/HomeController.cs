@@ -35,14 +35,28 @@ namespace PPCRental.Controllers
         [HttpPost]
         public ActionResult Contact(string name, string email, string subject, string message)
         {
+            int nextID = db.ContactInfoes.Max(x => x.ID) + 1;
             ContactInfo newContact = new ContactInfo{
+                ID = nextID,
                 Name = name,
                 Email = email,
                 Subject = subject,
                 Message = message
             };
 
-            return Json(new { Contact = newContact});
+            try
+            {
+                db.ContactInfoes.Add(newContact);
+                db.SaveChanges();
+                ViewBag.SuccessMessage = "Message sent successfully";
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.ToString();
+                throw;
+            }
+
+            return View();
         }
     }
 }

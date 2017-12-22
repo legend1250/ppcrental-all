@@ -22,38 +22,169 @@
 
     }
 }
+<link href="~/Content/mycard.css" rel="stylesheet">
 <style>
-    .my-project-avatar{
-        width:300px;
-        height:180px;
+    .qa-list-projects h1{
+        margin-bottom:100px;
     }
-    .my-card {
-        border: 1px solid rgb(165, 162, 162);
-        max-width: 300px;
-        padding: 0px;
-    }.my-content{
-         padding:10px;
-     }
-    .my-footer {
-        background-color: rgb(226, 224, 224);
-        border: 1px solid rgb(165, 162, 162);
-        padding: 10px;
+    .card{
+        padding:0px;
+        margin:20px;
     }
-
-</style>
-<div class="container">
-    <center><h1>Project Approval</h1></center>
-    <div class="col-sm-4 my-card">
-        <img src="~/img/avatar/Asa Light.jpg" class="my-project-avatar"/>
-        <div class="my-content">
-            <h3>Card title</h3>
-            <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="my-footer">
-            <span>Last updated 3 mins ago</span>
-        </div>
-    </div>
+    .card-title:hover{
+        color:dodgerblue;
+    }
+    .qa-title{
+        font-weight:bold;
+    }
     
-   
-</div>
+</style>
+<div class="container qa-list-projects">
+    <center><h1>Project Approval</h1></center>
 
+    <h4 style="font-size:large">There are <span int="my-count-number" style="font-size:larger;color:teal">@ViewBag.Count</span> projects need to be approve</h4>
+    <div class="row">
+        @foreach (var item in ViewData["project-not-approve"] as List<PPCRental.Models.View_project_from_index>)
+        {
+            <div class="card col-sm-4" style="width: 35rem;">
+                <img class="card-img-top" src="~/img/avatar/@item.Avatar" alt="@item.PropertyName">
+                <div class="card-body">
+                    <!--subtring name-->
+                    <p class="qa-project-id" style="display:none">@item.ID</p>
+                    @{
+                        var maxLength = 30;
+                        var currentLength = item.PropertyName.Length;
+                        if (currentLength > maxLength)
+                        {
+                            var subName = item.PropertyName.Split(' ');
+                            String fName = "";
+                            String lName = "";
+                            for (int i = 0; i < subName.Length; i++)
+                            {
+                                if (i < 3)
+                                {
+                                    fName = fName + subName[i] + " ";
+                                }
+                                else if (i >= subName.Length - 1)
+                                {
+                                    lName = lName + subName[i] + " ";
+                                }
+                            }
+                            String name = fName.Trim() + "..." + lName.Trim();
+                            <h4 class="card-title qa-project-name">@name</h4>
+                        }
+                        else
+                        {
+                            <h4 class="card-title qa-project-name">@item.PropertyName</h4>
+                        }
+
+                    }
+
+                    @{
+                        var length = (item.Content.Length);
+                        if (length > 100)
+                        {
+                            <p class="card-text" style="margin-bottom:10px;">@item.Content.Substring(0, 100)...</p>
+                        }
+                        else
+                        {
+                            <p class="card-text" style="margin-bottom:10px;">@item.Content</p>
+                        }
+
+                    }
+                    <p style="font-size:smaller"><span style="font-weight:bold">Last update:</span>@item.Updated_at</p>
+
+                    <button class="btn btn-success qa-btn-approve" data-toggle="modal" data-target="#approve-modal">Approve</button>
+                    <button class="btn btn-danger qa-btn-reject" data-toggle="modal" data-target="#reject-model">Reject</button>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+    <!--Model-->
+    <!--Approve Modal -->
+    <div class="modal fade" id="approve-modal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Warning</h4>
+                </div>
+                <div class="modal-body" style="height:500px">
+                    <p>Are you sure to approve "<span class="modal-project-name qa-title"></span>"</p>
+                    <div class="modal-img row" style="margin-bottom:50px;">
+                        <div class="col-sm-6">
+                            <h6 style="margin-bottom:0">Avatar:</h6><br />
+                            <img src="~/img/avatar/Caledon Tan Phu.jpg" />
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 style="margin-bottom:0">Image:</h6><br />
+                            <img src="~/img/avatar/Caledon Tan Phu.jpg" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <ul>
+                            <li><span class="qa-title">Name</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Property Type</span>:<span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Price</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Area</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">BedRoom</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">BathRoom</span>: <span class="modal-project-name"></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul>
+                            <li><span class="qa-title">Parking Place</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">District</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Ward</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Street</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Create at</span>: <span class="modal-project-name"></span></li>
+                            <li><span class="qa-title">Update at</span>: <span class="modal-project-name"></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul>
+                            <li><span class="qa-title">Description</span>: <span class="modal-project-name"></span></li>
+                        </ul>
+                    </div>
+                       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        $(".qa-btn-approve").on("click", function () {
+            var projectid = $(this).parents(".card-body").find(".qa-project-id").text();
+            console.log(projectid);
+            //call ajax
+            $.ajax({
+                url: '/Project/getProject/',
+                type: "POST",
+                data: { id: projectid },
+                dataType: "json",
+                //  contentType: "application/json; charset=utf-8",
+                success: function (response) {
+
+                   
+
+                },
+                error: function (err) {
+                    
+                },
+            });
+        });
+    </script>
