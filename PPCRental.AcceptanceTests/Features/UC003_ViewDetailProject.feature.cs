@@ -304,7 +304,7 @@ namespace PPCRental.AcceptanceTests.Features
                         "Q. Bình Thạnh",
                         "45000",
                         "USD",
-                        "",
+                        "240",
                         "2",
                         "2",
                         "2",
@@ -333,7 +333,6 @@ this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
-                        "PropertyType",
                         "Content",
                         "Street",
                         "Ward",
@@ -349,7 +348,6 @@ this.FeatureBackground();
                         "Note"});
             table2.AddRow(new string[] {
                         "CITY Gate",
-                        "Villa",
                         @"Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.",
                         "Nguyễn Hiền",
                         "P.03",
