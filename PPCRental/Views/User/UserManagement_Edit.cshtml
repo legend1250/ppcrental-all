@@ -297,11 +297,11 @@
                 //console.log('status: ', parseInt(result.Data.active));
                 if (result.Data.active) {
                     $('#edit-status').append('<option value="' + true + '" selected style= "color: orange;">Activated</option >');
-                    $('#edit-status').append('<option value="' + false + '">Chưa Active</option >');
+                    $('#edit-status').append('<option value="' + false + '">Not Activated</option >');
                 }
                 else {
                     $('#edit-status').append('<option value="' + true + '">Activated</option >');
-                    $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Chưa Active</option >');
+                    $('#edit-status').append('<option value="' + false + '" selected style= "color: orange;">Not Activated</option >');
                 }
 
                 //Edit security question

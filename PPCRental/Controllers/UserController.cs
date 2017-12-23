@@ -252,7 +252,7 @@ namespace PPCRental.Controllers
                         ID = nextID,
                         Email = newUser.Email,
                         Password = hashPwd(newUser.Password),
-                        FullName = newUser.Phone,
+                        FullName = newUser.FullName,
                         Phone = newUser.Phone,
                         Address = newUser.Address,
                         RoleID = 0,
@@ -327,33 +327,49 @@ namespace PPCRental.Controllers
         [HttpPost]
         public ActionResult ManageUser_GetUser(int id)
         {
-            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            try
             {
-                return new HttpStatusCodeResult(403);
+                if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+                {
+                    return new HttpStatusCodeResult(403);
+                }
+
+                //var user = db.USERs.FirstOrDefault( x => x.ID == id);
+                //var user = db.PROPERTies.SingleOrDefault(x => x.ID == id);
+
+                var usr = db.USERs.FirstOrDefault(x => x.ID == id);
+
+                if (usr != null)
+                {
+                    var user = new
+                    {
+                        id = usr.ID,
+                        email = usr.Email,
+                        pwd = usr.Password,
+                        fullname = usr.FullName,
+                        phone = usr.Phone,
+                        address = usr.Address,
+                        role_id = usr.RoleID,
+                        active = usr.Status,
+                        security_question = usr.SecretQuestion_ID,
+                        s_answer = usr.Answer
+                    };
+                    var question = db.security_questions.Select(x => new { x.id, x.question }).ToArray();
+                    var role = db.ROLEs.Select(x => new { x.id, x.roleName }).ToArray();
+
+                    return Json(new { Data = user, Role = role, Question = question }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(400);
+                }
             }
-
-            //var user = db.USERs.FirstOrDefault( x => x.ID == id);
-            //var user = db.PROPERTies.SingleOrDefault(x => x.ID == id);
-
-            var usr = db.USERs.FirstOrDefault(x => x.ID == id);
-            var user = new
+            catch (Exception e)
             {
-                id = usr.ID,
-                email = usr.Email,
-                pwd = usr.Password,
-                fullname = usr.FullName,
-                phone = usr.Phone,
-                address = usr.Address,
-                role_id = usr.RoleID,
-                active = usr.Status,
-                security_question = usr.SecretQuestion_ID,
-                s_answer = usr.Answer
-            };
-
-            var question = db.security_questions.Select(x => new { x.id, x.question }).ToArray();
-            var role = db.ROLEs.Select(x => new { x.id, x.roleName }).ToArray();
-
-            return Json(new { Data = user, Role = role, Question = question }, JsonRequestBehavior.AllowGet);
+                var er = (new { errorParameter = e.Message });
+                return Json(er);
+            }
+            
         }
 
         public ActionResult ManageUser_EditUser(USER editedUser)

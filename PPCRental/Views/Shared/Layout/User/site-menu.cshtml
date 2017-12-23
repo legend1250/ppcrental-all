@@ -13,44 +13,44 @@
             <!-- site-menu-content -->
             <nav id="site-nav" class="nav navbar-default">
                 <ul class="nav navbar-nav site-nav">
-                    <li><a href="~/Home/Index">Home</a></li>
+                    <li><a class="li-header" href="~/Home/Index">Home</a></li>
                     <li>
-                        <a href="property-listing.html">Listing</a>
+                        <a class="li-header" href="property-listing.html">Listing</a>
                         <ul>
-                            <li><a href="@Url.Action("Logout","User")">LogOut</a></li>
+                            <li><a href="">List</a></li>
                             <li><a href="property-listing-with-sidebar.html">With Sidebar</a></li>
                             <li><a href="property-map-view.html">Map View</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="~/Project/ProjectList" id="property">Property</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li>
-                            <a href="">Page</a>
-                            <ul>
+                        </ul>
+                    </li>
+                    <li><a class="li-header" href="~/Project/ProjectList" id="property">Property</a></li>
+                    <li><a class="li-header" href="gallery.html">Gallery</a></li>
+                    <li>
+                        <a class="li-header" href="">Page</a>
+                        <ul>
+                            <li><a href="#">Sub Menu</a></li>
+                            <li>
+                                <a href="#">Nested Menu</a>
+                                <ul>
+                                <li><a href="#">Sub Menu</a></li>
                                 <li><a href="#">Sub Menu</a></li>
                                 <li>
                                     <a href="#">Nested Menu</a>
                                     <ul>
-                                    <li><a href="#">Sub Menu</a></li>
-                                    <li><a href="#">Sub Menu</a></li>
-                                    <li>
-                                        <a href="#">Nested Menu</a>
-                                        <ul>
-                                            <li><a href="#">Sub Menu</a></li>
-                                            <li><a href="#">Sub Menu</a></li>
-                                            <li><a href="#">Sub Menu</a></li>
-                                            <li><a href="#">Sub Menu</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sub Menu</a></li>
-                                </ul>
+                                        <li><a href="#">Sub Menu</a></li>
+                                        <li><a href="#">Sub Menu</a></li>
+                                        <li><a href="#">Sub Menu</a></li>
+                                        <li><a href="#">Sub Menu</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Sub Menu</a></li>
+                            </ul>
                             </li>
                             <li><a href="#">Sub Menu</a></li>
                             <li><a href="#">Sub Menu</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">blog</a>
+                        <a class="li-header" href="#">blog</a>
                         <ul>
                             <li><a href="~/User/News" id="news">News</a></li>
                             <li><a href="blog-grid.html">Grid Style</a></li>
@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="~/Home/Contact">contact</a>
+                        <a class="li-header" href="~/Home/Contact">contact</a>
                         <ul>
                             <li><a href="contact.html">Variation One</a></li>
                             <li><a href="contact-var-two.html">Variation Two</a></li>
