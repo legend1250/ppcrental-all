@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="281e2de49d1e4c54ad58bb57f02bf89b" Name="Diagram1">
+      <Diagram DiagramId="281e2de49d1e4c54ad58bb57f02bf89b" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="ppcrental3119Model.DISTRICT" Width="1.5" PointX="0.75" PointY="6.625" />
         <EntityTypeShape EntityType="ppcrental3119Model.FEATURE" Width="1.5" PointX="5.25" PointY="5.375" />
         <EntityTypeShape EntityType="ppcrental3119Model.PROJECT_STATUS" Width="1.5" PointX="3" PointY="9.5" />
@@ -33,7 +33,7 @@
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_USER" />
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_USER1" />
         <AssociationConnector Association="ppcrental3119Model.FK_PROPERTY_WARD" />
-        <EntityTypeShape EntityType="ppcrental3119Model.View_project_from_index" Width="1.5" PointX="7.375" PointY="4.625" />
+        <EntityTypeShape EntityType="ppcrental3119Model.View_project_from_index" Width="1.5" PointX="10.375" PointY="8.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
