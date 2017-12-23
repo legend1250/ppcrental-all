@@ -76,6 +76,10 @@
                 {
                     @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
                 }
+                else
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                }
                 @*else if(userName != null){
                     HttpCookie userRole = Request.Cookies["userRole"];
                     HttpCookie userID = Request.Cookies["UserID"];
@@ -244,13 +248,15 @@
                 $("#qa-top-menu").css("display", "none").fadeOut("slow");
                 $("#site-header").addClass("site-menu-scroll");
                 $("#site-header").css("background-color", "rgba(0,0,0,0.7)");
-                $("#site-header").css("color", "white");
+                //$("#site-header").css("color", "white");
+                $(".li-header").css("color", "rgb(255,255,255)");
                 $("#site-logo img").attr("src","../img/footer-logo.png")
             } else {
                 $("#qa-top-menu").css("display", "normal").fadeIn("slow");
                 $("#site-header").removeClass("site-menu-scroll");
                 $("#site-header").css("background-color", "white");
-                $("#site-header").css("color", "#333");
+                //$("#site-header").css("color", "#333");
+                $(".li-header").css("color", "#333");
                 $("#site-logo img").attr("src", "../img/logo.png")
             }
            
