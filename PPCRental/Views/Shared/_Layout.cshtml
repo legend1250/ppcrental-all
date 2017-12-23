@@ -49,8 +49,8 @@
             @{
 
                 //get cookie
-                HttpCookie userName = Request.Cookies["UserName"];
-                
+                //HttpCookie userName = Request.Cookies["UserName"];
+
                 // HttpSessionStateBase httpSession;
                 if (Session["user"] != null)
                 {
@@ -73,7 +73,7 @@
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-noneRole.cshtml")
                     }
                 }
-                else if(userName != null){
+                @*else if(userName != null){
                     HttpCookie userRole = Request.Cookies["userRole"];
                     HttpCookie userID = Request.Cookies["UserID"];
 
@@ -137,7 +137,7 @@
                 if (verify == null)
                 {
                     Session["VerifyUser"] = "NotVerify";
-                }
+                }*@
 
 
                 }

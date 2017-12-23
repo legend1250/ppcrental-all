@@ -29,17 +29,17 @@
             Response.Redirect("~/User/Login", false);
 
         }
-        else
-        {
-            string verify = Session["VerifyUser"] as String;
-            string path = HttpContext.Current.Request.Url.AbsolutePath;
-            if (!verify.Equals("Verified"))
-            {
-                Session["VerifyUser"] = "NotVerify";
-                Session["SavePath"] = path;
-                Response.Redirect("~/User/VerifyUser", false);
-            }
-        }
+        //else
+        //{
+        //    string verify = Session["VerifyUser"] as String;
+        //    string path = HttpContext.Current.Request.Url.AbsolutePath;
+        //    if (!verify.Equals("Verified"))
+        //    {
+        //        Session["VerifyUser"] = "NotVerify";
+        //        Session["SavePath"] = path;
+        //        Response.Redirect("~/User/VerifyUser", false);
+        //    }
+        //}
 
     }
     <div id="login">
