@@ -30,18 +30,17 @@ namespace PPCRental.AcceptanceTests.Drivers.Search
             var ShowProject = _state.ActionResult.Model<IEnumerable<PROPERTY>>();
             ProjectAssertions.HomeScreenShouldShow(ShowProject, expectesTitles);
 
-
         }
-        //public void ShowListProject(Table expectedProject)
-        //{
-        //    //Arrange
-        //    var expectedTitles = expectedProject.Rows.Select(r => r["Title"]);
+        public void ShowListProject(Table expectedProject)
+        {
+            //Arrange
+            var expectedTitles = expectedProject.Rows.Select(r => r["Title"]);
 
-        //    //Action
-        //    var ShownBooks = _state.ActionResult.Model<IEnumerable<DBModel>>();
+            //Action
+            var ShownProjects = _state.ActionResult.Model<IEnumerable<PROPERTY>>();
 
-        //    //Assert
-        //    ProjectAssertions.HomeScreenShouldShowInOrder(ShownBooks, expectedTitles);
-        //}
+            //Assert
+            ProjectAssertions.HomeScreenShouldShowInOrder(ShownProjects, expectedTitles);
+        }
     }
 }

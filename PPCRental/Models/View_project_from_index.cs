@@ -34,11 +34,11 @@ namespace PPCRental.Models
         public Nullable<System.DateTime> Create_post { get; set; }
         public string UnitPrice { get; set; }
         public Nullable<int> Status_ID { get; set; }
+        public string Status_Name { get; set; }
         public string Note { get; set; }
         public Nullable<int> Sale_ID { get; set; }
         public Nullable<int> Street_ID { get; set; }
         public Nullable<int> Ward_ID { get; set; }
         public Nullable<int> District_ID { get; set; }
-        public string Status_Name { get; set; }
     }
 }

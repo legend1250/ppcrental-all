@@ -231,18 +231,6 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PROPERTY_FEATURE_PROPERTY">
-          <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="0..1" />
-          <End Role="PROPERTY_FEATURE" Type="Self.PROPERTY_FEATURE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PROPERTY">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PROPERTY_FEATURE">
-              <PropertyRef Name="Property_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PROPERTY_PROJECT_STATUS">
           <End Role="PROJECT_STATUS" Type="Self.PROJECT_STATUS" Multiplicity="0..1" />
           <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
@@ -443,10 +431,6 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           </AssociationSet>
           <AssociationSet Name="FK_PROPERTY_FEATURE_FEATURE" Association="Self.FK_PROPERTY_FEATURE_FEATURE">
             <End Role="FEATURE" EntitySet="FEATURE" />
-            <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROPERTY_FEATURE_PROPERTY" Association="Self.FK_PROPERTY_FEATURE_PROPERTY">
-            <End Role="PROPERTY" EntitySet="PROPERTY" />
             <End Role="PROPERTY_FEATURE" EntitySet="PROPERTY_FEATURE" />
           </AssociationSet>
           <AssociationSet Name="FK_PROPERTY_PROJECT_STATUS" Association="Self.FK_PROPERTY_PROJECT_STATUS">
@@ -933,12 +917,12 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <Property Name="Create_post" Type="DateTime" Precision="3" />
           <Property Name="UnitPrice" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Status_ID" Type="Int32" />
+          <Property Name="Status_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Sale_ID" Type="Int32" />
           <Property Name="Street_ID" Type="Int32" />
           <Property Name="Ward_ID" Type="Int32" />
           <Property Name="District_ID" Type="Int32" />
-          <Property Name="Status_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1124,12 +1108,12 @@ warning 6002: The table/view 'ppcrental3119.dbo.View_project_from_index' does no
           <EntitySetMapping Name="View_project_from_index">
             <EntityTypeMapping TypeName="ppcrental3119Model.View_project_from_index">
               <MappingFragment StoreEntitySet="View_project_from_index">
-                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
                 <ScalarProperty Name="District_ID" ColumnName="District_ID" />
                 <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
                 <ScalarProperty Name="Street_ID" ColumnName="Street_ID" />
                 <ScalarProperty Name="Sale_ID" ColumnName="Sale_ID" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
                 <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Create_post" ColumnName="Create_post" />
