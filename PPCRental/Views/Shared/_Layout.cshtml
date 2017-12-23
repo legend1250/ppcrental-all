@@ -73,6 +73,10 @@
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-noneRole.cshtml")
                     }
                 }
+                else
+                {
+                    @RenderPage("~/Views/Shared/Layout/User/top-menu.cshtml")
+                }
                 @*else if(userName != null){
                     HttpCookie userRole = Request.Cookies["userRole"];
                     HttpCookie userID = Request.Cookies["UserID"];
