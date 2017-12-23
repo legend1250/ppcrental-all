@@ -46,6 +46,7 @@ namespace PPCRental.Controllers
                     Session["userID"] = UserID;
                     string role = db.ROLEs.SingleOrDefault( x => x.id == user.RoleID).roleName;
                     Session["userRole"] = role;
+                    Session["userStatus"] = user.Status;
                     Session["VerifyUser"] = "NotVerify";
 
                     //add cookie
@@ -280,15 +281,25 @@ namespace PPCRental.Controllers
 
         public ActionResult UserManagement_Views()
         {
+            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            {
+                return new HttpStatusCodeResult(403);
+            }
+
             var users = db.UserManagements.ToList();
             ViewData["users"] = users;
             ViewData["role"] = db.ROLEs.ToList();
             return View();
         }
 
-        public JsonResult ManageUser_Views(int role_id)
+        public ActionResult ManageUser_Views(int role_id)
         {
-            if(role_id == 10)
+            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            {
+                return new HttpStatusCodeResult(403);
+            }
+
+            if (role_id == 10)
             {
                 var users = db.UserManagements.ToArray();
                 return Json(new { Success = true, Users = users }, JsonRequestBehavior.AllowGet);
@@ -302,6 +313,11 @@ namespace PPCRental.Controllers
 
         public ActionResult UserManagement_Edit()
         {
+            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            {
+                return new HttpStatusCodeResult(403);
+            }
+
             var users = db.UserManagements.ToArray();
             ViewData["users"] = users;
             ViewData["role"] = db.ROLEs.ToList();
@@ -309,8 +325,13 @@ namespace PPCRental.Controllers
         }
 
         [HttpPost]
-        public JsonResult ManageUser_GetUser(int id)
+        public ActionResult ManageUser_GetUser(int id)
         {
+            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            {
+                return new HttpStatusCodeResult(403);
+            }
+
             //var user = db.USERs.FirstOrDefault( x => x.ID == id);
             //var user = db.PROPERTies.SingleOrDefault(x => x.ID == id);
 
@@ -337,6 +358,11 @@ namespace PPCRental.Controllers
 
         public ActionResult ManageUser_EditUser(USER editedUser)
         {
+            if (Session["userRole"] == null || !Session["userRole"].ToString().Equals("Technical"))
+            {
+                return new HttpStatusCodeResult(403);
+            }
+
             try
             {
                 var user = db.USERs.Where(x => x.ID == editedUser.ID).First();

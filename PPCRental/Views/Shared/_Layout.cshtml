@@ -55,15 +55,16 @@
                 if (Session["user"] != null)
                 {
                     String userRole = Session["userRole"] as String;
-                    if (userRole.Equals("Agency"))
+                    bool userStatus = bool.Parse(Session["userStatus"].ToString());
+                    if (userRole.Equals("Agency") && userStatus)
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-agency.cshtml")
                     }
-                    else if (userRole.Equals("Sale"))
+                    else if (userRole.Equals("Sale") && userStatus)
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-sale.cshtml")
                     }
-                    else if (userRole.Equals("Technical"))
+                    else if (userRole.Equals("Technical") && userStatus)
                     {
                         @RenderPage("~/Views/Shared/Layout/User/top-menu-technical.cshtml")
                     }
