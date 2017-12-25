@@ -91,6 +91,8 @@ namespace PPCRental.Controllers
             {
                 project = project.Where(x => x.Price <= maxprice);
             }
+            //Filter status project
+            project = project.Where(x => x.Status_ID == 3);
 
             ViewData["Project_View"] = project.ToList();
             ViewData["District"] = db.DISTRICTs.OrderBy( x => x.DistrictName).ToList();
@@ -98,7 +100,7 @@ namespace PPCRental.Controllers
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
             //Count
-            ViewData["TotalProperty"] = db.PROPERTies.Count();
+            ViewData["TotalProperty"] = db.PROPERTies.Where(x => x.Status_ID == 3).Count();
             ViewData["TotalPropertyFound"] = project.Count();
 
             return View();
