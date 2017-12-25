@@ -397,7 +397,140 @@
 
                 return false;
             }
+
+        });
+         $('.qa-save').click(function (e)
+        {
+            e.preventDefault();
+            //return message to default
+            $(".qa-alert-add-infor .alert-success").css("display", "none");
+            $(".qa-alert-add-infor .alert-danger").css("display", "none");
+            $(".qa-alert-add-infor .alert-danger").removeClass("add-project-fail");
+            $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+
+            //image+avatar
+            var avaUpload = $('#avaUpload').get(0);
+            var avaFiles = avaUpload.files;
+            var imaUpload = $('#imaUpload').get(0);
+            var imaFiles = imaUpload.files;
+            var formData = new FormData();
+            formData.append('avaFile', avaFiles[0]);
+            formData.append('imaFile', imaFiles[0]);
+
+            //date
+            //var d = new Date();
+            //var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "." + d.getMilliseconds();
+            //console.log(strDate);
+            //var date = DateTime.parse(strDate, "yyyy-MM-dd HH:mm:ss.SSS")
+
+            var newProject = {
+                PropertyName : $('#name').val(),
+                Avatar : $('#ava').val(),
+                Images : $('#ima').val(),
+                //Avatar: $('#avaUpload')[0].files[0].name,
+                //Images : $('#imaUpload')[0].files[0].name,
+                District_ID: $('select[id=district]').val(),
+                Street_ID: $('select[id=streetSelect]').val(),
+                Ward_ID: $('select[id=wardSelect]').val(),
+                PropertyType_ID: $('select[id=ptype]').val(),
+                Content: $('#content').val(),
+                Price: $('#price').val(),
+                UnitPrice: 'USD',
+                Area: parseInt($('#area').val()),
+                BedRoom : $('#bed').val(),
+                BathRoom : $('#bath').val(),
+                PackingPlace: $('#packing').val(),
+                UserID:@Session["userID"],
+                Status_ID: 2,
+                //Created_at: date,
+                //Updated_at: date,
+            }
+                $.ajax({
+                    url: '/Project/Submit/',
+                    type: "POST",
+                    data: { newProject },
+                    dataType: "json",
+                    //  contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        //alert(response['Message']);
+                        var status = parseInt(response['Status']);
+                        var message = response.Message;
+                        // alert(status);
+                        //alert(message);
+                        if (status == 1) {
+                            //success
+                            $(".qa-alert-add-infor .alert-success").css("display", "block");
+                            $(".qa-alert-add-infor .alert-danger").css("display", "none");
+                            $(".qa-alert-add-infor .alert-danger").removeClass("add-project-fail");
+                            $(".qa-alert-add-infor .alert-success").addClass("add-project-success");
+                            $(".qa-alert-add-infor .alert-success span").html(message);
+                        } else if (status == 0) {
+                            //fail
+                            $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                            $(".qa-alert-add-infor .alert-success").css("display", "none");
+                            $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                            $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                            $(".qa-alert-add-infor .alert-danger span").html(message);
+                        }
+
+                        $.ajax({
+                            url: '/Project/saveImage/',
+                            type: "POST",
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            //  contentType: "application/json; charset=utf-8",
+                            success: function (response) {
+
+                                var status = parseInt(response['Status']);
+                                var message = response.Message;
+                                // alert(status);
+                                //alert(message);
+                                if (status == 1) {
+                                    //success
+                                    $(".qa-alert-add-image .alert-success").css("display", "block");
+                                    $(".qa-alert-add-image .alert-danger").css("display", "none");
+                                    $(".qa-alert-add-image .alert-danger").removeClass("add-image-fail");
+                                    $(".qa-alert-add-image .alert-success").addClass("add-image-success");
+                                    $(".qa-alert-add-image .alert-success span").html(message);
+                                } else if (status == 0) {
+                                    //fail
+                                    $(".qa-alert-add-image .alert-danger").css("display", "block");
+                                    $(".qa-alert-add-image .alert-success").css("display", "none");
+                                    $(".qa-alert-add-image .alert-danger").addClass("add-image-fail");
+                                    $(".qa-alert-add-image .alert-success").removeClass("add-image-success");
+                                    $(".qa-alert-add-image .alert-danger span").html(message);
+                                }
+                                clear();
+
+                            },
+                            error: function (err) {
+                                //alert("Có lỗi khi upload:" + err.statusText);
+                                $(".qa-alert-add-image .alert-danger").css("display", "block");
+                                $(".qa-alert-add-image .alert-success").css("display", "none");
+                                $(".qa-alert-add-image .alert-danger").addClass("add-image-fail");
+                                $(".qa-alert-add-image .alert-success").removeClass("add-image-success");
+                                $(".qa-alert-add-image .alert-danger span").html(err.statusText);
+                            },
+                        });
+
+
+                    },
+                    error: function (err) {
+                        //alert("Error while inserting data");
+                        $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                        $(".qa-alert-add-infor .alert-success").css("display", "none");
+                        $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                        $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                        $(".qa-alert-add-infor .alert-danger span").html(err.statusText);
+
+                    },
+
+                });
+
+                return false;
             
+
         });
         function clear() {
             $(':input[type="text"]').val('');
@@ -410,7 +543,7 @@
             $('#street').val(-1);
             $('#ward').attr('disabled', true);
             $('#ward').val(-1);
-           
+
         }
     });
 </script>
