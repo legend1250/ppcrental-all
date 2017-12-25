@@ -267,7 +267,7 @@ namespace PPCRental.Controllers
                     }
                     catch (Exception e)
                     {
-                        ViewBag.DuplicateMessage = e.ToString();
+                        ViewBag.DuplicateMessage = "Error occurred while register. Contact Admin for details";
                         return View();
                         throw;
                     }
