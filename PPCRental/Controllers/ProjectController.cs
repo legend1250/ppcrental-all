@@ -119,7 +119,7 @@ namespace PPCRental.Controllers
             var project = db.View_project_from_index.FirstOrDefault(x => x.ID == id);
             ViewData["project"] = project;
 
-            return View();
+            return View(project);
         }
         public ActionResult addProject()
         {

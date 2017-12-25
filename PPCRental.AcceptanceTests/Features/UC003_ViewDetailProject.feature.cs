@@ -104,7 +104,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "PackingPlace",
                         "User",
                         "Status",
-                        "Note"});
+                        "Note",
+                        "Sale"});
             table1.AddRow(new string[] {
                         "ASA LightT",
                         "Asa Light.jpg",
@@ -122,7 +123,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CALEDON Tan Phu",
                         "Caledon Tan Phu.jpg",
@@ -140,7 +142,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "VINH LOC Central",
                         "Vinh Loc Central.jpg",
@@ -160,7 +163,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "SAIGONRESE Plaza",
                         "Saigonrese.jpg",
@@ -180,7 +184,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CAPSULE Residence",
                         "Capsule Residence .jpg",
@@ -200,7 +205,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "FLORAL HOA BINH",
                         "Floral Hoa Binh.jpg",
@@ -218,7 +224,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "ORIENT Plaza",
                         "Orient Plaza.jpg",
@@ -236,7 +243,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "RIVA Garden",
                         "Riva Garden.jpg",
@@ -254,7 +262,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CITY Gate",
                         "City Gate.jpg",
@@ -272,7 +281,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "Thang@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "MY HUNG Prop 3",
                         "My Hung Prop.jpg",
@@ -290,7 +300,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "NovaLand",
                         "NovaLand.jpg",
@@ -310,7 +321,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
 #line 6
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
@@ -333,6 +345,9 @@ this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
+                        "Avatar",
+                        "Images",
+                        "PropertyType",
                         "Content",
                         "Street",
                         "Ward",
@@ -348,6 +363,9 @@ this.FeatureBackground();
                         "Note"});
             table2.AddRow(new string[] {
                         "CITY Gate",
+                        "City Gate.jpg",
+                        "",
+                        "Villa",
                         @"Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.",
                         "Nguyễn Hiền",
                         "P.03",

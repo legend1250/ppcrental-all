@@ -385,9 +385,77 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
 #line 31
- testRunner.When("I search for project by the phrase \'gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search for project by the phrase \'Garden\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PropertyName",
+                        "Avatar",
+                        "Images",
+                        "PropertyType",
+                        "Content",
+                        "Street",
+                        "Ward",
+                        "District",
+                        "Price",
+                        "UnitPrice",
+                        "Area",
+                        "Bedroom",
+                        "Bathroom",
+                        "PackingPlace",
+                        "User",
+                        "Status",
+                        "Note"});
+            table3.AddRow(new string[] {
+                        "RIVA Garden",
+                        "Riva Garden.jpg",
+                        "",
+                        "Apartment",
+                        @"The Nguyen Dinh Chinh  is a lovely option for the renter seeking home-comfort away from the noise of the city center. Located in Phu Nhuan district, the unit is conveniently accessible to local shops and eateries. This serviced apartment provides space and everything needed for you to feel at home.",
+                        "Vườn Chuối",
+                        "P.02",
+                        "Quận 3",
+                        "78400",
+                        "USD",
+                        "168",
+                        "3",
+                        "4",
+                        "2",
+                        "annguyen",
+                        "Đã duyệt",
+                        "Done"});
 #line 32
- testRunner.Then("the list of found project should contain only: \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the list of found project should contain only: \'RIVA Garden\'", ((string)(null)), table3, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Search result should be ordered by project title")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC001_Search")]
+        public virtual void SearchResultShouldBeOrderedByProjectTitle()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search result should be ordered by project title", ((string[])(null)));
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line 37
+ testRunner.When("I search for books by the phrase \'id\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PropertyName"});
+            table4.AddRow(new string[] {
+                        "CALEDON Tan Phu"});
+            table4.AddRow(new string[] {
+                        "CAPSULE Residence"});
+            table4.AddRow(new string[] {
+                        "ORIENT Plaza"});
+            table4.AddRow(new string[] {
+                        "RIVA Garden"});
+            table4.AddRow(new string[] {
+                        "CITY Gate"});
+#line 38
+ testRunner.Then("the list of found books should be:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

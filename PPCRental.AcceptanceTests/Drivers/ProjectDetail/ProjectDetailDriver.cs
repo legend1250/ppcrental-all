@@ -13,84 +13,84 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
     {
         //private const decimal ProjectDefaultPrice = 10;
         private readonly CatalogContext _context;
-        private ActionResult _result;
+        private ActionResult result;
+
+       // public ActionResult Result { get => result; set => result = value; }
 
         public ProjectDetailDriver(CatalogContext context)
         {
             _context = context;
         }
-         
         public void InsertProjectToDB(Table projects)
         {
             using (var db = new ppcrental3119Entities())
             {
                 //var oStreets = db.STREETs.ToList();
-                //chạy insert từng cột, các cột này dựa vào dữ liệu mình muốn kt mà khai cho khớp
-                PROPERTY project = null;
+                //var oProject = db.PROPERTies.ToList();
                 foreach (var item in projects.Rows)
                 {
-                    //var tPropertyName = item["PropertyName"].ToString();
-                    ////var tPropertyType = item["PropertyType"].ToString();
-                    //var tStreet_ID = item["Street"].ToString();
-                    //var tDistrict_ID = item["District"].ToString();
-                    //var tWard_ID = item["Ward"].ToString();
-                    //var tUnitPrice = item["Price"].ToString();
-                    //var tContent = item["Content"].ToString();
-                    ////var a = db.PROPERTY_TYPE.FirstOrDefault(d1 => d1.CodeType == tPropertyType);
-                    //var b = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID);
-                    //var c = db.DISTRICTs.FirstOrDefault(d2 =  > d2.DistrictName == tDistrict_ID);
-                    //var d3 = db.WARDs.FirstOrDefault(d2 => d2.WardName == tWard_ID);
-                    
-                    project = new PROPERTY()
+                    var tPropertyType = item["PropertyType"].ToString();
+                    var tStreet_ID = item["Street"].ToString();
+                    var tDistrict_ID = item["District"].ToString();
+                    var tWard_ID = item["Ward"].ToString();
+                    var tPropertyName = item["PropertyName"].ToString();
+                    var tUnitPrice = item["UnitPrice"].ToString();
+                    var tContent = item["Content"].ToString();
+                    var tStatus_ID = item["Status"].ToString();
+                    var tUser_ID = item["User"].ToString();
+                    var tSale_ID = item["Sale"].ToString();
+
+                    var a = db.PROPERTY_TYPE.FirstOrDefault(d1 => d1.CodeType == tPropertyType);
+                    var b = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID);
+                    var c = db.DISTRICTs.FirstOrDefault(d2 => d2.DistrictName == tDistrict_ID);
+                    var d3 = db.WARDs.FirstOrDefault(d2 => d2.WardName == tWard_ID);
+                    var e = db.PROJECT_STATUS.FirstOrDefault(st => st.Status_Name == tStatus_ID);
+                    var h = db.USERs.FirstOrDefault(u => u.Email == tUser_ID);
+                    var project = new PROPERTY()
                     {
 
                         PropertyName = item["PropertyName"].ToString(),
-                        Avatar = item["Avatar"],
-                        Images = item["Images"],
-                        PropertyType_ID = db.PROPERTY_TYPE.ToList().FirstOrDefault(d1 => d1.CodeType == item["PropertyType"]).ID,
+                        PropertyType_ID = a.ID,
+                        Street_ID = db.STREETs.FirstOrDefault(s => s.StreetName == tStreet_ID).ID,
+                        District_ID = db.DISTRICTs.FirstOrDefault(d => d.DistrictName == tDistrict_ID).ID,
+                        Ward_ID = db.WARDs.FirstOrDefault(d => d.WardName == tWard_ID).ID,
+                        UnitPrice = item["UnitPrice"].ToString(),
+                        Price = int.Parse(item["Price"].ToString()),
+                        BathRoom = int.Parse(item["Bathroom"].ToString()),
+                        BedRoom = int.Parse(item["Bedroom"].ToString()),
+                        PackingPlace = int.Parse(item["PackingPlace"].ToString()),
                         Content = item["Content"].ToString(),
-                        Street_ID = db.STREETs.ToList().FirstOrDefault(s => s.StreetName == item["Street"]).ID,
-                        Ward_ID = db.WARDs.ToList().FirstOrDefault(d => d.WardName == item["Ward"]).ID,
-                        District_ID = db.DISTRICTs.ToList().FirstOrDefault(d => d.DistrictName == item["District"]).ID,
-                        Price = Convert.ToInt32(item["Price"]),
-                        UnitPrice = "VND",
-                        Area = Convert.ToInt32(item["Area"]),
-                        BedRoom = Convert.ToInt32(item["Bedroom"]),
-                        BathRoom = Convert.ToInt32(item["Bathroom"]),
-                        PackingPlace = Convert.ToInt32(item["PackingPlace"]),
-                        UserID = db.USERs.ToList().FirstOrDefault(u => u.Email == item["User"]).ID,
-                        Created_at = DateTime.Now,
-                        Create_post = DateTime.Now,
-                        Status_ID = db.PROJECT_STATUS.ToList().FirstOrDefault(t => t.Status_Name == item["Status"]).ID,
-                        Note = "Done",
+                        Area = int.Parse(item["Area"].ToString()),
+                        Avatar = item["Avatar"],
+                        Created_at = DateTime.Today,
+                        Create_post = DateTime.Today,
+                        Updated_at = DateTime.Today,
+                        Sale_ID = db.ROLEs.FirstOrDefault(sale => sale.roleName == tSale_ID).id,
+                       // UserID = db.USERs.FirstOrDefault(m => m.Email == tUser_ID).ID,
+                        Note= item["Note"],
+                        Status_ID = e.ID
                     };
-                    
-                }
-                //_context.ReferenceProjects.Add(projects.Header.Contains("ID") ? item["Id"] : project.PropertyName, project);
-
-                try
-                {
+                    //project.STREET = db.STREETs.Find(project.Street_ID);
+                    // project.STREET.StreetName
+                    _context.ReferenceProjects.Add(projects.Header.Contains("ID") ? item["ID"] : project.PropertyName, project);
                     db.PROPERTies.Add(project);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    throw;
                 }
 
+                db.SaveChanges();
             }
+            
         }
+      
         public void ShowProjectDetails(Table shownProjectDetails)
         {
-            //Arrange
+            //Arrange- lấy data từ table 2 feature
             var expectedProjectDetails = shownProjectDetails.Rows.Single();
 
             //Act
-            var actualProjectDetails = _result.Model<PROPERTY>();
+            var actualProjectDetails = result.Model<View_project_from_index>();
 
             //Assert
-            actualProjectDetails.Should().Match<PROPERTY>(
+            actualProjectDetails.Should().Match<View_project_from_index>(
                 b => b.PropertyName == expectedProjectDetails["PropertyName"]
                 && b.Content == expectedProjectDetails["Content"]);
                
@@ -101,7 +101,7 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
             var project = _context.ReferenceProjects.GetById(projectId);
             using (var controller = new ProjectController())
             {
-                _result = controller.projectDetail(project.ID);
+                result = controller.projectDetail(project.ID);
             }
         }
     }

@@ -28,6 +28,17 @@ Scenario: Space should be treated as multiple OR search
 	| CITY Gate    | City Gate.jpg |        | Villa        | Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away. | Nguyễn Hiền | P.03 | Quận 3   | 120000 | USD       | 250  | 4       | 4        | 2            | Thang@gmail.com | Đã duyệt | Done |
 
 Scenario: Title should be matched
-	When I search for project by the phrase 'gate'
-	Then the list of found project should contain only: 'CITY Gate'
+	When I search for project by the phrase 'Garden'
+	Then the list of found project should contain only: 'RIVA Garden'
+	| PropertyName | Avatar         | Images | PropertyType | Content                                                                                                                                                                                                                                                                                                                                         | Street      | Ward | District | Price  | UnitPrice | Area | Bedroom | Bathroom | PackingPlace | User            | Status   | Note |
+	| RIVA Garden  | Riva Garden.jpg|        | Apartment    | The Nguyen Dinh Chinh  is a lovely option for the renter seeking home-comfort away from the noise of the city center. Located in Phu Nhuan district, the unit is conveniently accessible to local shops and eateries. This serviced apartment provides space and everything needed for you to feel at home.                                     | Vườn Chuối  | P.02 | Quận 3   | 78400  | USD       | 168  | 3       | 4        | 2            | annguyen        | Đã duyệt | Done |
 
+Scenario: Search result should be ordered by project title 
+ When I search for books by the phrase 'id'
+ Then the list of found books should be:
+ | PropertyName      |
+ | CALEDON Tan Phu   |
+ | CAPSULE Residence |
+ | ORIENT Plaza      |
+ | RIVA Garden       |
+ | CITY Gate         |
