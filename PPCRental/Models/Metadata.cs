@@ -21,6 +21,7 @@ namespace PPCRental.Models
 
         [Required(ErrorMessage = "Password must not be null")]
         [Display(Name = "Password")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{4,20}$", ErrorMessage= "Minimum four characters and maximun twenty characters, at least one uppercase letter, one lowercase letter and one number.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
