@@ -40,5 +40,10 @@ namespace PPCRental.Models
             get;
             set;
         }
+        public List<PROJECT_STATUS> statusService
+        {
+            get;
+            set;
+        }
     }
 }

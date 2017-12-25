@@ -62,6 +62,7 @@
             <option value="2">Saved</option>
             <option value="3">approved</option>
             <option value="4">Hidden</option>
+            <option value="5">Reject</option>
         </select>   
         <div class="row">
             <div class="layout-item-wrap col-xs-12 clearfix list-my-project" style="max-height:100%">
@@ -87,30 +88,34 @@ foreach (var item in ViewData["MyProject"] as List<PPCRental.Models.View_project
                 <figure class="feature-image">
                     <div style="position:relative;width:100%">
                         @{
-                var statusProperty = item.Status_Name;
-                if (statusProperty.Equals("Đã duyệt"))
-                {
+        var statusProperty = item.Status_Name;
+        if (statusProperty.Equals("Đã duyệt"))
+        {
                     <span class="btn btn-success btn-sale">@statusProperty</span>
-    }
-    else if (statusProperty.Equals("Chưa duyệt"))
-    {
-            <span class="btn btn-warning btn-sale">@statusProperty</span>
+}
+else if (statusProperty.Equals("Chưa duyệt"))
+{
+                    <span class="btn btn-warning btn-sale">@statusProperty</span>
 }
 else if (statusProperty.Equals("Lưu nháp"))
 {
-            <span class="btn btn-primary btn-sale">@statusProperty</span>
+                    <span class="btn btn-primary btn-sale">@statusProperty</span>
 }
 else if (statusProperty.Equals("Hết hạn"))
 {
-            <span class="btn btn-danger btn-sale">@statusProperty</span>
+                    <span class="btn btn-danger btn-sale">@statusProperty</span>
+}
+else if (statusProperty.Equals("Từ chối"))
+{
+                    <span class="btn btn-danger btn-sale">@statusProperty</span>
 }
                         }
 
                         <a class="clearfix zoom" href="single-property.html"><img data-action="zoom" src="img/avatar/@item.Avatar" alt="Property Image" class="" style=""></a>
                         @{
-                var time = item.Updated_at;
-                var formatTime = String.Format("{0:dd MMM}", time);
-                <span class="btn btn-default btn-date qa-btn-date">@formatTime</span>
+        var time = item.Updated_at;
+        var formatTime = String.Format("{0:dd MMM}", time);
+                    <span class="btn btn-default btn-date qa-btn-date">@formatTime</span>
                         }
                     </div>
                 </figure>
@@ -171,7 +176,7 @@ else
     $("#qa-myproject-option").on("change", function () {
 
         var myOption = $("#qa-myproject-option").val();
-        alert(myOption);
+        //alert(myOption);
         $.ajax({
             url: '/Project/getMyProject/',
             type: "POST",
@@ -208,6 +213,9 @@ else
 
                         }
                         else if (statusProperty === "Hết hạn") {
+                            myHTML += '<span class="btn btn-danger btn-sale">' + statusProperty + '</span>';
+
+                        } else if (statusProperty === "Từ chối") {
                             myHTML += '<span class="btn btn-danger btn-sale">' + statusProperty + '</span>';
 
                         }

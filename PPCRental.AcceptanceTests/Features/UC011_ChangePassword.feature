@@ -8,28 +8,16 @@ Scenario: Change Password
 	Given I login success with the given username and password
 	| Title    |  Value		 |
 	| username |   qqqq      |
-	| password |   ppc123    |
+	| password |   123456    |
 	And I go to Change Password page 
 	When I input all the following fields
 	| Title				| Value     |
-	| Your answer		| 123456789 |
-	| Password			| ppc123    |
-	| New Password      | 123456    |
-	| Cofirm Password   | 123456    |
+	| Password			| 123456    |
+	| New Password      | ppc123    |
+	| Cofirm Password   | ppc123    |
 	And I click Set new Password button
 	Then I see a message "Your password has been changed successfully"
 
-Scenario: Change Password failed with wrong answer for security question
-	Given Login successfully
-	| Title    |  Value		 |
-	| username |   md5       |
-	| password |   123456    |
-	And Navigate to Change Pasword page 
-	When I input wrong answer for security question
-	| Title				| Value     |
-	| Your answer		| abcd	    |
-
-	Then I will see a message "Error! Your answer not match with the answer in database."
 
 Scenario: Input wrong current Password on Change Password page
 	Given I Login successfully 
@@ -39,7 +27,6 @@ Scenario: Input wrong current Password on Change Password page
 	And I Navigate to Change Pasword page 
 	When I input wrong current password
 	| Title				| Value     |
-	| Your answer		| 123456789 |
 	| Password			| 111111    |
 	| New Password      | ppc123    |
 	| Cofirm Password   | ppc123    |
