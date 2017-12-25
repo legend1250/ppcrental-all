@@ -13,7 +13,7 @@ namespace PPCRental.Controllers
         ppcrental3119Entities db = new ppcrental3119Entities();
         public ActionResult Index()
         {
-            var projects = db.View_project_from_index.OrderByDescending(x => x.Updated_at).Take(6).ToList();
+            var projects = db.View_project_from_index.OrderByDescending(x => x.Updated_at).Where(x => x.Status_ID==3).Take(6).ToList();
             ViewData["Project"] = projects;
             ViewData["District"] = db.DISTRICTs.OrderBy(x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();

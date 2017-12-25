@@ -19,7 +19,7 @@ namespace PPCRental.Controllers
         }
         public ActionResult ProjectList()
         {
-            var project = db.View_project_from_index.ToList();
+            var project = db.View_project_from_index.OrderByDescending(x => x.Create_post).Where(x => x.Status_ID == 3).ToList();
             ViewData["Project_View"] = project;
             ViewData["District"] = db.DISTRICTs.OrderBy(x => x.DistrictName).ToList();
             ViewData["Street"] = db.STREETs.ToList();
@@ -167,18 +167,24 @@ namespace PPCRental.Controllers
             string message, error = "";
             try
             {
-                if (imaFile.ContentLength > 0)
+                if (avaFile!=null)
                 {
-                    String avaName = Path.GetFileName(avaFile.FileName);
-                    String avaPath = Path.Combine(Server.MapPath("~/img/avatar"), avaName);
-                    imaFile.SaveAs(avaPath);
+                    if (avaFile.ContentLength > 0)
+                    {
+                        String avaName = Path.GetFileName(avaFile.FileName);
+                        String avaPath = Path.Combine(Server.MapPath("~/img/avatar"), avaName);
+                        avaFile.SaveAs(avaPath);
 
+                    }
                 }
-                if (imaFile.ContentLength > 0)
+                if (imaFile!=null)
                 {
-                    String imgName = Path.GetFileName(imaFile.FileName);
-                    String imgPath = Path.Combine(Server.MapPath("~/img/avatar"), imgName);
-                    imaFile.SaveAs(imgPath);
+                    if (imaFile.ContentLength > 0)
+                    {
+                        String imgName = Path.GetFileName(imaFile.FileName);
+                        String imgPath = Path.Combine(Server.MapPath("~/img/avatar"), imgName);
+                        imaFile.SaveAs(imgPath);
+                    }
                 }
             }
             catch (Exception e)
@@ -213,6 +219,9 @@ namespace PPCRental.Controllers
             vm.wardService = db.WARDs.ToList();
             vm.districtService = db.DISTRICTs.ToList();
             vm.propertyTypeService = db.PROPERTY_TYPE.ToList();
+            var status = db.PROJECT_STATUS.ToList();
+            ViewData["project-status"] = status;
+            ViewData["project-list"] = db.PROPERTies.Where(x => x.Status_ID != 2).ToList();
             return View(vm);
         }
         [HttpPost]
@@ -230,7 +239,7 @@ namespace PPCRental.Controllers
                 projectPrice = project.Price, projectUnit = project.UnitPrice,
                 projectArea = project.Area, projectBed = project.BedRoom,
                 projectBath = project.BathRoom, projectParking = project.PackingPlace,
-                projectUser = project.UserID, projectNote = project.Note, JsonRequestBehavior.AllowGet });
+                projectUser = project.UserID, projectNote = project.Note,projectStatus=project.Status_ID, JsonRequestBehavior.AllowGet });
             //return Json(new { projectEdit = id, JsonRequestBehavior.AllowGet });
         }
         [HttpPost]
@@ -299,20 +308,29 @@ namespace PPCRental.Controllers
             return Json(new { MyProject = myProject,Count=countProject,JsonRequestBehavior.AllowGet });
           
         }
-       public ActionResult projectupdate(PROPERTY projectupdate)
+       public ActionResult projectupdate(PROPERTY projectupdate,int id)
         {
             string message = "";
             DateTime date = DateTime.Now;
             try
             {
-                var projectID = projectupdate.ID;
+                
                 //var project = db.PROPERTies.FirstOrDefault(x => x.ID == projectID);
-                PROPERTY editProject = db.PROPERTies.Find(projectID);
-                editProject.ID = projectupdate.ID;
+                PROPERTY editProject = db.PROPERTies.Find(id);
                 editProject.PropertyName = projectupdate.PropertyName;
                 editProject.Content = projectupdate.Content;
-                message = "update success";
+                editProject.PropertyType_ID = projectupdate.PropertyType_ID;
+                editProject.Street_ID = projectupdate.Street_ID;
+                editProject.Ward_ID = projectupdate.Ward_ID;
+                editProject.District_ID = projectupdate.District_ID;
+                editProject.Price = projectupdate.Price;
+                editProject.Area = projectupdate.Area;
+                editProject.BathRoom = projectupdate.BathRoom;
+                editProject.PackingPlace = projectupdate.PackingPlace;
+                editProject.BedRoom = projectupdate.BedRoom;
+                editProject.Status_ID = projectupdate.Status_ID;
                 db.SaveChanges();
+                message = "update thanh cong";
             }
             catch (Exception e)
             {
@@ -345,11 +363,13 @@ namespace PPCRental.Controllers
         [HttpPost]
         public ActionResult Approve(int id)
         {
+            int saleID =(int)Session["userID"];
             String message = "";
             try
             {
                 var project = db.PROPERTies.Find(id);
                 project.Status_ID = 3;
+                project.Sale_ID = saleID;
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 message = "Approve successfully";
@@ -366,10 +386,12 @@ namespace PPCRental.Controllers
         public ActionResult Reject(int id,String reason)
         {
             String message = "";
+            int saleID = (int)Session["userID"];
             try
             {
                 var project = db.PROPERTies.Find(id);
                 project.Status_ID = 5;
+                project.Sale_ID = saleID;
                 if (reason!="")
                 {
                     project.Note = reason;
