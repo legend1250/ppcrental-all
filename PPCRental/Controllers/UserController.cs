@@ -239,43 +239,49 @@ namespace PPCRental.Controllers
 
                 ViewBag.question = item;
 
-                if (db.USERs.Any(x => x.Email == newUser.Email))
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("Email", "Email already exist");
-                    return View(newUser);
+                    if (db.USERs.Any(x => x.Email == newUser.Email))
+                    {
+                        ModelState.AddModelError("Email", "Email already exist");
+                        return View(newUser);
+                    }
+                    else
+                    {
+                        int nextID = db.USERs.Max(x => x.ID) + 1;
+                        USER usr = new USER
+                        {
+                            ID = nextID,
+                            Email = newUser.Email,
+                            Password = hashPwd(newUser.Password),
+                            FullName = newUser.FullName,
+                            Phone = newUser.Phone,
+                            Address = newUser.Address,
+                            RoleID = 0,
+                            Status = false,
+                            SecretQuestion_ID = newUser.SecretQuestion_ID,
+                            Answer = newUser.Answer
+                        };
+                        try
+                        {
+                            db.USERs.Add(usr);
+                            db.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+                            ViewBag.DuplicateMessage = "Error occurred while register. Contact Admin for details";
+                            return View();
+                            throw;
+                        }
+                        ViewBag.SuccessMessage = "Successful Register";
+                        ModelState.Clear();
+                        return View();
+                    }
                 }
                 else
                 {
-                    int nextID = db.USERs.Max(x => x.ID) + 1;
-                    USER usr = new USER
-                    {
-                        ID = nextID,
-                        Email = newUser.Email,
-                        Password = hashPwd(newUser.Password),
-                        FullName = newUser.FullName,
-                        Phone = newUser.Phone,
-                        Address = newUser.Address,
-                        RoleID = 0,
-                        Status = false,
-                        SecretQuestion_ID = newUser.SecretQuestion_ID,
-                        Answer = newUser.Answer
-                    };
-                    try
-                    {
-                        db.USERs.Add(usr);
-                        db.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        ViewBag.DuplicateMessage = "Error occurred while register. Contact Admin for details";
-                        return View();
-                        throw;
-                    }
-                    ViewBag.SuccessMessage = "Successful Register";
-                    ModelState.Clear();
+                    return View();
                 }
-
-                return View();
             }
         }
 

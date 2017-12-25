@@ -26,7 +26,7 @@ namespace PPCRental.UnitTests
             var controller = new UserController();
                 Random random = new Random();
                 string address = string.Format("qa{0:0000}@test.com", random.Next(10000));
-                string password = "123456";
+                string password = "123";
                 USERMetadata user = new USERMetadata { 
                     Email = address,
                     Password = password,
@@ -51,6 +51,40 @@ namespace PPCRental.UnitTests
                 Assert.AreEqual("Successful Register", result.ViewBag.SuccessMessage);
             }
                 
+        }
+
+        [TestMethod]
+        public void ValidateRegisterAccountModel_InvalidPassword()
+        {
+            //Arrange
+            using (ppcrental3119Entities db = new ppcrental3119Entities())
+            {
+                var controller = new UserController();
+                Random random = new Random();
+                string address = string.Format("qa{0:0000}@test.com", random.Next(10000));
+                string password = "123456";
+                USERMetadata user = new USERMetadata
+                {
+                    Email = address,
+                    Password = password,
+                    ConfirmPassword = password,
+                    FullName = "Nguyen Van A",
+                    Phone = "0903771612",
+                    Address = "Tp. HCM",
+                    SecretQuestion_ID = 1,
+                    Answer = "AbcXyz",
+                };
+                var validationResults = TestModelHelper.ValidateModel(controller, user);
+
+                //Act
+                //var redirectRoute = controller.Register(user) as RedirectToRouteResult;
+
+                ////Assert
+                var result = controller.Register(user) as ViewResult;
+                Assert.AreEqual(1, validationResults.Count);
+                Assert.AreEqual("Minimum four characters and maximun twenty characters, at least one uppercase letter, one lowercase letter and one number.", validationResults[0].ErrorMessage);
+            }
+
         }
 
     }
