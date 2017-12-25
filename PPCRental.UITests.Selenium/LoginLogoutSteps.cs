@@ -7,13 +7,20 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PPCRental.UITests.Selenium.Support;
 
 namespace PPCRental.UITests.Selenium.StepDefinitions
 {
     [Binding]
-   public class LoginLogoutSteps
+   public class LoginLogoutSteps: SeleniumStepsBase
     {
         IWebDriver driver;
+        //[Given(@"following user account:")]
+        //public void GivenFollowingUserAccount(Table table)
+        //{
+            
+        //}
+
         [Given(@"I am in home page")]
         public void GivenIAmInHomePage()
         {
@@ -26,12 +33,34 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         {
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
         }
-
-        [When(@"I enter username and password")]
-        public void WhenIEnterUsernameAndPassword()
+        
+        [When(@"I enter username and password of user")]
+        public void WhenIEnterUsernameAndPasswordOfUser(Table table)
         {
-            driver.FindElement(By.Id("user_login")).SendKeys("sale");
-            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
+            driver.FindElement(By.Id("user_login")).SendKeys("user@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("user123");
+        }
+
+        [When(@"I enter username and password of sale")]
+        public void WhenIEnterUsernameAndPasswordOfSale(Table table)
+        {
+            driver.FindElement(By.Id("user_login")).SendKeys("SaleNo1@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("sale123");
+        }
+
+        [When(@"I enter username and password of agency")]
+        public void WhenIEnterUsernameAndPasswordOfAgency(Table table)
+        {
+            driver.FindElement(By.Id("user_login")).SendKeys("Agency@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("agency123");
+        }
+
+        [When(@"I enter username and password of admin")]
+        public void WhenIEnterUsernameAndPasswordOfAdmin(Table table)
+        {
+
+            driver.FindElement(By.Id("user_login")).SendKeys("admin@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("admin123");
         }
 
         [When(@"Click on login button")]
@@ -51,8 +80,8 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         {
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
-            driver.FindElement(By.Id("user_login")).SendKeys("sale");
-            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
+            driver.FindElement(By.Id("user_login")).SendKeys("user@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("user123");
             driver.FindElement(By.Id("wp-submit")).Click();
             Assert.AreEqual(true, driver.FindElement(By.Id("logout")).Displayed);
         }
@@ -72,26 +101,19 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         [When(@"I enter right username and wrong password")]
         public void WhenIEnterRightUsernameAndWrongPassword()
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
-            driver.FindElement(By.Id("user_login")).SendKeys("sale");
-            driver.FindElement(By.Id("user_pass")).SendKeys("ppc12345");
+ 
+            driver.FindElement(By.Id("user_login")).SendKeys("user@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("user12345678");
             driver.FindElement(By.Id("wp-submit")).Click();
+            Assert.AreEqual(true, driver.FindElement(By.Id("wp-submit")).Displayed);
         }
-
-        [Then(@"I could see message wrong password or username")]
-        public void ThenICouldSeeMessageWrongPasswordOrUsername()
-        {
-            Assert.AreEqual(true, driver.FindElement(By.Id("login_error")).Displayed);
-        }
-
         [When(@"I enter wrong username and right password")]
         public void WhenIEnterWrongUsernameAndRightPassword()
         {
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
-            driver.FindElement(By.Id("user_login")).SendKeys("saless");
-            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
+            driver.FindElement(By.Id("user_login")).SendKeys("User@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("user123");
             driver.FindElement(By.Id("wp-submit")).Click();
         }
 
@@ -99,11 +121,18 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         public void WhenIEnterWrongUsernameAndPassword()
         {
             driver = new ChromeDriver();
-          
-            driver.FindElement(By.Id("user_login")).SendKeys("saless");
-            driver.FindElement(By.Id("user_pass")).SendKeys("ppc12345");
+
+            driver.FindElement(By.Id("user_login")).SendKeys("user");
+            driver.FindElement(By.Id("user_pass")).SendKeys("user12345");
             driver.FindElement(By.Id("wp-submit")).Click();
         }
+        [Then(@"I could see message wrong password or username")]
+        public void ThenICouldSeeMessageWrongPasswordOrUsername()
+        {
+            Assert.AreEqual(true, driver.FindElement(By.Id("login_error")).Displayed);
+        }
+
+        
 
     }
 }

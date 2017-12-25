@@ -84,12 +84,12 @@ namespace PPCRental.AcceptanceTests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login  success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login  success user")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC007_Login-Logout")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void LoginSuccess()
+        public virtual void LoginSuccessUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login  success", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login  success user", new string[] {
                         "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
@@ -97,11 +97,141 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "username",
+                        "password"});
+            table1.AddRow(new string[] {
+                        "SaleNo1@gmail.com",
+                        "sale123"});
+            table1.AddRow(new string[] {
+                        "Agency@gmail.com",
+                        "agency123"});
+            table1.AddRow(new string[] {
+                        "admin@gmail.com",
+                        "admin123"});
+            table1.AddRow(new string[] {
+                        "user@gmail.com",
+                        "user123"});
 #line 10
- testRunner.When("I enter username and password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+ testRunner.When("I enter username and password of user", ((string)(null)), table1, "When ");
+#line 16
  testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 17
+ testRunner.Then("I could see logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login  success sale")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC007_Login-Logout")]
+        public virtual void LoginSuccessSale()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login  success sale", ((string[])(null)));
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 20
+ testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "username",
+                        "password"});
+            table2.AddRow(new string[] {
+                        "SaleNo1@gmail.com",
+                        "sale123"});
+            table2.AddRow(new string[] {
+                        "Agency@gmail.com",
+                        "agency123"});
+            table2.AddRow(new string[] {
+                        "admin@gmail.com",
+                        "admin123"});
+            table2.AddRow(new string[] {
+                        "user@gmail.com",
+                        "user123"});
+#line 22
+ testRunner.When("I enter username and password of sale", ((string)(null)), table2, "When ");
+#line 28
+ testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.Then("I could see logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login  success agency")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC007_Login-Logout")]
+        public virtual void LoginSuccessAgency()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login  success agency", ((string[])(null)));
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line 32
+ testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
+ testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "username",
+                        "password"});
+            table3.AddRow(new string[] {
+                        "SaleNo1@gmail.com",
+                        "sale123"});
+            table3.AddRow(new string[] {
+                        "Agency@gmail.com",
+                        "agency123"});
+            table3.AddRow(new string[] {
+                        "admin@gmail.com",
+                        "admin123"});
+            table3.AddRow(new string[] {
+                        "user@gmail.com",
+                        "user123"});
+#line 34
+ testRunner.When("I enter username and password of agency", ((string)(null)), table3, "When ");
+#line 40
+ testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.Then("I could see logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login  success admin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC007_Login-Logout")]
+        public virtual void LoginSuccessAdmin()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login  success admin", ((string[])(null)));
+#line 43
+this.ScenarioSetup(scenarioInfo);
+#line 44
+ testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 45
+ testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "username",
+                        "password"});
+            table4.AddRow(new string[] {
+                        "SaleNo1@gmail.com",
+                        "sale123"});
+            table4.AddRow(new string[] {
+                        "Agency@gmail.com",
+                        "agency123"});
+            table4.AddRow(new string[] {
+                        "admin@gmail.com",
+                        "admin123"});
+            table4.AddRow(new string[] {
+                        "user@gmail.com",
+                        "user123"});
+#line 46
+ testRunner.When("I enter username and password of admin", ((string)(null)), table4, "When ");
+#line 52
+ testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
  testRunner.Then("I could see logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -113,13 +243,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void LogoutSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logout success", ((string[])(null)));
-#line 14
+#line 55
 this.ScenarioSetup(scenarioInfo);
-#line 15
+#line 56
  testRunner.Given("I were login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 16
+#line 57
  testRunner.When("Click on logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 58
  testRunner.Then("I could see login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -131,17 +261,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void LoginWrongPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login wrong password", ((string[])(null)));
-#line 19
+#line 60
 this.ScenarioSetup(scenarioInfo);
-#line 20
+#line 61
  testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 62
  testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+#line 63
  testRunner.When("I enter right username and wrong password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
+#line 64
  testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 65
  testRunner.Then("I could see message wrong password or username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -153,17 +283,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void LoginWrongUsername()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login wrong username", ((string[])(null)));
-#line 26
+#line 67
 this.ScenarioSetup(scenarioInfo);
-#line 27
+#line 68
  testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 69
  testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 70
  testRunner.When("I enter wrong username and right password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 71
  testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 72
  testRunner.Then("I could see message wrong password or username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -175,17 +305,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void LoginWrongUsernameAndP()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login wrong username and p", ((string[])(null)));
-#line 33
+#line 74
 this.ScenarioSetup(scenarioInfo);
-#line 34
+#line 75
  testRunner.Given("I am in home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
+#line 76
  testRunner.And("Navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 77
  testRunner.When("I enter wrong username and password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 37
+#line 78
  testRunner.And("Click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 79
  testRunner.Then("I could see message wrong password or username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

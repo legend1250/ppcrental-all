@@ -4,10 +4,51 @@
 	When i don not use i logout my account
 
 @mytag
-Scenario: Login  success
+Scenario: Login  success user
 	Given I am in home page
 	And Navigate to login page
-	When I enter username and password
+	When I enter username and password of user
+	| username          | password  |
+	| SaleNo1@gmail.com | sale123   |
+	| Agency@gmail.com  | agency123 |
+	| admin@gmail.com   | admin123  |
+	| user@gmail.com    | user123   |
+	And Click on login button
+	Then I could see logout button
+
+Scenario: Login  success sale
+	Given I am in home page
+	And Navigate to login page
+	When I enter username and password of sale
+	| username          | password  |
+	| SaleNo1@gmail.com | sale123   |
+	| Agency@gmail.com  | agency123 |
+	| admin@gmail.com   | admin123  |
+	| user@gmail.com    | user123   |
+	And Click on login button
+	Then I could see logout button
+
+Scenario: Login  success agency
+	Given I am in home page
+	And Navigate to login page
+	When I enter username and password of agency
+	| username          | password  |
+	| SaleNo1@gmail.com | sale123   |
+	| Agency@gmail.com  | agency123 |
+	| admin@gmail.com   | admin123  |
+	| user@gmail.com    | user123   |
+	And Click on login button
+	Then I could see logout button
+
+Scenario: Login  success admin
+	Given I am in home page
+	And Navigate to login page
+	When I enter username and password of admin
+	| username          | password  |
+	| SaleNo1@gmail.com | sale123   |
+	| Agency@gmail.com  | agency123 |
+	| admin@gmail.com   | admin123  |
+	| user@gmail.com    | user123   |
 	And Click on login button
 	Then I could see logout button
 

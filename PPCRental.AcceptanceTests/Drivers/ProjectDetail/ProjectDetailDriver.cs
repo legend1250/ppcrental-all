@@ -11,12 +11,10 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
 {
    public class ProjectDetailDriver
     {
-        //private const decimal ProjectDefaultPrice = 10;
+       
         private readonly CatalogContext _context;
         private ActionResult result;
-
-       // public ActionResult Result { get => result; set => result = value; }
-
+        
         public ProjectDetailDriver(CatalogContext context)
         {
             _context = context;
@@ -25,8 +23,7 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
         {
             using (var db = new ppcrental3119Entities())
             {
-                //var oStreets = db.STREETs.ToList();
-                //var oProject = db.PROPERTies.ToList();
+                
                 foreach (var item in projects.Rows)
                 {
                     var tPropertyType = item["PropertyType"].ToString();
@@ -66,12 +63,11 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
                         Create_post = DateTime.Today,
                         Updated_at = DateTime.Today,
                         Sale_ID = db.ROLEs.FirstOrDefault(sale => sale.roleName == tSale_ID).id,
-                       // UserID = db.USERs.FirstOrDefault(m => m.Email == tUser_ID).ID,
+                      //  UserID = db.USERs.FirstOrDefault(m => m.Email == tUser_ID).ID,
                         Note= item["Note"],
                         Status_ID = e.ID
                     };
-                    //project.STREET = db.STREETs.Find(project.Street_ID);
-                    // project.STREET.StreetName
+                   
                     _context.ReferenceProjects.Add(projects.Header.Contains("ID") ? item["ID"] : project.PropertyName, project);
                     db.PROPERTies.Add(project);
                 }
