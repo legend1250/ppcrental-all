@@ -53,7 +53,7 @@
             <strong>Success!</strong> <span>Indicates a successful or positive action.</span>
         </div>
         <div class="alert alert-danger qa-alert">
-            <strong>Danger!</strong> <span>Indicates a dangerous or potentially negative action.</span>
+            <strong>Error!</strong> <span>Indicates a dangerous or potentially negative action.</span>
         </div>
     </div>
     <div class="qa-alert-add-image">
@@ -61,7 +61,7 @@
             <strong>Success!</strong> <span>Indicates a successful or positive action.</span>
         </div>
         <div class="alert alert-danger qa-alert">
-            <strong>Danger!</strong> <span>Indicates a dangerous or potentially negative action.</span>
+            <strong>Error!</strong> <span>Indicates a dangerous or potentially negative action.</span>
         </div>
     </div>
     <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
@@ -75,7 +75,7 @@
             <label class="control-label col-sm-1" for="ava">Avatar:</label>
             <div class="col-sm-5">
                 <div style="position:relative">
-                    <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly/>
+                    <input type="text" class="form-control col-sm-11" id="ava" name="avatar" style="position:absolute" readonly required/>
                     <input type="file" id="avaUpload" name="avatarUpload" style="display:none">
                     <input type="button" class="btn btn-default col-sm-1" id="btnAvaUp" value="..." style="position:absolute;top:0;right:0px;width:50px;" />
                 </div>
@@ -232,90 +232,172 @@
                 //Created_at: date,
                 //Updated_at: date,
             }
-            $.ajax({
-                url: '/Project/Submit/',
-                type: "POST",
-                data: {newProject},
-                dataType: "json",
-              //  contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    //alert(response['Message']);
-                    var status = parseInt(response['Status']);
-                    var message = response.Message;
-                   // alert(status);
-                    //alert(message);
-                    if (status == 1) {
-                        //success
-                        $(".qa-alert-add-infor .alert-success").css("display", "block");
-                        $(".qa-alert-add-infor .alert-danger").css("display", "none");
-                        $(".qa-alert-add-infor .alert-danger").removeClass("add-project-fail");
-                        $(".qa-alert-add-infor .alert-success").addClass("add-project-success");
-                        $(".qa-alert-add-infor .alert-success span").html(message);
-                    } else if (status == 0) {
-                        //fail
-                        $(".qa-alert-add-infor .alert-danger").css("display", "block");
-                        $(".qa-alert-add-infor .alert-success").css("display", "none");
-                        $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
-                        $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
-                        $(".qa-alert-add-infor .alert-danger span").html(message);
-                    }
+            var checkName = $('#name').val();
+            var checkAvatar = $('#ava').val();
+            var checkDistrict = $('select[id=district]').val();
+            var checkStreet = $('select[id=streetSelect]').val();
+            var checkWard = $('select[id=wardSelect]').val();
+            var checkType = $('select[id=ptype]').val();
+            var checkPrice = $('#price').val();
+            var checkArea = $('#area').val();
+            var checkBed = $('#bed').val();
+            var checkBath = $('#bath').val();
+            var checkPack = $('#packing').val();
+            //alert(checkPrice);
+            if (checkName == null || checkName=="") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Project Name is required");
+            }else if (checkAvatar == null || checkAvatar == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Avatar is required");
+            } else if (parseInt(checkDistrict) == 0) {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("District is required");
+            } else if (parseInt(checkStreet) == 0) {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Street is required");
+            } else if (parseInt(checkWard) == 0) {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Ward is required");
+            } else if (parseInt(checkType) == 0) {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Type of roject is required");
+            } else if (checkPrice == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Price is required");
+            } else if (checkArea == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Area is required");
+            } else if (checkBed == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("BedRoom is required");
+            } else if (checkBath == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("BathRoom is required");
+            } else if (checkPack == "") {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Parking Place is required");
+            }
+            else {
+                $.ajax({
+                    url: '/Project/Submit/',
+                    type: "POST",
+                    data: { newProject },
+                    dataType: "json",
+                    //  contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        //alert(response['Message']);
+                        var status = parseInt(response['Status']);
+                        var message = response.Message;
+                        // alert(status);
+                        //alert(message);
+                        if (status == 1) {
+                            //success
+                            $(".qa-alert-add-infor .alert-success").css("display", "block");
+                            $(".qa-alert-add-infor .alert-danger").css("display", "none");
+                            $(".qa-alert-add-infor .alert-danger").removeClass("add-project-fail");
+                            $(".qa-alert-add-infor .alert-success").addClass("add-project-success");
+                            $(".qa-alert-add-infor .alert-success span").html(message);
+                        } else if (status == 0) {
+                            //fail
+                            $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                            $(".qa-alert-add-infor .alert-success").css("display", "none");
+                            $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                            $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                            $(".qa-alert-add-infor .alert-danger span").html(message);
+                        }
 
-                    $.ajax({
-                        url: '/Project/saveImage/',
-                        type: "POST",
-                        contentType: false,
-                        processData: false,
-                        data: formData,
-                        //  contentType: "application/json; charset=utf-8",
-                        success: function (response) {
-                            
-                            var status = parseInt(response['Status']);
-                            var message = response.Message;
-                            // alert(status);
-                            //alert(message);
-                            if (status == 1) {
-                                //success
-                                $(".qa-alert-add-image .alert-success").css("display", "block");
-                                $(".qa-alert-add-image .alert-danger").css("display", "none");
-                                $(".qa-alert-add-image .alert-danger").removeClass("add-image-fail");
-                                $(".qa-alert-add-image .alert-success").addClass("add-image-success");
-                                $(".qa-alert-add-image .alert-success span").html(message);
-                            } else if (status == 0) {
-                                //fail
+                        $.ajax({
+                            url: '/Project/saveImage/',
+                            type: "POST",
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            //  contentType: "application/json; charset=utf-8",
+                            success: function (response) {
+
+                                var status = parseInt(response['Status']);
+                                var message = response.Message;
+                                // alert(status);
+                                //alert(message);
+                                if (status == 1) {
+                                    //success
+                                    $(".qa-alert-add-image .alert-success").css("display", "block");
+                                    $(".qa-alert-add-image .alert-danger").css("display", "none");
+                                    $(".qa-alert-add-image .alert-danger").removeClass("add-image-fail");
+                                    $(".qa-alert-add-image .alert-success").addClass("add-image-success");
+                                    $(".qa-alert-add-image .alert-success span").html(message);
+                                } else if (status == 0) {
+                                    //fail
+                                    $(".qa-alert-add-image .alert-danger").css("display", "block");
+                                    $(".qa-alert-add-image .alert-success").css("display", "none");
+                                    $(".qa-alert-add-image .alert-danger").addClass("add-image-fail");
+                                    $(".qa-alert-add-image .alert-success").removeClass("add-image-success");
+                                    $(".qa-alert-add-image .alert-danger span").html(message);
+                                }
+                                clear();
+
+                            },
+                            error: function (err) {
+                                //alert("Có lỗi khi upload:" + err.statusText);
                                 $(".qa-alert-add-image .alert-danger").css("display", "block");
                                 $(".qa-alert-add-image .alert-success").css("display", "none");
                                 $(".qa-alert-add-image .alert-danger").addClass("add-image-fail");
                                 $(".qa-alert-add-image .alert-success").removeClass("add-image-success");
-                                $(".qa-alert-add-image .alert-danger span").html(message);
-                            }
-                            clear();
+                                $(".qa-alert-add-image .alert-danger span").html(err.statusText);
+                            },
+                        });
 
-                        },
-                        error: function (err) {
-                            //alert("Có lỗi khi upload:" + err.statusText);
-                            $(".qa-alert-add-image .alert-danger").css("display", "block");
-                            $(".qa-alert-add-image .alert-success").css("display", "none");
-                            $(".qa-alert-add-image .alert-danger").addClass("add-image-fail");
-                            $(".qa-alert-add-image .alert-success").removeClass("add-image-success");
-                            $(".qa-alert-add-image .alert-danger span").html(err.statusText);
-                        },
-                    });
-                    
 
-                },
-                error: function (err) {
-                    //alert("Error while inserting data");
-                    $(".qa-alert-add-infor .alert-danger").css("display", "block");
-                    $(".qa-alert-add-infor .alert-success").css("display", "none");
-                    $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
-                    $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
-                    $(".qa-alert-add-infor .alert-danger span").html(err.statusText);
+                    },
+                    error: function (err) {
+                        //alert("Error while inserting data");
+                        $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                        $(".qa-alert-add-infor .alert-success").css("display", "none");
+                        $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                        $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                        $(".qa-alert-add-infor .alert-danger span").html(err.statusText);
 
-                },
+                    },
 
-            });
+                });
+
+                return false;
+            }
             
-            return false;
         });
         function clear() {
             $(':input[type="text"]').val('');
