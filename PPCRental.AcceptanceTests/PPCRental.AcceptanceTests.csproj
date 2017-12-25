@@ -119,6 +119,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UC002_ViewListOfPrpject.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\UC008_ForgotPassword.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UC008_ForgotPassword.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\UC011_ChangePassword.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +154,10 @@
     <None Include="Features\UC004_PostProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UC004_PostProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UC008_ForgotPassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UC008_ForgotPassword.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\UC011_ChangePassword.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
