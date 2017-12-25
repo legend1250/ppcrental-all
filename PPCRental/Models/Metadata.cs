@@ -13,7 +13,6 @@ namespace PPCRental.Models
         [Display(Name = "UserID")]
         public string ID { get; set; }
 
-
         [Required(ErrorMessage = "Email must not be null")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
@@ -45,15 +44,6 @@ namespace PPCRental.Models
         [Required(ErrorMessage = "Address must not be null")]
         [Display(Name = "Address")]
         public string Address { get; set; }
-
-        [Required]
-        [Display(Name = "UserRole")]
-        [ForeignKey(nameof(Models.ROLE))]
-        public string RoleID { get; set; }
-
-        [Required]
-        [Display(Name = "UserStatus")]
-        public Boolean Status { get; set; }
 
         [Required]
         [Display(Name = "Security Question")]
