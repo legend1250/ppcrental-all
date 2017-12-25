@@ -19,20 +19,20 @@
 
     }
     //verify user
-    else if (!verify.Equals("Verified"))
-    {
+    //else if (!verify.Equals("Verified"))
+    //{
 
-        Session["VerifyUser"] = "NotVerify";
-        Session["SavePath"] = path;
-        Response.Redirect("~/User/VerifyUser", false);
-    }
-    else if (!(userRole.Equals("Sale")))
-    {
-        Session.RemoveAll();
-        Session["login-status"] = "WrongRole";
-        Response.Redirect("~/User/Login", false);
+    //    Session["VerifyUser"] = "NotVerify";
+    //    Session["SavePath"] = path;
+    //    Response.Redirect("~/User/VerifyUser", false);
+    //}
+    //else if (!(userRole.Equals("Sale")))
+    //{
+    //    Session.RemoveAll();
+    //    Session["login-status"] = "WrongRole";
+    //    Response.Redirect("~/User/Login", false);
 
-    }
+    //}
 }
 <style>
     .qa-form {
