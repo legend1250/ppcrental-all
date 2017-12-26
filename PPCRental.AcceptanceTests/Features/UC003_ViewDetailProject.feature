@@ -1,4 +1,8 @@
-﻿Feature: UC003_ViewDetailProject
+﻿
+
+#@automated
+@web
+Feature: UC003_ViewDetailProject
 	As a potential customer
 	I want to see the details of a project
 	So that I can better decide to buy it.
@@ -17,9 +21,9 @@ Given the following project
 | MY HUNG Prop 3    | My Hung Prop.jpg       |              | Villa        | NaN                                                                                                                                                                                                                                                                                                                                                                                                                                             | Phú Lâm A        | P.07          | Quận 6        | 115000 | USD       | 280  | 4       | 4        | 2            | lythihuyenchau@gmail.com | Đã duyệt | Done | Agency |
 | NovaLand          | NovaLand.jpg           | NovaLand.jpg | House        | The well equipped kitchen is opened on a cozy living room and a dining area with table and chairs.. Behind the industrial glass wall you will find the bedroom area with a double bed and a large closet.                                                                                                                                                                                                                                       | Đặng Dung        | P.Bình Khánh  | Q. Bình Thạnh | 45000  | USD       | 240  | 2       | 2        | 2            | annguyen                 | Đã duyệt | Done | Agency |
 
-@mytag
+
 Scenario: Detail project can be seen
-	When I open the details of 'CITY Gate'
+	When I open the details of 'ASA LightT'
 	Then the project details should show 
-	| PropertyName      | Avatar                 | Images       | PropertyType | Content                                                                                                                                                                                                                                                                                                                                                                                                                                         | Street           | Ward          | District      | Price  | UnitPrice | Area | Bedroom | Bathroom | PackingPlace | User                     | Status   | Note |
-	| CITY Gate         | City Gate.jpg          |              | Villa        | Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.                                                                                                 | Nguyễn Hiền      | P.03          | Quận 3        | 120000 | USD       | 250  | 4       | 4        | 2            | Thang@gmail.com          | Đã duyệt | Done |
+	| PropertyName      | Avatar                 | Images       | PropertyType | Content   | Street           | Ward          | District      | Price  | UnitPrice | Area | Bedroom | Bathroom | PackingPlace | User                     | Status   | Note | Sale   |
+	| ASA LightT        | Asa Light.jpg          |              | Apartment    | NaN       | Bùi Viện         | P.Bến Nghé    | Quận 1        | 71000  | USD       | 150  | 3       | 3        | 1            | lythihuyenchau@gmail.com | Đã duyệt | Done | Agency |

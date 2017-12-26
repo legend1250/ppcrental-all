@@ -20,7 +20,7 @@ namespace PPCRental.UITests.StepDefinitions
         [When(@"I press property button")]
         public void WhenIPressPropertyButton()
         {
-            driver.FindElement(By.XPath("//*[@id='property']")).Click();
+            driver.FindElement(By.Id("property")).Click();
         }
         
         [Then(@"I see list of project")]

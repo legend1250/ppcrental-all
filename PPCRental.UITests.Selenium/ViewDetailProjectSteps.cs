@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 using PPCRental.UITests.Selenium.Support;
 using PPCRental.AcceptanceTests.Common;
@@ -11,39 +8,32 @@ using PPCRental.Models;
 namespace PPCRental.UITests.Selenium
 {
     [Binding, Scope(Tag = "web")]
-    public sealed class ViewDetailProjectSteps: SeleniumStepsBase
+    public class ViewDetailProjectSteps: SeleniumStepsBase
     {
-        [Given(@"the following project")]
-        public void GivenTheFollowingProject(Table givenProject)
-        {
-            Browser.NavigateTo("Home");
-            Browser.NavigateTo("Project/ProjectList");
-
-          //  Browser.SetTextBoxValue("searchTerm", searchText);
-           // Browser.SubmitForm("searchForm");
-        }
+        
 
         [When(@"I open the details of '(.*)'")]
         public void WhenIOpenTheDetailsOf(string expectedTitleList)
         {
-            //Arrange
-            var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
-
-            //Action
-            Browser.SwitchTo().DefaultContent();
-           // var foundProjects = from row in Browser.FindElements(By.XPath("//*[@id='property - listing']/div/div/div[9]/article/div/header/div/h6/a"))
-             //                let PropertyName = row.FindElement(By.XPath("")).Text
-                             //let Content = row.FindElement(By.Id("author")).Text
-                //             select new  PROPERTY { PropertyName= PropertyName };
-
-            //Assert
-            // ProjectAssertions.FoundProjectShouldMatchTitles(foundProjects, expectedTitles);
+            Browser.NavigateTo("Home");
+            Browser.FindElement(By.CssSelector("#home-property-listing > div > div > div:nth-child(1) > article > div > header > div > h6 > a")).Click();
+            
         }
 
         [Then(@"the project details should show")]
         public void ThenTheProjectDetailsShouldShow(Table showProjectDetail)
         {
-           
+            var expectedTitles = showProjectDetail.Rows.Select(r => r["PropertyName"]);
+            // string found = 
+            //Action
+            string found = Browser.FindElement(By.XPath("//*[@id='property - single']/div[2]/div/div[1]/section[1]/h3")).Text;
+            //var foundBooks = from row in Browser.FindElements(By.XPath("//*[@id='property - single']/div[2]/div/div[1]/section[1]/h3"))
+            //                 let propertyName = row.FindElement(By.XPath("//*[@id='property - single']/div[2]/div/div[1]/section[1]/h3")).Text
+            //                 select new PROPERTY { PropertyName = propertyName };
+
+            //Assert
+            //ProjectAssertions.FoundProjectShouldMatchTitlesInOrder(found, expectedTitles);
         }
     }
 }
+"
