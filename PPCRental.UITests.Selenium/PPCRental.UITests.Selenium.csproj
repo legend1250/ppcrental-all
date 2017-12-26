@@ -108,6 +108,7 @@
     <Compile Include="PostProject.cs" />
     <Compile Include="Register.cs" />
     <Compile Include="SearchSteps1.cs" />
+    <Compile Include="ViewDetailProjectSteps.cs" />
     <Compile Include="ViewListOfPrpjectSteps.cs" />
     <Compile Include="Support\Browsers.cs" />
     <Compile Include="Support\SeleniumController.cs" />

@@ -8,10 +8,10 @@ using PPCRental.AcceptanceTests.Drivers.ProjectDetail;
 namespace PPCRental.AcceptanceTests.StepDefinitions
 {
     [Binding]
-    public sealed class ViewDetailProject
+    public sealed class ViewDetailProjectSteps
     {
         private readonly ProjectDetailDriver _projectDetailDriver;
-        public  ViewDetailProject(ProjectDetailDriver project)
+        public  ViewDetailProjectSteps(ProjectDetailDriver project)
         {
             _projectDetailDriver = project;
         }

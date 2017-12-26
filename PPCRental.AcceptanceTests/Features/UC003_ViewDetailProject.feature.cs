@@ -45,7 +45,8 @@ namespace PPCRental.AcceptanceTests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UC003_ViewDetailProject", "\tAs a potential customer\r\n\tI want to see the details of a project\r\n\tSo that I can" +
-                    " better decide to buy it.", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " better decide to buy it.", ProgrammingLanguage.CSharp, new string[] {
+                        "web"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -85,7 +86,7 @@ namespace PPCRental.AcceptanceTests.Features
         
         public virtual void FeatureBackground()
         {
-#line 5
+#line 9
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
@@ -104,7 +105,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "PackingPlace",
                         "User",
                         "Status",
-                        "Note"});
+                        "Note",
+                        "Sale"});
             table1.AddRow(new string[] {
                         "ASA LightT",
                         "Asa Light.jpg",
@@ -122,7 +124,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CALEDON Tan Phu",
                         "Caledon Tan Phu.jpg",
@@ -140,7 +143,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "VINH LOC Central",
                         "Vinh Loc Central.jpg",
@@ -160,7 +164,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "SAIGONRESE Plaza",
                         "Saigonrese.jpg",
@@ -180,7 +185,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CAPSULE Residence",
                         "Capsule Residence .jpg",
@@ -200,7 +206,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "FLORAL HOA BINH",
                         "Floral Hoa Binh.jpg",
@@ -218,7 +225,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "ORIENT Plaza",
                         "Orient Plaza.jpg",
@@ -236,7 +244,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "1",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "RIVA Garden",
                         "Riva Garden.jpg",
@@ -254,7 +263,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "CITY Gate",
                         "City Gate.jpg",
@@ -272,7 +282,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "Thang@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "MY HUNG Prop 3",
                         "My Hung Prop.jpg",
@@ -290,7 +301,8 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
+                        "Done",
+                        "Agency"});
             table1.AddRow(new string[] {
                         "NovaLand",
                         "NovaLand.jpg",
@@ -310,8 +322,9 @@ namespace PPCRental.AcceptanceTests.Features
                         "2",
                         "annguyen",
                         "Đã duyệt",
-                        "Done"});
-#line 6
+                        "Done",
+                        "Agency"});
+#line 10
 testRunner.Given("the following project", ((string)(null)), table1, "Given ");
 #line hidden
         }
@@ -319,20 +332,22 @@ testRunner.Given("the following project", ((string)(null)), table1, "Given ");
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Detail project can be seen")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC003_ViewDetailProject")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("web")]
         public virtual void DetailProjectCanBeSeen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Detail project can be seen", new string[] {
-                        "mytag"});
-#line 21
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Detail project can be seen", ((string[])(null)));
+#line 25
 this.ScenarioSetup(scenarioInfo);
-#line 5
+#line 9
 this.FeatureBackground();
-#line 22
- testRunner.When("I open the details of \'CITY Gate\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.When("I open the details of \'ASA LightT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "PropertyName",
+                        "Avatar",
+                        "Images",
+                        "PropertyType",
                         "Content",
                         "Street",
                         "Ward",
@@ -345,23 +360,28 @@ this.FeatureBackground();
                         "PackingPlace",
                         "User",
                         "Status",
-                        "Note"});
+                        "Note",
+                        "Sale"});
             table2.AddRow(new string[] {
-                        "CITY Gate",
-                        @"Studio apartment at central of CBD, nearby Ben Thanh market, Bui Vien Backpacker Area, 23/9 park…Live here, and the best and most beloved sites of the city will be just outside your door – from the cafes and restaurants of the financial district, to the waterfront shops and attractions of downtown Ben Thanh. It’s all just steps away.",
-                        "Nguyễn Hiền",
-                        "P.03",
-                        "Quận 3",
-                        "120000",
+                        "ASA LightT",
+                        "Asa Light.jpg",
+                        "",
+                        "Apartment",
+                        "NaN",
+                        "Bùi Viện",
+                        "P.Bến Nghé",
+                        "Quận 1",
+                        "71000",
                         "USD",
-                        "250",
-                        "4",
-                        "4",
-                        "2",
-                        "Thang@gmail.com",
+                        "150",
+                        "3",
+                        "3",
+                        "1",
+                        "lythihuyenchau@gmail.com",
                         "Đã duyệt",
-                        "Done"});
-#line 23
+                        "Done",
+                        "Agency"});
+#line 27
  testRunner.Then("the project details should show", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();

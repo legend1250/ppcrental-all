@@ -14,7 +14,7 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         //IWebDriver driver;
     
         [When(@"I search for project by the phrase '(.*)'")]
-        public void WhenISearchForProjectByThePhrase(string searchText)
+            public void WhenISearchForProjectByThePhrase(string searchText)
         {
             //Navigate to home page
             Browser.NavigateTo("Home");
