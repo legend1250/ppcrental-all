@@ -102,7 +102,7 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="district">District:</label>
             <div class="col-sm-3">
-                <select class="form-control qa-select" id="district" name="district">
+                <select class="form-control qa-select" id="district" name="district" required>
                     <option value="0" selected style="font-weight:bold;">District</option>
                     @{ 
                         foreach (var item in Model.districtService)
@@ -114,14 +114,14 @@
             </div>
             <label class="control-label col-sm-1" for="street">Street:</label>
             <div class="col-sm-3">
-                <select class="form-control select2 qa-select" id="streetSelect" name="street" disabled>
+                <select class="form-control select2 qa-select" id="streetSelect" name="street" disabled required>
                     <option value="0" selected disabled style="font-weight:bold">Street</option>
                 </select>
             </div>  
             <label class="control-label col-sm-1" for="ward">Ward:</label>
             <div class="col-sm-3">
-                <select class="form-control select3 qa-select" id="wardSelect" name="ward" disabled>
-                    <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                <select class="form-control select3 qa-select" id="wardSelect" name="ward" disabled required>
+                    <option value="0" selected disabled style="font-weight:bold">Ward</option>
                 </select>
             </div>
             
@@ -138,8 +138,8 @@
             </div>
             <label class="control-label col-sm-1" for="ptype">ProjectType:</label>
             <div class="col-sm-3">
-                <select class="form-control qa-select" id="ptype">
-                    <option value="-1" selected disabled style="font-weight:bold">Type of project</option>
+                <select class="form-control qa-select" id="ptype" required>
+                    <option value="0" selected disabled style="font-weight:bold">Type of project</option>
                     @{ 
                         foreach (var item in Model.propertyTypeService)
                         {
@@ -153,21 +153,21 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="bed">BedRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bed" name="bed" min="0">
+                <input type="number" class="form-control" id="bed" name="bed" min="0" required>
             </div>
             <label class="control-label col-sm-1" for="bath">BathRoom:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="bath" name="bath" min="0">
+                <input type="number" class="form-control" id="bath" name="bath" min="0" required>
             </div>
             <label class="control-label col-sm-1" for="packing">PackingPlace:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="packing" name="packing" min="0">
+                <input type="number" class="form-control" id="packing" name="packing" min="0" required>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="content">Content:</label>
             <div class="col-sm-11">
-                <textarea class="form-control" id="content" rows="8"></textarea>
+                <textarea class="form-control" id="content" rows="8" required="required" minlength="20"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -243,6 +243,7 @@
             var checkBed = $('#bed').val();
             var checkBath = $('#bath').val();
             var checkPack = $('#packing').val();
+            var content = $('#content').val();
             //alert(checkPrice);
             if (checkName == null || checkName=="") {
                 $(".qa-alert-add-infor .alert-danger").css("display", "block");
@@ -274,7 +275,7 @@
                 $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
                 $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
                 $(".qa-alert-add-infor .alert-danger span").html("Ward is required");
-            } else if (parseInt(checkType) == 0) {
+            } else if (parseInt(checkType) == 0 || checkType == null) {
                 $(".qa-alert-add-infor .alert-danger").css("display", "block");
                 $(".qa-alert-add-infor .alert-success").css("display", "none");
                 $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
@@ -310,6 +311,13 @@
                 $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
                 $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
                 $(".qa-alert-add-infor .alert-danger span").html("Parking Place is required");
+            }
+            else if (content.length < 20) {
+                $(".qa-alert-add-infor .alert-danger").css("display", "block");
+                $(".qa-alert-add-infor .alert-success").css("display", "none");
+                $(".qa-alert-add-infor .alert-danger").addClass("add-project-fail");
+                $(".qa-alert-add-infor .alert-success").removeClass("add-project-success");
+                $(".qa-alert-add-infor .alert-danger span").html("Content length required at least 20 character");
             }
             else {
                 $.ajax({

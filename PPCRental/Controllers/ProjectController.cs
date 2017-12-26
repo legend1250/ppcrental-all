@@ -26,7 +26,7 @@ namespace PPCRental.Controllers
             ViewData["Ward"] = db.WARDs.ToList();
             ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
             //Count
-            ViewData["TotalProperty"] = db.View_project_from_index.Count();
+            ViewData["TotalProperty"] = db.View_project_from_index.Where(x => x.Status_ID == 3).Count();
 
             return View();
         }
@@ -141,6 +141,8 @@ namespace PPCRental.Controllers
             DateTime time = DateTime.Now;      
             try
             {
+                int UserID = int.Parse(Session["userID"].ToString());
+                newProject.UserID = UserID;
                 newProject.Updated_at = time;
                 newProject.Created_at = time;
                 db.PROPERTies.Add(newProject);
