@@ -23,8 +23,8 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
             //Navigate to Login page 
             driver.Navigate().GoToUrl("http://localhost:53887/User/Login");
             //input username & password
-            driver.FindElement(By.Id("user_login")).SendKeys("annguyen");
-            driver.FindElement(By.Id("user_pass")).SendKeys("123456");
+            driver.FindElement(By.Id("user_login")).SendKeys("annguyen@gmail.com");
+            driver.FindElement(By.Id("user_pass")).SendKeys("ppc123");
             //Click Login button
             driver.FindElement(By.Id("wp-submit")).Click();
         }
@@ -40,7 +40,7 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
         public void WhenIInputInformationForANewProject()
         {
             //set name for project
-            driver.FindElement(By.Id("name")).SendKeys("KantoPlaza");
+            driver.FindElement(By.Id("name")).SendKeys("JohtoPlaza");
             //add district
             IWebElement district = driver.FindElement(By.Id("district"));
             district.Click();
@@ -51,7 +51,7 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
             IWebElement street = driver.FindElement(By.Id("streetSelect"));
             street.Click();
             SelectElement street_select = new SelectElement(street);
-            street_select.SelectByIndex(24);
+            street_select.SelectByIndex(7);
 
             //add ward
             IWebElement ward = driver.FindElement(By.Id("wardSelect"));
@@ -78,14 +78,14 @@ namespace PPCRental.UITests.Selenium.StepDefinitions
             driver.FindElement(By.Id("packing")).SendKeys("1");
             // add content
             driver.FindElement(By.Id("content")).SendKeys("We have a fully furnished master room attached toilet with air con, fan, queen sized bed, 4 door wardrobe and dressing table and TV. All newly purchased items.");
-
-            //driver.FindElement(By.Id("submit")).Click();
+            //click button submit
+            driver.FindElement(By.Id("qa-submit")).Click();
         }
 
         [Then(@"Show message ""(.*)""")]
         public void ThenShowMessage(string p0)
         {
-            driver.FindElement(By.XPath("/html/body/div[1]/div/div[1]/div[1]")).Text.CompareTo("Success! Add Success,wait for appover.");
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div[1]/div[2]/span")).Text.CompareTo("Avatar is required");
         }
 
     }
