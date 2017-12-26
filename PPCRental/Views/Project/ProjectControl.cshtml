@@ -315,10 +315,19 @@
                
                 <td>@item.Price @item.UnitPrice</td>
                 <td>@item.Area m2</td>
-                <td>Fixing...</td>
+                @{
+                    if (item.USER == null)
+                    {
+                        <td>NoUser</td>
+                    }
+                    else
+                    {
+                        <td>@item.USER.FullName</td>
+                    }
+                }
                 <td><button class="btn btn-default qa-edit"><i class="glyphicon glyphicon-edit"></i> Edit</button></td>
               </tr>
-          }
+            }
         </tbody>
     </table>
 
