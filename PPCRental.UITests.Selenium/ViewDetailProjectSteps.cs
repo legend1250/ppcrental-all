@@ -36,4 +36,3 @@ namespace PPCRental.UITests.Selenium
         }
     }
 }
-"
