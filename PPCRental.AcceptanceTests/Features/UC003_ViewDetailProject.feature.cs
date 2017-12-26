@@ -46,7 +46,7 @@ namespace PPCRental.AcceptanceTests.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UC003_ViewDetailProject", "\tAs a potential customer\r\n\tI want to see the details of a project\r\n\tSo that I can" +
                     " better decide to buy it.", ProgrammingLanguage.CSharp, new string[] {
-                        "web"});
+                        "automated"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -332,7 +332,7 @@ testRunner.Given("the following project", ((string)(null)), table1, "Given ");
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Detail project can be seen")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "UC003_ViewDetailProject")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("web")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("automated")]
         public virtual void DetailProjectCanBeSeen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Detail project can be seen", ((string[])(null)));

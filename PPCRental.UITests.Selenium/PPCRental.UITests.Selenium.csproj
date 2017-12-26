@@ -106,7 +106,6 @@
     <Compile Include="ChangePassword.cs" />
     <Compile Include="LoginLogoutSteps.cs" />
     <Compile Include="PostProject.cs" />
-    <Compile Include="Register.cs" />
     <Compile Include="SearchSteps1.cs" />
     <Compile Include="ViewDetailProjectSteps.cs" />
     <Compile Include="ViewListOfPrpjectSteps.cs" />

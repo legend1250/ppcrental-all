@@ -5,41 +5,31 @@ using PPCRental.UITests.Selenium.Support;
 using PPCRental.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PPCRental.UITests.Selenium.StepDefinitions
 {
     [Binding, Scope(Tag = "web")]
     public class SearchSteps : SeleniumStepsBase
     {
-        //IWebDriver driver;
-    
+        IWebDriver driver;
+
         [When(@"I search for project by the phrase '(.*)'")]
             public void WhenISearchForProjectByThePhrase(string searchText)
         {
-            //Navigate to home page
-            Browser.NavigateTo("Home");
-
-            //Input value to search for
-            Browser.SetTextBoxValue("searchTerm", searchText);
-
-            //Click on search button
-            Browser.SubmitForm("searchForm");
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://localhost:53887/Home/Index");
+            driver.FindElement(By.Id("keyword")).SendKeys("CITY Gate");
+            driver.FindElement(By.Id("keyword")).SendKeys("Garden");
+            driver.FindElement(By.XPath("//*[@id='adv - search - form']/button")).Click();
         }
         
         [Then(@"the list of found project should contain only: '(.*)'")]
         public void ThenTheListOfFoundProjectShouldContainOnly(string expectedTitleList)
         {
-            //Arrange
-            var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
-
-            //Action
-            Browser.SwitchTo().DefaultContent();
-            var foundProjects = from row in Browser.FindElements(By.XPath("//table/tbody/tr")) //???xpath
-                             let propertyname = row.FindElement(By.Id("keyword")).Text
-                             select new PROPERTY { PropertyName= propertyname };
-
-            //Assert
-            ProjectAssertions.FoundProjectShouldMatchTitles(foundProjects, expectedTitles);
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//*[@id='property - listing']/div/div/div[4]/article/div/header/div/h6/a")).Displayed);
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//*[@id='property - listing']/div/div/div/article/div/header/div/h6/a")).Displayed);
+            
         }
     }
 }

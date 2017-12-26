@@ -63,7 +63,7 @@ namespace PPCRental.AcceptanceTests.Drivers.ProjectDetail
                         Create_post = DateTime.Today,
                         Updated_at = DateTime.Today,
                         Sale_ID = db.ROLEs.FirstOrDefault(sale => sale.roleName == tSale_ID).id,
-                      //  UserID = db.USERs.FirstOrDefault(m => m.Email == tUser_ID).ID,
+                       // UserID = db.USERs.FirstOrDefault(m => m.Email == tUser_ID).ID,
                         Note= item["Note"],
                         Status_ID = e.ID
                     };

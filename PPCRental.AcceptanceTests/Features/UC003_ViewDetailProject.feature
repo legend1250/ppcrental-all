@@ -1,7 +1,7 @@
 ﻿
 
-#@automated
-@web
+@automated
+#@web
 Feature: UC003_ViewDetailProject
 	As a potential customer
 	I want to see the details of a project
